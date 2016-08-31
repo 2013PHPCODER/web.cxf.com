@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>资金明细</title>
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="css/fqy_style.css">
+        <script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/knockout-3.3.0.js" type="text/javascript" charset="utf-8"></script>	
+		<script src="js/plus.js" type="text/javascript" charset="utf-8"></script>	
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/message.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/laydate.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+    <body>
+        <div class="main clearfix">
+            <div id="p_left"></div>
+            <div class="wraper">
+                <div id="p_top"></div>
+                <div class="orderManageDiv" style="height: 17rem;overflow-y: scroll;">
+                    <div class="odMHeader">
+                        <ul>
+                            <li>选择交易类型：<select id="seleM"> 
+                            	<option value="">——请选择——</option>
+                                <option value="5">订单付款</option>
+                                <option value="3">售后退款</option>
+                                <option value="2">售后补款</option>
+                                <option value="1">余额提现</option>
+                            </select></li>
+                            <li>选择时间：<input type="text" name="startTime" class="startTime" id="startTime"> 至 <input type="text" name="endTime" class="endTime" id="endTime"></li>
+                        </ul>
+                        <div class="odMSearch">
+                            <!--<button>搜索</button>-->
+                        </div>
+                    </div>
+
+                    <table class="odMTabSty">
+                        <tr class="orderTabHeader">
+                            <th>时间</th>
+                            <th>交易类型</th>
+                            <th>单号<span class="order-th">(订单号/售后单号)</span></th>
+                            <th>金额</th>
+                            <th>方式</th>
+                            <th>收款账户</th>
+                            <th>账户余额</th>
+                            <th>备注</th>
+                        </tr>
+						<tbody data-bind = "foreach:list,as:auto" id="states">
+                        <tr>
+                            <td data-bind = "text:add_time">2016-7-28  09:55:43</td>
+                            <td data-bind = "text:trade_type_str">售后退款</td>
+                            <td data-bind = "text:trade_no">123456789456</td>
+                            <td data-bind = "text:in_money">+280.00</td>
+                            <td data-bind = "text:remark">支付宝</td>
+                            <td data-bind = "text:trade_account">退款至账户</td>
+                            <td data-bind = "text:now_balance">278.00</td>
+                            <td data-bind = "text:trade_account_type">售后订单退全款</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="p_footer"></div>
+    </body>
+    <script type="text/javascript">
+
+        var start = {
+            elem: '#startTime',
+            format: 'YYYY-MM-DD',
+            istime: true,
+            istoday: false,
+            choose: function(datas){
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas; //将结束日的初始值设定为开始日
+            }
+        };
+
+        var end = {
+            elem: '#endTime',
+            format: 'YYYY-MM-DD',
+            istime: true,
+            istoday: false
+
+        };
+        laydate.skin('molv');
+        laydate(start);
+        laydate(end);
+        var oHtml =$('#states').html();
+        function ZJsearch(){
+        	var data = {
+		        'user_id': localStorage.getItem('user_id'),
+		        'user_name': localStorage.getItem('user_account'),
+                'page':1
+	        }
+            if ($('#startTime').val() != '') {
+                data.start_time = $('#startTime').val();
+            }
+            if ($('#endTime').val() != '') {
+                data.end_time = $('#endTime').val();
+            }
+            if ($('#seleM').find('option:selected').index() != 0 ) {
+                data.trade_type = $('#seleM').find('option:selected').val()
+            }
+            ko.cleanNode(document.getElementById("states"));
+            $('#states').html(oHtml);
+            X.bindModel(requestUrl.stats,1,data,'body.list',['states'],function(){
+		  
+            })           
+        }
+        ZJsearch();
+        $('#seleM').change(function(){
+        	ko.cleanNode(document.getElementById("states"));
+        	$('#states').html(oHtml);
+        	var  statsData={
+        		'user_id':localStorage.getItem('user_id'),
+        		'user_name':localStorage.getItem('user_account'),
+        		'trade_type':$('#seleM option:selected').val(),
+        		'page':1
+        	}
+        	X.bindModel(requestUrl.stats,1,statsData,'body.list',['states'],function(){
+		  		
+            })  
+        })
+        $('#startTime').blur(function(){
+    		setTimeout(function(){
+    			ZJsearch();
+    		},150)      
+        })
+        $('#endTime').blur(function(){
+        	setTimeout(function(){
+    			ZJsearch();
+    		},150)  
+        })
+    </script>
+</html>

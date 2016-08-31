@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>货源管家-首页</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/yz.css">
+    <link rel="stylesheet" type="text/css" href="css/fqy_style.css"/>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/knockout-3.3.0.js"></script>
+    <script src="js/plus.js"></script>
+    <script src="js/public.js"></script>
+    <style>
+        .deposit_mark .PopBody > p {
+            padding: 10px 5px;
+            text-align: center;
+        }
+
+        .deposit_mark .PopBody > p input {
+            width: 150px;
+            height: 30px;
+            border-radius: 2px;
+        }
+
+        .popverify-box {
+            text-align: center;
+        }
+        #shop_survey tr>td>a{color: #333333;}
+    </style>
+</head>
+<body>
+<div class="main clearfix">
+    <div id="p_left"></div>
+    <div class="wraper">
+
+        <div id="p_top"></div>
+        <div class="home-page">
+            <ul class="person-infor clearfix">
+                <li>
+                    <p class="p-head"><span></span><span></span><span></span></p>
+                    <h3><img src="images/main/homeicon01.png"/>账户信息</h3>
+                    <p class="p-name c-c0"></p>
+                    <p>可用余额：<span class="p-balance"></span></p>
+                    <p class="p-btn">
+                        <button class="b-withdrawal">提现</button>
+                    </p>
+                </li>
+                <li>
+                    <p class="p-head"><span></span><span></span><span></span></p>
+                    <h3><img src="images/main/homeicon02.png"/><span>用户等级</span></h3>
+                    <p class="p-level">· 基础用户</p>
+                    <p class="p-level">· 初级用户</p>
+                    <p class="p-level">· 中级用户</p>
+                    <p class="p-level">· 高级用户</p>
+                    <p class="p-btn">
+                        <button class="b-upgrade col-red">升级</button>
+                    </p>
+                </li>
+                <li id="shop_bind">
+                    <p class="p-head"><span></span><span></span><span></span></p>
+                    <h3><img src="images/main/homeicon03.png"/>绑定店铺</h3>
+                    <p class="p-num c-c0">数量：<span data-bind="text:shop.shop_list.length">0</span>/5</p>
+                    <div class="store-name" data-bind="foreach:{data:shop.shop_list,as:'auto'}">
+                        <p data-bind="text:nick,attr:{'data-id':tb_user_id}">店铺名称1</p>
+                    </div>
+                    <p class="p-btn">
+                        <button class="b-bing col-gre" onclick="openTB()">绑定</button>
+                    </p>
+                </li>
+            </ul>
+            <div class="person-table">
+                <table id="shop_survey">
+                    <tr>
+                        <th><img src="images/main/homeicon04.png"/>店铺概况</th>
+                        <th><img src="images/main/homeicon05.png"/>常见问题</th>
+                    </tr>
+                    <tr>
+                        <td><span class="s-tltle">店铺商品总数：</span><span class="s-num"
+                                                                      data-bind="text:shop.ck_count_total"></span></td>
+                        <td><a href="javascript:open_url(webServerUrl+'/helplist.php')">登录密码的修改与注册</a></td>
+                    </tr>
+                    <tr>
+                        <td><span class="s-tltle">代付款订单：</span><span class="s-num"
+                                                                     data-bind="text:order_count[1]"></span></td>
+                        <td><a href="javascript:open_url(webServerUrl+'/helplist.php')">账号注册流程/</a></td>
+                    </tr>
+                    <tr>
+                        <td><span class="s-tltle">待发货订单：</span><span class="s-num"
+                                                                     data-bind="text:order_count[2]"></span></td>
+                        <td><a href="javascript:open_url(webServerUrl+'/helplist.php')">开通账户加入分销平台</a></td>
+                    </tr>
+                    <tr>
+                        <td><span class="s-tltle">售后订单：</span><span class="s-num"
+                                                                    data-bind="text:order_count[4]"></span></td>
+                        <td><a href="javascript:open_url(webServerUrl+'/helplist.php')">店铺优化与分销系统</a></td>
+                    </tr>
+                    <tr>
+                        <td><span class="s-tltle">异常订单：</span><span class="s-num"
+                                                                    data-bind="text:order_count[3]"></span></td>
+                        <td><a href="javascript:open_url(webServerUrl+'/helplist.php')">找回密码/忘记密码</a></td>
+                    </tr>
+                    <tr>
+                        <td style="background: none;"></td>
+                        <td><a href="javascript:open_url(webServerUrl+'/helplist.php')">数据异常的解决办法/其它数据异常问题</a></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="p_footer"></div>
+<div class="marks deposit_mark">
+    <div class="PopDiv" style="display: none;">
+        <div class="PopHeader">
+            <span class="PopTitle"><i class="PopDetails"></i>申请提现</span>
+            <div class="PopColse"></div>
+        </div>
+        <div class="PopBody deposit" id="info">
+            <p><span>账户：</span><strong style="margin-right: 20px;"></strong>可用余额：<b class="info-apply"></b></p>
+            <p><span>申请提现金额：</span><input type="text" name="" class="short-input" id="money_no" value=""
+                                          style="margin-right: 5px;"/>元<b style="color: #f40">*</b></p>
+            <p><span>收款支付宝：</span><input type="text" name="" id="applyName" value=""/><b
+                    style="margin-right: 5px;color: #f40">*</b></p>
+            <p><span>收款人姓名：</span><input type="text" name="" class="short-input" id="user_name" value=""/><b
+                    style="margin-right: 5px;color: #f40">*</b></p>
+            <p><span>提现密码：</span><input type="password" name="" id="catch_pas" value=""/></p>
+            <div class="popverify-box clearfix" style="text-align: center">
+                <div id="popdrag" class="E-drag" style="display: inline-block;margin: 0; color: rgb(108, 108, 108);"></div>
+            </div>
+
+            <p class="centerP">
+                <button class="aplayBtn">确认付款</button>
+            </p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+    	$('#shop_survey>tr>td').eq(1).click(function(){
+    		open_url(webServerUrl + '/helplist.php');
+    	});
+//  	X.bindModel(requestUrl.get_user,1,{'user_id':localStorage.getItem('id')},'body.list',['get_user'],function(){})
+        X.bindModel(requestUrl.shop_survey, 1, {'user_id': localStorage.getItem('user_id')}, 'body.list', ['shop_survey', 'shop_bind'], function () {
+            X.bindModel(requestUrl.help_list, 0, {'show_platform': 1, 'page': 1}, 'body.list', [], function () {
+            }, function (e) {
+// 				$('#shop_survey>tr').html(1);
+                for (var i = 0; i < e.list.length; i++) {
+                    if (i > 5) {
+                        return false
+                    }
+                    $('#shop_survey tr').eq(i + 1).children('td').eq(1).html(e.list[i].title);
+                    $('#shop_survey tr').eq(i + 1).children('td').eq(1).attr('data-id', e.list[i].id);
+                }
+            })
+        });
+        var email = window.localStorage.getItem('email'), mobiel = window.localStorage.getItem('mobile'), nickname = window.localStorage.getItem('user_nickname');
+        $('.p-name').html(email == "" ? (mobiel == "" ? nickname : mobiel) : email);
+
+        var balance = Number(window.localStorage.getItem('user_balance') == null ? 0 : window.localStorage.getItem('user_balance'));
+        $('.p-balance').html('￥' + balance.toFixed(2) + "元");
+        if (balance <= 0) {
+            $(".b-withdrawal").css({backgroundColor: "#eee", color: "#555", cursor: "notAllowed"});
+            $('.b-withdrawal').click(function () {
+            	X.notice('您没有可提现的余额！',3)
+            });
+        } else {
+            //提现
+            $('.b-withdrawal').click(function () {
+                $('.deposit strong').html(window.localStorage.getItem('user_account'));
+                var money = parseInt(window.localStorage.getItem('user_balance'));
+                $('.info-apply').html(money.toFixed(2) + '元');
+                if (money > 0) {
+                    $('.deposit_mark').fadeIn();
+                    $('.deposit_mark>div').fadeIn();
+                }
+            });
+        }
+        var _index = parseInt(localStorage.getItem('user_level'));
+        $('.p-level').eq(_index).addClass('c-c0');
+
+
+        $('.aplayBtn').click(function () {
+            var applyData = {
+                'user_id': localStorage.getItem('user_id'),
+                'user_account': localStorage.getItem('user_account'),
+                'user_name': $('#user_name').val(),
+                'apply_money': $('#money_no').val(),
+                'apply_user': $('#applyName').val(),
+                'apply_ps': $('#apply_password').val()
+            };
+            if (applyData.apply_money == '' || applyData.apply_money <= localStorage.getItem('apply_money')) {
+                X.notice('请输入正确的金额', 3)
+            } else if (applyData.apply_user == '') {
+                X.notice('请填写支付宝!', 3)
+            } else if (applyData.user_name == '') {
+                X.notice('请填写名字!', 3)
+            } else if (applyData.apply_ps == '') {
+                X.notice('密码不能为空！', 3)
+            } else {
+                X.Post(requestUrl.apply, 1, applyData, function (e) {
+                    X.notice(e.header.msg, 3);
+                    $('.marks').fadeOut()
+                })
+            }
+        })
+        $('#popdrag').drag();
+        $('.b-upgrade').click(function () {
+            $('.public_version').click();
+        })
+    })
+</script>

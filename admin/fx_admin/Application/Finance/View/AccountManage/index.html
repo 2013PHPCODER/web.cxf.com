@@ -1,0 +1,79 @@
+<block name="content">
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> 位置</li>
+        <li>
+            财务管理</li>
+        <li>收款账户</li>
+    </ol> 
+    <div class="row" >
+        <form class="form-inline" method="get" action="{:U('finance/accountManage/index')}">
+            <div class="form-group">
+                <label for="exampleInputName2">用户类型: </label>
+                <select class="form-control input-xs" name="user_type">
+                    <!-- <option value="">—请选择—</option>-->
+                    <?php foreach($user_type as $k=>$v){ ?>
+                    <option value="<?php echo $k;?>" <?php if(I('get.user_type')==$k){echo 'selected';}?> ><?php echo $v;?></option>   
+                    <?php }?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName2">支付方式:</label>
+                <select class="form-control input-xs" name="receiver_platform">
+                    <option value="">—请选择—</option>
+                    <?php foreach($receiver_platform as $key=>$val){ ?>
+                    <option value="<?php echo $key;?>"<?php if(I('get.receiver_platform')==$key){echo 'selected';}?>><?php echo $val;?></option>   
+                    <?php }?>
+                </select>
+            </div>
+            <div class="row" >
+                <div class="form-group ">
+                    <label for="exampleInputName2">用户账号:</label>
+                    <input type="text" class="form-control input-xs" name="user_account" value="<?php echo I('get.user_account');?>" >
+                </div>
+                <div class="form-group ">
+                    <label for="exampleInputName2">收款账户:</label>
+                    <input type="text" class="form-control input-xs" name="receiver_account" value="<?php echo I('get.receiver_account');?>" >
+                </div>	
+                <div class="form-group">
+                    <input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
+                    <input type="hidden" name="is_close" value="1" id="is_close" >
+                    <input type="hidden" name="is_cus" value="1" id="is_cus">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="box row">
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th>用户账户</th>
+                        <th>账户余额</th>
+                        <th>收款账户类型</th>
+                        <th>卡号</th>
+                        <th>开户行地址</th>
+                        <th>收款人</th>
+                        <th>操作</th>
+                    </tr>
+                    <?php foreach($list_data['list'] as $value){ ?>
+                    <tr>
+                        <th><?php echo $value['username']; ?></th>
+                        <th><?php echo !$value['balance']?'--':$value['balance'];?></th>
+                        <th><?php echo $receiver_platform[$value['receiver_account_type']] ;?></th>
+                        <th><?php echo $value['receiver_account'];?></th>
+                        <th><?php echo $value['open_bank_address'];?></th>
+                        <th><?php echo $value['receiver_account_name'];?></th>
+                        <th><a href="{:U('finance/accountManage/detail',array('user_id'=>$value['id'],'user_type'=>$ckeck_user_type))}">查看</a></th>
+                    </tr>
+                    <?php }?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="right">
+        <div class="pagination">
+            {$list_data.page}
+        </div>
+    </div>
+</block>
+

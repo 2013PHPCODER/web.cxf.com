@@ -1,0 +1,249 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>虚拟订单详情</title>
+        <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+        <link rel="stylesheet" href="__PUBLIC__/css/AdminLTE.css">
+        <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+        <link rel="stylesheet" href="__PUBLIC__/css/my.css">
+    </head>
+    <body>
+        <section class="content">
+            <div class=" order_detail box">
+                <div class="box-body table-responsive no-padding ">
+                    <h4 class="order_type">订单状态：
+                        <switch name="orderInfo.status">
+                        <case value="1">待付款</case>
+                        <case value="2">已完成</case>
+                        </switch>
+                    </h4>
+                </div>
+            </div>
+            <div class=" order_detail box">
+                <div class="box-header">
+                    <h4 class="order_type">基本信息:</h4>
+                    <h4 class="order_type">分销商信息:</h4>
+                </div>
+                <div class="box-body table-responsive no-padding ">
+                    <div class="order_type">
+                        <p>订单号：{$orderInfo.order_sn}</p>
+                        <p>下单时间：<?php if($orderInfo['add_time']>0) echo date('Y-m-d H:i:s',$orderInfo['add_time']); ?></p>
+                        <p>付款时间：<?php if($orderInfo['payment_time']>0) echo date('Y-m-d H:i:s',$orderInfo['payment_time']); ?></p>
+                    </div>
+                    <div class="order_type ">
+                        <p>分销商账户：{$distribute.username}</p>
+                        <!-- <p>分销商ID：{$datas.buyer_id}</p> -->
+                        <p>联系方式：<if condition="$distribute['qq']"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$distribute.qq}&site=qq&menu=yes"><img border="0" src="__PUBLIC__/images/qq.png" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></if><if condition="$distribute['phone']">&nbsp;&nbsp;&nbsp;&nbsp;手机号：{$distribute.phone}</if></p>
+                    </div>
+                </div>
+            </div>
+            <div class="box order_detail">
+                <div class="box-header">
+                    <h3 class="box-title">商品信息</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th>主图</th>
+                                <th>标题</th>
+                                <th>单价/元</th>
+                            </tr>
+                            <tr>
+                                <td><img class="table_img" src="{$orderGoods.img_url}"></td>
+                                <td>{$orderGoods.name}</td>
+                                <td>{$orderGoods.price} </td>
+                            </tr>
+                            <tr>
+                                <td><h4 class="order_info">实收款：<strong>&nbsp;{$orderInfo.pay_money}元</strong></h4></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="box order_detail">
+                <div class="box-header">
+                    <h3 class="box-title">订单操作日志</h3>
+                    <div class="box-tools">
+                        <div class="input-group order"> </div>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th>操作人</th>
+                                <th>操作内容</th>
+                                <th>操作时间</th>
+                                <th>系统备注</th>
+                            </tr>
+                        <volist name="orderLog" id="log">
+                            <tr>
+                                <td>{$log.user_id}</td>
+                                <td>{$log.log_info}</td>
+                                <td><?= date("Y-m-d H:i",$log['addtime'])?></td>
+                                <td>{$log.handle_info}</td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <script src="__PUBLIC__/js/plugins/jQuery-2.2.0.min.js"></script> 
+        <script type="text/javascript" src="__PUBLIC__/static/layer/layer.js"></script> 
+        <script src="__PUBLIC__/js/bootstrap.min.js"></script> 
+        <script src="__PUBLIC__/js/app.min.js"></script> 
+        <script src="__PUBLIC__/js/custom.js"></script> 
+        <script type="text/javascript">
+            $(document).ready(function (e) {
+                $(".prov").change(function (e) {
+                    $.ajax({
+                        url: "{:U('Orders/Orders/area_list')}",
+                        type: "GET",
+                        data: {'id': $(this).val()},
+                        dataType: "json",
+                        success: function (result) {
+                            document.getElementById("city").options.length = 0;
+                            document.getElementById("dist").options.length = 0;
+                            document.getElementById("city").options.add(new Option("请选择", ''));
+                            document.getElementById("dist").options.add(new Option("请选择", ''));
+                            for (var i = 0; i < result.length; i++) {
+                                document.getElementById("city").options.add(new Option(result[i].area_name, result[i].id));
+                            }
+                        }, error: function () {
+                        }
+                    });
+                });
+                $(".city").change(function (e) {
+                    $.ajax({
+                        url: "{:U('Orders/Orders/area_list')}",
+                        type: "GET",
+                        data: {'id': $(this).val()},
+                        dataType: "json",
+                        success: function (result) {
+                            document.getElementById("dist").options.length = 0;
+                            document.getElementById("dist").options.add(new Option("请选择", ''));
+                            for (var d = 0; d < result.length; d++) {
+                                document.getElementById("dist").options.add(new Option(result[d].area_name, result[d].id));
+                            }
+                        }, error: function () {
+                        }
+                    });
+                });
+
+                $("#edit_address_info").submit(function (e) {
+                    var mobile = $("#user_phone").val();
+                    var user_name = $("#user_name").val();
+                    var partten = /^1[3-8]\d{9}$/;
+                    var tel = /^0(([1,2]\d)|([3-9]\d{2}))\d{7,8}$/;
+                    if (mobile.length != 11 || (!partten.test(mobile) && !tel.test(mobile))) {
+                        layer.alert("请输入正确的手机号", {icon: 6});
+                        return false;
+                    }
+                    if (user_name.length > 10 || user_name.length < 2) {
+                        layer.alert("收件人姓名为2~10个字符", {icon: 6});
+                        return false;
+                    }
+                    if ($(".city").val() == '') {
+                        layer.alert("请选择城市", {icon: 6});
+                        return false;
+                    }
+                    if ($(".dist").find('option').length > 1 && $(".dist").val() == '') {
+                        layer.alert("请选择地区", {icon: 6});
+                        return false;
+                    }
+                    //		if($(".dist").val()==''){
+                    //			layer.alert("请选择地区",{icon:6});
+                    //			return false;
+                    //		}
+                    if ($("#contact_address").val().length < 5) {
+                        layer.alert("详细地址至少5个字以上", {icon: 6});
+                        return false;
+                    }
+                    if ($("#contact_address").val().length > 40) {
+                        layer.alert("详细地址最长40个字以内", {icon: 6});
+                        return false;
+                    }
+                    if ($(".dist").val() == '') {
+                        $(".dist").val('');
+                    }
+                    //		alert($(".dist").val());
+                    var data = {
+                        contact_name: user_name,
+                        tel: mobile,
+                        province: $(".prov").val(),
+                        city: $(".city").val(),
+                        dist: $(".dist").val(),
+                        contact_address: $("#contact_address").val(),
+                        order_id: $("#order_id").val(),
+                        zip_code: $("#zip_code").val()
+                    };
+                    $.ajax({
+                        url: "{:U('Orders/Orders/editAddress')}",
+                        type: "POST",
+                        dataType: "json",
+                        data: data,
+                        success: function (result) {
+                            if (result.status) {
+                                $("#edit_address").css("display", "none");
+                                layer.confirm(result.msg, {
+                                    btn: ['确定']
+                                }, function () {
+                                    location.reload();
+                                });
+                            } else {
+                                layer.confirm(result.msg);
+                            }
+                        }, error: function () {
+                            console.log('error');
+                        }
+                    });
+                    return false;
+                });
+                $("#edit_shipping").submit(function (e) {
+                    var code = $("#ship_code").val();
+                    var ship_code = /^[A-Za-z0-9]+$/;
+                    if (!ship_code.test(code)) {
+                        layer.alert("请输入正确的物流单号", {icon: 6});
+                        return false;
+                    }
+                    ;
+                    if (code.length >= 15) {
+                        layer.alert("物流单号不能超过14位", {icon: 6});
+                        return false;
+                    }
+                    var query = {
+                        shipping_id: $(".ship_name").val(),
+                        shipping_code: $("#ship_code").val(),
+                        order_id: $(".order_id").val()
+                    };
+                    $.ajax({
+                        url: "{:U('Orders/Orders/edit_shipping')}",
+                        type: "POST",
+                        dataType: "json",
+                        data: query,
+                        success: function (result) {
+                            if (result.status) {
+                                $("#edit_shipping_code").css("display", "none");
+                                layer.confirm(result.msg, {
+                                    btn: ['确定']
+                                }, function () {
+                                    location.reload();
+                                });
+                            } else {
+                                layer.confirm(result.msg);
+                            }
+                        }, error: function () {
+                            console.log('error');
+                        }
+                    });
+                    return false;
+                });
+            });
+        </script>
+    </body>
+</html>

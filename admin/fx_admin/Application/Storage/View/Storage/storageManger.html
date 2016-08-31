@@ -1,0 +1,478 @@
+<block name="content">
+    <div class="box box-warning">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <ul class="choose_ul">
+                    <li><a class="{:xeq(I('get.group_id',1),1,'btn btn-warning btn-xs')}" href="{:U('storage/storageManger',array('group_id' => 1 ))}" >所有商品</a></li>
+                    <li><a class="{:xeq(I('get.group_id'),2,'btn btn-warning btn-xs')}" href="{:U('storage/storageManger',array('group_id' => 2 ))}">预警商品</a></li>
+                </ul>
+            </div>
+            <div class="box-tools pull-left"> </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row" >
+                <form class="form-inline" method="get" action="{:U('storage/storageManger')}" id="searchForm">
+                    <div class="form-group">
+                        <label for="exampleInputName2">仓库名称:</label>
+                        <select class="form-control input-xs" name="depot">
+                            <option value="">选择仓库</option>
+                            <volist name ="depot" id="depot">
+                                <option {:xeq(I('get.depot'),$depot['id'],'selected')} value="{$depot.id}">{$depot.sname}</option>
+                            </volist>
+                        </select>
+                    </div>
+                    <div class="form-group ">
+                        <label for="exampleInputName2">商品类目:</label>
+                        <select class="form-control input-xs" name="goods_category">
+                            <option value="">主类目</option>
+                            <volist name="goods_category" id="vo">
+                                <option {:xeq(I('get.goods_category'),$vo['cid'],'selected')} value="{$vo.cid}">{$vo.name}</option>
+                            </volist>
+                        </select>
+                    </div>
+                    <div class="form-group ">
+                        <label for="exampleInputName2">商品状态:</label>
+                        <select class="form-control input-xs" name="goods_sale">
+                            <option value="">全部</option>
+                            <option {:xeq(I('get.goods_sale'),1,'selected')} value="1" >上架</option>
+                            <option {:xeq(I('get.goods_sale'),2,'selected')} value="2" >下架</option>
+                        </select>
+                    </div>
+                    <div class="row" >
+                        <div class="form-group">
+                            <select class="form-control input-xs" name="time_type">
+                                <option {:xeq(I('get.time_type'),'sale_time','selected')} value="sale_time">上架时间</option>
+                                <option {:xeq(I('get.time_type'),'off_sale_time','selected')} value="off_sale_time">下架时间</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control input-xs" value="{:I('get.startTime')}" onClick="WdatePicker()" name="startTime" placeholder="开始时间">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control input-xs" value="{:I('get.endTime')}" onClick="WdatePicker()" name="endTime" placeholder="结束时间">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control input-xs" name="goods_search">
+                                <option value="">选择关键字</option>
+                                <option {:xeq(I('get.goods_search'),'goods_no','selected')} value="goods_no">商品ID</option>
+                                <option {:xeq(I('get.goods_search'),'buyer_goods_no','selected')} value="buyer_goods_no">商家编码</option>
+                                <option {:xeq(I('get.goods_search'),'goods_name','selected')} value="goods_name">商品名称</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="search_word" {:xeq(I('get.goods_search'),'','disabled')} value="{:I('get.search_word')}" class="form-control input-xs"  placeholder="商品名称、货号、收件人姓名、电话">
+                        </div>
+                        <div class="form-group btnBox" >
+                            <input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
+                            <input type="hidden" name="allData" value="0" />
+                            <input type="hidden" class="explode_goods_input" name="explodeGoods[]" value="0" />
+                            <input type="hidden" name="explode_goods" value="0" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-header">
+            <form id="sortForm" action="{:U(ACTION_NAME,I('get.'))}" method="get">
+                <select class="form-control input-xs sort" name="sort">
+                    <option value="">商品排序</option>
+                    <option {:xeq(I('get.sort'),'addtime~asc,goods_list.goods_id~asc','selected')} value="addtime~asc,goods_list.goods_id~asc">上传时间升序</option>
+                    <option {:xeq(I('get.sort'),'addtime~desc,goods_list.goods_id~desc','selected')} value="addtime~desc,goods_list.goods_id~desc">上传时间降序</option>
+                    <option {:xeq(I('get.sort'),'stock_update_time~asc,goods_list.goods_id~asc','selected')} value="stock_update_time~asc,goods_list.goods_id~asc">修改时间升序</option>
+                    <option {:xeq(I('get.sort'),'stock_update_time~desc,goods_list.goods_id~desc','selected')} value="stock_update_time~desc,goods_list.goods_id~desc">修改时间降序</option>
+                </select>
+
+            </form>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-hover" id ="dataTable">
+                <tbody>
+                    <tr>
+                        <th align="middle"><input type="checkbox" id="checkAll"></th>
+                        <th>商品ID</th>
+                        <th>标题</th>
+                        <th>最新商家编码</th>
+                        <th>商品状态</th>
+                        <th >SKU</th>
+                        <th>SKU库存</th>
+                        <th>预警库存</th>
+                        <th>总库存</th>
+                    </tr>
+                <volist name="datas.list" id='vo'>
+                    <tr id="content">
+                        <td ><input type="checkbox" class="choose checkbox_goods_id" name="goods_id[]" value="{$vo.goods_id}"></td>
+                        <td >{$vo.goods_no}</td>
+                        <td >{$vo.goods_name}</td>
+                        <td >{$vo.buyer_goods_no}</td>
+                        <td ><switch name="vo.goods_sale">
+                    <case value='1'>上架</case>
+                    <case value='2'>下架</case>
+                    </switch></td>
+                    <td><foreach name="vo.sku_str_zh" item="item" >
+                        <P> {$item}</P>
+                    </foreach></td>
+                    <td>
+                        <?php foreach($vo['stock_num'] as $key =>$value){ ?>
+                        <?php if($value['stock_num'] <= $vo['stock_lock_num'][$key]  and $vo['stock_lock_num'][$key] > 0  ){ ?>
+                        <!-- <p style="color: red;">{$vo['stock_num'][$i]}</p> -->
+                        <input type="text" style="color: red;" data-skuval="{$value['stock_num']}" data-skuid="{$value.id}"  class="form-control input-xs edit_input" name="" value="{$value['stock_num']}">
+                        <?php } else{ ?>
+                        <input type="text" class="form-control input-xs edit_input" data-skuval="{$value['stock_num']}"  data-skuid="{$value.id}"  value="{$value['stock_num']}">
+                        <?php } ?>
+                        <?php } ?>
+                    </td>
+                    <td ><foreach name="vo.stock_lock_num" item="item" >
+                        <input type="text" class="form-control input-xs edit_input"  disabled="disabled" data-skuid="{$value.id}"  value="{$item}">
+                    </foreach></td>
+                    <td>{$vo.all_stock}</td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+        </div>
+        <div class="box-footer">
+            <div class="left" >
+                <form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+                    <div class="form-group">
+                        <label for="exampleInputName2">全选结果页: </label>
+                        <input type="checkbox" id='selectall'  >
+                    </div>
+                    <div class="form-group">
+                        <select name="pagesize" class="form-control input-xs pagesize">
+                            <option {:xeq(I('get.pagesize'), 20, 'selected')} value="20" >20条</option>
+                            <option {:xeq(I('get.pagesize'), 50, 'selected')} value="50" >50条</option>
+                            <option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="right">
+                <div class="pagination">
+                    {$datas.page}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.box -->
+    <form action="{:U('storage/loadStock')}" method="post" enctype="multipart/form-data" id="form_stock">
+        <input type="file" name="file" id='stock' style="visibility:hidden">
+    </form>
+</div>
+</block>
+<block name="footerJs"> 
+    <script type="text/javascript">
+        /*  弹窗   */
+        var refurbish = function (response) {
+            layer.open({
+                content: response.message,
+                scrollbar: false,
+                yes: function (index) {
+                    layer.close(index);
+                    window.location.reload();
+                }
+            });
+        };
+        $(document).ready(function () {
+
+            $('select[name="goods_search"]').change(function (event) {
+                if ('' == $(this).val()) {
+                    $('input[name="search_word"]').attr('disabled', true);
+                    $('input[name="search_word"]').val('');
+                } else {
+                    $('input[name="search_word"]').removeAttr('disabled');
+                }
+            });
+
+
+            $('.sort').change(function () {
+                $('#sortForm').submit();
+            });
+//批量预警
+            $('.all_warning').click(function () {
+                if ($('.choose:checked').serialize() || $("#selectall").is(':checked')) {
+                    var str = "设置每个SKU库存预警";
+                    str += "<input type='text' min ='0' class='form-control input-xs' id='warning_val'>";
+                    layer.confirm(str, {title: "批量预警库存设置", btn: ['确定', '取消']}, function (index) {
+                        if (isNaN($('#warning_val').val())) {
+                            layer.tips('请输入数值', '#warning_val', {
+                                tips: [2, '#3595CC'],
+                                time: 2000
+                            });
+                            return false;
+                        }
+                        if (parseInt($('#warning_val').val()) > 9999999) {
+                            layer.tips('最大只能设置9999999', '#warning_val', {
+                                tips: [2, '#3595CC'],
+                                time: 2000
+                            });
+                            return false;
+                        }
+                        if (parseInt($('#warning_val').val()) < 0) {
+                            layer.tips('预警库存不能小于0', '#warning_val', {
+                                tips: [2, '#3595CC'],
+                                time: 2000
+                            });
+                            return false;
+                        }
+                        if ($("#selectall").is(':checked') == true) {
+                            data = {type: 'all', val: $('#warning_val').val()};
+                        } else {
+                            var id = new Array();
+                            $('.choose:checked').each(function () {
+                                id.push($(this).val());
+                            })
+                            data = {goods_id: id, val: $('#warning_val').val()}
+                        }
+
+                        var urlPost = "{:U('storage/allWarning',I('get.'))}";
+                        $.post(urlPost, data, function (result) {
+                            if (result.status == 'ok') {
+                                layer.alert('设置成功');
+                            } else {
+                                // layer.msg(result);
+                                label.alert(result);
+                            }
+                            layer.close(index);
+                            window.location.reload();
+                        });
+                    });
+
+                } else {
+
+                    layer.alert('请选择要操作的订单');
+                }
+
+            });
+
+//批量修改库存
+            $('.all_edit').click(function () {
+                if ($('.choose:checked').serialize() || $("#selectall").is(':checked')) {
+                    var str = "录入库存修改";
+                    str += "<input type='text' min ='0' class='form-control input-xs' id='warning_val'>";
+                    layer.confirm(str, {title: "批量修改库存", btn: ['确定', '取消']}, function (index) {
+
+                        /*******************限制库存******************************/
+                        if (isNaN($('#warning_val').val())) {
+                            layer.tips('请输入数值', '#warning_val', {
+                                tips: [2, '#3595CC'],
+                                time: 2000
+                            });
+                            return false;
+                        }
+                        if (parseInt($('#warning_val').val()) > 9999999) {
+                            layer.tips('最大只能设置9999999', '#warning_val', {
+                                tips: [2, '#3595CC'],
+                                time: 2000
+                            });
+                            return false;
+                        }
+                        if (parseInt($('#warning_val').val()) < 0) {
+                            layer.tips('库存不能小于0', '#warning_val', {
+                                tips: [2, '#3595CC'],
+                                time: 2000
+                            });
+                            return false;
+                        }
+                        /************************************************/
+                        if ($("#selectall").is(':checked') == true) {
+                            data = {type: 'all', val: $('#warning_val').val()};
+                        } else {
+                            var id = new Array();
+                            $('.choose:checked').each(function () {
+                                id.push($(this).val());
+                            })
+                            data = {goods_id: id, val: $('#warning_val').val()}
+                        }
+
+                        var urlPost = "{:U('storage/allEdit',I('get.'))}";
+                        $.post(urlPost, data, function (result) {
+                            if (result.status == 'ok') {
+                                layer.msg('修改成功');
+                            } else {
+                                layer.msg(result);
+                            }
+                            layer.close(index);
+                            window.location.reload();
+                        });
+                    });
+
+                } else {
+
+                    layer.alert('请选择要操作的订单');
+                }
+            });
+
+//导出库存表
+//
+            $('#selectall').click(function (event) {
+
+                if (true == $(this).is(':checked')) {
+                    $('input[name="allData"]').val(1);
+                } else {
+                    $('input[name="allData"]').val(0);
+                }
+            });
+
+            $("#import_stock").click(function (event) {
+                if ($('#selectall').is(':checked')) {
+                    $("input[name='allData']").val(1)
+                } else {
+                    $("#dataTable").find('.checkbox_goods_id:checked').each(function (index, element) {
+                        var cloneInput = $('.explode_goods_input:first()').clone();
+                        cloneInput.val($(this).val()).appendTo('.btnBox')
+                    });
+                    if (1 == $('.explode_goods_input').length) {
+                        layer.alert("请选择要操作的订单");
+                        return false;
+                    }
+                }
+                $('.explode_goods_input:first()').remove();
+                $('input[name="explode_goods"]').val(1);
+                $("#searchForm").submit();
+                return false;
+            });
+
+            /****************************************/
+//导入库存
+// $('.add_stock').click(function(){
+//     return $('#stock').click();
+// })
+            $('.add_stock').click(function (event) {
+                layer.open({
+                    type: 2,
+                    id: 'import',
+                    area: ['500px', '150px'],
+                    fix: false, //不固定
+                    maxmin: true,
+                    content: "{:U('storage/importStock')}",
+                    title: '导入库存'
+                });
+                return false;
+            });
+
+
+// $('#stock').change(function(){
+//     if($(this).val()){
+//       layer.confirm('确定要上传所选文件吗?',{title:'提醒',btn:['确定','取消']},function(){
+//           $('#form_stock').submit();
+//       });
+//     }
+// });  
+
+//设置预警
+            $('.stock_lock_num').click(function () {
+                $.post("{:U('storage/setStock_locak_num')}", {goods_id: $(this).next().val()}, function (result) {
+                    if (result) {
+                        layer.confirm(result, {title: '设置预警', btn: ['确定', '取消'], area: ['800px', '500px']}, function (index) {
+                            var flag = true;
+                            $(".stock_lock").each(function () {
+                                if (isNaN($(this).val())) {
+                                    if ($(this).siblings('span').hasClass('number') == false) {
+                                        $(this).next('span').remove();
+                                        $(this).after("<span class='number' style='color:red'>请输入数值</span>");
+                                    }
+                                    flag = false
+                                }
+                                if (parseInt($(this).val()) > 9999999) {
+                                    $(this).focus();
+                                    if ($(this).siblings('span').hasClass('tip') == false) {
+                                        $(this).next('span').remove();
+                                        $(this).after("<span class='tip' style='color:red'>预警库最多只能设置9999999</span>");
+                                    }
+                                    flag = false
+                                }
+                                if (parseInt($(this).val()) < 0) {
+                                    $(this).focus();
+                                    if ($(this).siblings('span').hasClass('tip') == false) {
+                                        $(this).next('span').remove();
+                                        $(this).after("<span class='tip' style='color:red'>预警库存不能小于0</span>");
+                                    }
+                                    flag = false
+                                }
+                            });
+                            if (flag == false) {
+                                return;
+                            }
+                            var arr = new Array();
+                            $('.first').each(function () {
+                                var obj = new Object();
+                                obj.id = $(this).find('#sku_id').val();
+                                obj.val = $(this).find('#stock_lock_val').val();
+                                arr.push(obj);
+                            });
+                            if (arr) {
+                                $.post("{:U('storage/saveStock_locak_num')}", {data: arr}, function (result) {
+                                    if (result) {
+                                        layer.alert(result);
+                                    } else {
+                                        layer.msg('操作成功');
+                                        window.location.reload();
+                                    }
+                                })
+                            }
+                        });
+                        $(".stock_lock").change(function () {
+                            if (isNaN($(this).val()) == false) {
+                                $(this).next('span').remove();
+                            }
+                            if (parseInt($(this).val()) <= 9999999) {
+                                $(this).next('span').remove();
+                            }
+                            if (parseInt($(this).val()) >= 0) {
+                                $(this).next('span').remove();
+                            }
+                        });
+                    }
+                });
+                return false;
+            });
+
+//修改库存
+            $('.edit_input').blur(function () {
+                var old_sku_val = $(this).data('skuval');
+                var new_sku_val = $(this).val();
+                var sku_id = $(this).data('skuid');
+                if (new_sku_val != old_sku_val) {
+                    if (isNaN(new_sku_val)) {
+                        layer.tips('请输入数值', $(this), {
+                            tips: [2, '#3595CC'],
+                            time: 2000
+                        });
+                        $(this).val(old_sku_val);
+                        return false;
+                    }
+
+                    if (parseInt(new_sku_val) > 9999999) {
+                        layer.tips('最大只能设置9999999', $(this), {
+                            tips: [2, '#3595CC'],
+                            time: 2000
+                        });
+                        $(this).val(old_sku_val);
+                        return false;
+                    }
+                    if (parseInt(new_sku_val) < 0) {
+                        layer.tips('库存不能小于0', $(this), {
+                            tips: [2, '#3595CC'],
+                            time: 2000
+                        });
+                        $(this).val(old_sku_val);
+                        return false;
+                    }
+                    var postUrl = "{:U('storage/updateStock')}";
+                    var postData = {
+                        sku_id: sku_id,
+                        stock_num: new_sku_val,
+                        old_stock: old_sku_val
+                    }
+                    $.post(postUrl, postData, function (data) {
+                        window.location.reload();
+                    });
+                }
+            });
+        });
+    </script> 
+</block>

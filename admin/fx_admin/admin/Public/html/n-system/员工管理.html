@@ -1,0 +1,195 @@
+<style type="text/css">
+	.dalog-modal{
+			padding: 10px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-left: -255px;
+			margin-top: -100px;
+			background: #E6E6E6;
+			border-radius: 5px;
+			width: 500px;
+			height: 180px;
+			display: none;
+			z-index: 5001;
+		}		
+		.dalog-modal h2{
+			text-align: left;
+			margin-top: 5px;
+		}
+		.dalog-modal .btn{ background-color: #f39c12;border-color: #e08e0b;color: #fff;}
+		.dalog-modal .row{margin-top: 8px;padding-left: 30px;}
+		.g-modal-content{
+			font-family: "microsoft yahei";
+		}
+		.g-modal-content label{
+			/*float: left;*/
+			/*width: 200px;*/
+			/*width: 100%;*/
+			/*padding: 10px 0;*/
+			margin-left: 50px;
+		}
+		.sub-btn{
+			text-align: right;
+		}
+		.sub-btn .sumb{
+			height: 28px;
+		    line-height: 28px;
+		    margin: 0 6px;
+		    padding: 0 15px;
+		    border: 1px solid #dedede;
+		    background-color: #f1f1f1;
+		    color: #333;
+		    border-radius: 2px;
+		    font-weight: 400;
+		    cursor: pointer;
+		    text-decoration: none;	
+		}
+		.sub-btn .btn1{
+		    border-color: #4898d5;
+		    background-color: #2e8ded;
+		    color: #fff;
+		}
+		.dalog-modal .close{
+			position: absolute;
+			top: 0;
+			right: 0;
+			padding: 5px;
+		}
+</style>
+<ol class="breadcrumb">
+	<li><i class="fa fa-dashboard"></i> 位置</li>
+	<li>
+		系统设置</li>
+	<li>员工管理</li>
+</ol> 				
+<div class="box-body">
+	<div class="row">
+		<div class="form-group">
+			<button class="btn btn-default e-addUser">添加员工信息</button>
+		</div>
+	</div>	
+	<div class="row" >
+		<form class="form-inline" method="get" action="" id="form_search" onsubmit="return X.toSerchVaild(this)">
+			<div class="form-group">
+				<label for="exampleInputName2">账号:</label>
+				<input type="text" name="search_word" class="form-control input-xs" value=""  placeholder="">
+			</div>
+			<div class="form-group">
+				<select class="form-control input-xs" name="depot">
+					<option value="">请选择</option>
+                    <option value="">在职</option>
+                    <option value="">离职</option>         
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputName2">账号:</label>
+				<input type="text" name="search_word" class="form-control input-xs" value=""  placeholder="">
+			</div>
+			<div class="form-group">
+				<input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
+                <input type="hidden" name="is_close" value="1" id="is_close" >
+                <input type="hidden" name="is_cus" value="1" id="is_cus">
+			</div>
+		</form>
+	</div>
+	<div class="row table-responsive no-padding">
+		<table class="table table-hover">
+			<tbody>
+				<tr>
+					<th>账号</th>
+					<th>创建时间</th>
+					<th>操作</th>
+				</tr>	
+				<tr>
+					<th>admin-003@163.com</th>
+					<th>2016-5-18 10:47:06</th>
+					<th><a href="javascript:;">权限</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" class="e-resetPassw">重置密码</a></th>
+				</tr>
+				<tr>
+					<th>admin-003@163.com</th>
+					<th>2016-5-18 10:47:06</th>
+					<th><a href="javascript:;">权限</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" class="e-resetPassw">重置密码</a></th>
+				</tr>
+				<tr>
+					<th>admin-003@163.com</th>
+					<th>2016-5-18 10:47:06</th>
+					<th><a href="javascript:;">权限</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" class="e-resetPassw">重置密码</a></th>
+				</tr>
+			</tbody>
+		</table>
+	</div>	
+	<div class="box-footer">
+		<div class="left" >
+			<form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+				<div class="form-group">
+					<label for="exampleInputName2">全选结果页: </label>
+					<input type="checkbox" id="selectall"  value="">
+				</div>
+				<div class="form-group">
+					<select name="pagesize" class="form-control input-xs pagesize">
+						<option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+						<option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+						<option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+					</select>
+				</div>
+			</form>
+		</div>
+		<div class="right">
+			 <div class="pagination">
+                        <div class="row"><ul><li class="rows">共<b>278</b>条</li>   <li><span class="current">1</span></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">2</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/3.html">3</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/4.html">4</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/5.html">5</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/6.html">6</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/7.html">7</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/8.html">8</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/9.html">9</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/10.html">10</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/11.html">11</a></li> <li><a class="next" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">下一页</a></li> <li><a class="end" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/14.html">末页</a></li></ul></div>				</div>
+               </div>
+		</div>
+	</div>
+	<div class="dalog-modal" id="aleatMoudle">
+		<h3>添加用户</h3>
+		<div class="g-modal-content">
+			<form class="form-inline">
+				<div class="row">
+			       <label for="exampleInputName2">账号:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+				   <input type="text" class="form-control input-xs" value=""  placeholder="">
+				</div>
+				<div class="row">
+			       <label for="exampleInputName2">密码:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+				   <input type="text" class="form-control input-xs" value=""  placeholder="">
+				</div>
+				<div class="sub-btn"><input type="submit" class="sumb btn1" value="确定"/><input type="button" class="sumb btn-cancel" value="取消"/></div>
+			</form>
+		</div>
+		<span class="close" id="dalogModalClose">×</span>
+	</div>
+</div>
+<script>
+	$('.e-resetPassw').click(function(){
+    	layer.confirm('你确定重置密码吗？',{btn:['确认','取消']},
+		 	function(index){
+		 		layer.close(index);
+				/* Act on the event */
+//				$.post(postUrl, postData, function(data, textStatus, xhr) {
+//					/*optional stuff to do after success */
+//						layer.open({
+//							  content: data.message,
+//							  scrollbar: false,
+//							  yes: function(index){
+//								   layer.close(index);
+//								   if( 1 == data.status ){
+//								   		location.reload();
+//								   }
+//							  }
+//						});
+//				},'json');
+			},function(index){
+				layer.close(index);
+				return false;
+			});
+
+    })
+	$('.e-addUser').click(function(){
+		$('.dalog-modal').show();
+		$('.zhezhao').show();
+	})
+	$('.dalog-modal .btn-cancel,.dalog-modal .close').click(function(){
+		$('.dalog-modal').hide();
+		$('.zhezhao').hide();
+	})
+</script>

@@ -1,0 +1,404 @@
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/utf8-php/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/utf8-php/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/utf8-php/lang/zh-cn/zh-cn.js"></script>
+<style type="text/css">
+
+		.g-modal-content{
+			font-family: "microsoft yahei";
+		}
+		.g-modal-content label{
+			float: left;
+			width: 200px;
+			width: 100%;
+			padding: 10px 0;
+		}
+		.sub-btn{
+			text-align: right;
+		}
+		.sub-btn .sumb{
+			height: 28px;
+		    line-height: 28px;
+		    margin: 0 6px;
+		    padding: 0 15px;
+		    border: 1px solid #dedede;
+		    background-color: #f1f1f1;
+		    color: #333;
+		    border-radius: 2px;
+		    font-weight: 400;
+		    cursor: pointer;
+		    text-decoration: none;	
+		}
+		.sub-btn .btn1{
+		    border-color: #4898d5;
+		    background-color: #2e8ded;
+		    color: #fff;
+		}
+		.dalog-modal2{display: none;position: fixed;top: 10%;left: 15%;z-index: 1000;background: #fff;}
+		.dalog-modal2>h3{font-size: 24px;text-align: center;}
+		.dalog-modal-editor{display: none;position: fixed;top: 10%;left: 15%;z-index: 1000;}
+		.dalog-add,.dalog-Modify{display: none;}
+		.zhezhao1{position: fixed;display: none; background: #000;opacity: .3;z-index: 999; filter: alpha(opacity=30);width: 100%;height: 100%;top: 0;left: 0;}
+		.dalog-modal{display: none;padding: 10px 0;position: fixed;top: 15%;left: 50%;margin-left: -250px; z-index: 1000;background: #fff;width: 600px;}
+		.dalog-modal .artical-mes{width: 500px;margin-left: 50px;}
+		.dalog-modal>h3{font-size: 24px;text-align: center;}
+</style>
+<block name="content">
+	<ol class="breadcrumb">
+		<li><i class="fa fa-dashboard"></i> 位置</li>
+		<li>
+			页面管理</li>
+		<li>文章管理</li>
+	</ol> 
+	<div class="zhezhao1"></div>
+	<div class="box-body">
+		<div class="row" >
+			<form class="form-inline" method="get" action="" id="form_search" onsubmit="return X.toSerchVaild(this)">
+				<div class="form-group">
+					<label for="exampleInputName2">发布者:</label>
+					<select class="form-control input-xs" name="depot">
+						<option value="">——请选择——</option>
+                        <option value="">管理员账号</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputName2">发布对象:</label>
+					<select class="form-control input-xs" name="depot">
+						<option value="">——请选择——</option>
+                        <option value="">发布平台</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputName2">排序:</label>
+					<select class="form-control input-xs" name="depot">
+						<option value="">——请选择——</option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputName2">发布时间:</label>
+					<select class="form-control input-xs" name="depot">
+						<option value="">请选择</option>
+						<option value="">今天</option>
+                        <option value="">最近7天</option>
+                        <option value="">最近一个月</option>
+                        <option value="">自定义</option>
+					</select>
+				</div>		
+				<div class="form-group">
+					<input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
+                    <input type="hidden" name="is_close" value="1" id="is_close" >
+                    <input type="hidden" name="is_cus" value="1" id="is_cus">
+				</div>
+			</form>
+		</div>
+		<div class="row">
+			<div class="form-group">
+				<button class="btn btn-default e-add-announ">新增公告</button>
+			</div>
+		</div>	
+	</div>
+	<div class="box-body table-responsive no-padding">
+		<table class="table table-hover">
+			<tbody>
+				<tr>
+					<th>标题</th>
+					<th>发布者</th>
+					<th>发布对象</th>
+					<th>发布时间</th>
+					<th>是否上线</th>
+					<th>排序</th>
+					<th>操作</th>
+				</tr>	
+				<tr>
+					<th>文章1</th>
+					<th>admin1@gmail.com</th>
+					<th>开店助理</th>
+					<th>2016.7.29 14:00</th>
+					<th>是</th>
+					<th>1</th>
+					<th><a href="javascript:;" class="e-preview">预览</a>&nbsp;&nbsp;<a href="javascript:;" class="e-offline">下线</a>&nbsp;&nbsp;<a href="javascript:;" class="e-editor">编辑</a></th>
+				</tr>
+				<tr>
+					<th>文章1</th>
+					<th>admin1@gmail.com</th>
+					<th>开店助理</th>
+					<th>2016.7.29 14:00</th>
+					<th>是</th>
+					<th>1</th>
+					<th><a href="javascript:;" class="e-preview">预览</a>&nbsp;&nbsp;<a href="javascript:;" class="e-offline">下线</a>&nbsp;&nbsp;<a href="javascript:;" class="e-editor">编辑</a></th>
+				</tr>
+			</tbody>
+		</table>
+	</div> 
+	<div class="dalog-modal">
+		<h3>文章标题</h3>
+		<div class="artical-mes">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.
+		</div>
+		<div class="row" style="text-align: center">
+			<button class="btn btn-default preview-confirm">确定</button>
+		</div>
+	</div>
+    <div class="dalog-modal2">
+    	<h3 class="dalog-add">新增文章</h3>
+    	<h3 class="dalog-Modify">修改文章</h3>
+    	<script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
+    	<div class="row dalog-add">
+			<form class="form-inline" method="get" action="" id="form_search">
+				<div class="form-group">
+					<label for="exampleInputName2">发布对象:</label>
+					<select class="form-control input-xs" name="depot">
+						<option value="">——请选择——</option>
+                        <option value="">WEB端</option>
+                        <option value="">客户端</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputName2">排序:</label>
+					<select class="form-control input-xs" name="depot">
+						<option value="">——请选择——</option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+					</select>
+				</div>
+				<div class="row" style="text-align: center;">				
+                  	<input type="submit" class="btn btn-default" value="上线"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-default e-scancel" value="取消"/>				
+				</div>	
+			</form>	
+		</div>	
+		<div class="row dalog-Modify">
+			<form class="form-inline" method="get" action="" id="form_search">
+				<div class="form-group">
+					<label for="exampleInputName2">发布对象:</label>
+					<select class="form-control input-xs" name="depot">
+						<option value="">——请选择——</option>
+                        <option value="">WEB端</option>
+                        <option value="">客户端</option>
+                        <option value="" selected="selected">原对象</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputName2">排序:</label>
+					<select class="form-control input-xs" name="depot">
+						<option value="">——请选择——</option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="" selected="selected">原排序</option>
+					</select>
+				</div>
+				<div class="row" style="text-align: center;">				
+                  	<input type="submit" class="btn btn-default" value="上线"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-default e-scancel" value="取消"/>				
+				</div>	
+			</form>	
+		</div>	
+    </div>
+    <div class="box-footer">
+		<div class="left" >
+			<form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+				<div class="form-group">
+					<label for="exampleInputName2">全选结果页: </label>
+					<input type="checkbox" id="selectall"  value="">
+				</div>
+				<div class="form-group">
+					<select name="pagesize" class="form-control input-xs pagesize">
+						<option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+						<option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+						<option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+					</select>
+				</div>
+			</form>
+		</div>
+		<div class="right">
+			 <div class="pagination">
+                        <div class="row"><ul><li class="rows">共<b>278</b>条</li>   <li><span class="current">1</span></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">2</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/3.html">3</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/4.html">4</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/5.html">5</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/6.html">6</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/7.html">7</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/8.html">8</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/9.html">9</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/10.html">10</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/11.html">11</a></li> <li><a class="next" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">下一页</a></li> <li><a class="end" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/14.html">末页</a></li></ul></div>				</div>
+               </div>
+		</div>
+	</div>
+</block>
+<script>
+	$('select[name="order_search"]').change(function(event) {
+		/* Act on the event */
+		if ( '' == $(this).val() ){
+			$('input[name="search_word"]').attr('disabled', true);
+			$('input[name="search_word"]').val('');
+		}
+		else{
+			$('input[name="search_word"]').removeAttr('disabled');
+		}
+	});
+	
+//			全选
+   var allCheake = false; 
+   $('#checkAll').click(function(){
+   	   allCheake == true ? function(){$('.table-responsive').find('input[type="checkbox"]').prop('checked',false);allCheake=false}(): function(){$('.table-responsive').find('input[type="checkbox"]').prop('checked',true);allCheake=true;}();      	  
+   })
+   $('.e-preview').click(function(){
+   	  $('.dalog-modal').show();
+   	  $('.zhezhao1').show();	  
+   });
+   $('.preview-confirm').click(function(){
+   	  $('.dalog-modal').hide();
+   	  $('.zhezhao1').hide();
+   })
+   
+   
+// 新增公告
+   $('.e-add-announ').click(function(){
+   	  $('.dalog-modal2').show();
+   	  $('.dalog-add').show();
+   	  $('.dalog-Modify').hide();
+   	  $('.zhezhao1').show();
+   })
+// 编辑
+   $('.e-editor').click(function(){
+   	  $('.dalog-modal2').show();
+   	  $('.dalog-Modify').show();
+   	  $('.dalog-add').hide();
+   	  $('.zhezhao1').show();
+   })
+   $('.e-scancel').click(function(){
+   	  $('.dalog-modal2').hide();
+   	  $('.dalog-modal-editor').hide();
+   	  $('.zhezhao1').hide();
+   })
+ 
+    $('.e-offline').click(function(){
+    	layer.confirm('你确定要下线么？',{btn:['确认','取消']},
+		 	function(index){
+		 		layer.close(index);
+				/* Act on the event */
+//				$.post(postUrl, postData, function(data, textStatus, xhr) {
+//					/*optional stuff to do after success */
+//						layer.open({
+//							  content: data.message,
+//							  scrollbar: false,
+//							  yes: function(index){
+//								   layer.close(index);
+//								   if( 1 == data.status ){
+//								   		location.reload();
+//								   }
+//							  }
+//						});
+//				},'json');
+			},function(index){
+				layer.close(index);
+				return false;
+			});
+
+    })
+</script>
+<script type="text/javascript">
+
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+
+
+    function isFocus(e){
+        alert(UE.getEditor('editor').isFocus());
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function setblur(e){
+        UE.getEditor('editor').blur();
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function insertHtml() {
+        var value = prompt('插入html代码', '');
+        UE.getEditor('editor').execCommand('insertHtml', value)
+    }
+    function createEditor() {
+        enableBtn();
+        UE.getEditor('editor');
+    }
+    function getAllHtml() {
+        alert(UE.getEditor('editor').getAllHtml())
+    }
+    function getContent() {
+        var arr = [];
+        arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getContent());
+        alert(arr.join("\n"));
+    }
+    function getPlainTxt() {
+        var arr = [];
+        arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getPlainTxt());
+        alert(arr.join('\n'))
+    }
+    function setContent(isAppendTo) {
+        var arr = [];
+        arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
+        UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
+        alert(arr.join("\n"));
+    }
+    function setDisabled() {
+        UE.getEditor('editor').setDisabled('fullscreen');
+        disableBtn("enable");
+    }
+
+    function setEnabled() {
+        UE.getEditor('editor').setEnabled();
+        enableBtn();
+    }
+
+    function getText() {
+        //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+        var range = UE.getEditor('editor').selection.getRange();
+        range.select();
+        var txt = UE.getEditor('editor').selection.getText();
+        alert(txt)
+    }
+
+    function getContentTxt() {
+        var arr = [];
+        arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+        arr.push("编辑器的纯文本内容为：");
+        arr.push(UE.getEditor('editor').getContentTxt());
+        alert(arr.join("\n"));
+    }
+    function hasContent() {
+        var arr = [];
+        arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+        arr.push("判断结果为：");
+        arr.push(UE.getEditor('editor').hasContents());
+        alert(arr.join("\n"));
+    }
+    function setFocus() {
+        UE.getEditor('editor').focus();
+    }
+    function deleteEditor() {
+        disableBtn();
+        UE.getEditor('editor').destroy();
+    }
+    function disableBtn(str) {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            if (btn.id == str) {
+                UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+            } else {
+                btn.setAttribute("disabled", "true");
+            }
+        }
+    }
+    function enableBtn() {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+        }
+    }
+
+    function getLocalData () {
+        alert(UE.getEditor('editor').execCommand( "getlocaldata" ));
+    }
+
+    function clearLocalData () {
+        UE.getEditor('editor').execCommand( "clearlocaldata" );
+        alert("已清空草稿箱")
+    }
+</script>

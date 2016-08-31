@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=9">
+        <title>创想范分销商管理后台</title>
+        <meta name="description" content="{if $page_description}{/if}">
+        <link rel="stylesheet" href="<?php echo SOURCE_DIR;?>/static/supplier/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo SOURCE_DIR;?>/static/supplier/css/AdminLTE.css">
+        <link rel="stylesheet" href="<?php echo SOURCE_DIR;?>/static/supplier/css/font-awesome.min.css">
+        <link rel="stylesheet" href="<?php echo SOURCE_DIR;?>/static/supplier/css/skins/_all-skins.min.css">
+        <link rel="stylesheet" href="<?php echo SOURCE_DIR;?>/static/supplier/css/skins/skin-red.css">
+        <link rel="stylesheet" href="<?php echo SOURCE_DIR;?>/static/supplier/css/skins/skin-red-light.css">
+        <link rel="stylesheet" href="<?php echo SOURCE_DIR;?>/static/supplier/css/bootstrap3-wysihtml5.min.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo SOURCE_DIR;?>/static/supplier/css/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo SOURCE_DIR;?>/static/supplier/css/my.css">
+        <link rel="stylesheet" href="<?php echo SOURCE_DIR;?>/static/supplier/layer/skin/layer.css" id="layui_layer_skinlayercss">
+        <script src="<?php echo SOURCE_DIR;?>/static/supplier/js/plugins/jQuery-2.2.0.min.js"></script>
+    </head>
+
+    <body class="skin-yellow-light sidebar-mini">
+        <!--header start-->
+        <header class="main-header">
+            <a href="#" class="logo">
+                <span class="logo-mini"><b>创想范</b></span>
+                <span class="logo-lg"><b>创想范</b><small> 分销管理后台</small></span>
+            </a>
+            <nav class="navbar navbar-static-top">
+                <div class="navbar-nav top-bar">
+                    <ul class="nav navbar-nav first-nav">
+                        <?php 
+                        $menus = C('menu');
+                        foreach($menus as $k=> $v){
+                            if(strtolower(CONTROLLER_NAMR) == $k){
+                                echo '<li><a class="active" href="' . U('home/' . $k . '/index') . '"><b>' . $v['title'] . '</b></a></li>';
+                            }else{
+                                echo '<li><a class="" href="' . U('home/' . $k . '/index') . '"><b>' . $v['title'] . '</b></a></li>';
+                            }
+                        }
+                        ?>
+                    </ul>
+                </div>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class=" user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="hidden-xs">{$username}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{:U('home/login/logout');}">
+                                <span class="hidden-xs">退出登录</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!--header end-->
+        <!--wrapper start-->
+        <div class="content-wrapper" style="min-height: 368px;">
+            <aside class="main-sidebar">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <ul class="sidebar-menu">
+                        <?php
+                        $menu = $menus[strtolower(CONTROLLER_NAME)];
+                        foreach($menu['action'] as $key=>$val){
+                            if(strtolower(ACTION_NAME) == $key){
+                                echo "<li><a class='active' href='" . U('home/' .strtolower(CONTROLLER_NAME).'/' . strtolower($key)) . "'> <i class='fa fa-fw  fa-circle-o'></i>".$val."</a></li>";
+                            }else{
+                                echo "<li><a class='' href='" . U('home/' . strtolower(CONTROLLER_NAME) .'/'. strtolower($key)) . "'> <i class='fa fa-fw  fa-circle-o'></i>".$val."</a></li>";
+                            }
+                        }
+                        ?>
+                    </ul>
+                </section>
+            </aside>
+            <section class="content">
+                <ol class="breadcrumb">
+                    <li><i class="fa fa-dashboard"></i> 位置</li>
+                    <li>
+                        <?php echo $menu['title']; ?></li>
+                    <li><?php echo $menu['action'][strtolower(ACTION_NAME)]; ?></li>
+                </ol>
+                {__CONTENT__}
+            </section>
+        </div>
+        <!--wrapper end-->
+        <script src="<?php echo SOURCE_DIR;?>/static/supplier/js/bootstrap.min.js"></script>
+        <script src="<?php echo SOURCE_DIR;?>/static/supplier/js/app.min.js"></script>
+        <script type="text/javascript" src="<?php echo SOURCE_DIR;?>/static/supplier/js/moment.js"></script>
+        <script src="<?php echo SOURCE_DIR;?>/static/supplier/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="<?php echo SOURCE_DIR;?>/static/supplier/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="<?php echo SOURCE_DIR;?>/static/supplier/js/custom.js"></script>
+        <script type="text/javascript" src="<?php echo SOURCE_DIR;?>/static/supplier/layer/layer.js"></script>
+    </body>
+
+</html>

@@ -1,0 +1,4 @@
+[ 2016-08-18T15:20:49+08:00 ] 127.0.0.1 /goods/goods/index.html
+ERR: 1146:Table 'fx_back.goods_img_path' doesn't exist
+ [ SQL语句 ] : SELECT * FROM `goods_list` INNER JOIN goods_img_path on goods_img_path.md5_path=goods_list.img_path  WHERE `supplier_id` = '1' AND `is_delete` = 0 AND `goods_lack` = 0 ORDER BY goods_id desc LIMIT 0,20  
+

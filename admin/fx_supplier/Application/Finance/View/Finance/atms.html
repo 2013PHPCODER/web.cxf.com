@@ -1,0 +1,136 @@
+<section class="content">
+        <ol class="breadcrumb">
+            <li><i class="fa fa-dashboard"></i> 位置</li>
+            <li>财务管理</li>
+            <li>提现管理</li>
+        </ol>
+        <div class="box-body fqy_jsgl fqy_txgl">
+            <p><b>账户余额：5000.00</b> <button class="fqy_ATMSBtn">提现</button></p>
+
+            <div class="row">
+                <form class="form-inline" method="get" action="/index.php/Home/goods/index/menu_id/1/second_menu_id/4/group_id/1.html" id="searchForm">
+                    <div class="form-group">时间:
+                        <input type="text" value="" class="form-control input-xs" onClick="WdatePicker()" name="startTime"  placeholder="开始时间">
+                    </div>
+                    <div class="form-group">-
+                        <input type="text" value="" class="form-control input-xs" onClick="WdatePicker()" name="endTime" placeholder="结束时间">
+                    </div>
+                    <div class="form-group">状态
+                        <select>
+                            <option>请选择</option>
+                            <option>待打款</option>
+                            <option>打款中</option>
+                            <option>打款成功</option>
+                            <option>打款失败</option>
+                        </select>
+                    </div>
+                    <div class="form-group btnBox">
+                        <input type="submit" class="btn btn-block btn-warning btn-xs" value="搜索">
+                        <input type="hidden" name="allData" value="0">
+                        <input type="hidden" class="explode_goods_input" name="explodeGoods[]" value="0">
+                        <input type="hidden" name="explode_goods" value="0">
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <table class="table table-hover">
+                    <tbody>
+                    <tr>
+                        <th>提现金额</th>
+                        <th>申请时间</th>
+                        <th>处理时间</th>
+                        <th>状态</th>
+                        <th>详情</th>
+                    </tr>
+                    <tr>
+                        <td>500</td>
+                        <td>2016.7.26 14:00</td>
+                        <td>2016.7.26 14:00</td>
+                        <td>待打款</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>500</td>
+                        <td>2016.7.26 14:00</td>
+                        <td>2016.7.26 14:00</td>
+                        <td>待打款</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>500</td>
+                        <td>2016.7.26 14:00</td>
+                        <td>2016.7.26 14:00</td>
+                        <td>待打款</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>500</td>
+                        <td>2016.7.26 14:00</td>
+                        <td>2016.7.26 14:00</td>
+                        <td>待打款</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="box-footer">
+                <div class="left">
+                    <form class="form-inline" id="pagesizeForm" action="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5.html" method="get">
+                        <div class="form-group">
+                            <label for="exampleInputName2">全选结果页:  </label><input type="checkbox" class="allGoods" name="allGoods">
+                        </div>
+                        <div class="form-group">
+                            <select name="pagesize" class="form-control input-xs pagesize">
+                                <option value="20">20条</option>
+                                <option value="50">50条</option>
+                                <option value="100">100条</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="right">
+                    <div class="pagination">
+                        <div class="row"><ul><li class="rows">共<b>278</b>条</li>   <li><span class="current">1</span></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">2</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/3.html">3</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/4.html">4</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/5.html">5</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/6.html">6</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/7.html">7</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/8.html">8</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/9.html">9</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/10.html">10</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/11.html">11</a></li> <li><a class="next" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">下一页</a></li> <li><a class="end" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/14.html">末页</a></li></ul></div>             </div>
+                </div>
+            </div>
+        </div>
+        <!--弹窗Start-->
+        <div class="fqy_Mask">
+            <div class="fqy_Popup">
+                <div class="fqy_upOldPass">
+                    <div class="fqy_popHead">
+                        <b>提现申请</b>
+                        <span class="fqy_popClose">×</span>
+                    </div>
+                    <div class="fqy_popContent">
+                        <form>
+                            <table>
+                                <tr>
+                                    <td>提现金额：</td>
+                                    <td><input type="password" name="moneyNum" class="moneyNum" placeholder="请输入提现金额"></td>
+                                    <td><span class="fqy_tips">提示消息</span></td>
+                                </tr>
+                                <tr>
+                                    <td>支付密码：</td>
+                                    <td><input type="password" name="payPassword" class="payPassword" placeholder="请输入支付密码"></td>
+                                    <td><span class="fqy_tips">提示消息</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="fqy_atmsTips">申请成功会在2~7个工作日到账</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <input type="button" class="fqy_moneyBtn"  value="提交">&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input class="fqy_canlce" type="reset"   value="取消">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--弹窗End-->
+    </section>

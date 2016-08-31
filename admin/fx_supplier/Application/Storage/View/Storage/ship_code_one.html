@@ -1,0 +1,36 @@
+{__NOLAYOUT__}
+<form class='form-inline'>
+    <div class='row'>
+        <label style='width:90px'>物流公司:</label>
+        <div class='form-group'>
+        <select name='ship_name' class='form-control input-xs ship_name' id="ship_name">
+            <volist name ='ship_code' id='ship_code'>
+            <option value="{$ship_code.id }">{$ship_code.shipping_name }</option>
+            </volist>
+        </select>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='form-group'> <input  onchange='radiochange(this)' value='1' type='radio' name='hub_type'>获取电子面单号
+        </div>
+    </div>
+    <div class='row'>
+        <div class='form-group'>
+            <input type='text' disabled='disabled' id='hub_one' readonly="readonly" class='form-control input-xs' value=''><input class='btn btn-default btn-xs getconcatBnt' type='button' value='获取' onclick='getconcat()'>
+            <span id="tip_one" style="color: red; display: none;">获取失败</span>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='form-group'>
+        <input  onchange="radiochange(this)" value='2' type='radio' name='hub_type'>录入物流单号
+        </div>
+    </div>
+    <div class='row'>
+        <div class='form-group'>
+        <input type='text' disabled='disabled' id='hub_two' class='form-control input-xs'  value=''>
+        <span id="tip" style="color: red; display: none;">输入格式错误,请重新输入</span>
+        <input type="hidden" name="" id="hub_id" value="{$hub_id}">
+        <input type="hidden" name="" id="order_id" value="{$order_id}">
+        </div>
+    </div>
+</form>

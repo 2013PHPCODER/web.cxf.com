@@ -1,0 +1,124 @@
+[ 2016-08-27T09:18:27+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-27T09:18:42+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-27T09:18:52+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-27T09:19:12+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-27T09:23:12+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-27T09:23:14+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-27T09:26:25+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-27T09:26:48+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-27T09:27:03+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-27T09:44:56+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-27T09:45:19+08:00 ] 127.0.0.1 /Storage/storage/hubDistribution.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000491s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001778s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002792s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0019s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 260  ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 260 ) LIMIT 1   [ RunTime:0.0013s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 260 ) [ RunTime:0.0028s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0018s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','260','1','1472262319','127.0.0.1') [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0016s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:260','1472262319','127.0.0.1','{\"order_id\":[\"260\"]}') [ RunTime:0.0006s ]
+
+[ 2016-08-27T09:45:21+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-27T09:45:27+08:00 ] 127.0.0.1 /Storage/storage/hubDistribution.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001094s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001105s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002929s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 259  ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 259 ) LIMIT 1   [ RunTime:0.0019s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 259 ) [ RunTime:0.0022s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0015s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','259','1','1472262327','127.0.0.1') [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0016s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:259','1472262327','127.0.0.1','{\"order_id\":[\"259\"]}') [ RunTime:0.0004s ]
+
+[ 2016-08-27T09:45:55+08:00 ] 127.0.0.1 /Storage/storage/sendGoods.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001211s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001368s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003433s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0021s ]
+SQL: SELECT `order_id`,`ship_stats` FROM `hub_order` WHERE ( shipping_code = '1231232131' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0014s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/sendGoods.html','运单号不存在','1472262355','127.0.0.1','{\"ship_code\":\"1231232131\"}') [ RunTime:0.0007s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000703s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000786s ]
+
+[ 2016-08-27T09:46:13+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000888s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001092s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002790s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0024s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0016s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =260 ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000210s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000375s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009715s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009802s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000608s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000918s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001681s ]
+
+[ 2016-08-27T09:46:21+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001003s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001218s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002782s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-27T09:46:21+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000890s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001310s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003548s ]
+ERR: Think\Controller:newTaoBaoApi方法不存在！
+
+[ 2016-08-27T11:26:22+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+

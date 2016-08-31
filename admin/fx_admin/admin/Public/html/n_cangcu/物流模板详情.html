@@ -1,0 +1,352 @@
+<style type="text/css">
+			.dalog-modal{
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			background: rgba(0,0,0,0.5);
+			display: none;
+			top: 0;
+                        left: 0;
+                        z-index: 999;
+		}
+		.redact-adress{
+			width: 350px;
+			display: none;
+		}
+		.dalog-modal table{
+			width: 100%;
+			border: 1px solid #555555;
+		}
+		.dalog-modal table th{
+			text-align: center;
+			background: #F39C12;
+			height: 40px;
+			color: #fff;
+		}
+		.dalog-modal table td{
+			text-align: center;
+			height: 40px;
+		}
+		.dalog-modal table .redact{
+			position: relative;
+		}
+		.redact-adress{
+			background: #fff;
+			top: 40px;
+			border: 1px solid #555555;
+			position: absolute;
+			left: 0;
+		}
+                .dalog-container{
+                    width: 1164px;
+                    position: absolute;
+                    top:50%;
+                    left: 50%;
+                    margin-left: -582px;
+                    margin-top: -200px;
+                    background: #fff;
+                    opacity: 1;
+                    z-index: 9999;
+                }
+                .dalog-container span{
+                    display: inline-block;
+                    width: 100px;
+                    text-align: right;
+                }
+		.dalog-modal{
+			display: none;
+		}
+		.dalog-modal .g-modal-content.add-entrepot input[type="text"]{
+			margin: 0;
+			position: relative;
+		}
+		.dalog-modal .g-modal-content.add-entrepot label strong{
+			margin: 0 10px;
+			color: #FF2015;
+			display: inline;
+		}
+		.dalog-modal h2{
+			padding: 10px 0;
+			text-align: center;
+		}
+		.modal-content{
+			padding: 10px 0;
+			font-family: "microsoft yahei";
+		}
+		.dalog-modal  label{
+			width: 200px;
+			width: 100%;
+			padding: 10px 40px;
+		}
+		.dalog-modal label.error{
+			width: 200px;
+		}
+		.modal-content label span{
+			display: inline-block;
+			width: 100px;
+			text-align: right;
+		}
+		.dalog-modal .close{
+			position: absolute;
+			top: 0;
+			right: 0;
+			padding: 5px;
+		}
+		.dalog-modal .close:hover{
+			cursor: pointer;
+                        width: 40px;
+                        height: 40px;
+			background: #888888;
+			border-radius: 5px;
+			border-top-left-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+		.sub-btn{
+			text-align: center;
+                        padding: 20px 0;
+		}
+		.sub-btn input{
+			width: 150px;
+			height: 40px;
+			background: rgb(33,119,199);
+			border: none;
+			border-radius: 5px;
+			box-shadow: 0 2px 2px #888888;
+			color: #fff;
+			font-family: "microsoft yahei";
+			font-size: 20px;
+                        margin: 0 10px;
+		}
+		.sub-btn input:hover{
+			box-shadow: 0 0 10px #888888;
+			cursor: pointer;
+		}
+</style>
+<section class="content">
+				<ol class="breadcrumb">
+					<li><i class="fa fa-dashboard"></i> 位置</li>
+					<li>
+						物流设置</li>
+					<li>物流模板详情</li>
+				</ol> 
+				<form action="" method="post">
+					<div class="box-header">
+						  模板名称：西瓜模板      按重量计价    不包邮	
+			             <div class="box-tools">
+			                <div class="input-group order">
+				 			<ul>
+				 				<li><a href="#" id="introduced_batch" class="btn btn-default btn-xs">修改</a></li>
+				 				 <li><a href="#" id="goods_delete_batch" class="btn btn-default btn-xs">删除</a></li>
+				 			</ul>
+				 		</div>
+				 		<div class="form-group order">				
+				       	</div> 
+		              </div>
+		            </div>
+		            <div class="box-header">
+		            <div class="box-body table-responsive no-padding">
+
+						<table class="table table-hover" id="dataTable">
+							<tbody>
+								<tr>
+									<th align="middle"><input type="checkbox" id="checkAll"></th>
+									<th>配送地区</th>
+									<th>首重（kg）</th>
+									<th>首重（元）</th>
+									<th>续重（kg）</th>
+									<th>续重（元）</th>
+								</tr>
+								<tr>	
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="290"></td>
+									<td>
+										全国
+									</td>
+									<td>
+										1
+									</td>
+									<td>
+										8.00
+									</td>	
+									<td>
+										1
+									</td>
+									<td>
+										6.00
+									</td>
+								</tr>
+						     	<tr>	
+						     		<td><input type="checkbox" class="checkbox_goods_id choose" value="290"></td>
+									<td>
+										全国
+									</td>
+									<td>
+										1
+									</td>
+									<td>
+										8.00
+									</td>	
+									<td>
+										1
+									</td>
+									<td>
+										6.00
+									</td>
+								</tr>
+							</tbody>	
+						</table>
+					</div>	
+				</form>
+				<div class="box-footer">
+						<div class="left">
+							<form class="form-inline" id="pagesizeForm" action="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0.html" method="get">
+								<div class="form-group">
+									<label for="exampleInputName2">全选结果页:  </label><input type="checkbox" class="allGoods" name="allGoods" value="">
+								</div>
+								<div class="form-group">
+									<select name="pagesize" class="form-control input-xs pagesize">
+										<option value="20">20条</option>
+										<option value="50">50条</option>
+										<option value="100">100条</option>
+									</select>
+								</div>
+							</form>
+
+						</div>
+
+						<div class="right">
+							<div class="pagination">
+								<div class="row">
+									<ul>
+										<li class="rows">共<b>278</b>条</li>
+										<li><span class="current">1</span></li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/2.html">2</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/3.html">3</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/4.html">4</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/5.html">5</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/6.html">6</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/7.html">7</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/8.html">8</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/9.html">9</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/10.html">10</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/11.html">11</a>
+										</li>
+										<li>
+											<a class="next" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/2.html">下一页</a>
+										</li>
+										<li>
+											<a class="end" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/14.html">末页</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+			</section>
+		</div>
+		<div class="dalog-modal" id="aleatMoudle">
+				<div class="dalog-container">
+				<h2>新增物流模板</h2>
+				<div class="g-modal-content">
+					<form >
+						<label><span>模板名称：</span><input type="text" name="" id="" value="" />计价方式：<sapn>按重量</sapn><a href="">详情</a></label>
+						<label><span>是否包邮：</span><input type="checkbox" name="" id="" value="是" />是<input type="checkbox" name="" id="" value="否" />否</label>
+						<label><span>默认运费：</span><input class="freight" type="text" name="" id="" value="" />
+						千克以内，<input class="freight" type="text" name="" id="" value="" />
+						元，<input class="freight" type="text" name="" id="" value="" />
+						每增加<input class="freight" type="text" name="" id="" value="" />
+						千克，增加运费<input class="freight" type="text" name="" id="" value="" />
+						元
+						</label>
+						<label for=""><table >
+							<tr>
+								<th>配送地区</th>
+								<th>首重（kg）</th>
+								<th>首费（元）</th>
+								<th>续重（kg）</th>
+								<th>续费（元）</th>
+								<th>操作</th>
+							</tr>
+							<tr>
+								<td class="redact">
+									<span>未添加地区</span><a href="javascript:;" id="redact">编辑</a>
+									<div class="redact-adress" id="adress-group">
+											<select name="province3"></select><select name="city3"></select><select name="area3"></select>
+										<label for=""><input type="button" id="adress-btn1" value="确定" /><input type="button" id="adress-btn2" value="取消" /></label>
+									</div>
+								</td>
+								<td>1</td>
+								<td>8.00</td>
+								<td>1</td>
+								<td>6.00</td>
+								<td><a href="javascript:;" class="removeTr">删除</a></td>
+							</tr>
+						</table>
+						</label>
+						<div class="special">
+							<a href="javascript:;">为指定地区城市设置运费</a>
+							<div class="special-content">
+								
+							</div>
+						</div>
+						<div class="sub-btn"><input type="submit" class="sumb" value="取消"/><input type="submit" class="sumb" value="保存"/></div>
+					</form>
+				</div>
+				<span class="close" id="dalogModalClose">×</span>
+				</div>
+			</div>
+			<script src="__PUBLIC__/js/jquery-1.9.1.min.js"></script>
+		<!--<script src="../js/jQuery.dalog.js" type="text/javascript" charset="utf-8"></script>-->
+		<script src="__PUBLIC__/js/cityClass.js"></script>
+	<script type="text/javascript">
+		new PCAS("province3","city3","area3");
+		$(function(){
+			$('.removeTr').click(function(){
+				$(this).parent().parent().remove();
+			});
+			$('.sumb').click(function(){
+				document.getElementById('aleatMoudle').style.display = 'none'
+			});
+			$('#introduced_batch').click(function(){
+				$('#aleatMoudle').show();
+			})
+			$('#add-redact').click(function(){
+				$('#adress-group').show();
+			})
+			$('#add-redact-btn1').click(function(){
+				$('#adress-group').hide();
+			})
+			$('#add-redact-btn2').click(function(){
+				$('#adress-group').hide();
+			})
+			$('#adress-btn1').click(function(){
+				$('#aleatMoudle').hide();
+			})
+			$('#adress-btn2').click(function(){
+				$('#aleatMoudle').hide();
+			})
+			$('#dalogModalClose').click(function(){
+				$('#aleatMoudle').hide();
+			})
+			var selc1=$('province3').find('option:selected').text();
+			console.log(selc1);
+		})
+</script>

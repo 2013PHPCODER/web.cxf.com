@@ -1,0 +1,55 @@
+{__NOLAYOUT__}
+<table id="printData" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+    <thead>
+    <tr role="row">
+        <th>选择</th>
+        <th>订单号</th>
+        <th>收件人信息</th>
+        <th>物流公司</th>
+        <th>单号</th>
+        <th>面单类型</th>
+        <th>打印状态</th>
+        <th>打印编号</th>
+    </tr>
+    </thead>
+    <tbody>
+    <volist name="hub_order_list" id='vo'>
+        <tr role="row" class="odd">
+          <td><input type="checkbox" name="order_id[]" class="print {:xeq($vo['hub_type'],2,'e_ship','c_ship')} {$vo.shipping_no}" value="{$vo.order_id}"></td>
+          <td>{$vo.order_sn}</td> 
+          <td>{$vo.order_contact.contact_name},{$vo.order_contact.tel}&nbsp;{$vo.order_contact.province }&nbsp;{$vo.order_contact.city}&nbsp;{$vo.order_contact.dist}{$vo.order_contact.contact_address}</td>
+          <td>{$vo.shipping_name}</td>
+          <td>{$vo.shipping_code}</td>
+          <td>
+            <switch name="vo.hub_type">
+              <case value='1'>
+                传统面单
+              </case>
+              <case value='2'>
+                电子面单
+              </case>
+            </switch>
+          </td>
+          <td>
+            <switch name="vo.shipping_is_print">
+            <case value='1'>
+              已打印
+            </case>
+            <case value='0'>
+              未打印
+            </case>
+            </switch>
+          </td>
+        <td>
+          {$vo.print_no}
+        </td>
+        </tr>
+    </volist>
+    </tbody>
+</table>
+
+
+
+
+
+

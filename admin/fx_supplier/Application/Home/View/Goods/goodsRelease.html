@@ -1,0 +1,270 @@
+<block name="headerCss">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/home/css/bootstrap-datetimepicker.min.css">
+</block>
+<div class="box box-warning">
+    <div class="box-header with-border">
+        <div class="box-title"><ul class="choose_ul">
+                <li><a <if condition="I('get.shop_id') elt 1">class="btn btn-warning btn-xs"</if> href="{:U('goods/goodsRelease',array('shop_id' => 1 ))}" >所有商品</a></li>
+                <li><a <if condition="I('get.shop_id') eq 2">class="btn btn-warning btn-xs"</if> href="{:U('goods/goodsRelease',array('shop_id' => 2 ))}">星密码</a></li>
+                <li><a <if condition="I('get.shop_id') eq 3">class="btn btn-warning btn-xs"</if> href="{:U('goods/goodsRelease',array('shop_id' => 3 ))}">创想范</a></li>
+                <li><a <if condition="I('get.shop_id') eq 4">class="btn btn-warning btn-xs"</if> href="{:U('goods/goodsRelease',array('shop_id' => 4 ))}">待发布</a></li>
+            </ul></div>
+        <div class="box-tools pull-left">  
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="row" >
+            <form class="form-inline" method="get" id="searchForm">
+                <div class="form-group">
+                    <label for="exampleInputName2">仓库名称:</label>
+                    <select class="form-control input-xs" name="depot">
+                        <option value="">选择仓库</option>
+                        <volist name='depot' id='vo'>
+                            <option {:xeq(I('get.depot'),$vo['id'],'selected')} value="{$vo.id}">{$vo.depot_name}</option>
+                        </volist>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">商品类目:</label>
+                    <select class="form-control input-xs" name="goods_category">
+                        <option value="0">主类目</option>
+                        <volist name="goods_category" id="vo">
+                            <option {:xeq(I('get.goods_category'),$vo['cid'],'selected')} value="{$vo.cid}">{$vo.name}</option>
+                        </volist>
+                    </select>
+                </div>
+
+                <php> if( 1 == I('get.group_id') ){  </php>
+                <div class="form-group ">
+                    <label for="exampleInputName2">商品状态:</label>
+                    <select name="goods_status" class="form-control input-xs">
+                        <option value="">全部</option>
+                        <option {:xeq(I('get.goods_status'),2,'selected')} value="2">新上传</option>
+                        <option {:xeq(I('get.goods_status'),3,'selected')} value="3">已下架</option>
+                        <option {:xeq(I('get.goods_status'),4,'selected')} value="4">已上架</option>
+                        <option {:xeq(I('get.goods_status'),5,'selected')} value="5">待审核</option>
+                        <option {:xeq(I('get.goods_status'),6,'selected')} value="6">未通过</option>
+                    </select>
+                </div>
+                <php>}</php>
+                <div class="row" >
+                    <div class="form-group">
+                        <select class="form-control input-xs" name="time_type">
+                            <option {:xeq(I('get.time_type'),'sale_time','selected')} value="sale_time">上架时间</option>
+                            <option {:xeq(I('get.time_type'),'addtime','selected')} value="addtime">上传时间</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-xs" value="{:I('get.startTime')}" placeholder='开始时间' id="startTime" name="startTime">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-xs" value="{:I('get.endTime')}" id="endTime" name="endTime" placeholder='结束时间'>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control input-xs" name="goods_search" >
+                            <option value="">选择搜索内容</option>
+                            <option {:xeq(I('get.goods_search'),'goods_name','selected')} value="goods_name">商品名称</option>
+                            <option {:xeq(I('get.goods_search'),'goods_no','selected')} value="goods_no">商品ID</option>
+                            <option {:xeq(I('get.goods_search'),'buyer_goods_no','selected')} value="buyer_goods_no">商家编码</option>
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="search_word" value="{:I('get.search_word')}" class="form-control input-xs" {:xeq(I('get.goods_search'),'','disabled')}  placeholder="输入商品名称或者货号" >
+                    </div>
+                    <div class="form-group btnBox">
+                        <input type="submit" class="btn btn-block btn-warning btn-xs" value="搜索">
+                        <input type="hidden" name="allData" value="0" />
+                        <input type="hidden" class="explode_goods_input" name="explodeGoods[]" value="0" />
+                        <input type="hidden" name="explode_goods" value="0" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">😃</h3> 
+
+        <div class="box-tools">
+            <div class="input-group order">
+                <ul>
+                    <php> if( 1 == getPower('batch_issue_'.I('get.group_id',1)) ) { </php>
+                    <li><a href="#" id="introduced_batch" class="btn btn-default btn-xs">发布</a></li>
+                    <php>}</php>
+                </ul>
+            </div>
+            <div class="form-group order">
+                <php> if( 1 == getPower('sort_'.I('get.group_id',1)) ) { </php>
+                <form class="form-inline" id="sortForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+                    <select class="form-control input-xs sort" name="sort">
+                        <option>商品排序</option>
+                        <option {:xeq(I('get.sort'), 'addtime~asc,goods_id~asc', 'selected')} value="addtime~asc,goods_id~asc">上传时间升序</option>
+                        <option {:xeq(I('get.sort'), 'addtime~desc,goods_id~desc', 'selected')} value="addtime~desc,goods_id~desc">上传时间降序</option>
+                        <option {:xeq(I('get.sort'), 'sale_time~asc,goods_id~asc', 'selected')}  value="sale_time~asc,goods_id~asc">上架时间升序</option>
+                        <option {:xeq(I('get.sort'), 'sale_time~desc,goods_id~desc', 'selected')}  value="sale_time~desc,goods_id~desc">上架时间降序</option>
+                    </select>
+                </form>	
+                <php>}</php>
+            </div> 
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover" id="dataTable">
+            <tbody>
+                <tr>
+                    <th align="middle"><input type="checkbox" id="checkAll"></th>
+                    <th>商家ID/最新商家编码</th>
+                    <th>主图</th>
+                    <th>名称</th>
+                    <th>商品类目</th>
+                    <th>商品平台</th>
+                    <th>操作</th>
+                </tr>
+            <volist name="datas.list" id="vo">
+                <tr>
+                    <td ><input type="checkbox"  class="checkbox_goods_id choose" value="{$vo.goods_id}" ></td>
+                    <td>
+                        <p>商品ID:{$vo.goods_no}</p>
+                        <p>商家编码：{$vo.buyer_goods_no}</p>
+                    </td>
+                    <td style="width:30px;"><img class="table_img" src="
+                                                 {:img_url($vo['img_path']?$vo['img_path']:$vo['goods_id'],30,40)}"></td>
+                    <td>
+                        <p>
+                            {$vo.goods_name}
+                        </p>
+                    </td>
+                    <td>
+                        {:getTreeCategory($vo['goods_category'])}
+                    </td>
+                    <td>{:getShopStr($vo['goods_id'])}</td>
+                    <td>
+                <php> if( 1 == getPower('issue_'.I('get.group_id',1)) ) { </php>
+                <p><a class="introduced" data-url="{:U('goods/goodsIntroduced',array('goods_id'=>$vo['goods_id']))}" href="#">发布</a></p>
+                <php>}</php>
+                </td>	
+                </tr>
+            </volist>
+            </tbody>
+        </table>	
+    </div>
+
+    <div class="box-footer">
+        <div class="left" >
+            <form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+                <div class="form-group">
+                    <label for="exampleInputName2">全选结果页:  </label><input type="checkbox" class="allGoods" class="choose" name="allGoods" >
+                </div>
+                <div class="form-group">
+                    <select name="pagesize" class="form-control input-xs pagesize">
+                        <option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+                        <option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+                        <option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+
+        <div class="right">
+            <div class="pagination">
+                {$datas.page}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.box -->
+</div>    
+</block>
+<block name="footerJs">
+    <script type="text/javascript" src="__STATIC__/home/js/moment.js"></script>
+    <script src="__STATIC__/home/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="__STATIC__/home/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="__STATIC__/home/js/custom.js"></script>
+    <script type="text/javascript" src="__STATIC__/layer/layer.js"></script>
+
+    <script type="text/javascript">
+        $('.sort').change(function () {
+            $('#sortForm').submit();
+        });
+
+        $('select[name="goods_search"]').change(function (event) {
+            /* Act on the event */
+            if ('' == $(this).val()) {
+                $('input[name="search_word"]').attr('disabled', true);
+            } else {
+                $('input[name="search_word"]').removeAttr('disabled');
+            }
+        });
+
+        var refurbish = function () {
+            location.reload();
+        }
+
+        $('.introduced').click(function (event) {
+            var iframeUrl = $(this).data('url');
+            layer.open({
+                type: 2,
+                area: ['300px', '150px'],
+                fix: false, //不固定
+                maxmin: true,
+                content: iframeUrl,
+                title: '选择要发布的平台'
+            });
+            return false;
+        });
+
+
+        var introducedBatch = function (mShop) {
+            var postUrl = "{:U('goods/introducedBatch',I('get.'))}";
+            var postData = getPostData();
+
+            postData.shop = mShop;
+            $.post(postUrl, postData, function (data, textStatus, xhr) {
+                /*optional stuff to do after success */
+                if (1 == data.status) {
+                    location.reload();
+                }
+            }, 'json');
+        };
+
+        $('#introduced_batch').click(function (event) {
+            var postData = getPostData();
+            if (false == postData) {
+                layer.alert('请选择商品', {icon: 6});
+                return false;
+            }
+            /* Act on the event */
+            layer.open({
+                type: 2,
+                area: ['300px', '150px'],
+                fix: false, //不固定
+                maxmin: true,
+                content: "{:U('goods/goodsIntroducedbatch')}",
+                title: '选择要发布的平台'
+            });
+            return false;
+        });
+
+
+        var getPostData = function () {
+            var postData = new Object();
+            postData.alldata = 0;
+            var goods = new Array();
+            if ($('.allGoods').is(":checked")) {
+                postData.alldata = 1;
+            } else {
+                $("#dataTable").find('.checkbox_goods_id:checked').each(function (index, element) {
+                    goods[index] = $(this).val();
+                });
+                if (0 == goods.length) {
+                    return false;
+                }
+            }
+            postData.goods = goods;
+            return postData;
+        };
+    </script>

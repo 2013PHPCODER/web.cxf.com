@@ -1,0 +1,74 @@
+<style type="text/css">
+	.form-group .fbold{font-weight: 600;margin: 0 3px;}
+	.row .checkbox-list{vertical-align: middle;margin: 0 4px;}
+	.row .check_name{line-height: 22px;}
+	.row .permi-list{display: inline-table;margin-right: 20px;}
+	.check_nDetail{padding-left: 0;margin-top: 5px;}
+	.checkAll-all{width: 20px;height: 20px;}
+	.s-red{color: red}
+</style>
+<ol class="breadcrumb">
+	<li><i class="fa fa-dashboard"></i> 位置</li>
+	<li>
+		系统管理</li>
+		<li>员工管理</li>
+		<li>权限</li>
+	</ol> 				
+	<div class="box-body">
+		<div class="row" >
+			<div class="form-inline">
+				<div class="form-group">
+					<label for="exampleInputName2">账号:</label>
+					<label class="fbold s-red">{$q.account}</label>
+				</div>	
+				<div class="form-group">
+					<label for="exampleInputName2">姓名:</label>
+					<label class="fbold s-red">{$q.name}</label>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputName2">状态:</label>
+					<label class="fbold s-red">{$q.status}</label>
+				</div>										
+			</div>
+			<div class="form-inline">
+				<div class="form-group">
+					<label for="exampleInputName2">更新时间:</label>
+					<label class="fbold">{$q.update_time}</label>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputName2">创建时间:</label>
+					<label class="fbold">{$q.add_time}</label>
+				</div>
+			</div>
+		</div>
+	
+		<form action="{:U('system/power/editOperator')}" method="post">
+		<foreach name="auth" item="v0" key="module">
+			<div class="row">
+				<h3>{$v0.name}模块<input class="checkAll-all" type="checkbox"></h3>
+				<foreach name="v0.list" item="v1" key="control">
+					<div class="permi-list"><input class="checkbox-list checkAll-l" type="checkbox" ><label class="check_name"><h4>{$v1.name}</h4></label>
+						<ul class="check_nDetail">
+							<foreach name="v1.list" item="v2">
+								<li><input class="checkbox-list" type="checkbox" name="auth[{$module}][{$control}][]" value="{$v2.value}" {$v2.checked}><label class="check_name">{$v2.name}</label></li>
+							</foreach>
+						</ul>
+					</div>
+				</foreach>
+			</div>	
+		</foreach>
+		<input type="hidden" name="id" value="{$q.admin_user_id}">
+		<div class="box-footer">
+			<button class="center btn btn-success">保存</button>
+		</div>
+		</form>
+	</div>
+	<script>
+//var allCheake = false; 
+$('.checkbox-list').click(function(){
+	$(this).prop('checked') == false ? $(this).parent().children('.check_nDetail').find('.checkbox-list').prop('checked',false): $(this).parent().children('.check_nDetail').find('.checkbox-list').prop('checked',true);      	  
+})
+$('.checkAll-all').click(function(){
+	$(this).prop('checked') == false ? $(this).parent().parent().find('.checkbox-list').prop('checked',false): $(this).parent().parent().find('.checkbox-list').prop('checked',true);      	  
+})
+</script>

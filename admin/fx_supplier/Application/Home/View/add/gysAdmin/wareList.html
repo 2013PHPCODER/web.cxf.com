@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=9">
+
+		<meta name="description" content="{if $page_description}{/if}">
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/AdminLTE.css">
+		<link rel="stylesheet" href="../css/font-awesome.min.css">
+		<!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"> -->
+		<link rel="stylesheet" href="../css/skins/_all-skins.min.css">
+		<link rel="stylesheet" href="../css/skins/skin-red.css">
+		<link rel="stylesheet" href="../css/skins/skin-red-light.css">
+		<link rel="stylesheet" href="../css/bootstrap3-wysihtml5.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap-datetimepicker.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/my.css">
+		<link rel="stylesheet" href="../layer/skin/layer.css" id="layui_layer_skinlayercss">
+		<script src="../js/plugins/jQuery-2.2.0.min.js"></script>
+	</head>
+
+	<body class="skin-yellow-light sidebar-mini">
+		<!--header start-->
+		<header class="main-header">
+			<a href="#" class="logo">
+				<span class="logo-mini"><b>创想范</b></span>
+				<span class="logo-lg"><b>创想范</b><small> 分销管理后台</small></span>
+				<span>Goods</span>
+			</a>
+			<nav class="navbar navbar-static-top">
+				<div class="navbar-nav top-bar">
+					<ul class="nav navbar-nav first-nav">
+						<li>
+							<a class="" href="/index.php/Home/Storage/index/menu_id/3/second_menu_id/10.html"><b>首页</b></a>
+						</li>
+						<li>
+							<a class="" href="/index.php/Home/Goods/index/menu_id/1/second_menu_id/4.html"><b>商品</b></a>
+						</li>
+						<li>
+							<a class="" href="/index.php/Home/Order/index/menu_id/2/second_menu_id/8.html"><b>订单</b></a>
+						</li>
+						<li>
+							<a class="active" href="/index.php/Home/Storage/index/menu_id/3/second_menu_id/10.html"><b>仓储</b></a>
+						</li>
+						<li>
+							<a class="" href="/index.php/Home/Storage/index/menu_id/3/second_menu_id/10.html"><b>财务</b></a>
+						</li>
+						<li>
+							<a class="" href="/index.php/Home/Storage/index/menu_id/3/second_menu_id/10.html"><b>导航</b></a>
+						</li>
+						<li>
+							<a class="" href="/index.php/Home/Storage/index/menu_id/3/second_menu_id/10.html"><b>系统设置</b></a>
+						</li>
+					</ul>
+				</div>
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+						<li class=" user user-menu">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<span class="hidden-xs">13800138000</span>
+							</a>
+						</li>
+						<li>
+							<a href="/index.php/Home/login/index/logout/1.html">
+								<span class="hidden-xs">退出登录</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<!--header end-->
+		<!--wrapper start-->
+		<div class="content-wrapper" style="min-height: 368px;">
+			<aside class="main-sidebar">
+				<!-- sidebar: style can be found in sidebar.less -->
+				<section class="sidebar">
+					<ul class="sidebar-menu">
+						<li class="header">&nbsp;</li>
+						<li>
+							<a class="" href="/index.php/Home/Goods/index/menu_id/1/second_menu_id/4.html"> <i class="fa fa-fw  fa-circle-o"></i> 物流模板</a>
+						</li>
+						<li>
+							<a class="active" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5.html"> <i class="fa fa-fw  fa-circle-o"></i> 仓库设置</a>
+						</li>
+						<li>
+							<a class="" href="/index.php/Home/Goods/importGoods/menu_id/1/second_menu_id/6.html"> <i class="fa fa-fw  fa-circle-o"></i> 发货列表</a>
+						</li>
+						<li>
+							<a class="" href="/index.php/Home/Goods/goodsNoList/menu_id/1/second_menu_id/7.html"> <i class="fa fa-fw  fa-circle-o"></i> 库存管理</a>
+						</li>
+						<li>
+							<a class="" href="/index.php/Home/Goods/goodsNoList/menu_id/1/second_menu_id/7.html"> <i class="fa fa-fw  fa-circle-o"></i> 库存变动日志</a>
+						</li>
+					</ul>
+				</section>
+				<!-- /.sidebar -->
+			</aside>
+			<section class="content">
+				<ol class="breadcrumb">
+					<li><i class="fa fa-dashboard"></i> 位置</li>
+					<li>
+						仓储管理</li>
+					<li>仓库管理</li>
+				</ol>                 
+				<div class="box-body">
+					<div class="row">
+						<div class="form-group">
+							<button class="btn btn-default">新增仓库</button>
+						</div>
+					</div>	
+					<div class="row">
+						<form class="form-inline" method="get" action="/index.php/Home/goods/index/menu_id/1/second_menu_id/4/group_id/1.html" id="searchForm">
+							<div class="form-group">仓库名称:
+								<input type="text" name="search_word" value="" class="form-control input-xs" placeholder="输入仓库名称">
+							</div>
+							<div class="form-group">负责人:
+								<input type="text" name="search_word" value="" class="form-control input-xs" placeholder="输入负责人">
+							</div>
+							<div class="form-group">手机号:
+								<input type="text" name="search_word" value="" class="form-control input-xs" placeholder="输入手机号">
+							</div>
+							<div class="form-group">运费模板:
+								<input type="text" name="search_word" value="" class="form-control input-xs" placeholder="输入运费模板">
+							</div>
+							<div class="form-group btnBox">
+								<input type="submit" class="btn btn-block btn-warning btn-xs" value="搜索">
+								<input type="hidden" name="allData" value="0">
+								<input type="hidden" class="explode_goods_input" name="explodeGoods[]" value="0">
+								<input type="hidden" name="explode_goods" value="0">
+							</div>
+						</form>	
+                   </div>
+                   <div class="row">
+						<table class="table table-hover">
+							<tbody>
+								<tr>
+									<th>名称</th>
+									<th>负责人</th>
+									<th>手机号</th>
+									<th>运费模板</th>
+									<th>仓库地址</th>
+									<th>操作</th>
+								</tr>
+								<tr>	
+									<td>
+										双流仓库
+									</td>
+									<td>联系人
+									</td>
+									<td>
+										13545685468
+									</td>
+									<td>
+										中通成都地区模板
+									</td>
+									<td>
+										仓库地址
+									</td>
+									<td>
+										<a href="javascript:;">详情</a>
+									</td>
+								</tr>
+										<tr>	
+									<td>
+										双流仓库
+									</td>
+									<td>联系人
+									</td>
+									<td>
+										13545685468
+									</td>
+									<td>
+										中通成都地区模板
+									</td>
+									<td>
+										仓库地址
+									</td>
+									<td>
+										<a href="javascript:;">详情</a>
+									</td>
+								</tr>
+										<tr>	
+									<td>
+										双流仓库
+									</td>
+									<td>联系人
+									</td>
+									<td>
+										13545685468
+									</td>
+									<td>
+										中通成都地区模板
+									</td>
+									<td>
+										仓库地址
+									</td>
+									<td>
+										<a href="javascript:;">详情</a>
+									</td>
+								</tr>
+										<tr>	
+									<td>
+										双流仓库
+									</td>
+									<td>联系人
+									</td>
+									<td>
+										13545685468
+									</td>
+									<td>
+										中通成都地区模板
+									</td>
+									<td>
+										仓库地址
+									</td>
+									<td>
+										<a href="javascript:;">详情</a>
+									</td>
+								</tr>
+										<tr>	
+									<td>
+										双流仓库
+									</td>
+									<td>联系人
+									</td>
+									<td>
+										13545685468
+									</td>
+									<td>
+										中通成都地区模板
+									</td>
+									<td>
+										仓库地址
+									</td>
+									<td>
+										<a href="javascript:;">详情</a>
+									</td>
+								</tr>
+										<tr>	
+									<td>
+										双流仓库
+									</td>
+									<td>联系人
+									</td>
+									<td>
+										13545685468
+									</td>
+									<td>
+										中通成都地区模板
+									</td>
+									<td>
+										仓库地址
+									</td>
+									<td>
+										<a href="javascript:;">详情</a>
+									</td>
+								</tr>
+										<tr>	
+									<td>
+										双流仓库
+									</td>
+									<td>联系人
+									</td>
+									<td>
+										13545685468
+									</td>
+									<td>
+										中通成都地区模板
+									</td>
+									<td>
+										仓库地址
+									</td>
+									<td>
+										<a href="javascript:;">详情</a>
+									</td>
+								</tr>
+    
+							</tbody>	
+						</table>
+					</div>	
+						<div class="box-footer">
+				            <div class="left">
+				            <form class="form-inline" id="pagesizeForm" action="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5.html" method="get">
+								<div class="form-group">
+									<label for="exampleInputName2">全选结果页:  </label><input type="checkbox" class="allGoods" name="allGoods">
+								</div>
+								<div class="form-group">
+								   <select name="pagesize" class="form-control input-xs pagesize">
+								   		<option value="20">20条</option>
+								   		<option value="50">50条</option>
+								   		<option value="100">100条</option>
+								   </select>
+								</div>
+							</form>
+				            </div>
+				
+				            <div class="right">
+					           <div class="pagination">
+									<div class="row"><ul><li class="rows">共<b>278</b>条</li>   <li><span class="current">1</span></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">2</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/3.html">3</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/4.html">4</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/5.html">5</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/6.html">6</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/7.html">7</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/8.html">8</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/9.html">9</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/10.html">10</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/11.html">11</a></li> <li><a class="next" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">下一页</a></li> <li><a class="end" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/14.html">末页</a></li></ul></div>				</div>
+				            </div>
+			            </div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<!--wrapper end-->
+		<script src="../js/bootstrap.min.js"></script>
+		<script src="../js/app.min.js"></script>
+		<script type="text/javascript" src="../js/moment.js"></script>
+		<script src="../js/bootstrap-datetimepicker.min.js"> </script>
+		<script src="../js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"> </script>
+		<script type="text/javascript" src="../js/custom.js"></script>
+		<script type="text/javascript" src="../layer/layer.js"></script>
+		<script type="text/javascript">
+	var refurbish = function(){
+ 		location.reload();
+ 	};
+$(document).ready(function(){
+	$('select[name="goods_search"]').change(function(event) {
+		/* Act on the event */
+		if ( '' == $(this).val() ){
+			$('input[name="search_word"]').attr('disabled', true);
+		}else{
+			$('input[name="search_word"]').removeAttr('disabled');
+		}
+	});
+
+	$('.import_price').click(function(event) {
+			layer.open({
+			  type: 2,
+			  area: ['500px', '150px'],
+			  fix: false, //不固定
+			  maxmin: true,
+			  content:"/index.php/Home/goods/importPrice.html",
+			  title: '导入价格'
+			});
+			return false;
+	});
+
+	//单个商品上架
+	$('.goods_sale').click(function(event) {
+		var postData = new Object(),
+			postUrl  = "/index.php/Home/goods/goodsSaleAjax.html";
+		postData.goods_id = $(this).data('id');
+		layer.confirm('你确定要上架么？',{btn:['确认','取消']},
+		 	function(index){
+		 		layer.close(index);
+				/* Act on the event */
+				$.post(postUrl, postData, function(data, textStatus, xhr) {
+					/*optional stuff to do after success */
+						layer.open({
+							  content: data.message,
+							  scrollbar: false,
+							  yes: function(index){
+								   layer.close(index);
+								   if( 1 == data.status ){
+								   		location.reload();
+								   }
+							  }
+						});
+				},'json');
+			},function(index){
+				layer.close(index);
+				return false;
+			});
+		return false;
+	});
+
+
+
+	//单个商品下架
+	$('.off_goods_sale').click(function(event) {
+		/* Act on the event */
+		var postData = new Object(),
+			postUrl  = "/index.php/Home/goods/goodsOffSaleAjax.html";
+		postData.goods_id = $(this).data('id');
+		layer.confirm('你确定要下架么？',{btn:['确认','取消']},
+				 	function(index){
+				 		layer.close(index);		
+						$.post(postUrl, postData, function(data, textStatus, xhr) {
+							/*optional stuff to do after success */
+
+								layer.open({
+									  content: data.message,
+									  scrollbar: false,
+									  yes: function(index){
+										   layer.close(index);
+										   if( 1 == data.status ){
+										   		location.reload();
+										   }
+									  }
+								});
+						},'json');
+						return false;
+						},function(index){
+				layer.close(index);
+			});
+		return false;
+	});
+
+
+	//单个商品取消
+	$('.cancel_goods_sale').click(function(event) {
+		var postData = new Object(),
+			postUrl  = "/index.php/Home/goods/goodsCancelSale.html";
+			postData.goods_id = $(this).data('id');
+			layer.confirm('你确定要取消么？',{btn:['确认','取消']},
+		 	function(index){
+		 		layer.close(index);
+				$.post(postUrl, postData, function(data, textStatus, xhr) {
+					/*optional stuff to do after success */
+						layer.open({
+							  content: data.message,
+							  scrollbar: false,
+							  yes: function(index){
+								   layer.close(index);
+								   if( 1 == data.status ){
+								   		location.reload();
+								   }
+							  }
+						});
+				},'json');
+				return false;	
+			},function(index){
+				layer.close(index);
+				return false;
+			});		
+	});
+
+
+
+	//删除单个商品
+	$('.goods_delete').click(function(event) {
+		var postData = new Object(),
+			postUrl  = "/index.php/Home/goods/goodsDelete.html";
+			postData.goods_id = $(this).data('id');
+			layer.confirm('你确定要删除么？',{btn:['确认','取消']},
+		 	function(index){
+		 		layer.close(index);
+
+				$.post(postUrl, postData, function(data, textStatus, xhr) {
+					/*optional stuff to do after success */
+						layer.open({
+							  content: data.message,
+							  scrollbar: false,
+							  yes: function(index){
+								   layer.close(index);
+								   if( 1 == data.status ){
+								   		location.reload();
+								   }
+							  }
+						});
+				},'json');
+				return false;	
+			},function(index){
+				layer.close(index);
+				return false;
+			});
+			return false;			
+	});
+
+
+
+	var goodsDeleteBatch = function( mPostData ){
+		var postUrl  = "/index.php/Home/goods/goodsDeleteBatch/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0.html";
+		$.post( postUrl, mPostData, function(data, textStatus, xhr) {
+			/*optional stuff to do after success */
+				layer.open({
+					  content: data.message,
+					  scrollbar: false,
+					  yes: function(index){
+						   layer.close(index);
+						   if( 1 == data.status ){
+						   		location.reload();
+						   }
+					  }
+				});
+		},'json');
+	};
+
+	/**
+	 * 商品批量删除ajax操作
+	 */
+	$('#goods_delete_batch').click(function(event) {
+		var postData = new Object();
+		postData = getPostData();
+
+		if ( false == postData ){
+			layer.alert('请选择商品', {icon: 6});
+			return false;
+		}
+		layer.confirm('确定需要删除商品么？',{btn:['确认','取消']},
+		 	function(index){
+		 		goodsDeleteBatch(postData);
+			},function(index){
+				layer.close(index);
+			}
+		);
+		return false;		
+	});
+
+
+
+	var passed = function( mPostData ){
+		postUrl = "/index.php/Home/goods/goodsPassed.html";
+		$.post(postUrl , mPostData, function(data, textStatus, xhr) {
+			/*optional stuff to do after success */
+				layer.open({
+					  content: data.message,
+					  scrollbar: false,
+					  yes: function(index){
+						   layer.close(index);
+						   if( 1 == data.status ){
+						   		location.reload();
+						   }
+					  }
+				});
+		},'json');		
+	};
+
+	$('.passed').click(function(event) {
+		var postData = new Object();
+			postData.goods_id = $(this).data('id');
+		layer.confirm('请选择是通过或拒绝审核', {
+  			btn: ['通过','拒绝'] //按钮
+		},function(){
+			postData.goods_status = 3;
+			passed(postData);
+		},function(){
+			postData.goods_status = 2;
+			passed(postData);
+		});
+		return false;
+	});
+
+
+
+	var passedBatch = function( mPostData ){
+		var postUrl  = "/index.php/Home/goods/passedBatch/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0.html";
+		$.post( postUrl, mPostData, function(data, textStatus, xhr) {
+			/*optional stuff to do after success */
+				layer.open({
+					  content: data.message,
+					  scrollbar: false,
+					  yes: function(index){
+						   layer.close(index);
+						   if( 1 == data.status ){
+						   		location.reload();
+						   }
+					  }
+				});
+		},'json');
+	};
+
+	/**
+	 * 商品批量审核ajax操作
+	 */
+	$('#passed_batch').click(function(event) {
+		var postData = new Object();
+		postData = getPostData();
+		if( postData == false ){
+			layer.alert('请选择商品', {icon: 6});
+			return false;
+		}
+		layer.confirm('请选择是通过或拒绝审核',{btn:['通过','拒绝']},
+		 	function(index){
+		 		postData.goods_status = 3;
+		 		passedBatch(postData);
+			},function(){
+				postData.goods_status = 2;
+				passedBatch(postData);
+			}
+		);
+		return false;	
+	});
+
+
+	var cancelPassedBatch = function( mPostData ){
+		var postUrl  = "/index.php/Home/goods/cancelPassedBatch/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0.html";
+		$.post(postUrl , mPostData, function(data, textStatus, xhr) {
+			/*optional stuff to do after success */
+				layer.open({
+					  content: data.message,
+					  scrollbar: false,
+					  yes: function(index){
+						   layer.close(index);
+						   if( 1 == data.status ){
+						   		location.reload();
+						   }
+					  }
+				});
+		},'json');	
+	};
+
+
+	var offGoodsSaleBatch = function( mPostData ){
+		var postUrl  = "/index.php/Home/goods/offGoodsSaleBatch/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0.html";
+		$.post(postUrl , mPostData, function(data, textStatus, xhr) {
+			/*optional stuff to do after success */
+				layer.open({
+					  content: data.message,
+					  scrollbar: false,
+					  yes: function(index){
+						   layer.close(index);
+						   if( 1 == data.status ){
+						   		location.reload();
+						   }
+					  }
+				});
+		},'json');	
+	};
+
+
+	/**
+	 * 商品批量下架ajax操作
+	 */
+	$('#off_goods_sale_batch').click(function(event) {
+		var postData = new Object();
+		postData = getPostData();
+		if ( false == postData ){
+			layer.alert('请选择商品', {icon: 6});
+			return false;
+		}
+		layer.confirm('您确定要将已选的商品下架么？',{btn:['确认','取消']},
+		 	function(index){
+		 		offGoodsSaleBatch(postData);
+			},function(index){
+				layer.close(index);
+			}
+		);
+		return false;	
+	});	
+
+	/**
+	 * 商品批量取消ajax操作
+	 */
+	$('#cancel_passed_batch').click(function(event) {
+		var postData = new Object();
+
+		postData = getPostData();
+
+		if ( false == postData ){
+			layer.alert('请选择商品', {icon: 6});
+			return false;
+		}
+		layer.confirm('确定需要取消审核么？',{btn:['确认','取消']},
+		 	function(index){
+		 		cancelPassedBatch(postData);
+			},function(index){
+				layer.close(index);
+			}
+		);
+		return false;	
+	});
+
+
+
+	var updateGoodsSaleBatch = function( mPostData ){
+		var postUrl  = "/index.php/Home/goods/updateGoodsSaleBatch/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0.html";
+		$.post(postUrl , mPostData, function(data, textStatus, xhr) {
+			/*optional stuff to do after success */
+				layer.open({
+					  content: data.message,
+					  scrollbar: false,
+					  yes: function(index){
+						   layer.close(index);
+						   if( 1 == data.status ){
+						   		location.reload();
+						   }
+					  }
+				});
+		},'json');			
+	}
+
+	/**
+	 * 商品批量上架ajax操作
+	 */
+	$('#update_goods_sale_batch').click(function(event) {
+		var postData = new Object();
+		postData = getPostData();
+		if ( false == postData ){
+			layer.alert('请选择商品', {icon: 6});
+			return false;
+		}
+		layer.confirm('确定要将商品上架审核么',{btn:['确认','取消']},
+		 	function(index){
+		 		updateGoodsSaleBatch(postData);
+			},function(index){
+				layer.close(index);
+			}
+		);
+		return false;	
+	});
+
+
+	$('.cancel_passed').click(function(event) {
+		/* Act on the event */
+		var postData = new Object(),
+			postUrl = "/index.php/Home/goods/goodsPassed.html";
+		postData.goods_id = $(this).data('id');
+		$.post(postUrl , postData, function(data, textStatus, xhr) {
+			/*optional stuff to do after success */
+				layer.open({
+					  content: data.message,
+					  scrollbar: false,
+					  yes: function(index){
+						   layer.close(index);
+						   if( 1 == data.status ){
+						   		location.reload();
+						   }
+					  }
+				});
+		},'json');
+		return false;
+	});
+
+	$('.sort').change(function(){
+		$('#sortForm').submit();
+	});
+
+	$('.allGoods').click(function(event) {
+		$('input[name="allData"]').val($(this).is(':checked')?1:0);
+	});
+
+	//导出商品价格
+	$("#exportPriceExecl").click(function(event) {
+		/* Act on the event */
+		if( $('.allGoods').is(':checked') ){
+			$("input[name='allData']").val(1)
+		}else{
+			$("#dataTable").find('.checkbox_goods_id:checked').each(function(index, element) {
+				var cloneInput = $('.explode_goods_input:first()').clone();
+				cloneInput.val( $(this).val() ).appendTo('.btnBox')
+			});
+			if( 1 == $('.explode_goods_input').length ){
+				layer.alert('请选择商品', {icon: 6});
+				return false;
+			}
+		}
+		$('.explode_goods_input:first()').remove();
+		$('input[name="explode_goods"]').val(1);
+		$("#searchForm").submit();
+		$('input[name="explode_goods"]').val(0);
+		return false;
+	});
+
+	var getPostData = function(){
+		var postData = new Object();
+		postData.alldata = 0;
+		var goods = new Array();
+		if( $('.allGoods').is(":checked") ){
+			postData.alldata = 1;
+		}else{
+			$("#dataTable").find('.checkbox_goods_id:checked').each(function(index, element) {
+            	goods[index] = $(this).val();
+        	});
+        	if( 0 == goods.length ){
+        		return false;
+        	}
+		}
+		postData.goods = goods;
+		return postData;
+	};
+
+
+
+	//商品上架
+	$('＃update_goods_sale').click(function(){
+		var postUrl  = "/index.php/Home/goods/goodsSale/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0.html";
+		var postData = getPostData();
+		if( 0 == postData.alldata ){
+			if( 0 == postData.goods.length )return false;
+		}
+		$.post( postUrl ,postData ,function(rData){
+				layer.open({
+					  content: rData.message,
+					  scrollbar: false,
+					  yes: function(index){
+						   layer.close(index);
+						   if( 1 == rData.status ){
+						   		location.reload();
+						   }
+					  }
+				});
+		},'json');
+		return false;
+	});
+
+	$('.sku_tab').click(function(event) {
+		/* Act on the event */
+		if( $(this).hasClass('glyphicon-plus-sign') ){
+			$(this).removeClass('glyphicon-plus-sign');
+			$(this).addClass('glyphicon-minus-sign');
+			$(this).parents("tr").next().removeClass('hidden');
+		}else{
+			$(this).removeClass('glyphicon-minus-sign');
+			$(this).addClass('glyphicon-plus-sign');
+			$(this).parents("tr").next().addClass('hidden');
+		}
+	});
+});
+
+
+
+</script>
+	</body>
+
+</html>

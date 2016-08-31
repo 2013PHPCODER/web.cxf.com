@@ -1,0 +1,99 @@
+<section class="content">
+        <ol class="breadcrumb">
+            <li><i class="fa fa-dashboard"></i> 位置</li>
+            <li>财务管理</li>
+            <li>收支明细</li>
+        </ol>
+        <div class="box-body fqy_jsgl fqy_txgl">
+            <p><b>账户余额：5000.00</b></p>
+
+            <div class="row">
+                <form class="form-inline" method="get" action="/index.php/Home/goods/index/menu_id/1/second_menu_id/4/group_id/1.html" id="searchForm">
+                    <div class="form-group">类型:
+                        <select>
+                            <option>请选择</option>
+                            <option>结算</option>
+                            <option>提现</option>
+                        </select>
+                    </div>
+                    <div class="form-group">时间
+                        <select class="fqy_payTime">
+                            <option v="0">请选择</option>
+                            <option v="1">今天</option>
+                            <option v="2">最近一周</option>
+                            <option v="3">最近一个月</option>
+                            <option v="4">自定义</option>
+                        </select>
+                    </div>
+                    <div class="form-group fqy_customTime" style="display: none">
+                        <input type="text" value="" class="form-control input-xs" onClick="WdatePicker()" name="startTime"  placeholder="开始时间"> -
+                        <input type="text" value="" class="form-control input-xs" onClick="WdatePicker()" name="endTime" placeholder="结束时间">
+                    </div>
+                    <div class="form-group btnBox">
+                        <input type="submit" class="btn btn-block btn-warning btn-xs" value="搜索">
+                        <input type="hidden" name="allData" value="0">
+                        <input type="hidden" class="explode_goods_input" name="explodeGoods[]" value="0">
+                        <input type="hidden" name="explode_goods" value="0">
+                    </div>
+                </form>
+            </div>
+
+            <div class="row fqy_szmx">
+                <span>收入：<b class="fqy_green">800.00</b> 元</span> &nbsp;&nbsp;&nbsp;
+                <span>支出：<b class="fqy_red">800.00</b> 元</span>
+            </div>
+
+            <div class="row">
+                <table class="table table-hover">
+                    <tbody>
+                    <tr>
+                        <th>交易号</th>
+                        <th>时间</th>
+                        <th>类型</th>
+                        <th>收入（元）</th>
+                        <th>支出（元）</th>
+                        <th>账户余额</th>
+                    </tr>
+                    <tr>
+                        <td>00252</td>
+                        <td>2016.7.26 14:00</td>
+                        <td>结算</td>
+                        <td class="fqy_sr">1000</td>
+                        <td></td>
+                        <td>1500.00</td>
+                    </tr>
+                    <tr>
+                        <td>00254</td>
+                        <td>2016.7.26 14:00</td>
+                        <td>提现</td>
+                        <td></td>
+                        <td class="fqy_zc">1000</td>
+                        <td>500.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="box-footer">
+                <div class="left">
+                    <form class="form-inline" id="pagesizeForm" action="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5.html" method="get">
+                        <div class="form-group">
+                            <label for="exampleInputName2">全选结果页:  </label><input type="checkbox" class="allGoods" name="allGoods">
+                        </div>
+                        <div class="form-group">
+                            <select name="pagesize" class="form-control input-xs pagesize">
+                                <option value="20">20条</option>
+                                <option value="50">50条</option>
+                                <option value="100">100条</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="right">
+                    <div class="pagination">
+                        <div class="row"><ul><li class="rows">共<b>278</b>条</li>   <li><span class="current">1</span></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">2</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/3.html">3</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/4.html">4</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/5.html">5</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/6.html">6</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/7.html">7</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/8.html">8</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/9.html">9</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/10.html">10</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/11.html">11</a></li> <li><a class="next" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">下一页</a></li> <li><a class="end" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/14.html">末页</a></li></ul></div>             </div>
+                </div>
+            </div>
+        </div>
+    </section>

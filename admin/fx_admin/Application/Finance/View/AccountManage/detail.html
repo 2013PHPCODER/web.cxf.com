@@ -1,0 +1,116 @@
+
+<block name="content">
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> 位置</li>
+        <li>
+            财务管1理</li>
+        <li>账户详情</li>
+    </ol> 
+    <div class="box-body fqy_jsgl fqy_txgl">
+        <p><b>账户ID：{$user_info.username}</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>账户余额：{$user_info.balance}</b></p>
+
+        <div class="row">
+            <form class="form-inline" method="get" action="{:U('finance/accountManage/detail')}" >
+                <div class="form-group">类型:
+                    <select name="trade_type">
+                        <option value="">请选择</option>
+                        <?php foreach($type as $k=>$v){ ?>
+                        <option value="<?php echo $k;?>" <?php if(I('get.trade_type')==$k){echo 'selected';}?> ><?php echo $v;?></option>   
+                        <?php }?>
+                    </select>
+                </div>
+                <div class="form-group">时间
+                    <select class="fqy_payTime" name="search_time" id="fqy_time">
+                        <option value="">请选择</option>
+                        <option value="1"<?php if(I('get.search_time')==1){echo 'selected';}?>>今天</option>
+                        <option value="2"<?php if(I('get.search_time')==2){echo 'selected';}?>>最近一周</option>
+                        <option value="3"<?php if(I('get.search_time')==2){echo 'selected';}?>>最近一个月</option>
+                        <option value="4"<?php if(I('get.search_time')==4){echo 'selected';}?>>自定义</option>
+                    </select>
+                </div>
+                <div class="form-group fqy_customTime" style=" <?php if(I('get.search_time')!=4){echo 'display: none';}?>">
+                    <input type="text" name="start_time" onClick="WdatePicker()" value="<?php echo date('y-m-d H:i:s',I('get.start_time'));?>" class="form-control input-xs" placeholder="选择日期"> -
+                    <input type="text" name="end_time" onClick="WdatePicker()" value="<?php echo date('y-m-d H:i:s',I('get.end_time'));?>" class="form-control input-xs" placeholder="选择日期">
+                </div>
+                <div class="form-group btnBox">
+                    <input type="hidden" name="user_id" value="<?php echo I('get.user_id');?>">
+                    <input type="hidden" name="user_type" value="<?php echo I('get.user_type');?>">
+                    <input type="submit" class="btn btn-block btn-warning btn-xs" value="搜索">
+                </div>
+            </form>
+        </div>
+        <div class="row fqy_szmx">
+            <span>收入：<b class="fqy_green">{$in_money}</b> 元</span> &nbsp;&nbsp;&nbsp;
+            <span>支出：<b class="fqy_red">{$out_money}</b> 元</span>
+        </div>
+
+        <div class="row">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th>交易号</th>
+                        <th>时间</th>
+                        <th>类型</th>
+                        <th>收入（元）</th>
+                        <th>支出（元）</th>
+                        <th>账户余额</th>
+                        <th>收款账户类型</th>
+                        <th>收款账户</th>
+                    </tr>
+                <volist name="list_data.list" id="v">
+                    <tr>
+                        <td>{$v.deal_no}</td>
+                        <td>{:date('Y-m-d H:i',$v['add_time'])}</td>
+                        <td>
+                            <switch name="v.trade_type">
+                            <case value="0">打款</case>
+                            <case value="1">提现</case>
+                            <case value="2">结算</case>
+                            </switch>
+                    </td>
+                    <td class="fqy_sr">{$v.in_money}</td>
+                    <td>{$v.out_money}</td>
+                    <td>{$v.now_balance}</td>
+                    <td>
+                        <switch name="v.trade_account_type">
+                        <case value="1">支付宝</case>
+                        <case value="2">银行卡</case>
+                        <case value="3">微信</case>
+                        </switch>
+                    </td>
+                    <td>{$v.trade_account}</td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--        <div class="left" >
+                <form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+                    <div class="form-group">
+                        <select name="pagesize" class="form-control input-xs pagesize">
+                            <option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+                            <option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+                            <option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+                        </select>
+                    </div>
+                </form>
+            </div>-->
+    <div class="left">
+        <div class="pagination">
+            {$list_data.page}
+        </div>
+    </div>
+</block>
+<script>
+    //    选择自定义时间 显示隐藏
+    $('#fqy_time').change(function () {
+        var val = $('#fqy_time  option:selected').val();
+        if (val == 4) {
+            $('.fqy_customTime').show();
+        } else {
+            $('.fqy_customTime').hide();
+        }
+    });
+</script>

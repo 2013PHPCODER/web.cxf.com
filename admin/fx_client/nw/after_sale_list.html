@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>货源管家-售后管理</title>
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="css/fqy_style.css">
+        <link rel="stylesheet" type="text/css" href="css/zl.css"/>
+        <script src="js/jquery-1.9.1.min.js"></script>   
+        <script src="js/knockout-3.3.0.js"></script>
+        <script src="js/plus.js"></script>
+        <script src="js/message.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/public.js"></script>
+        <style>
+        	.PopDiv{display: none;} 
+        </style>
+    </head>
+    <body>
+        <div class="main clearfix">
+            <div id="p_left"></div>
+            <div class="wraper">
+                <div id="p_top"></div>
+                <div class="orderManageDiv">
+                    <div class="odMHeader">
+                        <ul>
+                            <li><a class="select" href="javascript:pickDate(1);">待确定</a></li>
+		                    <li><a href="javascript:pickDate(2);">待退货</a></li>
+		                    <li><a href="javascript:pickDate(3);">待退款</a></li>
+		                    <li><a href="javascript:pickDate(4);">已完成</a></li>
+		                    <li><a href="javascript:pickDate(5);">已拒绝</a></li>
+		                    <li><a href="javascript:pickDate(6);">待仲裁</a></li>
+                        </ul>
+                        <div class="odMSearch">
+                            <span>关键字：</span><input type="text" placeholder="标题、商家编码、收件人、手机号"><button>搜索</button>
+                        </div>
+                    </div>
+                    <table class="odMTabSty orderDetail" id="after_sale">
+                    	<thead>
+	                        <tr>
+	                            <th></th>
+								<th>商品</th>
+	                            <th>单价</th>
+	                            <th>数量</th>
+	                            <th>订单总额</th>
+	                            <th>申请金额</th>
+	                            <th>售后类别</th>
+	                            <th>售后理由</th>
+	                            <th>退货信息</th>
+	                            <th>售后状态</th>
+	                            <th style="width: 2rem">操作</th>
+	                        </tr>
+                        </thead>
+                        <tbody data-bind = "foreach:{data:item,as:'auto'}">
+	                        <tr class="orderInfoTr">
+	                            <td></td>
+	                            <td>售后单号：<label data-bind="text:cus_id">687987987987</label></td>
+	                            <td></td>
+	                            <td>售后时间：<label data-bind="text:add_time">2016-7-28  09:55:43</label></td>
+	                            <td></td>
+	                            <td>订单号：<label data-bind="text:order_sn">687987987987</label></td>
+	                            <td></td>
+	                            <td><span data-bind="text:platform_name">第三方单号</span>： <span data-bind="text:other_order_sn"></span></td>
+	                            <td></td>
+	                            <td></td>
+	                            <td></td>
+	                        </tr>
+	                        <tr>
+								<td><input type="hidden" class="order-check"></td>
+	                            <td class="goodsName" data-bind = "foreach:{data:goods,as:'auto'}">
+	                                <p data-bind="text:goods_name,attr:{'data-id':goods_id}">韩版2016年夏季新款无袖连衣裙雪纺V领纯色气质修身长款沙滩裙女</p>
+	                            </td>
+	                            <td data-bind="text:goods[0].price"></td>
+	                            <td data-bind="text:goods[0].goods_num"></td>
+	                            <td>
+	                                <p data-bind="text:refund_amount"></p>
+	                                <!--<p>(含运费0.00)</p>-->
+	                            </td>
+	                            <td data-bind="text:refund_amount"></td>
+	                            <td data-bind="text:cus_type">退款</td>
+	                            <td>
+	                                <p class="orderLy" data-bind="text:refund_reason">七天无理由</p>
+	                            </td>
+	                            <td>
+	                                <p data-bind="text:freight_company">中通</p>
+	                                <p data-bind="text:freight_code">13500251231</p>
+	                            </td>
+	                            <td data-bind="text:status">已发货</td>
+	                            <td>
+	                                <p class="goodsSj e-click" data-bind="attr:{'data-id':cus_id}">查看</p>
+	                            </td>
+	                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+<div id="p_footer"></div>
+    <div class="marks">
+    	<div class="PopDiv go-delivery" style="width: 300px;">
+    		<div class="PopHeader">
+                <span class="PopTitle"><i class="PopDetails"></i>发货</span>
+                <div class="PopColse"></div>
+            </div>
+            <div class="PopBody">
+            	<p>快递公司:<input type="text" id="freight_company"></p>
+            	<p>快递单号:<input type="text" id="freight_no"></p>
+            </div>
+            <div class="PopFooter">
+            	<button>确定</button>
+            </div>
+    	</div>
+        <div class="PopDiv after-detail" style="width: 624px;min-width: 624px;">
+            <div class="PopHeader">
+                <span class="PopTitle"><i class="PopDetails"></i>售后详情（待退款）</span>
+                <div class="PopColse"></div>
+            </div>
+            <div class="PopBody PopBodyDetails" id="sale_Detail">
+                <div class="popbox clearfix">
+                    <div class="popbox-lf">
+                        <p>售后单号：<span data-bind = "text:cus_id">9797958</span></p>
+                        <p style="width: 200%">订单单号：<span data-bind = "text:order_sn">9797958</span></p>
+                    </div>
+                    <div class="popbox-rf">
+                        <!--<p>平台单号：<span data-bind = "text:order_sn">687987987987</span></p>-->
+                        <p>第三方单号：<span data-bind = "text:other_order_sn">2035487865138532</span></p>
+                    </div>
+                </div>
+                <div class="popbox-body">
+                    <h2>售后商品信息</h2>
+                    <div class="pop-information clearfix">
+                        <div class="information-lf">
+                            <p data-bind = "text:goods.length>0?goods[0].goods_name:''">BNN*ASB*WG137*39</p>
+                            <p>单价：<span class="information-num" data-bind = "text:goods.length>0?goods[0].price:''">88.00</span>数量：<span data-bind = "text:goods.length>0?goods[0].goods_num:''">1</span></p>
+                            <p>售后类别：<span data-bind = "text:cus_type">退款</span></p>
+                            <p>售后金额：<span data-bind = "text:refund_amount">88.00</span></p>
+                            <!--<p>总计金额：<span data-bind = "text:refund_amount">98.00</span></p>-->
+                            <p>售后时间：<span data-bind = "text:add_time">2016-7-25 14:36:12</span></p>
+                            <p>退货物流公司：<span data-bind = "text:freight_company">中通</span></p>
+                            <p>退款时间：<span data-bind = "text:refund_money_time">2016-7-28 14:36:12</span></p>
+                        </div>
+                        <div class="information-rf">
+                            <p data-bind = "text:goods.length>0?goods[0].sku[0].sku_str_zh:''"></p>
+                            <p >订单总额：<span data-bind = "text:refund_amount">88.00</span></p>
+                            <p class="information-mag">售后理由：<span data-bind = "text:refund_reason">质量问题</span></p>
+                            <!--<p>运费补贴：<span></span></p>-->
+                            <p class="information-mag">退货时间：<span data-bind = "text:return_time">2016-7-28 14:36:12</span></p>
+                            <p>物流单号：<span data-bind = "text:freight_code">135894984987498</span></p>
+                            <p>完成时间：<span data-bind = "text:close_time">2016-7-28 14:36:12</span></p>
+                        </div>
+                    </div>
+                    <div class="information-img">
+                        <p>提交凭证：
+                            <span data-bind="foreach:{data:imgs,as:'auto'}">
+                        		 <a href="">
+	                                <img src="" alt="" data-bind="attr:{src:auto}"/>
+	                                <i class="remove-img">-</i>
+	                           </a>
+                        	</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="information-words">
+                    <h2>售后留言</h2>
+                    <textarea data-bind="text:refund_reason" disabled></textarea>
+                </div>
+            </div>
+        </div>
+    </div>    
+    </body>
+</html>
+
+<script>
+	$(function(){     
+		var oUrl = getUrlParam('loc');	
+		if( oUrl ==  ''){
+			pickDate(1);
+		}else{
+			pickDate(parseInt(oUrl));
+			$('.odMHeader li>a').removeClass('select');
+			$('.odMHeader li').eq(oUrl-1).children('a').addClass('select');
+		}	 
+//      		售后详情
+    	$('.odMHeader li').click(function(){
+    		$('.odMHeader li>a').removeClass('select');
+			$(this).children('a').addClass('select');
+		})
+      
+	})
+	var oHtml = $('#after_sale tbody').html(),   //主内容
+	    oHtmlD = $('#sale_Detail').html();     //售后详情
+	var oCus_id;      
+	function pickDate(num){
+	    ko.cleanNode(document.getElementById("after_sale"));  
+	    $('#after_sale tbody').html(oHtml);              
+		var data = {
+		   'user_id':localStorage.getItem('user_id'),'page':1
+		}
+		switch (num){
+			case 1:
+		        var html = '<p><a class="cancel_sale" data-bind="attr:{'+"'data-id'"+':cus_id}">取消售后</a></p>';
+			    $(html).insertBefore($('.e-click'));
+				$.extend(data,{'return_status':after_good_status.wait_admin_confirm})
+				break;
+			case 2:
+			    var html = '<p><a class="delivery" data-bind="attr:{'+"'data-id'"+':cus_id}">取消售后</a></p>';
+			    $(html).insertBefore($('.e-click'));
+				$.extend(data,{'return_status':after_good_status.wait_buyer_sendgoods})
+				break;
+			case 3:
+				$.extend(data,{'refund_status':after_sale_status.wait_admin_pay,'return_status':after_good_status.wait_admin_repay})
+				break;	
+			case 4:
+				$.extend(data,{'refund_status':after_sale_status.success,'return_status':after_good_status.success})
+				break;	
+			case 5:
+				$.extend(data,{'return_status':after_good_status.refuse})
+				break;	       			
+			case 6:
+				$.extend(data,{'return_status':after_good_status.wait_admin_kill})
+				break;	
+		} 
+		X.bindModel(requestUrl.after_sale_list,1,data,'body.list',['after_sale'],function(){
+			$('.e-click').click(function(){
+				$('.marks').show();
+				$('.after-detail').show();
+				ko.cleanNode(document.getElementById("sale_Detail"));
+				X.bindModel(requestUrl.after_sale_detail,1,{'user_id':localStorage.getItem('user_id'),'cus_id':$(this).attr('data-id')},'body.list',['sale_Detail'],function(){
+
+				});
+			});
+			//取消售后
+			$('.cancel_sale').click(function(){
+				X.Post(requestUrl.after_sale_operate,1,{'cus_id':$(this).attr('data-id'),'user_id':localStorage.getItem('user_id'),'type':'cancel'},function(e){
+				   if(e.header.stats == 0 ){
+            	   	  X.notice(e.body.list,3)
+            	   	  setTimeout(function(){
+            	   	  	 window.location.href = 'after_sale_list.php?loc='+($('.sale-tab>a.select').index()+1); 
+            	   	  },1000)
+            	   }else{
+            	   	 X.notice(e.header.msg,3)
+            	   }
+				})
+			});
+			//发货
+			$('.delivery').click(function(){								
+				oCus_id =	$(this).attr('data-id');
+			    $('.marks').show();
+                $('.go-delivery').show();              
+			})
+		})
+	}   
+	$('.go-delivery button').on('click',function(){
+    	var data = {
+		        'cus_id':oCus_id,
+            	'user_id':localStorage.getItem('user_id'),
+            	'type':'deliver',
+            	'freight_company':$('#freight_company').val(),			                	
+            	'freight_no':$('#freight_no').val()
+            }
+       if(data.freight_company == ''){
+      	  X.notice('请填写物流公司',3);
+      	  return false;
+       }else if(data.freight_no == ''){
+          X.notice('请填写快递单号',3);
+          return false;
+       }
+       X.Post(requestUrl.after_sale_operate,1,data,function(e){
+    	   if(e.header.stats == 0 ){
+    	   	  X.notice('退货成功',3)
+    	   	  setTimeout(function(){
+    	   	  	  window.location.href = 'after_sale_list.php?loc='+($('.sale-tab>a.select').index()+1); 
+    	   	  },1000)
+    	   }else{
+    	   	 X.notice(e.header.msg,3)
+    	   }
+       })
+    })
+	
+
+</script>

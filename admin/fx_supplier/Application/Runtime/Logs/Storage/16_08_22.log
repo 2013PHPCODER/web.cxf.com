@@ -1,0 +1,78 @@
+[ 2016-08-22T18:58:52+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-22T18:58:55+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-22T18:58:55+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-22T18:58:56+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-22T18:58:56+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-22T18:59:24+08:00 ] 127.0.0.1 /Storage/order/excepOrder.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000771s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002824s ]
+ERR: 无法加载控制器:Order
+
+[ 2016-08-22T18:59:42+08:00 ] 127.0.0.1 /Storage/order/excepOrder.html
+ERR: 无法加载控制器:Order
+
+[ 2016-08-22T18:59:47+08:00 ] 127.0.0.1 /Storage/Storage+/excepOrder.html
+ERR: 无法加载控制器:Storage+
+
+[ 2016-08-22T18:59:51+08:00 ] 127.0.0.1 /Storage/Storage/excepOrder.html
+ERR: 非法操作:excepOrder
+
+[ 2016-08-22T19:01:37+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-22T19:01:48+08:00 ] 127.0.0.1 /Storage/Storage/excepOrder.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000448s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000840s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001719s ]
+ERR: 非法操作:excepOrder
+
+[ 2016-08-22T19:03:06+08:00 ] 127.0.0.1 /Storage/Storage/excepOrder.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000586s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001127s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002262s ]
+SQL: SHOW COLUMNS FROM `order_list` [ RunTime:0.0022s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `order_list` WHERE ( order_id=2 and is_cus = 1 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `order_list` WHERE `order_id` = 2 LIMIT 1   [ RunTime:0.0014s ]
+SQL: UPDATE `order_list` SET `order_id`='2',`order_sn`='1160822031156280862',`other_order_sn`='',`other_shop`='',`buyer_id`='1',`buyer_name`='test1',`shop_id`='1',`add_time`='1471849916',`payment_time`='0',`finnshed_time`='0',`goods_amount`='115.00',`order_amount`='115.00',`pay_amount`='115.00',`order_state`='6',`con_time`='0',`send_hub_time`='0',`close_time`='0',`order_marked`='0',`shipping_code`='',`shipping_id`='0',`shipping_name`='',`shipping_fee`='0.00',`qq`='1052214395',`message_starts`='0',`memo`='',`is_send_hub`='0',`is_cus`='0',`hub_type`='0',`receiver_name`='',`receiver_tel`='',`is_edit_address`='0',`shipping_info`='',`supplier_id`='1',`is_supplier_close`='0' WHERE ( order_id =2 ) [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0017s ]
+SQL: DELETE FROM `hub_order` WHERE `order_id` = 2 [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0015s ]
+SQL: DELETE FROM `hub_order_goods` WHERE `order_id` = 2 [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0015s ]
+SQL: INSERT INTO `log_list` (`log_info`,`pid`,`handle_info`,`cid`,`user_id`,`addtime`,`ip_address`) VALUES ('订单异常','2','订单异常,不能进行操作','1','1','1471863786','127.0.0.1') [ RunTime:0.0015s ]
+
+[ 2016-08-22T19:04:24+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-22T19:04:41+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-22T19:04:41+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-22T19:20:19+08:00 ] 127.0.0.1 /Storage/storage/loadStock.html
+ERR: Think\Controller:importExecl方法不存在！
+
+[ 2016-08-22T19:21:14+08:00 ] 127.0.0.1 /Storage/storage/loadStock.html
+ERR: Think\Controller:importExecl方法不存在！
+
+[ 2016-08-22T19:21:34+08:00 ] 127.0.0.1 /Storage/storage/loadStock.html
+ERR: Think\Controller:importExecl方法不存在！
+
+[ 2016-08-22T20:29:51+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+

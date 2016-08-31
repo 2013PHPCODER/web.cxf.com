@@ -1,0 +1,149 @@
+<style type="text/css">
+	.box-content{
+		border: 1px solid #555555;
+		padding: 15px 10px;
+		width: 400px;
+		position: relative;
+		font-family: "microsoft yahei";
+	}
+	.box-content h2{
+		margin: 0;
+	}
+	.box-content h2 h3{
+		margin: 0;
+		font-size: 14px;
+	}
+	.box-content>input{
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		color: #f39c12;
+	}
+	.box-content>p input{
+		width: 100px;
+	}
+	.sub-btn{
+			text-align: right;
+		}
+		.sub-btn .sumb{
+			height: 28px;
+		    line-height: 28px;
+		    margin: 0 6px;
+		    padding: 0 15px;
+		    border: 1px solid #dedede;
+		    background-color: #f1f1f1;
+		    color: #333;
+		    border-radius: 2px;
+		    font-weight: 400;
+		    cursor: pointer;
+		    text-decoration: none;	
+		}
+		.sumb{
+			height: 28px;
+		    line-height: 28px;
+		    margin: 0 6px;
+		    padding: 0 15px;
+		    border: 1px solid #dedede;
+		    background-color: #f1f1f1;
+		    color: #333;
+		    border-radius: 2px;
+		    font-weight: 400;
+		    cursor: pointer;
+		    text-decoration: none;	
+		}
+		.sub-btn .btn1{
+		    border-color: #4898d5;
+		    background-color: #2e8ded;
+		    color: #fff;
+		}
+		.addMoney-p{display: none;}
+		.btn-confirm{display: none;}
+</style>
+<div class="box-body">
+	<ol class="breadcrumb">
+		<li><i class="fa fa-dashboard"></i> 位置</li>
+		<li>
+			系统设置</li>
+		<li>财务设置</li>
+	</ol> 
+	<form>
+		<div class="row">
+			<div class="box-content">
+				<h2>收款账号</h2>
+				<p>微信账号：<label>15341515345</label>&nbsp;&nbsp;&nbsp;收款人：<label>15341515345</label></p>
+				<p>支付宝账号：<label>15341515345</label>&nbsp;&nbsp;&nbsp;收款人：<label>15341515345</label></p>
+				<input type="button" name="" class="box-content-btn btn-change" value="编辑" />
+				<input type="button" name="" class="box-content-btn btn-confirm" value="确认" />
+				<a class="addMoney sumb">新增</a>
+				<p class="addMoney-p"><input type="text" value="" placeholder="新增支付类型">：<input type="text" value="" placeholder="新增支付账号">&nbsp;&nbsp;&nbsp;收款人：<input type="text" value="" placeholder="收款人"><a class="add-confirm sumb">确认</a><a class="add-cancel sumb">取消</a></p>
+			</div>
+	   </div>		
+		<div class="sub-btn"><input type="button" class="sumb btn1" value="保存"/><input type="submit" class="sumb btn-cancel" value="取消"/></div>
+	</form>
+	<div class="box-footer">
+		<div class="left" >
+			<form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+				<div class="form-group">
+					<label for="exampleInputName2">全选结果页: </label>
+					<input type="checkbox" id="selectall"  value="">
+				</div>
+				<div class="form-group">
+					<select name="pagesize" class="form-control input-xs pagesize">
+						<option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+						<option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+						<option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+					</select>
+				</div>
+			</form>
+		</div>
+		<div class="right">
+			 <div class="pagination">
+                        <div class="row"><ul><li class="rows">共<b>278</b>条</li>   <li><span class="current">1</span></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">2</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/3.html">3</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/4.html">4</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/5.html">5</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/6.html">6</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/7.html">7</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/8.html">8</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/9.html">9</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/10.html">10</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/11.html">11</a></li> <li><a class="next" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">下一页</a></li> <li><a class="end" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/14.html">末页</a></li></ul></div>				</div>
+               </div>
+		</div>
+	</div>
+</div>
+<script>
+	$('.btn-change').click(function(){
+		$(this).hide();
+		$(this).parent().children('.btn-confirm').show();
+		$(this).parent().children('p').children('label').each(function(){
+			var ohtml = $(this).html();
+			$(this).html('<input type="text" value="'+ohtml+'" />')
+		})
+	})
+	$('.btn-confirm').click(function(){
+		$(this).hide();
+		$(this).parent().children('p').children('label').each(function(){
+			var ohtml = $(this).children('input').val();
+			$(this).html(ohtml);
+		})
+		$(this).parent().children('.btn-change').show();
+	})
+	$('.addMoney').click(function(){
+		$('.addMoney-p').show();
+	})
+	$('.add-cancel').click(function(){
+		$('.addMoney-p').hide();
+	})
+	$('.add-confirm').click(function(){
+		var arr = []
+		$(this).parent().children('input').each(function(){
+			arr.push($(this).val());
+		});
+		var html = '<p>'+arr[0]+'：<label>'+arr[1]+'</label>&nbsp;&nbsp;&nbsp;收款人：<label>'+arr[2]+'</label></p>'
+		var oo = true;
+		for(var i=0;i<arr.length;i++){
+			console.log("1");
+			if(arr[i] == ''){oo=false}
+		}
+		console.log("2");
+		if(arr.length>=2 && oo){
+	     	$(html).insertBefore('.addMoney');
+		    $('.addMoney-p').hide();
+		}else{
+		    X.notice('请填写完整',3)
+		}
+		
+	})
+</script>

@@ -1,0 +1,50 @@
+{__NOLAYOUT__}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>parseXML</title>
+<link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+<link rel="stylesheet" href="__PUBLIC__/css/AdminLTE.css">
+<link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+<style>
+.test_padding {
+	margin: 20px;
+	display: inline-block;
+}
+#order_id {
+	width: 120px
+}
+</style>
+</head>
+<body>
+<div class="container">
+<form action="" method="post" name="">
+	<table id="printData" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+		<thead>
+			<tr role="row">
+				<th>名称</th>
+				<th>宽</th>
+				<th>高</th>
+				<th>上边距(x)</th>
+				<th>左边距(y)</th>
+			</tr>
+		</thead>
+		<tbody>
+		
+			<foreach name="elements" key="k" item="vo">
+				<tr role="row" class="odd">
+					<td>{$vo.@attributes.text}</td>
+					<td><input type="text" name="width[{$k}]" value="{$vo.@attributes.width}"/></td>
+					<td><input type="text" name="height[{$k}]" value="{$vo.@attributes.height}"/></td>
+					<td><input type="text" name="x[{$k}]" value="{$vo.@attributes.x}"/></td>
+					<td><input type="text" name="y[{$k}]" value="{$vo.@attributes.y}"/></td>
+				</tr>
+			</foreach>
+		</tbody>
+	</table>
+	<input type="submit" class="btn">
+	</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+[ 2016-08-30T18:26:03+08:00 ] 127.0.0.1 /user/user/distributeDetail?userid=25
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000647s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001218s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002784s ]
+SQL: SHOW COLUMNS FROM `fx_distribute_user` [ RunTime:0.0517s ]
+SQL: SELECT `usernick`,`realname`,`idcard`,`email`,`mobile`,`qq`,`wangwang`,`source`,`acting_account` FROM `fx_distribute_user` WHERE `id` = 25 LIMIT 1   [ RunTime:0.0473s ]
+NOTIC: [8] Undefined variable: v D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\User\Model\FxDistributeUserModel.class.php 第 54 行.
+NOTIC: [8] Undefined variable: v D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\User\Model\FxDistributeUserModel.class.php 第 56 行.
+
+[ 2016-08-30T19:05:15+08:00 ] 127.0.0.1 /user/user/supUserDetail?userid=42
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000730s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001460s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002766s ]
+SQL: SHOW COLUMNS FROM `fx_supplier_user` [ RunTime:0.0481s ]
+SQL: SELECT `id`,`company_name`,`register_type`,`usernick`,`realname`,`idcard`,`email`,`mobile`,`qq`,`wangwang`,`applicant_idcard_img`,`legal_idcard_img`,`business_license`,`applicant_idcard_img_hand`,`receiver_account_type`,`open_bank_address`,`receiver_account_name`,`receiver_account` FROM `fx_supplier_user` WHERE ( id=42 ) LIMIT 1   [ RunTime:0.0446s ]
+
+[ 2016-08-30T19:05:18+08:00 ] 127.0.0.1 /user/user/changeStatus.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000987s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002443s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004569s ]
+SQL: SHOW COLUMNS FROM `fx_supplier_user` [ RunTime:0.0525s ]
+SQL: UPDATE `fx_supplier_user` SET `approve_status`='3',`approve_remark`='',`approve_time`='2016-08-30 19-05-17' WHERE `id` = 42 [ RunTime:0.0524s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0518s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php on line 71 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','超级管理员','2','User','/User/User/changeStatus.html','供应商资料审核，通过','1472555117','127.0.0.1','{\"stu\":\"3\",\"id\":\"42\",\"stutext\":\"\"}') [ RunTime:0.0496s ]
+

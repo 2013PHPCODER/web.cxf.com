@@ -1,0 +1,1064 @@
+<style type="text/css">
+
+    .box-title .choose_ul>li {
+        width: 98px;
+    }
+
+</style>
+<block name="content">
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> 位置</li>
+        <li>用户管理</li>
+        <li>供应商管理</li>
+    </ol>
+    <div class="box-header with-border">
+        <div class="box-title">
+            <ul class="choose_ul">
+                <li><a data-sign='0' class="{:xeq(I('get.register_type'),0,'btn btn-warning btn-xs')}" href="{:U('user/user/supplierlist',array('register_type' => 0 ))}" >个体</a></li>
+                <li><a data-sign='1' class="{:xeq(I('get.register_type'),1,'btn btn-warning btn-xs')}" href="{:U('user/user/supplierlist',array('register_type' => 1 ))}" >企业</a></li>
+                <!--       <li><a data-sign='0' class='btn btn-warning btn-xs' >个体</a></li>
+                      <li><a data-sign='1' class='btn btn-warning btn-xs' >企业</a></li> -->
+            </ul>
+        </div>
+        <div class="box-tools pull-left"> </div>
+    </div>
+    <div class="box-body">
+        <form class="form-inline" method="get" action="" id="form_search" onsubmit="return X.toSerchVaild(this)">
+            <div class="row" >
+                <div class="form-group ">
+                    <label for="exampleInputName2">申请时间:</label>
+                    <select class="form-control input-xs" name="add_time">
+                        <option value="">请选择</option>
+                        <option value="1">今天</option>
+                        <option value="2">最近七天</option>
+                        <option value="3">最近一个月</option>
+                        <option value="4">自定义</option>
+                    </select>
+                </div>
+                <div class="form-group Time" style="display: none">
+                    <input type="text"  name="startTime" class="form-control input-xs" onClick="WdatePicker()" value="{:I('get.startTime')}"  placeholder="开始时间">
+                </div>
+                <div class="form-group Time" style="display: none">
+                    <input type="text"  name="endTime" class="form-control input-xs" onClick="WdatePicker()" value="{:I('get.endTime')}"   placeholder="结束时间">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">状态:</label>
+                    <select class="form-control input-xs" name="zhuangtai">
+                        <option value="">请选择</option>
+                        <option value="1">待审核</option>
+                        <option value="2">拒绝</option>
+                        <option value="3">通过</option>             
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group ">
+                    <label for="exampleInputName2">审核时间:</label>
+                    <select class="form-control input-xs" name="check_time">
+                        <option value="">请选择</option>
+                        <option value="1">今天</option>
+                        <option value="2">最近七天</option>
+                        <option value="3">最近一个月</option>
+                        <option value="4">自定义</option>
+                    </select>
+                </div>
+                <div class="form-group Time" style="display: none">
+                    <input type="text"  name="check_startTime" class="form-control input-xs" id="startTime" value="{:I('get.startTime')}"  placeholder="开始时间">
+                </div>
+                <div class="form-group Time" style="display: none">
+                    <input type="text"  name="check_endTime" class="form-control input-xs" id="endTime" value="{:I('get.endTime')}"  placeholder="结束时间">
+                </div>
+                <div class="form-group ">
+                    <label for="exampleInputName2">搜索条件:</label>
+                    <select class="form-control input-xs" name="order_search">
+                        <option value="">请选择</option>
+                        <option value="1">邮箱</option>
+                        <option value="2">昵称</option>
+                        <option value="3">手机号</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" {:xeq(I('get.order_search'),'','disabled')} name="search_word" class="form-control input-xs" value="{:I('get.search_word')}"  placeholder="邮箱/昵称/手机号">
+                </div>
+                <div class="form-group">
+                    <input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
+                    <input type="hidden" name="is_close" value="1" id="is_close" >
+                    <input type="hidden" name="is_cus" value="1" id="is_cus">
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--个人 or  企业-->
+    <?php if (0==I("get.register_type")){?>
+    <div class="fqy_geren">
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th>申请时间</th>
+                        <th>邮箱</th>
+                        <th>昵称</th>
+                        <th>归属平台</th>
+                        <th>主营类目</th>
+                        <th>状态</th>
+                        <th>手机号</th>
+                        <th>QQ</th>
+                        <th>旺旺</th>
+                        <th>经营地址</th>
+                        <th>等级</th>
+                        <th>审核时间</th>
+                        <th>拒绝原因</th>
+                        <th>操作</th>
+                    </tr>
+                <volist name="datas.list" id="vo">
+                    <tr>
+                        <td>{$vo.addtime}</td>
+                        <td>{$vo.email}</td>
+                        <td>{$vo.usernick}</td>
+                        <?php if (1 == $vo['platform']){ ?>
+                        <td>星密码</td>
+                        <?php } elseif (2 == $vo['platform']){ ?>
+                        <td>创想范</td>
+                        <?php } ?>
+                        <td>未定数据来源</td>
+                        <?php if (1 == $vo['approve_status']){ ?>
+                        <td>待审核</td>
+                        <?php } elseif (2 == $vo['approve_status']){ ?>
+                        <td>拒绝</td>
+                        <?php } elseif (3 == $vo['approve_status']){ ?>
+                        <td>通过</td>
+                        <?php }?>
+                        <td>{$vo.mobile}</td>
+                        <td>{$vo.qq}</td>
+                        <td>{$vo.wangwang}</td>
+                        <td>{$vo.address}</td>
+                        <td>{$vo.leavel}</td>
+                        <td>{$vo.approve_time}</td>
+                        <td>{$vo.approve_remark }</td>
+                        <?php 
+                        if(2==$vo['approve_status']||3==$vo['approve_status']){ ?> 
+                        <td><a class='fqy_gerenLook' onclick="open_gerenDetail('{$vo.id}')" style='cursor:pointer'>查看</a></td>
+                        <?php }elseif(1==$vo['approve_status']){ ?>
+                        <td><a class='fqy_gerenLook' onclick="open_gerenDetail('{$vo.id}')" style='cursor:pointer'>查看</a> &nbsp;&nbsp;&nbsp;<a class='fqy_gerenReview' style='cursor:pointer' onclick="open_gerenChange('{$vo.id}')">审核</a></td>
+                        <?php }?>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+        </div>
+        <div class="box-footer">
+            <div class="left" >
+                <form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+                    <div class="form-group">
+                        <label for="exampleInputName2">全选结果页: </label>
+                        <input type="checkbox" id="selectall"  value="">
+                    </div>
+                    <div class="form-group">
+                        <select name="pagesize" class="form-control input-xs pagesize">
+                            <option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+                            <option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+                            <option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="right">
+                <div class="pagination">
+                    {$datas.page}
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php }elseif (1==I("get.register_type")) { ?>
+    <div class="fqy_qiye">
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th>申请时间</th>
+                        <th>邮箱</th>
+                        <th>昵称</th>
+                        <th>归属平台</th>
+                        <th>主营类目</th>
+                        <th>状态</th>
+                        <th>手机号</th>
+                        <th>QQ</th>
+                        <th>旺旺</th>
+                        <th>经营地址</th>
+                        <th>等级</th>
+                        <th>审核时间</th>
+                        <th>拒绝原因</th>
+                        <th>操作</th>
+                    </tr>
+                <volist name="datas.list" id="vo">
+                    <tr>
+                        <td>{$vo.addtime}</td>
+                        <td>{$vo.email}</td>
+                        <td>{$vo.usernick}</td>
+                        <?php if (1 == $vo['platform']){ ?>
+                        <td>星密码</td>
+                        <?php } elseif (2 == $vo['platform']){ ?>
+                        <td>创想范</td>
+                        <?php } ?>
+                        <td>未定数据来源</td>
+                        <?php if (1 == $vo['approve_status']){ ?>
+                        <td>待审核</td>
+                        <?php } elseif (2 == $vo['approve_status']){ ?>
+                        <td>拒绝</td>
+                        <?php } elseif (3 == $vo['approve_status']){ ?>
+                        <td>通过</td>
+                        <?php }?>
+                        <td>{$vo.mobile}</td>
+                        <td>{$vo.qq}</td>
+                        <td>{$vo.wangwang}</td>
+                        <td>{$vo.address}</td>
+                        <td>{$vo.leavel}</td>
+                        <td>{$vo.approve_time}</td>
+                        <td>{$vo.approve_remark }</td>
+                        <?php 
+                        if(2==$vo['approve_status']||3==$vo['approve_status']){ ?> 
+                        <td><a class='fqy_qiyeLook' onclick="open_qiyeDetail('{$vo.id}')" style='cursor:pointer'>查看</a></td>
+                        <?php }elseif(1==$vo['approve_status']){ ?>
+                        <td><a class='fqy_qiyeLook' onclick="open_qiyeDetail('{$vo.id}')" style='cursor:pointer'>查看</a> &nbsp;&nbsp;&nbsp;<a class='fqy_qiyeReview' style='cursor:pointer' onclick="open_qiyeChange('{$vo.id}')">审核</a></td>
+                        <?php }?>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+        </div>
+        <div class="box-footer">
+            <div class="left" >
+                <form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+                    <div class="form-group">
+                        <label for="exampleInputName2">全选结果页: </label>
+                        <input type="checkbox" id="selectall"  value="">
+                    </div>
+                    <div class="form-group">
+                        <select name="pagesize" class="form-control input-xs pagesize">
+                            <option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+                            <option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+                            <option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="right">
+                <div class="pagination">
+                    {$datas.page}
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php }?>
+
+
+    <!--弹窗Start-->
+    <div class="fqy_Mask">
+        <div class="fqy_Popup">
+            <div class="fqy_geren">
+                <div class="gerenLookDiv" style="display: none">
+                    <div class="fqy_popHead">
+                        <b>查看</b>
+                        <span class="fqy_popClose">×</span>
+                    </div>
+                    <div class="fqy_popContent">
+                        <div class="fqy_fxsPOP">
+                            <b>基本信息</b>
+                            <table>
+                                <tr>
+                                    <td>真实姓名：</td>
+                                    <td class='realname'></td>
+                                    <td>身份证：</td>
+                                    <td class='idcard'></td>
+                                </tr>
+                                <tr>
+                                    <td>邮箱：</td>
+                                    <td class='email'></td>
+                                    <td>手机：</td>
+                                    <td class='mobile'></td>
+                                </tr>
+                                <tr>
+                                    <td>QQ：</td>
+                                    <td class='qq'></td>
+                                    <td>旺旺：</td>
+                                    <td class='wangwang'></td>
+                                </tr>
+                                <tr>
+                                    <td>主营类目：</td>
+                                    <td class=''>淘宝类目ID</td>
+                                </tr>
+                                <tr></tr>
+                            </table>
+                            <div class="fqy_gysZzt">
+                                <b>资质图</b>
+                                <table>
+                                    <tr>
+                                        <td>身份证正反面</td>
+                                        <!--<td style="text-align: center">营业执照:</td>-->
+                                    </tr>
+                                    <tr>
+                                        <td class='applicant_idcard'></td>
+                                        <!--<td class='business_license_img'></td>-->
+                                    </tr>
+                                    <tr>
+                                        <td>手持身份证:</td>
+                                    </tr>
+                                    <tr>
+                                        <td class='legal_idcard_img'></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <b>结算信息</b>
+                            <table>
+                                <tr>
+                                    <td>结算类型：</td>
+                                    <td data-sign="1" class="aplyType"></td>
+                                </tr>
+
+                                <tr class="zfb">
+                                    <td>支付宝账号：</td>
+                                    <td class='receiver_account'></td>
+                                </tr>
+                                <tr class="zfb">
+                                    <td>支付宝姓名：</td>
+                                    <td class='receiver_account_name'></td>
+                                </tr>
+
+                                <tr class="yhk">
+                                    <td>开户行：</td>
+                                    <td class='open_bank_address'></td>
+                                </tr>
+                                <tr class="yhk">
+                                    <td>银行卡号：</td>
+                                    <td class='receiver_account'></td>
+                                </tr>
+                                <tr class="yhk">
+                                    <td>开户人姓名：</td>
+                                    <td class='receiver_account_name'></td>
+                                </tr>
+
+                            </table>
+                            <p class="fqy_canlce"><button>确认</button></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gerenshenheDiv" style="display: none">
+                    <div class="fqy_popHead">
+                        <b>审核</b>
+                        <span class="fqy_popClose">×</span>
+                    </div>
+                    <div class="fqy_popContent">
+                        <div class="fqy_fxsPOP">
+                            <b>资质审核</b>
+                            <table>
+                                <tr>
+                                    <td>真实姓名：</td>
+                                    <td class='realname'></td>
+                                    <td>身份证：</td>
+                                    <td class='idcard'></td>
+                                </tr>
+                                <tr>
+                                    <td>邮箱：</td>
+                                    <td class='email'></td>
+                                    <td>手机：</td>
+                                    <td class='mobile'></td>
+                                </tr>
+                                <tr>
+                                    <td>QQ：</td>
+                                    <td class='qq'></td>
+                                    <td>旺旺：</td>
+                                    <td class='wangwang'></td>
+                                </tr>
+                                <tr>
+                                    <td>主营类目：</td>
+                                    <td class=''>淘宝类目ID</td>
+                                </tr>
+                                <tr></tr>
+                            </table>
+                            <div class="fqy_gysZzt">
+                                <b>资质图</b>
+                                <table>
+                                    <tr>
+                                        <td>身份证正反面</td>
+                                        <!--<td style="text-align: center">营业执照:</td>-->
+                                    </tr>
+                                    <tr>
+                                        <td class='applicant_idcard'></td>
+                                         <!--<td class='business_license_img'></td>-->
+                                    </tr>
+                                    <tr>
+                                        <td>手持身份证:</td>
+                                    </tr>
+                                    <tr>
+                                        <td class='legal_idcard_img'></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <b>结算信息</b>
+                            <table>
+                                <tr>
+                                    <td>结算类型：</td>
+                                    <td data-sign="1" class="aplyType"></td>
+                                </tr>
+
+                                <tr class="zfb">
+                                    <td>支付宝账号：</td>
+                                    <td class='receiver_account'></td>
+                                </tr>
+                                <tr class="zfb">
+                                    <td>支付宝姓名：</td>
+                                    <td class='receiver_account_name'></td>
+                                </tr>
+
+                                <tr class="yhk">
+                                    <td>开户行：</td>
+                                    <td class='open_bank_address'></td>
+                                </tr>
+                                <tr class="yhk">
+                                    <td>银行卡号：</td>
+                                    <td class='receiver_account'></td>
+                                </tr>
+                                <tr class="yhk">
+                                    <td>开户人姓名：</td>
+                                    <td class='receiver_account_name'></td>
+                                </tr>
+
+                            </table>
+                            <b>审核操作</b>
+                            <table class="shaction">
+                                <tr>
+                                    <td><label><input type="radio" data-bs="3" checked name="radio">&nbsp;通过&nbsp;&nbsp;&nbsp;</label></td>
+                                    <td><label><input type="radio" data-bs="2" name="radio">&nbsp;拒绝&nbsp;&nbsp;&nbsp;</label></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <textarea style="display: none;text-align: left" placeholder="拒绝理由" data-value="dasad" ></textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                            <p class="fqy_btn"><button class='gerenBtn'>提交</button></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fqy_qiye">
+                <div class="qiyeLookDiv" style="display: none">
+                    <div class="fqy_popHead">
+                        <b>查看</b>
+                        <span class="fqy_popClose">×</span>
+                    </div>
+                    <div class="fqy_popContent">
+                        <div class="fqy_fxsPOP">
+                            <b>基本信息</b>
+                            <table>
+                                <tr>
+                                    <td>企业名称：</td>
+                                    <td class='company_name'>星密码</td>
+                                </tr>
+                                <tr>
+                                    <td>申请人：</td>
+                                    <td class='realname'>张三</td>
+                                    <td>身份证：</td>
+                                    <td class='idcard'>51372114441421</td>
+                                </tr>
+                                <tr>
+                                    <td>邮箱：</td>
+                                    <td class='email'>1380013800@163.com</td>
+                                    <td>手机：</td>
+                                    <td class='mobile'>13800138000</td>
+                                </tr>
+                                <tr>
+                                    <td>QQ：</td>
+                                    <td class='qq'>123456789</td>
+                                    <td>旺旺：</td>
+                                    <td class='wangwang'>987654321</td>
+                                </tr>
+                                <tr>
+                                    <td>主营类目：</td>
+                                    <td class=''>淘宝类目ID</td>
+                                </tr>
+                                <tr></tr>
+                            </table>
+                            <div class="fqy_gysZzt">
+                                <b>资质图</b>
+                                <table>
+                                    <tr>
+                                        <td>法人身份证正反面:</td>
+                                        <td style="text-align: center">营业执照:</td>
+                                    </tr>
+                                    <tr>
+                                        <td class='legal_idcard_img'></td>
+                                        <td class='business_license_img'></td>
+                                    </tr>
+                                    <tr>
+                                        <td>申请人身份证正反面:</td>
+                                        <td>手持身份证:</td>
+                                    </tr>
+                                    <tr>
+                                        <td class='applicant_idcard_img'></td>
+                                        <td class='idcard_img_hand'></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <b>结算信息</b>
+                            <table>
+                                <tr>
+                                    <td>结算类型：</td>
+                                    <td data-sign="1" class="aplyType"></td>
+                                </tr>
+
+                                <tr class="zfb">
+                                    <td>支付宝账号：</td>
+                                    <td class='receiver_account'></td>
+                                </tr>
+                                <tr class="zfb">
+                                    <td>支付宝姓名：</td>
+                                    <td class='receiver_account_name'></td>
+                                </tr>
+
+                                <tr class="yhk">
+                                    <td>开户行：</td>
+                                    <td class='open_bank_address'></td>
+                                </tr>
+                                <tr class="yhk">
+                                    <td>银行卡号：</td>
+                                    <td class='receiver_account'></td>
+                                </tr>
+                                <tr class="yhk">
+                                    <td>开户人姓名：</td>
+                                    <td class='receiver_account_name'></td>
+                                </tr>
+
+                            </table>
+                            <p class="fqy_canlce"><button>确认</button></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="qiyeshengheDiv" style="display: none">
+                    <div class="fqy_popHead">
+                        <b>审核</b>
+                        <span class="fqy_popClose">×</span>
+                    </div>
+                    <div class="fqy_popContent">
+                        <div class="fqy_fxsPOP">
+                            <b>基本信息</b>
+                            <table>
+                                <tr>
+                                    <td>企业名称：</td>
+                                    <td class='company_name'>星密码</td>
+                                </tr>
+                                <tr>
+                                    <td>申请人：</td>
+                                    <td class='realname'>张三</td>
+                                    <td>身份证：</td>
+                                    <td class='idcard'>51372114441421</td>
+                                </tr>
+                                <tr>
+                                    <td>邮箱：</td>
+                                    <td class='email'>1380013800@163.com</td>
+                                    <td>手机：</td>
+                                    <td class='mobile'>13800138000</td>
+                                </tr>
+                                <tr>
+                                    <td>QQ：</td>
+                                    <td class='qq'>123456789</td>
+                                    <td>旺旺：</td>
+                                    <td class='wangwang'>987654321</td>
+                                </tr>
+                                <tr>
+                                    <td>主营类目：</td>
+                                    <td class=''>淘宝类目ID</td>
+                                </tr>
+                                <tr></tr>
+                            </table>
+                            <div class="fqy_gysZzt">
+                                <b>资质图</b>
+                                <table>
+                                    <tr>
+                                        <td>法人身份证正反面:</td>
+                                        <td style="text-align: center">营业执照:</td>
+                                    </tr>
+                                    <tr>
+                                        <td class='legal_idcard_img'></td>
+                                        <td class='business_license_img'></td>
+                                    </tr>
+                                    <tr>
+                                        <td>申请人身份证正反面:</td>
+                                        <td>手持身份证:</td>
+                                    </tr>
+                                    <tr>
+                                        <td class='applicant_idcard_img'></td>
+                                        <td class='idcard_img_hand'></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <b>结算信息</b>
+                            <table>
+                                <tr>
+                                    <td>结算类型：</td>
+                                    <td data-sign="1" class="aplyType"></td>
+                                </tr>
+
+                                <tr class="zfb">
+                                    <td>支付宝账号：</td>
+                                    <td class='receiver_account'></td>
+                                </tr>
+                                <tr class="zfb">
+                                    <td>支付宝姓名：</td>
+                                    <td class='receiver_account_name'></td>
+                                </tr>
+
+                                <tr class="yhk">
+                                    <td>开户行：</td>
+                                    <td class='open_bank_address'></td>
+                                </tr>
+                                <tr class="yhk">
+                                    <td>银行卡号：</td>
+                                    <td class='receiver_account'></td>
+                                </tr>
+                                <tr class="yhk">
+                                    <td>开户人姓名：</td>
+                                    <td class='receiver_account_name'></td>
+                                </tr>
+
+                            </table>
+                            <b>审核操作</b>
+                            <table class="shaction">
+                                <tr>
+                                    <td><label><input type="radio" data-bs="1" name="radio" checked>&nbsp;通过&nbsp;&nbsp;&nbsp;</label></td>
+                                    <td><label><input type="radio" data-bs="2" name="radio">&nbsp;拒绝&nbsp;&nbsp;&nbsp;</label></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <textarea style="display: none;text-align: left" placeholder="拒绝理由" data-value="dasad" ></textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                            <p class='fqy_btn'><button class='qiyeBtn'>提交</button></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--弹窗End-->
+</block>
+<script>
+    $('select[name="order_search"]').change(function (event) {
+        /* Act on the event */
+        if ('' == $(this).val()) {
+            $('input[name="search_word"]').attr('disabled', true);
+            $('input[name="search_word"]').val('');
+        }
+        else {
+            $('input[name="search_word"]').removeAttr('disabled');
+        }
+    });
+
+
+    function open_gerenDetail(gid) {
+        $.post("/user/user/supUserDetail?userid=" + gid, function (result) {
+            for (x in result) {
+                $('.fqy_geren .gerenLookDiv .' + x + '').text(result[x]);
+            }
+            //身份证
+            var idcardimgs = '';
+            $(result.applicant_idcard_img).each(function(key,val){
+                idcardimgs+='<a href='+val.img_path+' target="_blank"><img src= ' + val.img_thumb + '></a>'
+            });
+            //营业执照
+//            var license_imgs = '';
+//            $(result.business_license).each(function(key,val){
+//                license_imgs+='<a href='+val.img_path+' target="_blank"><img src= ' + val.img_thumb + '></a>'
+//            });
+            //手持身份证
+            var legalidcard_imgs = '';
+            $(result.applicant_idcard_img_hand).each(function(key,val){
+                legalidcard_imgs+='<a href='+val.img_path+' target="_blank"><img src= ' + val.img_thumb + '></a>'
+            });
+            $('.fqy_geren .gerenLookDiv .applicant_idcard').html(idcardimgs);
+//            $('.fqy_geren .gerenLookDiv .business_license_img').html(license_imgs);
+            $('.fqy_geren .gerenLookDiv .legal_idcard_img').html(legalidcard_imgs);
+            
+
+            if(result.receiver_account_type==1){
+                $('.zfb').show();
+                $('.yhk').hide();
+                $('.fqy_geren .gerenLookDiv .aplyType').attr('data-sign', '1').text('支付宝');
+            }else if(result.receiver_account_type==2){
+                $('.zfb').hide();
+                $('.yhk').show();
+                $('.fqy_geren .gerenLookDiv .aplyType').attr('data-sign', '2').text('银行卡');
+            }
+
+
+            // switch (result.receiver_account_type) {
+            //     case 1:alert(1)
+            //         // $('.fqy_geren .gerenLookDiv .aplyType').attr('data-sign', '1').text('支付宝');
+            //         break;
+            //     case 2:alert(2)
+            //         // $('.fqy_geren .gerenLookDiv .aplyType').attr('data-sign', '2').text('银行卡');
+            //         break;
+            // }
+
+            // var sign = $('.fqy_geren .gerenLookDiv .aplyType').attr('data-sign');
+            // sign == 1 ? (function () {
+                // $('.zfb').show();
+                // $('.yhk').hide();
+            //     $('.fqy_geren .gerenLookDiv .aplyType').attr('data-sign', '1').text('支付宝');
+            // })() : (function () {
+            //     $('.zfb').hide();
+            //     $('.yhk').show();
+            //     $('.fqy_geren .gerenLookDiv .aplyType').attr('data-sign', '1').text('银行卡');
+            // })()
+        });
+    }
+
+    function open_gerenChange(gid) {
+        $.post("/user/user/supUserDetail?userid=" + gid, function (result) {
+            for (x in result) {
+                $('.fqy_geren .gerenshenheDiv .' + x + '').text(result[x]);
+            }
+            //身份证
+            var idcardimgs = '';
+            $(result.applicant_idcard_img).each(function(key,val){
+                idcardimgs+='<a href='+val.img_path+' target="_blank"><img src= ' + val.img_thumb + '></a>'
+            });
+            //营业执照
+//            var license_imgs = '';
+//            $(result.business_license).each(function(key,val){
+//                license_imgs+='<a href='+val.img_path+' target="_blank"><img src= ' + val.img_thumb + '></a>'
+//            });
+            //手持身份证
+            var legalidcard_imgs = '';
+            $(result.applicant_idcard_img_hand).each(function(key,val){
+                legalidcard_imgs+='<a href='+val.img_path+' target="_blank"><img src= ' + val.img_thumb + '></a>'
+            });
+            $('.fqy_geren .gerenshenheDiv .applicant_idcard').html(idcardimgs);
+//            $('.fqy_geren .gerenshenheDiv .business_license_img').html(license_imgs);
+            $('.fqy_geren .gerenshenheDiv .legal_idcard_img').html(legalidcard_imgs);
+            
+
+            if(result.receiver_account_type==1){
+                $('.zfb').show();
+                $('.yhk').hide();
+                $('.fqy_geren .gerenshenheDiv .aplyType').attr('data-sign', '1').text('支付宝');
+            }else if(result.receiver_account_type==2){
+                $('.zfb').hide();
+                $('.yhk').show();
+                $('.fqy_geren .gerenshenheDiv .aplyType').attr('data-sign', '2').text('银行卡');
+            }
+            // switch (result.receiver_account_type) {
+            //     case 1:
+            //         $('.fqy_geren .gerenshenheDiv .aplyType').attr('data-sign', '1').text('支付宝');
+            //         break;
+            //     case 2:
+            //         $('.fqy_geren .gerenshenheDiv .aplyType').attr('data-sign', '2').text('银行卡');
+            //         break;
+            // }
+            // var sign = $('.fqy_geren .gerenshenheDiv .aplyType').attr('data-sign');
+            // sign == 1 ? (function () {
+            //     $('.zfb').show();
+            //     $('.yhk').hide();
+            // })() : (function () {
+            //     $('.zfb').hide();
+            //     $('.yhk').show();
+            // })()
+        });
+
+        $('.gerenBtn').unbind('click').click(function () {
+            var stu, stutext, stuFlag;
+            var data = {
+                stu: gerenStu == true ? stu = 3 : stu = 2,
+                id: gid
+            }
+            if (stu == 3) {
+                data.stutext = '';
+                stuFlag = true;
+            } else {
+                data.stutext = $('.fqy_geren .gerenshenheDiv .shaction').find('textarea').val();
+                if (data.stutext.length <= 0) {
+                    X.notice('请输入拒绝原因', 3);
+                    stuFlag = false;
+                } else {
+                    stuFlag = true;
+                }
+            }
+            if (stuFlag) {
+                var n_url = "{:U('user/user/changeStatus',I('get.'))}";
+                $.post(n_url, data, function (e) {
+                    if (e == '审核成功') {
+                        X.notice('审核成功', 3);
+                        setTimeout(function () {
+                            window.location.reload()
+                        }, 1000);
+                    } else {
+                        X.notice(e, 3)
+                    }
+                })
+                $('.fqy_Mask').css('visibility', 'hidden');
+            }
+
+        })
+    }
+
+    function open_qiyeDetail(gid) {
+        $.post("/user/user/supUserDetail?userid=" + gid, function (result) {
+            for (x in result) {
+                $('.fqy_qiye .qiyeLookDiv .' + x + '').text(result[x]);
+            }
+            //申请人身份证
+            var idcardimgs = '';
+            $(result.applicant_idcard_img).each(function(key,val){
+                idcardimgs+='<a href='+val.img_path+' target="_blank"><img src= ' + val.img_thumb + '></a>'
+            });
+            //营业执照
+            var license_imgs = '';
+            $(result.business_license).each(function(key,val){
+                license_imgs+='<a href='+val.img_path+' target="_blank"><img src= ' + val.img_thumb + '></a>'
+            });
+            //手持身份证
+            var idcard_img_hand = '';
+            $(result.applicant_idcard_img_hand).each(function(key,val){
+                idcard_img_hand+='<a href='+val.img_path+' target="_blank"><img src= ' + val.img_thumb + '></a>'
+            });
+            //法人身份证
+            var legal_idcard_img = '';
+            $(result.applicant_idcard_img_hand).each(function(key,val){
+                legal_idcard_img+='<a href='+val.img_path+' target="_blank"><img src= ' + val.img_thumb + '></a>'
+            });
+
+            $('.fqy_qiye .qiyeLookDiv .applicant_idcard_img').html(idcardimgs);
+            $('.fqy_qiye .qiyeLookDiv .business_license_img').html(license_imgs);
+            $('.fqy_qiye .qiyeLookDiv .idcard_img_hand').html(idcard_img_hand);
+            $('.fqy_qiye .qiyeLookDiv .legal_idcard_img').html(legal_idcard_img);
+            
+            if(result.receiver_account_type==1){
+                $('.zfb').show();
+                $('.yhk').hide();
+                $('.fqy_qiye .qiyeLookDiv .aplyType').attr('data-sign', '1').text('支付宝');
+            }else if(result.receiver_account_type==2){
+                $('.zfb').hide();
+                $('.yhk').show();
+                $('.fqy_qiye .qiyeLookDiv .aplyType').attr('data-sign', '2').text('银行卡');
+            }
+
+            // switch (result.receiver_account_type) {
+            //     case 1:
+            //         $('.fqy_qiye .qiyeLookDiv .aplyType').attr('data-sign', '1').text('支付宝');
+            //         break;
+            //     case 2:
+            //         $('.fqy_qiye .qiyeLookDiv .aplyType').attr('data-sign', '2').text('银行卡');
+            //         break;
+            // }
+            // var sign = $('.fqy_qiye .qiyeLookDiv .aplyType').attr('data-sign');
+            // sign == 1 ? (function () {
+            //     $('.zfb').show();
+            //     $('.yhk').hide();
+            // })() : (function () {
+            //     $('.zfb').hide();
+            //     $('.yhk').show();
+            // })()
+        })
+    }
+
+    function open_qiyeChange(gid) {
+        $.post("/user/user/supUserDetail?userid=" + gid, function (result) {
+            for (x in result) {
+                $('.fqy_qiye .qiyeshengheDiv .' + x + '').text(result[x]);
+            }
+             //申请人身份证
+            var idcardimgs = '';
+            $(result.applicant_idcard_img).each(function(key,val){
+                idcardimgs+='<a href='+val.img_path+' target="_blank"><img src= ' + val.img_thumb + '></a>'
+            });
+            //营业执照
+            var license_imgs = '';
+            $(result.business_license).each(function(key,val){
+                license_imgs+='<a href='+val.img_path+' target="_blank"><img src= ' + val.img_thumb + '></a>'
+            });
+            //手持身份证
+            var idcard_img_hand = '';
+            $(result.applicant_idcard_img_hand).each(function(key,val){
+                idcard_img_hand+='<a href='+val.img_path+' target="_blank"><img src= ' + val.img_thumb + '></a>'
+            });
+            //法人身份证
+            var legal_idcard_img = '';
+            $(result.applicant_idcard_img_hand).each(function(key,val){
+                legal_idcard_img+='<a href='+val.img_path+' target="_blank"><img src= ' + val.img_thumb + '></a>'
+            });
+
+            $('.fqy_qiye .qiyeshengheDiv .applicant_idcard_img').html(idcardimgs);
+            $('.fqy_qiye .qiyeshengheDiv .business_license_img').html(license_imgs);
+            $('.fqy_qiye .qiyeshengheDiv .idcard_img_hand').html(idcard_img_hand);
+            $('.fqy_qiye .qiyeshengheDiv .legal_idcard_img').html(legal_idcard_img);
+            
+            
+            
+            if(result.receiver_account_type==1){
+                $('.zfb').show();
+                $('.yhk').hide();
+                $('.fqy_qiye .qiyeshengheDiv .aplyType').attr('data-sign', '1').text('支付宝');
+            }else if(result.receiver_account_type==2){
+                $('.zfb').hide();
+                $('.yhk').show();
+                $('.fqy_qiye .qiyeshengheDiv .aplyType').attr('data-sign', '2').text('银行卡');
+            }
+        })
+
+
+
+        $('.qiyeBtn').unbind('click').click(function () {
+            var stu, stutext, stuFlag;
+            var data = {
+                stu: qiyeStu == true ? stu = 3 : stu = 2,
+                id: gid
+            }
+            if (stu == 3) {
+                data.stutext = '';
+                stuFlag = true;
+            } else {
+                data.stutext = $('.fqy_qiye .qiyeshengheDiv .shaction').find('textarea').val();
+                if (data.stutext.length <= 0) {
+                    X.notice('请输入拒绝原因', 3);
+                    stuFlag = false;
+                } else {
+                    stuFlag = true;
+                }
+            }
+            if (stuFlag) {
+                var n_url = "{:U('user/user/changeStatus',I('get.'))}";
+                $.post(n_url, data, function (e) {
+                    if (e == '审核成功') {
+                        X.notice('审核成功', 3);
+                        setTimeout(function () {
+                            window.location.reload()
+                        }, 1000);
+                    } else {
+                        X.notice(e, 3)
+                    }
+                })
+                $('.fqy_Mask').css('visibility', 'hidden');
+            }
+
+        })
+
+    }
+
+
+
+
+    //    选择自定义时间 显示隐藏
+    $('select').change(function () {
+        var val = $(this).find("option:selected").val();
+        if (val == 4) {
+            $(this).parent('.form-group ').nextAll('.Time').show();
+        } else {
+            $(this).parent('.form-group ').nextAll('.Time').hide();
+        }
+    });
+
+
+    $('table').on('click', '.fqy_gerenLook', function () {
+        $('.fqy_Mask').css('visibility', 'visible');
+        $('.fqy_geren .gerenLookDiv').css('display', 'block');
+        $('.fqy_geren .gerenshenheDiv').css('display', 'none');
+        var sign = $('.fqy_geren .gerenLookDiv .aplyType').attr('data-sign');
+        if (sign == 1) {
+            $('.zfb').show();
+            $('.yhk').hide();
+        } else {
+            $('.zfb').hide();
+            $('.yhk').show();
+        }
+        autocenter();
+    });
+
+    var gerenStu = true;
+
+    $('table').on('click', '.fqy_gerenReview', function () {
+        $('.fqy_Mask').css('visibility', 'visible');
+        $('.fqy_geren .gerenLookDiv').css('display', 'none');
+        $('.fqy_geren .gerenshenheDiv').css('display', 'block');
+        var sign = $('.fqy_geren .gerenshenheDiv .aplyType').attr('data-sign');
+        if (sign == 1) {
+            $('.zfb').show();
+            $('.yhk').hide();
+        } else {
+            $('.zfb').hide();
+            $('.yhk').show();
+        }
+        $('.fqy_geren .shaction input[type=radio]').click(function () {
+            var bs = $(this).attr('data-bs');
+            bs == 2 ? (function () {
+                $('.shaction').find('textarea').show();
+                gerenStu = false
+            })() : (function () {
+                $('.shaction').find('textarea').hide();
+                gerenStu = true
+            })();
+        })
+        autocenter();
+    });
+
+    $('table').on('click', '.fqy_qiyeLook', function () {
+        $('.fqy_Mask').css('visibility', 'visible');
+        $('.fqy_qiye .qiyeLookDiv').css('display', 'block');
+        $('.fqy_qiye .qiyeshengheDiv').css('display', 'none');
+
+        autocenter();
+    });
+    var qiyeStu = true;
+
+    $('table').on('click', '.fqy_qiyeReview', function () {
+        $('.fqy_Mask').css('visibility', 'visible');
+        $('.fqy_qiye .qiyeLookDiv').css('display', 'none');
+        $('.fqy_qiye .qiyeshengheDiv').css('display', 'block');
+        var sign = $('.fqy_qiye .qiyeshengheDiv .aplyType').attr('data-sign');
+        if (sign == 1) {
+            $('.zfb').show();
+            $('.yhk').hide();
+        } else {
+            $('.zfb').hide();
+            $('.yhk').show();
+        }
+        $('.fqy_qiye .shaction input[type=radio]').click(function () {
+            var bs = $(this).attr('data-bs');
+            bs == 2 ? (function () {
+                $('.shaction').find('textarea').show();
+                qiyeStu = false
+            })() : (function () {
+                $('.shaction').find('textarea').hide();
+                qiyeStu = true
+            })()
+        });
+        autocenter();
+    });
+
+    //弹出层
+    function autocenter() {
+        var W = $(window).width() / 2;
+        var H = $(window).height() / 2;
+        var eleW = $('.fqy_Popup').width();
+        var eleH = $('.fqy_Popup').height();
+
+        $('.fqy_Popup').css({left: (W - eleW / 2) + 'px', top: (H - eleH / 2) + 'px'});
+        //关闭弹出层
+        $('.fqy_popClose,.fqy_canlce').click(function () {
+            $('.fqy_Mask').css('visibility', 'hidden');
+
+        });
+    }
+    window.onload = function () {
+        autocenter();
+    };
+    window.onresize = function () {
+        autocenter();
+    };
+
+</script>           

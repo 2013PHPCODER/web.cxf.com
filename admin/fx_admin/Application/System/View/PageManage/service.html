@@ -1,0 +1,220 @@
+<ol class="breadcrumb">
+    <li><i class="fa fa-dashboard"></i> 页面设置</li>
+    <li>客服账号列表</li>
+</ol> 
+<div class="box box-warning">
+    <div class="box-header with-border">
+        <div class="box-title">
+            <ul class="choose_ul">
+                <li><a class="btn btn-default addSensi" >添加客服</a></li>
+            </ul>
+        </div>
+        <div class="box-tools pull-left"> </div>
+    </div>
+    <div class="box-body">
+        <div class="row" >
+            <form class="form-inline" method="get" action="{:U(ACTION_NAME, I('get.'))}" id="searchForm">
+                <div class="form-group">
+                    <label for="exampleInputName2">添加人:</label>
+                    <select class="form-control input-xs" name="admin">
+                        <option value="">选择添加人</option>
+                        <volist name="admin" id="vo">
+                            <option value="{$vo.admin_user_id}" {:xeq(I('get.admin'),$vo[admin_user_id],'selected')} >{$vo.name}</option>
+                        </volist>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">类型:</label>
+                    <select class="form-control input-xs" name="type">
+                        <option value="">请选择</option>
+                        <option value="售前" {:xeq(I('get.type'),'售前','selected')}>售前</option>
+                        <option value="售后" {:xeq(I('get.type'),'售后','selected')}>售后</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">状态:</label>
+                    <select class="form-control input-xs" name="status">
+                        <option value="">请选择</option>
+                        <option value="1" {:xeq(I('get.status'),1,'selected')}>开启</option>
+                        <option value="-1" {:xeq(I('get.status'),-1,'selected')}>关闭</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="box">
+    <!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th align="middle">客服QQ</th>
+                    <th>类型</th>
+                    <th>状态</th>
+                    <th>添加人</th>
+                    <th>添加时间</th>
+                    <th>操作</th>
+                </tr>
+            <empty name="datas">
+                <tr><td colspan="6" style="text-align: center;"><font color="red">暂无数据</font></td></tr>
+                <else/>
+
+                <volist name="datas" id='vo'>
+                    <tr>
+                        <td>{$vo.qq}</td>
+                        <td>{$vo.type}</td>
+                        <td><eq name="vo.status" value="1">开启<else/><font color="red">关闭</font></eq></td>
+                        <td>{$vo.name}</td>
+                        <td>{$vo.datetime|date='Y-m-d H:i:s',###}</td>
+                        <td data-id="{$vo.id}"><a href="{:U('system/pageManage/editService', ['id'=>$vo['id']])}">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="javascript:;" class="delete_data">删除</a></td>
+                    </tr>
+                </volist>
+            </empty>
+            </tbody>
+        </table>
+    </div>
+    <div class="box-footer">
+        <div class="left" >
+            <form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+                <div class="form-group">
+                    <select name="pagesize" class="form-control input-xs pagesize">
+                        <option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+                        <option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+                        <option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="right">
+            <div class="pagination"> {$pager} </div>
+        </div>
+    </div>
+</div>
+<div class="dalog-modal" id="aleatMoudle">
+    <h3>添加客服</h3>
+    <div class="g-modal-content">
+        <form class="form-inline" method="post" action="{:U('system/pageManage/addService')}">
+            <div class="row">
+                <label for="exampleInputName2">账号:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="number" class="form-control input-xs" value="" maxlength="15"   placeholder="(15个数字以内)" name="qq">
+            </div>
+            <div class="row">
+                <label for="exampleInputName2">类型:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select class="form-control input-xs" name="type">
+                    <option value="">请选择</option>
+                    <option value="售前">售前</option>
+                    <option value="售后">售后</option>
+                </select>
+            </div>				
+            <div style="margin: 20px 0">
+                <label for="exampleInputName2">状态:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                是<input type="radio" class="" value="1"  name="status" checked="checked">&nbsp;&nbsp;&nbsp;&nbsp;
+                否<input type="radio" class="" value="-1"  name="status">
+            </div>
+            {__TOKEN__}
+            <div class="sub-btn"><input type="submit" class="sumb btn1" value="确定"/><input type="button" class="sumb btn-cancel" value="取消"/></div>
+        </form>
+    </div>
+    <span class="close" id="dalogModalClose">×</span>
+</div>
+<style>
+    .s-date ul, .s-date ol, .s-date li {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }	
+    .modal-body p{text-align: center}
+    .modal-body p span{margin-right: 20px}
+    .box-header{padding: 20px;}
+    .dalog-modal{
+        padding: 10px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -255px;
+        margin-top: -100px;
+        background: #E6E6E6;
+        border-radius: 5px;
+        width: 500px;
+        height: 280px;
+        display: none;
+        z-index: 5001;
+    }		
+    .dalog-modal h2{
+        text-align: left;
+        margin-top: 5px;
+    }
+    .dalog-modal .btn{ background-color: #f39c12;border-color: #e08e0b;color: #fff;}
+    .dalog-modal .row{margin-top: 8px;padding-left: 30px;}
+    .g-modal-content{
+        font-family: "microsoft yahei";
+    }
+    .g-modal-content label{
+        /*float: left;*/
+        /*width: 200px;*/
+        /*width: 100%;*/
+        /*padding: 10px 0;*/
+        margin-left: 50px;
+    }
+    .sub-btn{
+        text-align: right;
+    }
+    .sub-btn .sumb{
+        height: 28px;
+        line-height: 28px;
+        margin: 0 6px;
+        padding: 0 15px;
+        border: 1px solid #dedede;
+        background-color: #f1f1f1;
+        color: #333;
+        border-radius: 2px;
+        font-weight: 400;
+        cursor: pointer;
+        text-decoration: none;	
+    }
+    .sub-btn .btn1{
+        border-color: #4898d5;
+        background-color: #2e8ded;
+        color: #fff;
+    }
+    .dalog-modal .close{
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 5px;
+    }
+</style>
+<script>
+    $('.addSensi').click(function () {
+        $('.dalog-modal').show();
+        $('.zhezhao').show();
+    })
+    $('.dalog-modal .btn-cancel,.dalog-modal .close').click(function () {
+        $('.dalog-modal').hide();
+        $('.zhezhao').hide();
+    })
+
+    $('.delete_data').click(function () {
+        var id = $(this).parent().data('id');
+        layer.confirm('你确定删除吗？', {btn: ['确认', '取消']},
+                function (index) {
+                    layer.close(index);
+                    $.ajax({
+                        type: 'post', url: "{:U('system/PageManage/delService')}", data: {id: id},
+                        success: function (e) {
+                            X.notice(e.info, 3);
+                            setTimeout("location.replace(location.href)", 3000);
+                        }
+                    });
+                }, function (index) {
+            layer.close(index);
+            return false;
+        });
+
+    })
+</script>

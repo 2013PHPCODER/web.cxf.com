@@ -1,0 +1,21 @@
+<div class="content_message" style="padding-left:15px;padding-right:5px;height: 222px;overflow-y: scroll;">
+	<div class="row" id="message_content">
+	<volist name="result" id='message'>
+		<p><?=date("Y-m-d H:m:s",$message['addtime']) ?>&nbsp;
+			<switch name="message.user_type">
+				<case value="1">供应商</case>	
+				<case value="2">管理员</case>
+				<case value="3">分销商</case>
+			</switch>
+			&nbsp;{$message.message};
+		</p>	
+	</volist>
+	</div>	
+ </div>
+<form class="row" style="position: fixed;bottom: 0;width: 100%;">
+	<div class="form-group">
+		<input type="text" name=""  placeholder="请输入留言"  class="form-control input-xs" style="display: block;float: left;width:330px;margin-left:10px" id="input_message">
+		<input type="button" class="btn btn-default btn-xs "  style="display: block;float: left;margin-left:10px;" value="留言" id="setMessage" onclick="addMessage(this)">
+		<input type="hidden" id="message_id" value={$order_id}>
+	</div>
+</form>

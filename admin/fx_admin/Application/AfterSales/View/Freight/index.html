@@ -1,0 +1,69 @@
+
+<block name="content">
+<!-- 	<ol class="breadcrumb">
+		<li><i class="fa fa-dashboard"></i> 位置</li>
+		<li>
+			售后管理</li>
+		<li>售后运费模板</li>
+	</ol>  -->
+	<div class="box-body">
+		<div class="row">
+			<form class="form-inline" method="get" action="{:U('/afterSales/freight/index')}">
+				<div class="form-group">发货地:
+					<input type="text" name="from" value="" class="form-control input-xs" placeholder="输入发货地">
+				</div>
+				<div class="form-group">收货地:
+					<input type="text" name="to" value="" class="form-control input-xs" placeholder="输入收货地">
+				</div>
+				<div class="form-group btnBox">
+					<input type="submit" class="btn btn-block btn-warning btn-xs" value="搜索">
+					</div>
+				</div>	
+			</form>
+			<div class="row">
+
+				<form method="post" action="{:U('afterSales/freight/updateTemplate')}" enctype="multipart/form-data">
+					<div class="form-group">
+						<input  type="file" name="excel" id="e-excel" />
+						<button type="button" class="btn btn-default" id="e-submit">导入Excel</button>
+					</div>				
+				</form>
+
+				<div class="row">
+					<table class="table table-hover">
+						<tbody>
+							<tr>
+								<th>发货地</th>
+								<th>收件地</th>
+								<th>价格（元）</th>
+							</tr>					
+							<foreach name='list' item="q">
+								<tr>
+									<th>{$q['from']}</th>
+									<th>{$q.to}</th>
+									<th>{$q.freight}</th>
+								</tr>
+							</foreach>
+						</tbody>	
+					</table>
+				</div>
+				<div class="box-footer">
+					<div class="left">
+					</div>
+
+					<div class="right">
+					</div>
+				</div>
+			</div>
+		</div>
+	</block>
+<script>
+var q=$('#e-excel');
+q.hide();	
+$('#e-submit').click(function(){
+	q.trigger('click');
+})
+q.change(function(){
+    q.parents('form').submit();
+});
+</script>

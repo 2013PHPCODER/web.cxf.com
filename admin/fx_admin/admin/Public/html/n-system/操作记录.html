@@ -1,0 +1,116 @@
+<ol class="breadcrumb">
+	<li><i class="fa fa-dashboard"></i> 位置</li>
+	<li>
+		系统设置</li>
+	<li>操作记录</li>
+</ol> 				
+<div class="box-body">
+	<div class="row" >
+		<form class="form-inline" method="get" action="" id="form_search" onsubmit="return X.toSerchVaild(this)">
+			<div class="form-group">
+				<select class="form-control input-xs" name="depot">
+					<option value="">选择操作模块</option>
+                    <option value="">商品管理</option>
+                    <option value="">订单管理</option>
+                    <option value="">用户管理</option>
+                    <option value="">财务管理</option>
+                    <option value="">页面管理</option>
+                    <option value="">系统管理</option>
+                    <option value="">仓库管理</option>
+                    <option value="">售后管理</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<select class="form-control input-xs" name="depot">
+					<option value="">选择操作人</option>
+                    <option value="">大脸猫</option>
+                    <option value="">樱木</option>         
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputName2">操作时间:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				<!--<select class="form-control input-xs" name="time_type">
+					<option {:xeq(I('get.time_type'),'addtime','selected')} value="add_time">开始时间</option>
+					<option {:xeq(I('get.time_type'),'payment_time','selected')} value="payment_time">结束时间</option>
+				</select>-->
+			</div>
+			<div class="form-group">
+				<!--<label>开始时间:</label>-->
+				<input type="text" class="form-control input-xs" id="startTime" value="{:I('get.startTime')}" name="startTime">
+			</div>
+			<div class="form-group">
+				<!--<label>结束时间:</label>-->
+				<input type="text" class="form-control input-xs" id="endTime" value="{:I('get.endTime')}" name="endTime">
+			</div>			
+			<div class="form-group ">
+				<label for="exampleInputName2">状态:</label>
+				<select class="form-control input-xs" name="remark">
+					<option value="">请选择</option>
+					<option value="">未确定</option>
+					<option value="">确定中</option>
+					<option value="">到账</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<input type="text" name="search_word" class="form-control input-xs" value=""  placeholder="请输入关键字搜索">
+			</div>
+			<div class="form-group">
+				<input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
+                <input type="hidden" name="is_close" value="1" id="is_close" >
+                <input type="hidden" name="is_cus" value="1" id="is_cus">
+			</div>
+		</form>
+	</div>
+	<div class="row table-responsive no-padding">
+		<table class="table table-hover">
+			<tbody>
+				<tr>
+					<th>操作模块</th>
+					<th>操作内容</th>
+					<th>操作人</th>
+					<th>操作时间</th>
+				</tr>	
+				<tr>
+					<th>商品管理</th>
+					<th>商品ID：16354654通过审核</th>
+					<th>小强</th>
+					<th>2016-6-18 20:36:01</th>
+				</tr>
+				<tr>
+					<th>订单管理</th>
+					<th>商品ID：16354654通过审核</th>
+					<th>小强</th>
+					<th>2016-6-18 20:36:01</th>
+				</tr>
+				<tr>
+					<th>商品管理</th>
+					<th>商品ID：16354654通过审核</th>
+					<th>小强</th>
+					<th>2016-6-18 20:36:01</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>	
+	<div class="box-footer">
+		<div class="left" >
+			<form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+				<div class="form-group">
+					<label for="exampleInputName2">全选结果页: </label>
+					<input type="checkbox" id="selectall"  value="">
+				</div>
+				<div class="form-group">
+					<select name="pagesize" class="form-control input-xs pagesize">
+						<option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+						<option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+						<option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+					</select>
+				</div>
+			</form>
+		</div>
+		<div class="right">
+			 <div class="pagination">
+                        <div class="row"><ul><li class="rows">共<b>278</b>条</li>   <li><span class="current">1</span></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">2</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/3.html">3</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/4.html">4</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/5.html">5</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/6.html">6</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/7.html">7</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/8.html">8</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/9.html">9</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/10.html">10</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/11.html">11</a></li> <li><a class="next" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">下一页</a></li> <li><a class="end" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/14.html">末页</a></li></ul></div>				</div>
+               </div>
+		</div>
+	</div>
+</div>

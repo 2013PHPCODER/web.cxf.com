@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>开通账户</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fqy_style.css">
+    <script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/knockout-3.3.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/plus.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="js/message.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="js/laydate.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        .Phcontent >.PhTab>table {
+            width: 100%;
+        }
+        .contentFooter {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+<div class="main clearfix">
+    <div id="p_left"></div>
+    <div class="wraper">
+        <div id="p_top"></div>
+        <div class="orderManageDiv">
+            <div class="odMHeader">
+
+                <ul>
+                    <li>
+                        <button class="KTAccountBtn">开通账户</button>
+                    </li>
+                    <li>开户版本：
+                    	<select id="leveltype">
+                        	<option value='0'>默认店铺</option>
+                        	<option value='1'>基础版</option>
+                        	<option value='2'>中级版</option>
+                        	<option value='3'>高级版</option>
+                    	</select>
+                    </li>
+                    <li>选择时间：<input type="text" name="startTime" class="startTime" id="startTime"> 至
+                        <input type="text" name="endTime" class="endTime" id="endTime">
+                    </li>
+                </ul>
+            </div>
+            <table class="odMTabSty" id="openAcount">
+                <tr>
+                    <th>订单号</th>
+                    <th>开户时间</th>
+                    <th>用户名</th>
+                    <th>开户版本</th>
+                    <th>版本价格</th>
+                    <th>开户费用</th>
+                    <th>利润</th>
+                    <th>备注</th>
+                </tr>
+                <tbody  data-bind="foreach:list,as:'auto'" id='openAcount-list'>
+                <tr>
+                    <td data-bind="text:vorder_sn"></td>
+                    <td data-bind="text:add_time">2016-7-28 09:55:43</td>
+                    <td data-bind="text:new_username">fenxiaoshang@qq.com</td>
+                    <td data-bind="text:name">基础版</td>
+                    <td data-bind="text:price">200.00</td>
+                    <td data-bind="text:agent_price">50.00</td>
+                    <td data-bind="text:ratio">150.00</td>
+                    <td>售后订单退全款</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="contentFooter">
+            <label><input type="checkbox">全选</label>
+            <div>
+                <span>当前结果页（<span class="colorHui">开通账户数：88/利润：8888.00</span>）</span>
+                <span>已开通账户数：<span class="colorGreen">888个</span></span>
+                <span>利润累计：<span class="colorRed">8888.00</span></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="p_footer"></div>
+<div class="marks" id="accountPop">
+    <div class="PopDiv" style="width: 628px">
+        <div class="PopHeader">
+            <img src="images/markicon01.png" alt="">
+            <span class="PopTitle">开通账户</span>
+            <div class="PopColse"></div>
+        </div>
+        <div class="PopBody" id='virtual_id'>
+            <div class="kaitongzhanghu">
+                <table>
+                    <tr>
+                        <td>账户类型：</td>
+                        <td>
+                            <select id="user-type">
+                                <option value="">----请选择----</option>
+                               
+                            </select>
+                            <span class="fr">版权价格：</span>
+                        </td>
+                        <td class="publicTextClore" id="op_price"></td>
+                    </tr>
+                    <tr>
+                        <td>开通费：</td>
+                        <td>
+                            <span class="publicTextClore" id="ag_price"></span>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>开通账户：</td>
+                        <td><input type="text" placeholder="" id="vir_user"></td>
+                        <td class="publicTextClore">*&nbsp;&nbsp;&nbsp;仅限手机号</td>
+                    </tr>
+                    <tr>
+                        <td>设置密码：</td>
+                        <td><input type="password" placeholder="" id="new_pwd"></td>
+                        <td class="publicTextClore">*&nbsp;&nbsp;&nbsp;开通账户初始密码</td>
+                    </tr>
+                    <tr>
+                        <td>确认密码：</td>
+                        <td><input type="password" placeholder="" id="rep_pwd"></td>
+                        <td class="publicTextClore">*</td>
+                    </tr>
+                    <tr>
+                        <td>QQ：</td>
+                        <td><input type="text" placeholder="" id="QQ"></td>
+                        <td class="publicTextClore">*</td>
+                    </tr>
+                    <tr>
+                        <td>验证：</td>
+                        <td><div id="drag"></div></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">备注：</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <textarea></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="">
+                            <div class="PopFooter">
+                                <button id="client_openAgent">提交</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+
+    var start = {
+        elem: '#startTime',
+        format: 'YYYY-MM-DD',
+        istime: true,
+        istoday: false,
+        choose: function (datas) {
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas; //将结束日的初始值设定为开始日
+        }
+    };
+
+    var end = {
+        elem: '#endTime',
+        format: 'YYYY-MM-DD',
+        istime: true,
+        istoday: false
+
+    };
+    laydate.skin('molv');
+    laydate(start);
+    laydate(end);
+	$('#drag').drag();
+	
+	//开户版本分类
+	var ohtml=$('#openAcount-list').html()
+    X.bindModel(requestUrl.open_user_list, 1, {'user_id': localStorage.getItem('user_id')}, 'body.list', ['openAcount-list'], function () {
+    	
+    })
+    $('#leveltype').change(function(){
+		ko.cleanNode(document.getElementById("openAcount-list"));
+		$('#openAcount-list').html(ohtml)
+		var acountData={
+			'user_id':localStorage.getItem('user_id'),
+			'level':$('#leveltype option:selected').val()
+		}
+		X.bindModel(requestUrl.open_user_list,1,acountData,'body.list',['openAcount-list'],function(){})
+	})
+    
+    //根据时间分类
+    var oHtml =$('#openAcount-list').html();
+        function ZJsearch(){
+        	var data = {
+		        'user_id': localStorage.getItem('user_id'),
+	        }
+            if ($('#startTime').val() != '') {
+                data.start_time = $('#startTime').val();
+            }
+            if ($('#endTime').val() != '') {
+                data.end_time = $('#endTime').val();
+            }
+            ko.cleanNode(document.getElementById("openAcount-list"));
+            $('#openAcount-list').html(oHtml);
+            X.bindModel(requestUrl.open_user_list,1,data,'body.list',['openAcount-list'],function(){
+		  
+            })           
+        }
+        $('#startTime').blur(function(){
+    		setTimeout(function(){
+    			ZJsearch();
+    		},150)      
+        })
+        $('#endTime').blur(function(){
+        	setTimeout(function(){
+    			ZJsearch();
+    		},150)  
+        })
+        
+        //搜索
+        $('#open_search').click(function(){
+        	var data={
+        		'user_id':localStorage.getItem('user_id'),
+        		'keyword':$('#keyWord').val()
+        	}
+        	ko.cleanNode(document.getElementById("openAcount-list"));
+        	$('openAcount-list').html(ohtml)
+        	X.bindModel(requestUrl.open_user_list,1,data,'body.list',['openAcount-list'],function(){
+		  		
+            })
+        })
+        
+    //获取页面数据
+    $('.kaitongzhanghu select').change(function () {
+        var account_price = $('.kaitongzhanghu select').find('option:selected').val() + '元';
+        var xx = $('.kaitongzhanghu select').find('option:selected').attr('');
+        var agent_id = $('.kaitongzhanghu select').find('option:selected').attr('data-id')
+        $('#op_price').html(account_price);
+        $('#ag_price').html(agent_id);
+        localStorage.setItem('virtual_goods_id', xx)
+    })
+
+    //提交
+    $(".KTAccountBtn").on("click", function (e) {
+        $("#accountPop").css({display: "block"});
+        $("#accountPop .PopDiv").css({display: "block"});
+        X.Post(requestUrl.virtual,1,{'user_id': localStorage.getItem('user_id')},function(res){
+        	var str = '';
+        	$(res.body.list).each(function(){
+        		str+='<option value='+this.id+' data-price='+this.price+' agentPrice='+this.agent_price+'>'+this.name+'</option>'
+        	})
+        	$('#user-type').html(str);
+        	
+        	localStorage.setItem('virtual_goods_id',$('#user-type option:selected').val())
+        	$('#op_price').text($('#user-type option:selected').attr('data-price')+'元');
+        	$('#ag_price').text($('#user-type option:selected').attr('agentPrice')+'元')
+        	$('#user-type').change(function(){
+        		var price = $('#user-type option:selected').attr('data-price');
+        		$('#op_price').text(price+'元');
+        		var ag_price=$('#user-type option:selected').attr('agentPrice');
+        		$('#ag_price').text(ag_price+'元')
+        		localStorage.setItem('virtual_goods_id',$('#user-type option:selected').val())
+        	});	
+        })
+    $('#client_openAgent').click(function () {
+        var open_data = {
+            'user_id': localStorage.getItem('user_id'),
+            'virtual_goods_id': localStorage.getItem('virtual_goods_id'),
+            'new_account': $('#vir_user').val(),
+            'pwd': $('#new_pwd').val(),
+            're_pwd': $('#rep_pwd').val(),
+            'qq':$('#QQ').val()
+        }
+        X.Post(requestUrl.create_act, 1, open_data, function (result) {
+            if(result.header.stats==0){
+            	var loca = result.body.list;
+                var buyOrder = {
+                    order: loca.order_id,
+                    orderSn: loca.order_sn,
+                    pay_amount: loca.money,
+                    type:1
+                };
+                payOrder(buyOrder);
+            }else{
+            	X.notice(result.header.msg,3)
+            }
+        })
+    })
+    })
+    
+    //
+</script>
+</html>

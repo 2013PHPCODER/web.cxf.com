@@ -1,0 +1,36 @@
+<style type="text/css">
+	.form-group .fbold{font-weight: 600;margin: 0 3px;}
+	.row .checkbox-list{vertical-align: middle;margin: 0 4px;}
+	.row .check_name{line-height: 22px;}
+	.row .permi-list{display: inline-table;margin-right: 20px;}
+	.check_nDetail{padding-left: 0;margin-top: 5px;}
+	.checkAll-all{width: 20px;height: 20px;}
+	.s-red{color: red}
+</style>
+<ol class="breadcrumb">
+	<li><i class="fa fa-dashboard"></i> 位置</li>
+	<li>
+		系统管理</li>
+		<li>员工管理</li>
+		<li>权限</li>
+	</ol> 				
+	<div class="box-body">
+		<foreach name="auth" item="v0" key="module">
+			<div class="row">
+				<h3 class="e-module">{$v0.name}模块</h3>
+				<foreach name="v0.list" item="v1" key="control">
+					<div class="permi-list">
+						<label class="check_name">
+							<h4 class="e-control">{$v1.name}</h4>
+						</label>
+						<ul class="check_nDetail" class="e-action">
+							<foreach name="v1.list" item="v2">
+								<li><label class="check_name">{$v2.name}</label></li>
+							</foreach>
+						</ul>
+					</div>
+				</foreach>
+			</div>	
+		</foreach>
+	</div>
+

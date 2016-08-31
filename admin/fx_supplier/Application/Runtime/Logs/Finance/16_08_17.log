@@ -1,0 +1,8 @@
+[ 2016-08-17T16:31:02+08:00 ] 127.0.0.1 /finance/finance/index.html
+ERR: 1054:Unknown column 'receiver_bank_card' in 'field list'
+ [ SQL语句 ] : SELECT `receiver_account`,`pay_pwd`,`mobile`,`balance`,`open_bank_address`,`receiver_account_name`,`receiver_bank_card`,`receiver_account`,`receiver_account_type` FROM `fx_supplier_user` WHERE ( id=1 ) LIMIT 1  
+
+[ 2016-08-17T16:31:06+08:00 ] 127.0.0.1 /finance/finance/index.html
+ERR: 1054:Unknown column 'receiver_bank_card' in 'field list'
+ [ SQL语句 ] : SELECT `receiver_account`,`pay_pwd`,`mobile`,`balance`,`open_bank_address`,`receiver_account_name`,`receiver_bank_card`,`receiver_account`,`receiver_account_type` FROM `fx_supplier_user` WHERE ( id=1 ) LIMIT 1  
+

@@ -1,0 +1,120 @@
+<style type="text/css">
+	.box-content{
+		border: 1px solid #555555;
+		padding: 15px 10px;
+		width: 300px;
+		position: relative;
+		font-family: "microsoft yahei";
+	}
+	.box-content h2{
+		margin: 0;
+	}
+	.box-content h2 h3{
+		margin: 0;
+		font-size: 14px;
+	}
+	.box-content .box-content-btn{
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		color: #f39c12;
+	}
+	.box-content>p input{
+		width: 50px;
+	}
+	.sub-btn{
+			text-align: right;
+		}
+		.sub-btn .sumb{
+			height: 28px;
+		    line-height: 28px;
+		    margin: 0 6px;
+		    padding: 0 15px;
+		    border: 1px solid #dedede;
+		    background-color: #f1f1f1;
+		    color: #333;
+		    border-radius: 2px;
+		    font-weight: 400;
+		    cursor: pointer;
+		    text-decoration: none;	
+		}
+		.sub-btn .btn1{
+		    border-color: #4898d5;
+		    background-color: #2e8ded;
+		    color: #fff;
+		}
+		.btn-confirm{display: none;}
+</style>
+<div class="box-body">
+	<ol class="breadcrumb">
+		<li><i class="fa fa-dashboard"></i> 位置</li>
+		<li>
+			系统设置</li>
+		<li>用户等级设置</li>
+	</ol> 
+	<form>
+		<div class="row">
+			<div class="box-content">
+				<h2>分销商</h2>
+				<h3>商品售价</h3>
+				<p>1级：商品售价=成本价*（1+<label>30%</label>）</p>
+				<p>2级：商品售价=成本价*（1+<label>10%</label>）</p>
+				<p>3级：商品售价=成本价*（1+<label>0%</label>）</p>
+				<input type="button" name="" class="box-content-btn btn-change" value="编辑" />
+				<input type="button" name="" class="box-content-btn btn-confirm" value="确认" />
+			</div>
+	    </div>
+		<div class="row">
+			<div class="box-content">
+				<h2>供应商</h2>
+				<h3>批量上传商品包大小</h3>
+				<p>1级：<label>500</label>K</p>
+				<p>2级：<label>1024</label>K</p>
+				<p>3级：<label>2046</label>K</p>
+				<input type="button" name="" class="box-content-btn btn-change" value="编辑" />
+				<input type="button" name="" class="box-content-btn btn-confirm" value="确认" />
+			</div>
+		</div>	
+		<div class="sub-btn"><input type="button" class="sumb btn1" value="保存"/><input type="submit" class="sumb btn-cancel" value="取消"/></div>
+	</form>
+	<div class="box-footer">
+		<div class="left" >
+			<form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+				<div class="form-group">
+					<label for="exampleInputName2">全选结果页: </label>
+					<input type="checkbox" id="selectall"  value="">
+				</div>
+				<div class="form-group">
+					<select name="pagesize" class="form-control input-xs pagesize">
+						<option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+						<option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+						<option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+					</select>
+				</div>
+			</form>
+		</div>
+		<div class="right">
+			 <div class="pagination">
+                        <div class="row"><ul><li class="rows">共<b>278</b>条</li>   <li><span class="current">1</span></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">2</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/3.html">3</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/4.html">4</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/5.html">5</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/6.html">6</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/7.html">7</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/8.html">8</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/9.html">9</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/10.html">10</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/11.html">11</a></li> <li><a class="next" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">下一页</a></li> <li><a class="end" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/14.html">末页</a></li></ul></div>				</div>
+               </div>
+		</div>
+	</div>
+</div>
+<script>
+	$('.btn-change').click(function(){
+		$(this).hide();
+		$(this).parent().children('.btn-confirm').show();
+		$(this).parent().children('p').children('label').each(function(){
+			var ohtml = $(this).html();
+			$(this).html('<input type="text" value="'+ohtml+'" />')
+		})
+	})
+	$('.btn-confirm').click(function(){
+		$(this).hide();
+		$(this).parent().children('p').children('label').each(function(){
+			var ohtml = $(this).children('input').val();
+			$(this).html(ohtml);
+		})
+		$(this).parent().children('.btn-change').show();
+	})
+</script>

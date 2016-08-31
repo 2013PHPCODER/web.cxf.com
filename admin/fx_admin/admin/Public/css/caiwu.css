@@ -1,0 +1,40 @@
+/*财务管理CSS  BY:风清扬   Start*/
+.fqy_skzh>p{line-height: 25px;}
+.fqy_skzh>p>span{color: #F39C12}
+.fqy_skzh>p>button{padding: 0 20px;margin-left: 60px;line-height:25px;}
+/*弹出层开始*/
+.fqy_Mask{position: absolute;top: 0;right: 0;bottom: 0;left: 0;background: rgba(0,0,0,.3);z-index: 999;display: none}
+.fqy_Popup{position: absolute;left: 0;top: 25%;width:600px;height: auto;border: 1px solid #ccc;background: #fff;border-radius: 3px;padding: 5px 0 20px 0;z-index: 999}
+.fqy_popHead{position: relative;text-align: center;font-size: 16px;padding: 10px 0}
+.fqy_popHead>span{position: absolute;right: 0;display: inline-block;padding: 0 10px;font-weight: bold;cursor: pointer;font-size: 18px}
+.fqy_popContent table{margin: auto}
+.fqy_popContent table tr td:nth-child(1){text-align: right!important;}
+.fqy_popContent table tr td{padding: 10px 2px}
+.fqy_popContent table tr td input{height: 30px;border: 1px solid #ccc;padding: 0 5px}
+.fqy_popContent table td .fqy_tips{color: #cc3300;display: none}
+.fqy_popContent table .fqy_phone{font-weight: bold}
+.fqy_popContent table td input[type=button]{padding: 5px 25px}
+.fqy_popContent table td input[type=reset]{padding: 5px 25px}
+.fqy_popContent table td .fqy_yzmText{display: inline-block;height: 30px;width: 124px;background:url("../images/bgimg.jpg");line-height: 30px;font-size: 18px;letter-spacing: 8px;text-align: center;cursor: pointer;overflow: hidden}
+.fqy_popContent table td .fqy_yzm{color: #005EA7;cursor: pointer;text-decoration: underline}
+/*弹出层结束*/
+/*财务管理CSS  BY:风清扬   End*/
+
+/*结算管理CSS  BY:风清扬   Start*/
+.fqy_jsgl p>b{font-size: 15px}
+.fqy_jsgl>.fqy_setTab{border:1px solid #f4f4f4;margin-top: 30px}
+.fqy_jsgl>.fqy_setTab>.fqy_TabHead{height: 30px;line-height: 30px}
+.fqy_tabActive{background: #F39C12!important;color: #fff!important;border-color: #F39C12!important;}
+.fqy_jsgl>.fqy_setTab>.fqy_TabHead>span{display: inline-block;float: left;background: #fff; padding: 0 10px;border: 1px solid #f4f4f4;border-top: none;cursor: pointer}
+/*结算管理CSS  BY:风清扬   End*/
+
+/*提现管理CSS BY:风清扬    Start*/
+.fqy_txgl>p button{margin-left: 50px;padding: 0 20px}
+.fqy_popContent table .fqy_atmsTips{color: #c1c5c6}
+/*提现管理CSS BY:风清扬    End*/
+
+.fqy_szmx>span>b{font-size: 15px}
+.fqy_szmx>span .fqy_red{color: #cc3300}
+.fqy_szmx>span .fqy_green{color: #339900}
+.fqy_sr{color: #339900}
+.fqy_zc{color: #cc3300}

@@ -1,0 +1,768 @@
+[ 2016-08-08T15:02:42+08:00 ] 127.0.0.1 /Storage/storage/hubDistribution/page/1.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 23  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','配货成功,未配货1条(已配货或其它状态)','1470639762','127.0.0.1','{\"order_id\":[\"23\"]}') [ RunTime:0.0000s ]
+
+[ 2016-08-08T15:07:39+08:00 ] 127.0.0.1 /Storage/storage/hubDistribution/page/1.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 4  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:4','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 22  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:22','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 23  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:23','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 24  ) LIMIT 1   [ RunTime:0.0020s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:24','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 25  ) LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:25','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 16  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:16','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 17  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:17','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 18  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:18','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 19  ) LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:19','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 20  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:20','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 21  ) LIMIT 1   [ RunTime:0.0020s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:21','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 8  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:8','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 9  ) LIMIT 1   [ RunTime:0.0020s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:9','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 10  ) LIMIT 1   [ RunTime:0.0020s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:10','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 11  ) LIMIT 1   [ RunTime:0.0020s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:11','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 12  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:12','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 13  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:13','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 14  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:14','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 7  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:7','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 6  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:6','1470640059','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+
+[ 2016-08-08T15:08:57+08:00 ] 127.0.0.1 /Storage/storage/hubDistribution/page/1.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 4  ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 4 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 4 ) [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0010s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','4','1','1470640137','127.0.0.1') [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:4','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 22  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 22 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 22 ) [ RunTime:0.0020s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','22','1','1470640137','127.0.0.1') [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:22','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 23  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 23 ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 23 ) [ RunTime:0.0020s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','23','1','1470640137','127.0.0.1') [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:23','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 24  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 24 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 24 ) [ RunTime:0.0020s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','24','1','1470640137','127.0.0.1') [ RunTime:0.0020s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:24','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 25  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 25 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 25 ) [ RunTime:0.0010s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','25','1','1470640137','127.0.0.1') [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:25','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 16  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 16 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 16 ) [ RunTime:0.0020s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','16','1','1470640137','127.0.0.1') [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:16','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 17  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 17 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 17 ) [ RunTime:0.0020s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','17','1','1470640137','127.0.0.1') [ RunTime:0.0020s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:17','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 18  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 18 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 18 ) [ RunTime:0.0020s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','18','1','1470640137','127.0.0.1') [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:18','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 19  ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 19 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 19 ) [ RunTime:0.0020s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','19','1','1470640137','127.0.0.1') [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:19','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 20  ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 20 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 20 ) [ RunTime:0.0010s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','20','1','1470640137','127.0.0.1') [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:20','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 21  ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 21 ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 21 ) [ RunTime:0.0020s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','21','1','1470640137','127.0.0.1') [ RunTime:0.0020s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:21','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 8  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:8','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 9  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:9','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 10  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:10','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 11  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:11','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 12  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:12','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 13  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:13','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 14  ) LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:14','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 7  ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:7','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 6  ) LIMIT 1   [ RunTime:0.0000s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货失败,状态不为0,order_id:6','1470640137','127.0.0.1','{\"order_id\":[\"4\",\"22\",\"23\",\"24\",\"25\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"7\",\"6\"]}') [ RunTime:0.0000s ]
+
+[ 2016-08-08T15:09:38+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =4 ) LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-08-08T15:10:12+08:00 ] 127.0.0.1 /Storage/storage/assginShipAll/page/1.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `hub_order` WHERE `order_id` IN ('4','22','23','24','25','16','17','18','19','20','21','8','9','10','11','12','13','14','7','6') AND `hub_type` = 0  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-08-08T15:10:17+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-08T15:10:17+08:00 ] 127.0.0.1 /Storage/storage/getAllShipCode/page/1.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `hub_order` WHERE `order_id` IN ('4','22','23','24','25','16','17','18','19','20','21','8','9','10','11','12','13','14','7','6') AND `hub_type` = 0  [ RunTime:0.0010s ]
+
+[ 2016-08-08T15:10:18+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-08T15:10:18+08:00 ] 127.0.0.1 /Storage/storage/getAllShipCode/page/1.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `hub_order` WHERE `order_id` IN ('4','22','23','24','25','16','17','18','19','20','21','8','9','10','11','12','13','14','7','6') AND `hub_type` = 0  [ RunTime:0.0010s ]
+
+[ 2016-08-08T15:10:33+08:00 ] 127.0.0.1 /Storage/storage/assginShipAll/page/1.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `hub_order` WHERE `order_id` IN ('4','22','23','24','25','16','17','18','19','20','21','8','9','10','11','12','13','14','7','6') AND `hub_type` = 0  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-08-08T15:12:35+08:00 ] 127.0.0.1 /Storage/storage/assginShipAll/page/1.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `hub_order` WHERE `order_id` IN ('4','22','23','24','25','16','17','18','19','20','21','8','9','10','11','12','13','14','7','6') AND `hub_type` = 0  [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-08-08T15:12:44+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-08T15:12:44+08:00 ] 127.0.0.1 /Storage/storage/getAllShipCode/page/1.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `hub_order` WHERE `order_id` IN ('4','22','23','24','25','16','17','18','19','20','21','8','9','10','11','12','13','14','7','6') AND `hub_type` = 0  [ RunTime:0.0020s ]
+
+[ 2016-08-08T15:14:27+08:00 ] 127.0.0.1 /Storage/storage/assginShipAll/page/1.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `hub_order` WHERE `order_id` IN ('4','22','23','24','25','16','17','18','19','20','21','8','9','10','11','12','13','14','7','6') AND `hub_type` = 0  [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-08-08T15:14:53+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =4 ) LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-08-08T15:14:59+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005000s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-08T15:14:59+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+ERR: Think\Controller:newTaoBaoApi方法不存在！
+
+[ 2016-08-08T15:16:12+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =4 ) LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-08-08T15:16:31+08:00 ] 127.0.0.1 /Storage/storage/saveOneShip.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `hub_order` WHERE ( shipping_code='123123123123' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `hub_type` FROM `hub_order` WHERE ( order_id =4 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0020s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE ( id =3 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `hub_order` SET `shipping_code`='123123123123',`shipping_name`='中通快递',`ship_stats`='2',`shipping_no`='ZTO',`hub_type`='1' WHERE ( order_id =4 ) [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `order_list` [ RunTime:0.0010s ]
+SQL: UPDATE `order_list` SET `shipping_code`='123123123123',`shipping_id`='3',`shipping_name`='中通快递',`hub_type`='1' WHERE ( order_id = 4 ) [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0020s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('分配运单号后,更新到订单表','操作','1','4','1','1470640591','127.0.0.1') [ RunTime:0.0020s ]
+
+[ 2016-08-08T15:20:22+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =22 ) LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-08-08T15:20:39+08:00 ] 127.0.0.1 /Storage/storage/saveOneShip.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `hub_order` WHERE ( shipping_code='9876543210' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `hub_type` FROM `hub_order` WHERE ( order_id =22 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0010s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE ( id =3 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `hub_order` SET `shipping_code`='9876543210',`shipping_name`='中通快递',`ship_stats`='2',`shipping_no`='ZTO',`hub_type`='1' WHERE ( order_id =22 ) [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `order_list` [ RunTime:0.0020s ]
+SQL: UPDATE `order_list` SET `shipping_code`='9876543210',`shipping_id`='3',`shipping_name`='中通快递',`hub_type`='1' WHERE ( order_id = 22 ) [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0020s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('分配运单号后,更新到订单表','操作','1','22','1','1470640839','127.0.0.1') [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/saveOneShip.html','分配运单号成功','1470640839','127.0.0.1','{\"order_id\":\"22\",\"ship_code\":\"9876543210\",\"ship_name\":\"\\u4e2d\\u901a\\u5feb\\u9012\",\"ship_id\":\"3\"}') [ RunTime:0.0010s ]
+
+[ 2016-08-08T15:28:47+08:00 ] 127.0.0.1 /Storage/storage/sendGoods.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT `order_id`,`ship_stats` FROM `hub_order` WHERE ( shipping_code = '9876543210' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `order_list` [ RunTime:0.0020s ]
+SQL: SELECT `is_cus` FROM `order_list` WHERE ( order_id =22 ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `hub_order` SET `order_id`='22',`ship_stats`='3' WHERE ( shipping_code ='9876543210' ) [ RunTime:0.0030s ]
+SQL: UPDATE `order_list` SET `is_send_hub`='1',`send_hub_time`='1470641327',`order_state`='3' WHERE ( order_id = 22 ) [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0010s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('商品发货完成，订单已发货','订单发货','1','22','1','1470641327','127.0.0.1') [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/sendGoods.html','商品发货完成，订单已发货,order_id22','1470641327','127.0.0.1','{\"ship_code\":\"9876543210\"}') [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-08-08T15:29:15+08:00 ] 127.0.0.1 /Storage/storage/sendGoods.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0010s ]
+SQL: SELECT `order_id`,`ship_stats` FROM `hub_order` WHERE ( shipping_code = '9876543210' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `order_list` [ RunTime:0.0030s ]
+SQL: SELECT `is_cus` FROM `order_list` WHERE ( order_id =22 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0020s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/sendGoods.html','商品发货完成，订单已发货','1470641355','127.0.0.1','{\"ship_code\":\"9876543210\"}') [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-08-08T15:30:25+08:00 ] 127.0.0.1 /Storage/storage/sendGoods.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT `order_id`,`ship_stats` FROM `hub_order` WHERE ( shipping_code = '34234365865782325' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/sendGoods.html','运单号不存在','1470641425','127.0.0.1','{\"ship_code\":\"34234365865782325\"}') [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-08-08T15:30:52+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =24 ) LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-08-08T15:31:01+08:00 ] 127.0.0.1 /Storage/storage/saveOneShip.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `hub_order` WHERE ( shipping_code='147258369' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `hub_type` FROM `hub_order` WHERE ( order_id =24 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0020s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE ( id =3 ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `hub_order` SET `shipping_code`='147258369',`shipping_name`='中通快递',`ship_stats`='2',`shipping_no`='ZTO',`hub_type`='1' WHERE ( order_id =24 ) [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `order_list` [ RunTime:0.0020s ]
+SQL: UPDATE `order_list` SET `shipping_code`='147258369',`shipping_id`='3',`shipping_name`='中通快递',`hub_type`='1' WHERE ( order_id = 24 ) [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0020s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('分配运单号后,更新到订单表','操作','1','24','1','1470641461','127.0.0.1') [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0020s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/saveOneShip.html','分配运单号成功','1470641461','127.0.0.1','{\"order_id\":\"24\",\"ship_code\":\"147258369\",\"ship_name\":\"\\u4e2d\\u901a\\u5feb\\u9012\",\"ship_id\":\"3\"}') [ RunTime:0.0010s ]
+
+[ 2016-08-08T15:31:27+08:00 ] 127.0.0.1 /Storage/storage/sendGoods.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT `order_id`,`ship_stats` FROM `hub_order` WHERE ( shipping_code = '147258369' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `order_list` [ RunTime:0.0020s ]
+SQL: SELECT `is_cus` FROM `order_list` WHERE ( order_id =24 ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `hub_order` SET `order_id`='24',`ship_stats`='3' WHERE ( shipping_code ='147258369' ) [ RunTime:0.0030s ]
+SQL: UPDATE `order_list` SET `is_send_hub`='1',`send_hub_time`='1470641487',`order_state`='3' WHERE ( order_id = 24 ) [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0010s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('商品发货完成，订单已发货','订单发货','1','24','1','1470641487','127.0.0.1') [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/sendGoods.html','商品发货完成，订单已发货,order_id24','1470641487','127.0.0.1','{\"ship_code\":\"147258369\"}') [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-08-08T15:32:23+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0010s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =25 ) LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-08-08T15:32:33+08:00 ] 127.0.0.1 /Storage/storage/saveOneShip.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `hub_order` WHERE ( shipping_code='369258147' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `hub_type` FROM `hub_order` WHERE ( order_id =25 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0030s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE ( id =3 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: UPDATE `hub_order` SET `shipping_code`='369258147',`shipping_name`='中通快递',`ship_stats`='2',`shipping_no`='ZTO',`hub_type`='1' WHERE ( order_id =25 ) [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `order_list` [ RunTime:0.0010s ]
+SQL: UPDATE `order_list` SET `shipping_code`='369258147',`shipping_id`='3',`shipping_name`='中通快递',`hub_type`='1' WHERE ( order_id = 25 ) [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0020s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('分配运单号后,更新到订单表','操作','1','25','1','1470641553','127.0.0.1') [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/saveOneShip.html','分配运单号成功','1470641553','127.0.0.1','{\"order_id\":\"25\",\"ship_code\":\"369258147\",\"ship_name\":\"\\u4e2d\\u901a\\u5feb\\u9012\",\"ship_id\":\"3\"}') [ RunTime:0.0010s ]
+
+[ 2016-08-08T15:33:07+08:00 ] 127.0.0.1 /Storage/storage/sendGoods.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT `order_id`,`ship_stats` FROM `hub_order` WHERE ( shipping_code = '369258147' ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `order_list` [ RunTime:0.0020s ]
+SQL: SELECT `is_cus` FROM `order_list` WHERE ( order_id =25 ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: UPDATE `hub_order` SET `order_id`='25',`ship_stats`='3' WHERE ( shipping_code ='369258147' ) [ RunTime:0.0030s ]
+SQL: UPDATE `order_list` SET `is_send_hub`='1',`send_hub_time`='1470641587',`order_state`='3' WHERE ( order_id = 25 ) [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0010s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('商品发货完成，订单已发货','订单发货','1','25','1','1470641587','127.0.0.1') [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/sendGoods.html','商品发货完成，订单已发货,order_id:25','1470641587','127.0.0.1','{\"ship_code\":\"369258147\"}') [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+

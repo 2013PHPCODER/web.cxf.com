@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>货源管家-订单管理</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fqy_style.css">
+    <link rel="stylesheet" type="text/css" href="css/zl.css"/>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/knockout-3.3.0.js"></script>
+    <script src="plupload-2.1.2/js/plupload.full.min.js"></script>
+    <script src="js/MD5.js"></script>
+    <script src="js/plus.js"></script>
+	<script src="js/message.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/public.js"></script>
+</head>
+<style>
+    .publicTabDiv::-webkit-scrollbar-thumb{
+        background-color: #d0d0d0;
+        height:50px;
+        outline-offset:-2px;
+        outline:2px solid #fff;
+        -webkit-border-radius:4px;
+        border: 2px solid #fff;
+    }
+    .publicTabDiv::-webkit-scrollbar-thumb:hover{
+        background-color: #bcbcbc;
+        height:50px;
+        -webkit-border-radius:4px;
+    }
+    .publicTabDiv::-webkit-scrollbar{
+        width:8px;
+        height:8px;
+    }
+    .publicTabDiv::-webkit-scrollbar-track-piece{
+        background-color:#fff;
+        -webkit-border-radius:0;
+    }
+    .PopDiv{display: none;}
+</style>
+<body>
+<div class="main clearfix">
+    <div id="p_left"></div>
+    <div class="wraper">
+       <div id="p_top"></div>
+        <div class="orderManageDiv">
+            <div class="odMHeader">
+                <ul>
+                    <li><a class="select" href="javascript:pickDate(0);$('#checkAll').prop('checked', false);">待付款</a></li>
+                    <li><a href="javascript:pickDate(1);$('#checkAll').prop('checked', false);">待平台确认付款</a></li>
+                    <li><a href="javascript:pickDate(2);$('#checkAll').prop('checked', false);">待发货</a></li>
+                    <li><a href="javascript:pickDate(3);$('#checkAll').prop('checked', false);">待收货</a></li>
+                    <li><a href="javascript:pickDate(4);$('#checkAll').prop('checked', false);">已完成</a></li>
+                    <li><a href="javascript:pickDate(5);$('#checkAll').prop('checked', false);">已关闭</a></li>
+                    <li><a href="javascript:pickDate(6);$('#checkAll').prop('checked', false);">订单异常</a></li>
+                </ul>
+                <div class="odMSearch">
+                    <span>关键字：</span><input type="text" id="or_keyword" placeholder=""><button class="order_btn-search" id="order_search">搜索</button>
+                </div>
+            </div>
+            <div class="publicTabDiv">
+                <table class="odMTabSty" id="order_list">
+                	<thead>
+	                    <tr>
+	                        <th></th>
+	                        <th>商品</th>
+	                        <th>商家编码</th>
+	                        <th>采购价</th>
+	                        <th>数量</th>
+	                        <th>实付款</th>
+	                        <th>第三方平台号</th>
+	                        <th>订单状态</th>
+	                        <th>操作</th>
+	                    </tr>
+                    </thead>
+                    <tbody data-bind = "foreach:{data:item,as:'auto'}">
+	                    <tr class="orderInfoTr">
+	                        <td></td>
+	                        <td>订单号：<label data-bind="text:order_sn"></label></td>
+	                        <td>下单时间<label data-bind="text:add_time"></label></td>
+	                        <td></td>
+	                        <td></td>
+	                        <td></td>
+	                        <td></td>
+	                        <td><img src="images/order/wuliuPic.png"></td>
+	                        <td class="e-click activeText" data-bind="attr:{'order_id':order_id,'order_sn':order_sn}">订单详情</td>
+	                    </tr>
+	                    <tr>
+	                        <td></td>
+	                        <td class="orderGoodsName">
+	                            <p style="text-align: center;" data-bind="text:goods_name"></p>
+	                        </td>
+	                        <td data-bind="text:buyer_goods_no"></td>
+	                        <td data-bind="text:distribution_price"></td>
+	                        <td data-bind="text:goods_num"></td>
+	                        <td>
+	                            <p class="pay_a_price" data-bind="text:pay_amount"></p>
+	             <!--               <p>（含运费0.00）</p>-->
+	                        </td>
+	                        <td><span data-bind="text:other_shop"></span> :<span data-bind="text:other_order_sn"></span></td>
+	                        <td data-bind="text:order_state >=3 ? (order_state >= 5 ? (order_state == 5 ? '已关闭' : '异常' ) : (order_state == 4 ? '已完成' : '已确认已发货') ):( order_state >= 1 ? (order_state == 2 ? '已确认待发货' : '已付款待确认' ) : '待付款' )">已发货</td>
+	                        <td class="oparet">
+	                        </td>
+	                    </tr>                                                         
+	                </tbody>    
+                </table>
+            </div>
+        </div>
+    </div>
+</div>  	
+<div id="p_footer"></div>
+    <div class="marks marksDetail">
+        <div class="PopDiv" id="saleAfter" style="width: 626px">
+            <div class="PopHeader">
+                <img src="images/markicon01.png" alt="">
+                <span class="PopTitle">售后申请</span>
+                <div class="PopColse" id="sale-close"></div>
+            </div>
+            <div class="PopBody">
+                <div class="shouhoushenqing">
+                    <div class="shouhouBGDiv">
+                        <table>
+                        <tr>
+                            <td>平台单号：<span class="pt_ord_h">12315648956456</span></td>
+                            <td>第三方单号：<span class="thr_ord_h">12315648956456</span></td>
+                        </tr>
+                        <tr>
+                            <td><p class="sqsouhouTitle">售后商品信息</p></td>
+                        </tr>
+                        <tr>
+                            <td class="buyer_goods_no">BNN*ASB*WG137*39</td>
+                            <td class="order_sku">SKU属性1/SKU属性2/SKU属性3</td>
+                        </tr>
+                        <tr>
+                            <td>单价：<span class="order_price">88.00</span> &nbsp;&nbsp;&nbsp; 数量：<span class="order_num">2</span>&nbsp;</td>
+                            <td>订单总额：<span class="all-price">888.00</span><span class="freight">（含运费：8.00</span>）</td>
+                        </tr>
+                        <tr>
+                            <td>售后理由：
+	                            	<select class="sale-reason">
+	                            	<option >---请选择---</option>
+	                            	<option value="1">拍错/订单信息有误</option>
+	                            	<option value="2">不想要了</option>
+	                            	<option value="3">7天无理由退货</option>
+	                            	<option value="4">质量问题</option>
+	                            	<option value="5">与商品描述不一致</option>
+	                            	<option value="6">缺件，漏发</option>
+	                            	<option value="7">卖家发错货</option>
+	                            	</select>
+                            	</td>
+                        </tr>
+                        <tr>
+                            <td>总计金额：<span class="all-price">98.00</span></td>
+                        </tr>
+                        <tr style="height: 68px">
+                            <td colspan="2" class="carPic">
+                                <span style="position: relative;top: -15px">提交凭证：</span>
+                                <ul id="pinzheng_img">
+                                   
+                                </ul>
+                                <button id="pinzheng">提交</button>
+                            </td>
+                        </tr>
+                    </table>
+                    </div>
+                    <div class="shouhouNoBg">
+                        <table>
+                            <tr>
+                                <td><p class="sqsouhouTitle">售后留言：</p></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <textarea></textarea>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="PopFooter">
+                        <button id="sub_sale">提交售后</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+	<div class="PopDiv orderDetailD"  style="width: 920px;min-width: 624px;">
+	        <div class="PopHeader">
+	            <span class="PopTitle"><i class="PopDetails"></i>订单详情</span>
+	            <div class="PopColse"></div>
+	        </div>
+	        <div class="PopBody PopBodyDetails" id="order_Detail">
+	        	<div class="popbox poporder clearfix">
+	        		<div class="popbox-lf">
+	        			<p>当前订单状态：<span data-bind="text:order.order_state">已完成</span></p>
+	        		</div>
+	        		<div class="popbox-rf">
+	        			<p>售后状态：<span data-bind="text:order.is_cus == 0 ? '没有售后':'有售后'">售后中</span></p>
+	        			<p>售后单号：<span class="order-num" data-bind="text:order.other_order_sn"></span></p>
+	        		</div>
+	        	</div>
+	        	<div class="popbox-body popdeliver">
+	        		<h3>发货信息</h3>
+	        		<h2>收货人信息</h2>
+	        		<div class="pop-information clearfix">
+	        			<div class="info-box">
+	        				<p data-bind = "text:contact.contact_name + ',' + contact.tel + ',' + contact.city + '' + contact.province + ''+ contact.dist ">小强，1355555555，四川省 成都市 锦江区</p>
+							<p data-bind = "text:contact.contact_address">海椒市东一二三四五街巨人大厦四五六七八1号1栋楼</p>
+	        			</div>
+	        			<div class="popgoods-info">
+	        				<dl>
+	        					<dt>包裹1</dt>
+	        					<dd class="clearfix">
+	        						<div class="popgoods-lf" data-bind = "foreach:{data:goods,as:'auto'}">
+	        							<div class="float-box clearfix">
+	        								<div class="img-box">
+	        									<a href=""><img data-bind="attr:{src:img_path}"  src=""/></a>
+	        								</div>
+		        							<div class="poptext-box">
+		        								<h5 data-bind = "text:goods_name"></h5>
+		        								<p data-bind = "text:buyer_goods_no"></p>
+		        							</div>
+	        							</div>
+	        							<p class="sm-info"><span data-bind = "text:sku_str_zh"><span>数量<span data-bind = "text:subtotal">1</span></p>
+	        						</div>	
+	        						<div class="popgoods-rf">
+	        							<p><span>发货时间：</span><strong data-bind="text:order.send_hub_time">2016-5-11&nbsp;&nbsp;11:18:39</strong></p>
+	        							<p><span>运单类型：</span><strong data-bind="text:order.hub_type == 1 ? '普通运单' : '电子运单' ">传统单号</strong></p>
+	        							<p><span>物流公司：</span><strong  data-bind="text:order.shipping_name">中通</strong></p>
+	        							<p><span>运单号：</span><strong data-bind="text:order.shipping_code">46565455488996</strong></p>
+	        						</div>
+	        					</dd>
+	        				</dl>
+	      				
+	        			</div>
+	        		</div>
+	        	</div>
+	        </div>
+	    </div>
+	</div> 	   
+</body>
+</html>
+<script>
+    $(function(){     
+	   var oUrl = getUrlParam('loc');	
+		if( oUrl ==  ''){
+			pickDate(0);
+		}else{
+			pickDate(parseInt(oUrl));
+			$('.sale-tab>a').eq(oUrl).addClass('select').siblings().removeClass('select');
+		}	      
+	    $('#sale-close').click(function(){
+	    	$('#pinzheng_img').html('');
+	    	idd1.file = [];
+	    })
+	    $('.odMHeader li').click(function(){
+    		$('.odMHeader li>a').removeClass('select');
+			$(this).children('a').addClass('select');
+		})
+    	
+    	$('#order_search').click(function(){
+			if($('#or_keyword').val() == ''){
+				pickDate($('.sale-tab .select').index())
+			}else{
+				pickDate($('.sale-tab .select').index(),$('#or_keyword').val());
+			}		
+		})
+    	$('#sub_sale').click(function(){
+    		var data ={
+    			'user_id':localStorage.getItem('user_id'),
+    			'order_id':localStorage.getItem('order'),
+    			'after_sale_reason':localStorage.getItem('reason'),
+    			'img':idd1.file
+    		}
+			X.Post(requestUrl.sale,1,data,function(e){
+				if(e.header.stats==0){
+					X.notice(e.body.list.success,3)
+					$('#saleAfter').fadeOut();
+					
+				}else{
+					X.notice(e.header.msg,3)
+				}
+			})	
+		})
+	})
+	var idd1 = X.upLoadImg(['pinzheng',true,'#pinzheng_img','.imgBtn',0,'shou']);
+	var oHtml = $('#order_list tbody').html(),   //主内容
+	    oHtmlD = $('#order_Detail').html();     //售后详情
+	    
+	function pickDate(num,val){
+	    ko.cleanNode(document.getElementById("order_list"));  
+        $('#order_list tbody').html(oHtml);              
+		var data = {
+		   'user_id':localStorage.getItem('user_id'),'page':1,
+		    'keyword': val == undefined ? '' : val
+		}
+		switch (num){
+			case 0:         
+			    var html = '<p><a class="pay-money activeText" data-bind="attr:{'+"'order_id'"+':order_id,'+"'order_sn'"+':order_sn}">付款</a></p>';
+        		$('.oparet').html(html);
+    			$.extend(data,{'order_state':order_state.wait_pay})
+    			break;
+    		case 1:
+				$.extend(data,{'order_state':order_state.wait_confirm_pay})
+			    break;	
+    		case 2:
+    		    var html = '<p><a data-bind="text:is_cus == 0 ?'+"'申请售后 ':'已售后'"+',attr:{' +"'order_id'" + ':order_id,' + "'order_sn'" + ':order_sn,' + "'class'" + ':is_cus == 0 ? '+"'apply-after-sale' :"+"''}"+'"></a></p>';
+    		    $('.sale-reason>option').eq(1).show();
+			    $('.sale-reason>option').eq(2).show();
+			    $('.sale-reason option').eq(3).hide();
+			    $('.sale-reason option').eq(4).hide();
+			    $('.sale-reason option').eq(5).hide();
+			    $('.sale-reason option').eq(6).hide();
+			    $('.sale-reason option').eq(7).hide();
+        		$('.oparet').html(html);
+    			$.extend(data,{'order_state':order_state.wait_send_goods})
+    			break;
+    		case 3:
+    		    $('.sale-reason>option').eq(1).hide();
+			    $('.sale-reason>option').eq(2).hide();
+			    $('.sale-reason option').eq(3).show();
+			    $('.sale-reason option').eq(4).show();
+			    $('.sale-reason option').eq(5).show();
+			    $('.sale-reason option').eq(6).show();
+			    $('.sale-reason option').eq(7).show();
+    		    var html = '<p><a class="confirm-get" data-bind="attr:{'+"'order_id'"+':order_id,'+"'order_sn'"+':order_sn}">确认收货</a></p><p><a data-bind="text:is_cus == 0 ?'+"'申请售后 ':'已售后'"+',attr:{' +"'order_id'" + ':order_id,' + "'order_sn'" + ':order_sn,' + "'class'" + ':is_cus == 0 ? '+"'apply-after-sale' :"+"''}"+'"></a></p>';
+        		$('.oparet').html(html);
+    			$.extend(data,{'order_state':order_state.wait_receive_goods})
+    			break;	
+    		case 4:
+    		    $('.sale-reason>option').eq(1).hide();
+			    $('.sale-reason>option').eq(2).hide();
+			    $('.sale-reason option').eq(3).show();
+			    $('.sale-reason option').eq(4).show();
+			    $('.sale-reason option').eq(5).show();
+			    $('.sale-reason option').eq(6).show();
+			    $('.sale-reason option').eq(7).show();
+    		    var html = '<p><a data-bind="text:is_cus == 0 ?'+"'申请售后 ':'已售后'"+',attr:{' +"'order_id'" + ':order_id,' + "'order_sn'" + ':order_sn,' + "'class'" + ':is_cus == 0 ? '+"'apply-after-sale' :"+"''}"+'"></a></p>';
+        		$('.oparet').html(html);
+    			$.extend(data,{'order_state':order_state.success})
+    			break;	
+    		case 5:
+				$.extend(data,{'order_state':order_state.closeq})
+			    break;    
+			case 6:
+				$.extend(data,{'order_state':order_state.errorq})
+			    break;    	
+		} 
+		X.bindModel(requestUrl.order_list,1,data,'body.list',['order_list'],function(){
+			$('.e-click').click(function(){			
+//				$('#orderDetail').fadeIn();
+				ko.cleanNode(document.getElementById("order_Detail"));
+				X.bindModel(requestUrl.order_details,1,{'order_id':$(this).attr('order_id'),'order_sn':$(this).attr('order_sn'),'user_id':localStorage.getItem('user_id')},'body.list',['order_Detail'],function(){
+					$('#orderDetail .PopColse').on('click',function(){
+						$('.marksDetail').hide();
+						$('.orderDetailD').hide();
+					});
+					$('.marksDetail').show();					
+					$('.orderDetailD').show();
+				},function(e){
+			    	var a,x = e;
+			    	switch(e.order.order_state){				    		
+			    		case '0' :
+			    		   a = '待付款';
+			    		   break;
+			    		case '1' :
+			    		   a = '待平台确认付款';
+			    		   break;
+			    		case '2' :
+			    		   a = '已确定待发货';
+			    		   break;
+			    		case '3' :
+			    		   a = '待收货';
+			    		   break;
+			    		case '4' :
+			    		   a = '已完成';
+			    		   break;
+			    	    case '5' :
+			    		   a = '已关闭';
+			    		   break;
+			    		case '6' :
+			    		   a = '订单异常';
+			    		   break;
+			    	}
+                    x.order.order_state = a;
+			    	return x;
+			    });
+			});
+			$('.pay-money').click(function(){
+				var data = {'order':$(this).attr('order_id'),'orderSn':$(this).attr('order_sn'),'pay_amount':$(this).parents('tr').find('.pay_a_price').html()}
+				payOrder(data);
+//			    localStorage.setItem('orderInfo',JSON.stringify(data));
+//			    window.location.href = 'pay_order.html';
+			});
+			$('.apply-after-sale').click(function(){
+				$('.marks').show();
+				$('#saleAfter').fadeIn();
+				$('#saleAfter .PopColse').click(function(){
+					$('#saleAfter').hide();
+					$('.marks').hide();
+				})
+				var order=$(this).attr('order_id');
+				$('.pt_ord_h').html($(this).parents('tr').prev().children('td').eq(0).children('label').html());
+//				$('.thr_ord_h').html($(this).parents('tr').prev().children('td'))
+				$('.buyer_goods_no').html($(this).parents('tr').children('td').eq(0).children('p').html())
+				$('.order_sku').html($(this).parents('tr').children('td').eq(1).children('p').html())
+				$('.order_price').html($(this).parents('tr').children('td').eq(2).html())
+				$('.order_num').html($(this).parents('tr').children('td').eq(3).html())
+				$('.all-price').html($(this).parents('tr').children('td').eq(5).children('p').eq(0).html())
+				$('.freight').html($(this).parents('tr').children('td').eq(5).children('p').eq(1).html())
+				$('.sale-reason').change(function(){
+					var after_sale_reason=$(this).find('option:selected').val();
+					localStorage.setItem('reason',after_sale_reason)
+				});
+				localStorage.setItem('order',order);
+			});		
+			$('.confirm-get').click(function(){
+				 X.Post(requestUrl.confirm_good,1,{'order_id':$(this).attr('order_id'),'order_sn':$(this).attr('order_sn')},function(e){
+				   if(e.header.stats == 0 ){
+	            	   	  X.notice(e.body.list,3);
+	            	   	  setTimeout(function(){
+	            	   	  	 window.location.href = 'orderlist.html?loc='+($('.sale-tab>a.select').index()+1);
+	            	   	  },1000)
+            	   }else{
+            	   	  X.notice(e.header.msg,3);
+            	   }
+				})		
+			});
+	    });
+		//全选
+//		$("#checkAll").on("click", function () {
+//			var checked = $(this).prop("checked"), parent = $(this).parents(".odMTabSty");
+//			if(!checked) {
+//				parent.find("td").find("input").prop("checked", false);
+//			}else {
+//				parent.find("td").find("input").prop("checked", true);
+//			}
+//		})
+
+  }
+</script>

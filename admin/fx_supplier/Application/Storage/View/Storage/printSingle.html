@@ -1,0 +1,72 @@
+{__NOLAYOUT__}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script type="text/javascript" src="__PUBLIC__/js/CaiNiaoPrintFuncs.js"></script>
+
+</head>
+
+<body>
+<object id=" CaiNiaoPrint_OB'" classid="clsid:09896DB8-1189-44B5-BADC-D6DB5286AC57" width=0 height=0 >
+<embed id="'CaiNiaoPrint_EM" TYPE="application/x-cainiaoprint" width=0 height=0></embed>
+</object>
+
+<script language="javascript">
+    
+pbu
+
+    var CP_CODE='ZTO';
+   //  var CNPrint=getCaiNiaoPrint( document.getElementById('CaiNiaoPrint_OB'), document.getElementById('CaiNiaoPrint_EM') );
+   //  CNPrint. SET_SHOW_MODE("DESIGN_IN_BROWSE",true);
+   //  var AppKey= 23392048;
+   //  var Seller_ID = 194418657;
+   //  CNPrint.SET_PRINT_IDENTITY("AppKey="+AppKey+"98801&Seller_ID="+Seller_ID);
+   //  CNPrint.PRINT_INITA(0,0,400,800,"打印控件功能演示_CNPrint功能_在线编辑获得程序代码");
+   //  //CNPrint.SET_PRINT_MODE("CAINIAOPRINT_MODE","CP_CODE="+CP_CODE);
+   //  CNPrint.SET_PRINT_MODE("CAINIAOPRINT_MODE","CP_CODE="+CP_CODE+"&CONFIG={$waybill_apply_new_info.print_config}"); 
+   //  //增加商家自定义区域
+   // // CNPrint.ADD_PRINT_DATA("ProgramData",document.getElementById('S2').value);
+    
+   //  CNPrint.PRINT();
+   //  
+   //  
+    var AppKey = 23392048;
+    var Seller_ID = 194418657;
+    var CNPrint=getCaiNiaoPrint( document.getElementById('CaiNiaoPrint_OB'), document.getElementById('CaiNiaoPrint_EM') );
+    CNPrint.SET_PRINT_IDENTITY("AppKey="+AppKey+"98801&Seller_ID="+Seller_ID);
+    CNPrint.PRINT_INITA(0,0,400,800,"菜鸟电子面单打印任务"); // 此处打印任务名要全程统一
+    CNPrint.SET_PRINT_STYLEA("ali_waybill_cp_logo_up","PreviewOnly",1); 
+    CNPrint.SET_PRINT_STYLEA("ali_waybill_cp_logo_down","PreviewOnly",1);
+
+    <volist name="order" id="order">
+        
+        CNPrint.SET_PRINT_MODE("CAINIAOPRINT_MODE","CP_CODE="+CP_CODE+"&CONFIG={$order.shipping_info.print_config}");
+        CNPrint.SET_PRINT_CONTENT("ali_waybill_product_type","代收货款"); 
+        CNPrint.SET_PRINT_CONTENT("ali_waybill_short_address","{$order.shipping_info.short_address}"); 
+        //CNPrint.SET_PRINT_CONTENT("ali_waybill_package_center_name","黑龙江齐齐哈尔集散"); //集散地名 称
+        //CNPrint.SET_PRINT_CONTENT("ali_waybill_package_center_code","053277886278"); 
+        CNPrint.SET_PRINT_CONTENT("ali_waybill_send_name","{$order.depot.receiver_name}"); 
+        CNPrint.SET_PRINT_CONTENT("ali_waybill_send_phone","{$order.depot.receiver_tel}"); 
+        CNPrint.SET_PRINT_CONTENT("ali_waybill_shipping_address","{$order.depot.receiver_address}"); 
+        CNPrint.SET_PRINT_CONTENT("ali_waybill_consignee_name","{$order.shipping_info.trade_order_info.consignee_name}"); 
+        CNPrint.SET_PRINT_CONTENT("ali_waybill_consignee_phone","{$order.shipping_info.trade_order_info.consignee_phone}"); 
+        CNPrint.SET_PRINT_CONTENT("ali_waybill_consignee_address","{$order.shipping_info.trade_order_info.consignee_address.province}{$order.shipping_info.trade_order_info.consignee_address.city}{$order.shipping_info.trade_order_info.consignee_address.area}{$order.shipping_info.trade_order_info.consignee_address.address_detail}"); 
+        CNPrint.SET_PRINT_CONTENT("ali_waybill_waybill_code","{$order.shipping_code}"); 
+        CNPrint.SET_PRINT_CONTENT("ali_waybill_shipping_branch_name","{$order.shipping_info.shipping_branch_name}"); 
+        CNPrint.SET_PRINT_CONTENT("ali_waybill_shipping_branch_code","{$order.shipping_info.shipping_branch_code}"); 
+        CNPrint.SET_PRINT_CONTENT("ali_waybill_ext_send_date","{:date('Y-m-d')}"); // 发件日期
+        //CNPrint.SET_PRINT_CONTENT("ali_waybill_ext_sf_biz_type","顺丰特惠"); // 业务类型(顺丰
+        CNPrint.SET_PRINT_CONTENT("ali_waybill_shipping_address_city","{$order.shipping_info.trade_order_info.}"); // 发件城市(中国邮政)
+        CNPrint.SET_PRINT_CONTENT("ali_waybill_service","ali_waybill_serv_dest_amount=100 元;ali_waybill_serv_cod_amount=200 元");
+        //CNPrint.SET_PRINT_CONTENT("item_name ","眼镜");// 
+        CNPrint.NewPageA();
+        </volist>
+
+        //CNPrint.PREVIEW();
+
+     CNPrint.PRINT();  
+
+</script>
+</body>
+</html>

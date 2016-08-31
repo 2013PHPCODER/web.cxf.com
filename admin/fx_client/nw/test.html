@@ -1,0 +1,408 @@
+<?php
+
+define('BASE_PATH', str_replace('\\', '/', realpath(dirname(__FILE__) . '/')) . "/");
+$Y = BASE_PATH;
+
+$filename = $Y."1.png";
+$file = fopen($filename, "rb");
+$contents = fread($file, filesize($filename));
+fclose($file);
+
+header("Content-Type:text/html;charset=utf-8");
+
+
+$arr = array(
+    'method' => 'taobao.item.update',
+    'app_key' => '23431529',
+    'timestamp' => date('Y-m-d H:i:s'),
+    'format' => 'json',
+    'v' => '2.0',
+    'sign_method' => 'md5',
+  //  'picture_category_id' => '199751270034194382',
+   // 'image_input_title' => 'shengjiangtou.png',
+   // 'img' => getBytes(file_get_contents( $Y."1.png")),
+    'num_iid'=>'536625955067',
+    'session' => '6202b166cbcda6e5115dadf3ZZc7c3539e0c96bd881aca9591689975'
+);
+
+
+
+
+ksort($arr);
+
+$str = 'dc6af151a34081f4689bd562066b47a5';
+$js = '';
+foreach ($arr as $key => $val) {
+    if ($key != 'img') {
+        $js .= format($key . mb_convert_encoding($val, "UTF-8", "auto"));
+    }
+}
+
+$js = $str . $js . $str;
+
+$sign = strtoupper(md5($js));
+
+//$pp = getStr($arr); // http_build_query($arr);
+
+//$posturl = format("{0}{1}&sign={2}", "https://eco.taobao.com/router/rest?",  urldecode(json_encode($arr)), $sign);
+//$result= file_get_contents($posturl);
+
+$arr["sign"] = $sign;
+$url = ('https://eco.taobao.com/router/rest?'); 
+$ch = curl_init(); 
+curl_setopt($ch, CURLOPT_URL,$url); 
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); 
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS , $arr);
+
+$result = curl_exec($ch); 
+  var_dump(curl_error($ch));  //查看报错信息  
+  var_dump($result);
+//echo $response; 
+
+//var_dump($result);
+exit();
+//$arr["sign"] = $sign;
+//curlPost_add('https://eco.taobao.com/router/rest', $arr);
+
+
+//
+//$jsonmenu = urldecode(json_encode($arr));
+//$url = "https://eco.taobao.com/router/rest";
+//$ch = curl_init();
+//curl_setopt($ch,CURLOPT_URL,$url);
+//curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); //不验证证书
+//curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); //不验证证书
+//curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+//curl_setopt($ch,CURLOPT_POST,1);
+//curl_setopt($ch,CURLOPT_POSTFIELDS,$arr);
+//$resultj = curl_exec($ch);
+//
+//var_dump($resultj);
+
+//$myfile = fopen(str_replace('\\', '/', realpath(dirname(__FILE__) . '/')) . "/" . "/upload_log.txt", "w") or die("Unable to open file!");
+//fwrite($myfile, $posturl);
+//fclose($myfile);
+exit();
+
+function curlPost_add($url, $arr, $timeout = 30, $CA = true) {
+    //$data = array("client_id" => '23431728', "client_secret" => "dc6af151a34081f4689bd562066b47a5", "grant_type" => "authorization_code", "code" => $code, "redirect_uri" => "http://api.mycxf.com/callback");
+    //$arr = curlPost("https://oauth.taobao.com/token", $data, 40, FALSE);
+    $data = $arr;
+    $cacert = getcwd() . '/cacert.pem'; //CA根证书  
+    $SSL = substr($url, 0, 8) == "https://" ? true : false;
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout - 2);
+    if ($SSL && $CA) {
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);   // 只信任CA颁布的证书  
+        curl_setopt($ch, CURLOPT_CAINFO, $cacert); // CA根证书（用来验证的网站证书是否是CA颁布）  
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 检查证书中是否设置域名，并且是否与提供的主机名匹配  
+    } else if ($SSL && !$CA) {
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // 信任任何证书  
+        //curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 1); // 检查证书中是否设置域名  
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 检查证书中是否设置域名  
+    }
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:')); //避免data数据过长问题  
+    curl_setopt($ch, CURLOPT_POST, true);
+    // curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data)); //data with URLEncode  
+
+    $ret = curl_exec($ch);
+    var_dump(curl_error($ch));  //查看报错信息  
+
+    curl_close($ch);
+    return $ret;
+}
+
+/* https 请求 */
+
+function uploadCurl($url) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    $return = curl_exec($ch);
+    curl_close($ch);
+    return $return;
+}
+
+function parseurl($url = "") {
+    $url = rawurlencode(mb_convert_encoding($url, 'gb2312', 'utf-8'));
+    $a = array("%3A", "%2F", "%40");
+    $b = array(":", "/", "@");
+    $url = str_replace($a, $b, $url);
+    return $url;
+}
+
+//
+//$headers = array("Content-type:application/json;charset='utf-8'","Accept:application/json","Cache-Control:no-cache","Pragma:no-cache"
+//);
+//$url=$posturl;
+//$ch = curl_init($url);
+//curl_setopt($ch, CURLOPT_TIMEOUT, 60); //设置超时
+//if(0 === strpos(strtolower($url), 'https')) {
+//    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0); //对认证证书来源的检查
+//    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0); //从证书中检查SSL加密算法是否存在
+//}
+//curl_setopt($ch, CURLOPT_POST, TRUE);
+//$data = array(0=>1,1=>2);
+//curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data)); 
+//curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
+//curl_setopt($ch, CURLOPT_HTTPHEADER, $headers); 
+//
+//curl_setopt($ch, CURLOPT_URL, $url);
+//curl_setopt($ch, CURLOPT_HEADER, 0);
+//
+//  curl_setopt($ch, CURLOPT_FOLLOWLOCATION,1); 
+//
+//$rtn = curl_exec($ch);//CURLOPT_RETURNTRANSFER 不设置  curl_exec返回TRUE 设置  curl_exec返回json(此处) 失败都返回FALSE
+//curl_close($ch);
+//$result = getToken($posturl);
+
+exit();
+
+function getStr($array, $Separator = '&') {
+    $str = '';
+    $yb = '';
+    foreach ($array as $key => $val) {
+        $yb .= format($key . "=" . $val . "&");
+    }
+    return substr($yb, 0, strlen($yb) - 1);
+}
+
+function getToken($url) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); //相当关键，这句话是让curl_exec($ch)返回的结果可以进行赋值给其他的变量进行，json的数据操作，如果没有这句话，则curl返回的数据不可以进行人为的去操作（如json_decode等格式操作）
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    return curl_exec($ch);
+}
+
+function curlPost($url, $data, $timeout = 30, $CA = true) {
+    $cacert = getcwd() . '/cacert.pem'; //CA根证书  
+    $SSL = substr($url, 0, 8) == "https://" ? true : false;
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout - 2);
+    if ($SSL && $CA) {
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);   // 只信任CA颁布的证书  
+        curl_setopt($ch, CURLOPT_CAINFO, $cacert); // CA根证书（用来验证的网站证书是否是CA颁布）  
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 检查证书中是否设置域名，并且是否与提供的主机名匹配  
+    } else if ($SSL && !$CA) {
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // 信任任何证书  
+        //curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 1); // 检查证书中是否设置域名  
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 检查证书中是否设置域名  
+    }
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:')); //避免data数据过长问题  
+    curl_setopt($ch, CURLOPT_POST, true);
+    // curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    if (is_array($data)) {
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data)); //data with URLEncode  
+    } else {
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    }
+    $ret = curl_exec($ch);
+    //var_dump(curl_error($ch));  //查看报错信息  
+
+    curl_close($ch);
+    return $ret;
+}
+
+function array_sort($array, $on, $order = SORT_ASC) {
+    $new_array = array();
+    $sortable_array = array();
+
+    if (count($array) > 0) {
+        foreach ($array as $k => $v) {
+            if (is_array($v)) {
+                foreach ($v as $k2 => $v2) {
+                    if ($k2 == $on) {
+                        $sortable_array[$k] = $v2;
+                    }
+                }
+            } else {
+                $sortable_array[$k] = $v;
+            }
+        }
+
+        switch ($order) {
+            case SORT_ASC:
+                asort($sortable_array);
+                break;
+            case SORT_DESC:
+                arsort($sortable_array);
+                break;
+        }
+
+        foreach ($sortable_array as $k => $v) {
+            $new_array[$k] = $array[$k];
+        }
+    }
+
+    return $new_array;
+}
+
+/* * 格式化字符串，类似string.format* */
+
+function format() {
+    $args = func_get_args();
+    if (count($args) == 0) {
+        return;
+    }
+    if (count($args) == 1) {
+        return $args[0];
+    }
+    $str = array_shift($args);
+    $str = preg_replace_callback('/\\{(0|[1-9]\\d*)\\}/', create_function('$match', '$args = ' . var_export($args, true) . '; return isset($args[$match[1]]) ? $args[$match[1]] : $match[0];'), $str);
+    return $str;
+}
+
+var_dump(getBytes(file_get_contents('http://maihoho.b0.upaiyun.com//top/4643295033141475958.jpg')));
+
+/* 将字符串转换为byte数组 */
+
+function getBytes($string) {
+    $bytes = array();
+    for ($i = 0; $i < strlen($string); $i++) {
+        $bytes[] = ord($string[$i]);
+    }
+    return $bytes;
+}
+
+/**
+ * byte数组与字符串转化类  
+ */
+class Bytes {
+
+    /**
+
+     * 转换一个String字符串为byte数组  
+
+     * @param $str 需要转换的字符串  
+
+     * @param $bytes 目标byte数组  
+
+     * @author Zikie  
+
+     */
+    public static function getBytes($string) {
+        $bytes = array();
+        for ($i = 0; $i < strlen($string); $i++) {
+            $bytes[] = ord($string[$i]);
+        }
+        return $bytes;
+    }
+
+    /**
+
+     * 将字节数组转化为String类型的数据  
+
+     * @param $bytes 字节数组  
+
+     * @param $str 目标字符串  
+
+     * @return 一个String类型的数据  
+
+     */
+    public static function toStr($bytes) {
+        $str = '';
+        foreach ($bytes as $ch) {
+            $str .= chr($ch);
+        }
+
+        return $str;
+    }
+
+    /**
+
+     * 转换一个int为byte数组  
+
+     * @param $byt 目标byte数组  
+
+     * @param $val 需要转换的字符串  
+
+     *  
+
+     */
+    public static function integerToBytes($val) {
+        $byt = array();
+        $byt[0] = ($val & 0xff);
+        $byt[1] = ($val >> 8 & 0xff);
+        $byt[2] = ($val >> 16 & 0xff);
+        $byt[3] = ($val >> 24 & 0xff);
+        return $byt;
+    }
+
+    /**
+
+     * 从字节数组中指定的位置读取一个Integer类型的数据  
+
+     * @param $bytes 字节数组  
+
+     * @param $position 指定的开始位置  
+
+     * @return 一个Integer类型的数据  
+
+     */
+    public static function bytesToInteger($bytes, $position) {
+        $val = 0;
+        $val = $bytes[$position + 3] & 0xff;
+        $val <<= 8;
+        $val |= $bytes[$position + 2] & 0xff;
+        $val <<= 8;
+        $val |= $bytes[$position + 1] & 0xff;
+        $val <<= 8;
+        $val |= $bytes[$position] & 0xff;
+        return $val;
+    }
+
+    /**
+
+     * 转换一个shor字符串为byte数组  
+
+     * @param $byt 目标byte数组  
+
+     * @param $val 需要转换的字符串  
+
+     *  
+
+     */
+    public static function shortToBytes($val) {
+        $byt = array();
+        $byt[0] = ($val & 0xff);
+        $byt[1] = ($val >> 8 & 0xff);
+        return $byt;
+    }
+
+    /**
+
+     * 从字节数组中指定的位置读取一个Short类型的数据。  
+
+     * @param $bytes 字节数组  
+
+     * @param $position 指定的开始位置  
+
+     * @return 一个Short类型的数据  
+
+     */
+    public static function bytesToShort($bytes, $position) {
+        $val = 0;
+        $val = $bytes[$position + 1] & 0xFF;
+        $val = $val << 8;
+        $val |= $bytes[$position] & 0xFF;
+        return $val;
+    }
+
+}
+
+?> 

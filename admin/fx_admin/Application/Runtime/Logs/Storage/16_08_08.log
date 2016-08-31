@@ -1,0 +1,68 @@
+[ 2016-08-08T10:55:26+08:00 ] 127.0.0.1 /Storage/Storage/slist/__hash__/ca8f634b17b6cd38706143900d86b61a_c94d7d8e1e0aa8858618b71a4eaa262a.html?search_sname=&search_functionary=&search_mobile=&search_freight=1231&__hash__=b0fcd74463bdc7da1428c67b69b67a98_6666982a6a43b23ff9ce11e897086891
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `fx_storage_list` WHERE `freight` IN () LIMIT 1  
+
+[ 2016-08-08T10:55:41+08:00 ] 127.0.0.1 /Storage/Storage/slist/__hash__/ca8f634b17b6cd38706143900d86b61a_c94d7d8e1e0aa8858618b71a4eaa262a.html?search_sname=&search_functionary=&search_mobile=7567675&search_freight=1231&__hash__=b0fcd74463bdc7da1428c67b69b67a98_6666982a6a43b23ff9ce11e897086891
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `fx_storage_list` WHERE `mobile` LIKE '%7567675%' AND `freight` IN () LIMIT 1  
+
+[ 2016-08-08T10:56:49+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: Think\Controller:getOrderConcatAll方法不存在！
+
+[ 2016-08-08T10:57:25+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: Think\Controller:getOrderConcatAll方法不存在！
+
+[ 2016-08-08T10:59:07+08:00 ] 127.0.0.1 /Storage/Storage/slist.html?search_sname=&search_functionary=&search_mobile=&search_freight=2234&__hash__=ca8f634b17b6cd38706143900d86b61a_c94d7d8e1e0aa8858618b71a4eaa262a
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `fx_storage_list` WHERE `freight` IN () LIMIT 1  
+
+[ 2016-08-08T11:03:50+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: Think\Controller:getOrderConcatAll方法不存在！
+
+[ 2016-08-08T11:05:19+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: Think\Controller:getOrderGoodsSK方法不存在！
+
+[ 2016-08-08T11:06:18+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: 1146:Table 'fx_back.goods_sku_list_name' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `goods_sku_list_name`
+
+[ 2016-08-08T11:07:17+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: 1146:Table 'fx_back.goods_sku_list_val' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `goods_sku_list_val`
+
+[ 2016-08-08T11:07:31+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: Think\Controller:getDistributionPrice方法不存在！
+
+[ 2016-08-08T11:07:50+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: 1146:Table 'fx_back.goods_price' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `goods_price`
+
+[ 2016-08-08T11:07:51+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: 1146:Table 'fx_back.goods_price' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `goods_price`
+
+[ 2016-08-08T11:07:52+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: 1146:Table 'fx_back.goods_price' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `goods_price`
+
+[ 2016-08-08T11:08:17+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: Think\Controller:depotList方法不存在！
+
+[ 2016-08-08T11:09:01+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: Think\Controller:system_shipping方法不存在！
+
+[ 2016-08-08T11:09:22+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: Think\Controller:system_shop方法不存在！
+
+[ 2016-08-08T11:09:24+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: Think\Controller:system_shop方法不存在！
+
+[ 2016-08-08T11:09:24+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: Think\Controller:system_shop方法不存在！
+
+[ 2016-08-08T11:09:25+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: Think\Controller:system_shop方法不存在！
+
+[ 2016-08-08T11:10:11+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: Think\Controller:goodsCategoryList方法不存在！
+

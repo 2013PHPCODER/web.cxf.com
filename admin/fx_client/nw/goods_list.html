@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>商品管理</title>
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="css/fqy_style.css">
+        <script src="js/jquery-1.9.1.min.js"></script>   
+        <script src="js/knockout-3.3.0.js"></script>
+        <script src="js/plus.js"></script>
+        <script src="js/message.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/public.js"></script>
+        <link rel="stylesheet" href="css/yz.css">
+        <style>
+            .contentFooter {
+                border-bottom: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main clearfix">
+            <div id="p_left"></div>
+            <div class="wraper">
+                <div id="p_top"></div>
+                <div class="orderManageDiv">
+                    <div class="odMHeader">
+                        <ul>
+                            <li>选择店铺：<select id="shopList2"></select></li>
+                            <li>选择状态：<select name="" id="list_type"><option value="0">请选择</option><option value="1">出售中</option><option value="2">仓库中</option></select></li>
+                        </ul>
+                        <div class="odMSearch">
+                            <span>关键字：</span><input type="text" placeholder="请输入关键字" id="keyWord"><button id="serchKey">搜索</button>
+                        </div>
+                    </div>
+
+                    <table class="odMTabSty" id="buyGoodsList" style="display: none">
+                        <tr>
+                            <th style="width: 2rem"><input type="checkbox" class="Allselect"></th>
+                            <th>主图</th>
+                            <th>宝贝名称</th>
+                            <th>采购价</th>
+                            <th>库存</th>
+                            <th>总销量</th>
+                            <th>添加时间</th>
+                            <th>商品状态</th>
+                            <th>操作</th>
+                        </tr>
+
+                        <tbody data-bind="foreach:{data:item,as:'auto'}" id="goodsList">
+                            <tr class="orderDelTr" data-bind="attr:{goodStatus:approve_status,num_iid:num_iid,stockNum:num,goods_sale:goods_sale}">
+                                <td id="saleStatus" data-bind="html:goods_sale==2?'<img src>':'<input />'">
+                                <td><img class="orderGoodsPic" data-bind="attr:{src:pic_url}"></td>
+                                <td class="orderGoodsName">
+                                    <p data-bind="text:title"></p>
+                                    <p data-bind="text:'商家编码：'+outer_id"></p>
+                                </td>
+                                <td>
+                                    <span data-bind="text:price"></span>
+                                </td>
+                                <td>
+                                    <p data-bind="text:num"></p>
+                                </td>
+                                <td>
+                                    <p data-bind="text:sellout_count"></p>
+                                </td>
+                                <td><span data-bind="text:modified"></span></td>
+                                <td><span data-bind="text:approve_status=='instock'?'仓库中':'出售中'"></span></td>
+                                <td><p data-bind="style: {display: goods_sale == '1' ? 'inline' : 'none' }"><a style="color: #00a0e9" data-bind="text:approve_status=='instock'?'上架':'下架',attr:{class:approve_status=='instock'?'oneUp':'oneDown',num_iid:num_iid,stocknum:num}"></a></p><p><a data-bind="attr:{num_iid:num_iid}" class="oneDel" style="color: #00a0e9">删除</a></p></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <div class="contentFooter">
+                    <label><input type="checkbox" class="Allselect">全选</label>
+                    <div>
+                        <span class="delGoodsText delLoseGoods">清除失效商品</span>
+                        <button class="publicHbtn shelfUp">上架</button><button class="shelfDown">下架</button><button class="delGoods">删除</button>
+                    </div>
+                </div>
+
+                <div class="PopDiv goodsAdmin" style="display: none">
+                    <div class="PopHeader goodsHeader">
+                        <span class="PopTitleText">可用总库存：300</span>
+                        <div class="PopColse"></div>
+                    </div>
+                    <div class="PopBody goodsAdminTab">
+                        <table>
+                            <tr>
+                                <td>SKU属性1/属性2：<span>1231</span></td>
+                            </tr>
+                            <tr>
+                                <td>SKU属性1/属性2：<span>1231</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="p_footer"></div>
+    </body>
+    <script>
+        var tbID;
+        var oHtml = $('#goodsList').html();
+        //获取用户店铺列表
+        var userid = localStorage.getItem('user_id');
+        X.Post(requestUrl.band_shop, 1, {user_id: userid}, function (res) {
+            if (res.header.stats == 0) {
+                var str = '';
+                $(res.body.list).each(function (key, val) {
+                    if(this.default=='1'){
+                        str += '<option selected value="" tb_user_id=' + this.tb_user_id + '>' + this.nick + '</option>';
+                    }else {
+                        str += '<option selected value="" tb_user_id=' + this.tb_user_id + '>' + this.nick + '</option>';
+                    }
+                });
+                $('#shopList2').html(str);
+                var tb_user_id = $('#shopList2 option:selected').attr('tb_user_id');
+                bindShop(tb_user_id,'');
+            } else {
+                $('#goodsList').hide();
+                X.notice('获取用户店铺列表失败', 3);
+                $('.shelfUp,.shelfDown,.delGoods,.delLoseGoods').unbind('click').click(function(){
+                    X.notice('请选择商品',3);
+                });
+            }
+        });
+
+        $('#shopList2').change(function(){
+            var tb_user_id = $('#shopList2 option:selected').attr('tb_user_id');
+            var list_type = $('#list_type option:selected').attr('value');
+            bindShop(tb_user_id,list_type);
+            tbID = tb_user_id;
+        });
+
+        $('#list_type').change(function(){
+            var tb_user_id = $('#shopList2 option:selected').attr('tb_user_id');
+            var list_type = $('#list_type option:selected').attr('value');
+            bindShop(tb_user_id,list_type);
+            tbID = tb_user_id;
+        });
+
+        $('#serchKey').click(function(){
+            var tb_user_id = $('#shopList2 option:selected').attr('tb_user_id');
+            var keyWord = $('#keyWord').val();
+            if(keyWord==''){
+                X.notice('请输入关键字',3);
+            }else {
+                bindShop(tb_user_id,'',keyWord);
+            }
+        });
+
+        function bindShop(tb_user_id,list_type,keyWord) {      //淘宝用户ID   店铺状态：1仓库中 2出售中
+            $('.Allselect').prop("checked", false);
+            ko.cleanNode(document.getElementById("goodsList"));
+            $('#goodsList').html(oHtml);
+            var shopData={
+                tb_user_id:tb_user_id,
+                list_type:list_type,
+                keyword:keyWord
+            };
+            X.bindModel(requestUrl.tb_shop_list,1,shopData,'body',['goodsList'],function(){
+                $('#goodsList>tr').each(function () {
+                    var ii = $(this).children('td').eq(0).find('img');
+                    if(ii){ii.attr('src','images/order/orderDelPic.png')}
+                    var oo = $(this).children('td').eq(0).find('input');
+                    if (oo) {oo.attr('type', 'checkbox')}
+                });
+                //全选操作
+                var cheakFlag = true;
+                var checkFlag2 = false;
+                var goodsIDs=[];
+                var stockNum=[];
+                var checkBoxs = $('#buyGoodsList tbody td:first-child input[type=checkbox]');
+                $('.Allselect').click(function(){
+                    if(cheakFlag){
+                        $('.Allselect').prop("checked", true);
+                        checkBoxs.prop("checked", true);
+                        cheakFlag = false;
+                        checkFlag2 = true;
+                    }else {
+                        $('.Allselect').prop("checked", false);
+                        checkBoxs.prop("checked", false);
+                        cheakFlag = true;
+                        checkFlag2 = false;
+                    }
+                });
+                checkBoxs.click(function(){
+                    if(!cheakFlag){
+                        $('.Allselect').prop("checked", false);
+                        cheakFlag = true;
+                    }
+                });
+                //批量上架
+                $('.shelfUp').unbind('click').click(function(){
+                    if(checkFlag2){
+                        if(list_type==1){
+                            X.notice('商品已在出售中',3);
+                        }else {
+                            goodsIDs.length = 0;
+                            stockNum.length = 0;
+                            $('#buyGoodsList tbody tr').each(function(){
+                                var status = $(this).attr('goods_sale');
+                                if(status == 1){
+                                    goodsIDs.push($(this).attr('num_iid'));
+                                    stockNum.push($(this).attr('stocknum'));
+                                }
+                            });
+                            shelf(tbID,goodsIDs,1,stockNum);
+                        }
+                    }else {
+                        X.notice('请选择要上架的商品',3);
+                    }
+                });
+                //批量下架
+                $('.shelfDown').unbind('click').click(function(){
+                    if(checkFlag2){
+                        if(list_type == 2){
+                            X.notice('商品已在仓库中',3);
+                        }else {
+                            goodsIDs.length = 0;
+                            stockNum.length = 0;
+                            $('#goodsList tr').each(function(){
+                                var status = $(this).attr('goods_sale');
+                                if(status == 1){
+                                    goodsIDs.push($(this).attr('num_iid'));
+                                    stockNum.push($(this).attr('stocknum'));
+                                }
+                            });
+                            shelf(tbID,goodsIDs,0,stockNum)
+                        }
+                    }else {
+                        X.notice('请选择要下架的商品',3);
+                    }
+                });
+                //单个上架
+                $('.oneUp').click(function(){
+                    goodsIDs.length = 0;
+                    stockNum.length = 0;
+                    goodsIDs.push($(this).attr('num_iid'));
+                    stockNum.push($(this).attr('stocknum'));
+                    shelf(tb_user_id,goodsIDs,1,stockNum);
+                });
+                //单个下架
+                $('.oneDown').click(function(){
+                    goodsIDs.length = 0;
+                    stockNum.length = 0;
+                    goodsIDs.push($(this).attr('num_iid'));
+                    stockNum.push($(this).attr('stocknum'));
+                    shelf(tb_user_id,goodsIDs,0,stockNum);
+                });
+                //店铺商品上下架
+                function shelf(tb_user_id,goodsIDs,opt,stockNum){
+                    var goodsStr = goodsIDs.join(',');
+                    var stockStr = stockNum.join(',');
+                    var msg = '';
+                    var shelfUpdata= {
+                        tb_user_id:tb_user_id,
+                        opt:opt,
+                        num_iid:goodsStr,
+                        num:stockStr
+                    };
+                    console.log(shelfUpdata);
+                    if(opt==1){
+                        msg='上架成功'
+                    }else {
+                        msg='下架成功'
+                    }
+                    X.Post(requestUrl.tb_shelf,1,shelfUpdata,function(res){
+                        if(res.header.stats==0){
+                            if(res.body.list.sucess){
+                                X.notice(msg,3);
+                                $(goodsIDs).each(function(){
+                                    var _this = this;
+                                    $('#goodsList tr').each(function(){
+                                        var ids = $(this).attr('num_iid');
+                                        if(_this == ids){
+                                            $(this).remove();
+                                        }
+                                    });
+                                })
+                            }
+                        }else {
+                            X.notice(res.header.msg,3);
+                        }
+                    })
+                }
+                //批量删除
+                $('.delGoods').unbind('click').click(function(){
+                    if(checkFlag2){
+                        goodsIDs.length = 0;
+                        $('#goodsList tr').each(function(){
+                            goodsIDs.push($(this).attr('num_iid'));
+                        });
+                        delGoods(tb_user_id,goodsIDs);
+                    }else {
+                        X.notice('请选择要删除的商品',3)
+                    }
+                });
+                //单个删除
+                $('.oneDel').click(function(){
+                    goodsIDs.length = 0;
+                    goodsIDs.push($(this).attr('num_iid'));
+                    delGoods(tb_user_id,goodsIDs);
+                });
+                //删除失效商品
+                $('.delLoseGoods').unbind('click').click(function(){
+                    goodsIDs.length = 0;
+                    $('#goodsList tr').each(function(){
+                        var status = $(this).attr('goods_sale');
+                        if(status == 2){
+                            goodsIDs.push($(this).attr('num_iid'));
+                        }
+                    });
+                    delGoods(tb_user_id,goodsIDs);
+                });
+                //删除商品请求
+                function delGoods(tb_user_id,goodsIDs){
+                    var goodsStr = goodsIDs.join(',');
+                    var delGoods = {
+                        tb_user_id:tb_user_id,
+                        num_iid:goodsStr
+                    };
+                    X.Post(requestUrl.tb_godos_delete,1,delGoods,function(res){
+                        if(res.header.stats==0){
+                            if(res.body.list.sucess){
+                                X.notice('删除成功',3);
+                                $(goodsIDs).each(function(){
+                                    var _this = this;
+                                    $('#goodsList tr').each(function(){
+                                        var ids = $(this).attr('num_iid');
+                                        if(_this == ids){
+                                            $(this).remove();
+                                        }
+                                    });
+                                })
+                            }
+                        }else {
+                            X.notice(res.header.msg,3);
+                        }
+                    })
+                }
+            });
+        }
+
+    </script>
+</html>

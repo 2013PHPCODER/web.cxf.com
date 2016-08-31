@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>提交订单</title>
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="css/fqy_style.css">
+        <link rel="stylesheet" type="text/css" href="css/zl.css"/>
+        <script src="js/jquery-1.9.1.min.js"></script>   
+        <script src="js/knockout-3.3.0.js"></script>
+        <script src="js/plus.js"></script>
+        <script src="js/message.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/public.js"></script>
+    </head>
+    <style>
+        .goodsListDiv::-webkit-scrollbar-thumb{
+            background-color: #d0d0d0;
+            height:50px;
+            outline-offset:-2px;
+            outline:2px solid #fff;
+            -webkit-border-radius:4px;
+            border: 2px solid #fff;
+        }
+        .goodsListDiv::-webkit-scrollbar-thumb:hover{
+            background-color: #bcbcbc;
+            height:50px;
+            -webkit-border-radius:4px;
+        }
+        .goodsListDiv::-webkit-scrollbar{
+            width:8px;
+            height:8px;
+        }
+        .goodsListDiv::-webkit-scrollbar-track-piece{
+            background-color:#fff;
+            -webkit-border-radius:0;
+        }
+    </style>
+
+    <body>
+        <div class="main clearfix">
+            <div id="p_left"></div>
+            <div class="wraper">
+                <div id="p_top"></div>
+                <div class="sidebarRight">
+                    <div class="orderBy">
+                        <div class="leftOrderBy">
+                            <span class="orderAction">排序方式</span>
+                            <div class="leftBy">
+                                <span class="ordertext">默认</span>
+                                <span class="ordertext">销量&darr;</span>
+                                <span class="ordertext noBorder">价格：<input type="text" placeholder="￥最低价"> - <input type="text" placeholder="￥最高价"><input type="button" value="确定"></span>
+                            </div>
+                        </div>
+                        <div class="rightOrderBy">
+                            <span class="startPH">开始铺货</span>
+                            <div class="rightBy">
+                                <span class="escPH">进入批量铺货</span>
+                                <span>已选：<b id="Phnum">0</b> 件商品</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="goodsListDiv">
+                        <ul>
+                            <li class="">
+                                <div class="goodsImg">
+                                    <a href="">
+                                        <img src="images/goodsImg2.png">
+                                    </a>
+                                    <p>
+                                        <span class="leftSC">已收藏：111</span>
+                                        <span class="goodsSC">收藏</span>
+                                        <span class="rightPH">一键铺货</span>
+                                    </p>
+                                </div>
+                                <div class="goodsBorder">
+                                    <p class="goodsName"><a href="">轻奢系大喜自制爱丽丝花园精工绣花复古长短款无袖吊带连衣裙女</a></p>
+                                    <div class="goodsGrade">
+                                        <div class="left">
+                                            <p>基础版：109.00元</p>
+                                            <p>中级版：109.00元</p>
+                                            <p>高级版：109.00元</p>
+                                        </div>
+                                        <div class="right">
+                                            <del>原价：109.00</del>
+                                            <p>
+                                                <span class="joinSheet">加入进货单</span>
+                                                <span class="buy">立即购买</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="NoActive"></div>
+                            </li>
+                            <li class="">
+                                <div class="goodsImg">
+                                    <a href=""><img src="images/goodsImg2.png"></a>
+                                    <p>
+                                        <span class="leftSC">已收藏：111</span>
+                                        <span class="goodsSC">收藏</span>
+                                        <span class="rightPH">一键铺货</span>
+                                    </p>
+                                </div>
+                                <div class="goodsBorder">
+                                    <p class="goodsName"><a href="">轻奢系大喜自制爱丽丝花园精工绣花复古长短款无袖吊带连衣裙女</a></p>
+                                    <div class="goodsGrade">
+                                        <div class="left">
+                                            <p>基础版：109.00元</p>
+                                            <p>中级版：109.00元</p>
+                                            <p>高级版：109.00元</p>
+                                        </div>
+                                        <div class="right">
+                                            <del>原价：109.00</del>
+                                            <p>
+                                                <span class="joinSheet">加入进货单</span>
+                                                <span class="buy">立即购买</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="NoActive"></div>
+                            </li>
+                            <li class="">
+                                <div class="goodsImg">
+                                    <a href=""><img src="images/goodsImg2.png"></a>
+                                    <p>
+                                        <span class="leftSC">已收藏：111</span>
+                                        <span class="goodsSC">收藏</span>
+                                        <span class="rightPH">一键铺货</span>
+                                    </p>
+                                </div>
+                                <div class="goodsBorder">
+                                    <p class="goodsName"><a href="">轻奢系大喜自制爱丽丝花园精工绣花复古长短款无袖吊带连衣裙女</a></p>
+                                    <div class="goodsGrade">
+                                        <div class="left">
+                                            <p>基础版：109.00元</p>
+                                            <p>中级版：109.00元</p>
+                                            <p>高级版：109.00元</p>
+                                        </div>
+                                        <div class="right">
+                                            <del>原价：109.00</del>
+                                            <p>
+                                                <span class="joinSheet">加入进货单</span>
+                                                <span class="buy">立即购买</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="NoActive"></div>
+                            </li>
+                            <li class="">
+                                <div class="goodsImg">
+                                    <a href=""><img src="images/goodsImg2.png"></a>
+                                    <p>
+                                        <span class="leftSC">已收藏：111</span>
+                                        <span class="goodsSC">收藏</span>
+                                        <span class="rightPH">一键铺货</span>
+                                    </p>
+                                </div>
+                                <div class="goodsBorder">
+                                    <p class="goodsName"><a href="">轻奢系大喜自制爱丽丝花园精工绣花复古长短款无袖吊带连衣裙女</a></p>
+                                    <div class="goodsGrade">
+                                        <div class="left">
+                                            <p>基础版：109.00元</p>
+                                            <p>中级版：109.00元</p>
+                                            <p>高级版：109.00元</p>
+                                        </div>
+                                        <div class="right">
+                                            <del>原价：109.00</del>
+                                            <p>
+                                                <span class="joinSheet">加入进货单</span>
+                                                <span class="buy">立即购买</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="NoActive"></div>
+                            </li>
+                            <li class="noMargin">
+                                <div class="goodsImg">
+                                    <a href="">
+                                        <img src="images/goodsImg2.png">
+                                    </a>
+                                    <p>
+                                        <span class="leftSC">已收藏：111</span>
+                                        <span class="goodsSC">收藏</span>
+                                        <span class="rightPH">一键铺货</span>
+                                    </p>
+                                </div>
+                                <div class="goodsBorder">
+                                    <p class="goodsName"><a href="">轻奢系大喜自制爱丽丝花园精工绣花复古长短款无袖吊带连衣裙女</a></p>
+                                    <div class="goodsGrade">
+                                        <div class="left">
+                                            <p>基础版：109.00元</p>
+                                            <p>中级版：109.00元</p>
+                                            <p>高级版：109.00元</p>
+                                        </div>
+                                        <div class="right">
+                                            <del>原价：109.00</del>
+                                            <p>
+                                                <span class="joinSheet">加入进货单</span>
+                                                <span class="buy">立即购买</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="NoActive"></div>
+                            </li>
+                            <li class="">
+                                <div class="goodsImg">
+                                    <a href=""><img src="images/goodsImg2.png"></a>
+                                    <p>
+                                        <span class="leftSC">已收藏：111</span>
+                                        <span class="goodsSC">收藏</span>
+                                        <span class="rightPH">一键铺货</span>
+                                    </p>
+                                </div>
+                                <div class="goodsBorder">
+                                    <p class="goodsName"><a href="">轻奢系大喜自制爱丽丝花园精工绣花复古长短款无袖吊带连衣裙女</a></p>
+                                    <div class="goodsGrade">
+                                        <div class="left">
+                                            <p>基础版：109.00元</p>
+                                            <p>中级版：109.00元</p>
+                                            <p>高级版：109.00元</p>
+                                        </div>
+                                        <div class="right">
+                                            <del>原价：109.00</del>
+                                            <p>
+                                                <span class="joinSheet">加入进货单</span>
+                                                <span class="buy">立即购买</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="NoActive"></div>
+                            </li>
+                            <li class="">
+                                <div class="goodsImg">
+                                    <a href=""><img src="images/goodsImg2.png"></a>
+                                    <p>
+                                        <span class="leftSC">已收藏：111</span>
+                                        <span class="goodsSC">收藏</span>
+                                        <span class="rightPH">一键铺货</span>
+                                    </p>
+                                </div>
+                                <div class="goodsBorder">
+                                    <p class="goodsName"><a href="">轻奢系大喜自制爱丽丝花园精工绣花复古长短款无袖吊带连衣裙女</a></p>
+                                    <div class="goodsGrade">
+                                        <div class="left">
+                                            <p>基础版：109.00元</p>
+                                            <p>中级版：109.00元</p>
+                                            <p>高级版：109.00元</p>
+                                        </div>
+                                        <div class="right">
+                                            <del>原价：109.00</del>
+                                            <p>
+                                                <span class="joinSheet">加入进货单</span>
+                                                <span class="buy">立即购买</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="NoActive"></div>
+                            </li>
+                            <li class="">
+                                <div class="goodsImg">
+                                    <a href=""><img src="images/goodsImg2.png"></a>
+                                    <p>
+                                        <span class="leftSC">已收藏：111</span>
+                                        <span class="goodsSC">收藏</span>
+                                        <span class="rightPH">一键铺货</span>
+                                    </p>
+                                </div>
+                                <div class="goodsBorder">
+                                    <p class="goodsName"><a href="">轻奢系大喜自制爱丽丝花园精工绣花复古长短款无袖吊带连衣裙女</a></p>
+                                    <div class="goodsGrade">
+                                        <div class="left">
+                                            <p>基础版：109.00元</p>
+                                            <p>中级版：109.00元</p>
+                                            <p>高级版：109.00元</p>
+                                        </div>
+                                        <div class="right">
+                                            <del>原价：109.00</del>
+                                            <p>
+                                                <span class="joinSheet">加入进货单</span>
+                                                <span class="buy">立即购买</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="NoActive"></div>
+                            </li>
+                            <li class="noMargin">
+                                <div class="goodsImg">
+                                    <a href="">
+                                        <img src="images/goodsImg2.png">
+                                    </a>
+                                    <p>
+                                        <span class="leftSC">已收藏：111</span>
+                                        <span class="goodsSC">收藏</span>
+                                        <span class="rightPH">一键铺货</span>
+                                    </p>
+                                </div>
+                                <div class="goodsBorder">
+                                    <p class="goodsName"><a href="">轻奢系大喜自制爱丽丝花园精工绣花复古长短款无袖吊带连衣裙女</a></p>
+                                    <div class="goodsGrade">
+                                        <div class="left">
+                                            <p>基础版：109.00元</p>
+                                            <p>中级版：109.00元</p>
+                                            <p>高级版：109.00元</p>
+                                        </div>
+                                        <div class="right">
+                                            <del>原价：109.00</del>
+                                            <p>
+                                                <span class="joinSheet">加入进货单</span>
+                                                <span class="buy">立即购买</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="NoActive"></div>
+                            </li>
+                            <li class="">
+                                <div class="goodsImg">
+                                    <a href=""><img src="images/goodsImg2.png"></a>
+                                    <p>
+                                        <span class="leftSC">已收藏：111</span>
+                                        <span class="goodsSC">收藏</span>
+                                        <span class="rightPH">一键铺货</span>
+                                    </p>
+                                </div>
+                                <div class="goodsBorder">
+                                    <p class="goodsName"><a href="">轻奢系大喜自制爱丽丝花园精工绣花复古长短款无袖吊带连衣裙女</a></p>
+                                    <div class="goodsGrade">
+                                        <div class="left">
+                                            <p>基础版：109.00元</p>
+                                            <p>中级版：109.00元</p>
+                                            <p>高级版：109.00元</p>
+                                        </div>
+                                        <div class="right">
+                                            <del>原价：109.00</del>
+                                            <p>
+                                                <span class="joinSheet">加入进货单</span>
+                                                <span class="buy">立即购买</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="NoActive"></div>
+                            </li>
+                            <li class="">
+                                <div class="goodsImg">
+                                    <a href=""><img src="images/goodsImg2.png"></a>
+                                    <p>
+                                        <span class="leftSC">已收藏：111</span>
+                                        <span class="goodsSC">收藏</span>
+                                        <span class="rightPH">一键铺货</span>
+                                    </p>
+                                </div>
+                                <div class="goodsBorder">
+                                    <p class="goodsName"><a href="">轻奢系大喜自制爱丽丝花园精工绣花复古长短款无袖吊带连衣裙女</a></p>
+                                    <div class="goodsGrade">
+                                        <div class="left">
+                                            <p>基础版：109.00元</p>
+                                            <p>中级版：109.00元</p>
+                                            <p>高级版：109.00元</p>
+                                        </div>
+                                        <div class="right">
+                                            <del>原价：109.00</del>
+                                            <p>
+                                                <span class="joinSheet">加入进货单</span>
+                                                <span class="buy">立即购买</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="NoActive"></div>
+                            </li>
+                            <li class="">
+                                <div class="goodsImg">
+                                    <a href=""><img src="images/goodsImg2.png"></a>
+                                    <p>
+                                        <span class="leftSC">已收藏：111</span>
+                                        <span class="goodsSC">收藏</span>
+                                        <span class="rightPH">一键铺货</span>
+                                    </p>
+                                </div>
+                                <div class="goodsBorder">
+                                    <p class="goodsName"><a href="">轻奢系大喜自制爱丽丝花园精工绣花复古长短款无袖吊带连衣裙女</a></p>
+                                    <div class="goodsGrade">
+                                        <div class="left">
+                                            <p>基础版：109.00元</p>
+                                            <p>中级版：109.00元</p>
+                                            <p>高级版：109.00元</p>
+                                        </div>
+                                        <div class="right">
+                                            <del>原价：109.00</del>
+                                            <p>
+                                                <span class="joinSheet">加入进货单</span>
+                                                <span class="buy">立即购买</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="NoActive"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="p_footer"></div>
+        <div class="marks" style="display: block">
+            <div class="PopDiv" style="width: 920px;min-width: 624px;margin: 0 auto;display: block">
+                <div class="PopHeader">
+                    <span class="PopTitle"><i class="PopDetails"></i>提交订单</span>
+                    <div class="PopColse"></div>
+                </div>
+                <div class="PopBody">
+                    <div class="Popstepbar clearfix">
+                        <ol class="tb-stepbar">
+                            <div class="s-line">
+                                <p class="s-line-y" style="width: 420px;"></p>
+                            </div>
+                            <li class="stepbar stepbar-current">
+                                <p class="s-circle">1</p>
+                                <p class="stepbar-name">填写核对订单</p>        
+                            </li>
+                            <li class="stepbar">
+                                <p class="s-circle">2</p>
+                                <p class="stepbar-name">提交订单</p>
+                            </li>
+                            <li class="stepbar">
+                                <p class="s-circle">3</p>
+                                <p class="stepbar-name">订单付款</p>
+                            </li>
+                            <li class="">
+                                <p class="s-circle">4</p>
+                                <p class="stepbar-name">等待发货</p>
+                            </li>
+                            <li class="stepbar-last">
+                                <p class="s-circle"><i></i></p>
+                                <p class="stepbar-name">确认收货</p>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="g-orderInfor">
+                        <div class="order-box g-address">
+                            <h5>填写收货人信息</h5>
+                            <div class="m-address clearfix">
+                                <div class="form-group">
+                                    <label>第三方平台:</label>
+                                    <select name="" class="pt-class">
+                                        <option value="">————请选择————</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>订单号:</label>
+                                    <input type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>收货人:</label>
+                                    <input type="text" class="input-sx">
+                                    <span>*</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>手机号:</label>
+                                    <input type="text">
+                                    <span>*</span>
+                                </div>
+                                <div class="form-group tj-adress">
+                                    <label>收货地址:</label>
+                                    <select name="province"><option value="">-请选择省份-</option><option value="北京市">北京市</option><option value="天津市">天津市</option><option value="河北省">河北省</option><option value="山西省">山西省</option><option value="内蒙古自治区">内蒙古自治区</option><option value="辽宁省">辽宁省</option><option value="吉林省">吉林省</option><option value="黑龙江省">黑龙江省</option><option value="上海市">上海市</option><option value="江苏省">江苏省</option><option value="浙江省">浙江省</option><option value="安徽省">安徽省</option><option value="福建省">福建省</option><option value="江西省">江西省</option><option value="山东省">山东省</option><option value="河南省">河南省</option><option value="湖北省">湖北省</option><option value="湖南省">湖南省</option><option value="广东省">广东省</option><option value="广西壮族自治区">广西壮族自治区</option><option value="海南省">海南省</option><option value="重庆市">重庆市</option><option value="四川省">四川省</option><option value="贵州省">贵州省</option><option value="云南省">云南省</option><option value="西藏自治区">西藏自治区</option><option value="陕西省">陕西省</option><option value="甘肃省">甘肃省</option><option value="青海省">青海省</option><option value="宁夏回族自治区">宁夏回族自治区</option><option value="新疆维吾尔自治区">新疆维吾尔自治区</option><option value="香港特别行政区">香港特别行政区</option><option value="澳门特别行政区">澳门特别行政区</option><option value="台湾省">台湾省</option><option value="其它">其它</option></select>
+                                    <select name="city"><option value="">-请选择城市-</option></select>
+                                    <select name="area"><option value="">-请选择地区-</option></select>
+                                </div>
+                                <div class="form-group">
+                                    <label>详细地址:</label>
+                                    <input type="text" class="input-lag">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-box g-goodsMes">
+                            <h3>确认商品信息</h3>
+                            <div class="m-table">
+                                <ul class="table-header clearfix">
+                                    <li style="width: 110px;">主图</li>
+                                    <li style="width: 260px;">标题</li>
+                                    <li style="width: 200px;">SKU属性</li>
+                                    <li style="width: 60px;">单价</li>
+                                    <li style="width: 140px;">数量</li>
+                                    <li style="width: 67px;">小计</li>
+                                </ul>
+                                <table class="table table-hover">							
+                                    <tbody>								
+                                        <tr>
+                                            <th ><img src="images/goodsDetails/order01.jpg"></th>
+                                            <th width="260">Deere Jane春装新款男士撞色夹克衫</th>
+                                            <th width="200" class="s-SKU">
+                                    <p>SKU名称1：属性1</p>
+                                    <p>SKU名称1：属性1</p>
+                                    <p>SKU名称1：属性1</p>
+                                    <p>SKU名称1：属性1</p>
+                                    </th>
+                                    <th width="60" class="unit-price">450.00</th>
+                                    <th width="140" class="s-num"><div class="s-num-i clearfix"><input type="button" class="e-reduce" value="-"><input class="s-p-num" type="text" value="1"><input class="e-add" type="button" value="+"></div></th>
+                                    <th class="s-subtotal" >450</th>
+                                    </tr>
+                                    <tr>
+                                        <th ><img src="images/goodsDetails/order01.jpg"></th>
+                                        <th>Deere Jane春装新款男士撞色夹克衫</th>
+                                        <th class="s-SKU">
+                                    <p>SKU名称1：属性1</p>
+                                    <p>SKU名称1：属性1</p>
+                                    <p>SKU名称1：属性1</p>
+                                    <p>SKU名称1：属性1</p>
+                                    </th>
+                                    <th class="unit-price">372.23</th>
+                                    <th class="s-num"><div class="s-num-i clearfix"><input type="button" class="e-reduce" value="-"><input class="s-p-num" type="text" value="1"><input class="e-add" type="button" value="+"></div></th>
+                                    <th class="s-subtotal">372.23</th>
+                                    </tr>
+                                    </tbody>	
+                                </table>
+                            </div>
+                            <div class="m-settle clearfix">
+                                <div class="leave-message clearfix">
+                                    <label>给卖家留言:</label>
+                                    <textarea type="text" class="input-xs"></textarea>
+                                </div>
+                                <div class="m-tolSubmit">
+                                    <dl>
+                                        <dt>商品总数:</dt>
+                                        <dd class="t-total-num"><span class="m-tol-num">2</span><span class="col-balck">件</span></dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>总商品金额:</dt>
+                                        <dd>¥<span class="m-tol-price">822.23</span></dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>运费:</dt>
+                                        <dd>¥<span class="m-tol-freight">8.00</span></dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>应付金额:</dt>
+                                        <dd class="t-total-price">¥<span class="m-tol-amount">830.23</span></dd>
+                                    </dl>
+                                    <p><button>提交订单</button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="js/cityClass.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        //批量铺货
+        var flag = true;
+        var PhNum = 0;
+        $('.escPH').click(function () {
+            if (flag) {
+                $(this).text('退出批量铺货');
+                $('.NoActive,.YesActive').show();
+                flag = false;
+            } else {
+                $(this).text('进入批量铺货');
+                $('.NoActive,.YesActive').hide();
+                flag = true;
+            }
+        });
+
+        $('.goodsListDiv').on('click', 'li', function () {
+            if (!flag) {
+                var sign = $(this).hasClass('sign');
+                if (!sign) {
+                    PhNum++;
+                    $(this).addClass('sign');
+                    $(this).find('.NoActive').removeClass('NoActive').addClass('YesActive');
+                } else {
+                    PhNum--;
+                    $(this).removeClass('sign');
+                    $(this).find('.YesActive').removeClass('YesActive').addClass('NoActive');
+                }
+                $('#Phnum').text(PhNum);
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        $(function ($) {
+            new PCAS("province", "city", "area");
+            $('.s-line-y').animate({'width': $('.stepbar').size() / $('.tb-stepbar>li').size() * $('.s-line').width()}, 600);
+            $('.e-add').on('click', function () {
+                var q = $(this).parent();
+                q.find('.s-p-num').val(parseInt(q.find('.s-p-num').val()) + 1);
+//				qq.find('.s-subtotal').html((qq.find('.unit-price').html()*parseInt(q.find('.s-p-num').val())).toFixed(2));
+                updateDate();
+            });
+            $('.e-reduce').on('click', function () {
+                var q = $(this).parent();
+                q.find('.s-p-num').val() == 0 ? 0 : q.find('.s-p-num').val(parseInt(q.find('.s-p-num').val()) - 1);
+//				qq.find('.s-subtotal').html((qq.find('.unit-price').html()*parseInt(q.find('.s-p-num').val())).toFixed(2));
+                updateDate();
+            });
+            $('.s-p-num').on('blur', function () {
+                updateDate();
+            });
+            function updateDate() {
+                var p = 0, n = 0;
+                $('.table>tbody>tr').each(function () {
+                    var s = $(this).find('.s-subtotal');
+                    s.html($(this).find('.unit-price').html() * parseInt($(this).find('.s-p-num').val()).toFixed(2));
+                    p += parseFloat(s.html());
+                    n += parseFloat($(this).find('.s-p-num').val());
+                });
+                $('.m-tolSubmit .m-tol-num').html(n);
+                $('.m-tolSubmit .m-tol-price').html(p.toFixed(2));
+//				$('.m-tolSubmit .m-tol-freight').html(p);   //运费
+                $('.m-tolSubmit .m-tol-amount').html((parseFloat($('.m-tolSubmit .m-tol-price').html()) + parseFloat($('.m-tolSubmit .m-tol-freight').html())).toFixed(2));
+            }
+            updateDate();
+        });
+    </script>
+</html>

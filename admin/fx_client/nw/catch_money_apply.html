@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>货源管家-提现申请</title>
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="css/yz.css">
+        <link rel="stylesheet" href="css/fqy_style.css">
+        <script src="js/jquery-1.9.1.min.js"></script>   
+        <script src="js/knockout-3.3.0.js"></script>
+        <script src="js/plus.js"></script>
+        <script src="js/message.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/public.js"></script>
+    </head>
+    <body>
+        <div class="main clearfix">
+            <div id="p_left"></div>
+            <div class="wraper">
+                <div id="p_top"></div>
+                <div class="PopDiv">
+                    <div class="PopHeader">
+                        <span class="PopTitle"><i class="PopDetails"></i>申请提现</span>
+                        <div class="PopColse"></div>
+                    </div>
+                    <div class="PopBody deposit" id="info">
+                        <p><span>账户：</span><strong style="margin-right: 20px;"></strong>可用余额：<b class="info-apply"></b></p>
+                        <p><span>申请提现金额：</span><input type="text" name="" class="short-input" id="money_no" value="" style="margin-right: 5px;"/>元<b style="color: #f40">*</b></p>
+                        <p><span>收款支付宝：</span><input type="text" name="" id="applyName" value="" /><b style="margin-right: 5px;color: #f40">*</b></p>
+                        <p><span>收款人姓名：</span><input type="text" name="" class="short-input" id="user_name" value="" /><b style="margin-right: 5px;color: #f40">*</b></p>
+                        <p><span>提现密码：</span><input type="password" name="" id="catch_pas" value="" /></p>
+                        <div class="popverify-box clearfix"><span>验证：</span><div id="popdrag" class="E-drag" style="margin: 0; float: left; color: rgb(255, 255, 255);"></div></div>
+                        <p class="centerP">
+                            <button class="aplayBtn">确认付款</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="p_footer"></div>
+    </body>
+    <script type="text/javascript">
+    	$('.aplayBtn').click(function(){
+    		var money=$('#money_no').val(),
+	    		userName=$('#user_name').val(),
+	    		catchPwd=$('#catch_pas').val(),
+	    		applyName=$('#applyName').val();
+    		if(money==''){
+    			X.notice('请输入提现金额',3);
+    		}else if(userName==''){
+    			X.notice('请输入您的姓名',3);
+    		}else if(applyName==''){
+    			X.notice('请输入要提现的支付宝账户',3);
+    		}else if(catchPwd==''){
+    			X.notice('请输入密码',3);
+    		}else{
+    			X.Post(requestUrl.apply,1,{'user_id':localStorage.getItem('user_id'),'user_account':localStorage.getItem('user_name'),'user_name':userName,'apply_money':money},function(result){
+    				if(result.header.stats==0){
+    					X.notice('恭喜你，提现成功',3);
+    					$('.PopDiv').fadeOut()
+    					
+    				}else{
+    					X.notice(result.body.list.msg,3)
+    				}
+    			})
+    		}
+        })
+    </script>
+</html>

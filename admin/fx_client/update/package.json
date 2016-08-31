@@ -1,0 +1,46 @@
+﻿{
+  "name": "index2",
+  //必填;name必须全局唯一
+  "main": "nw/login.html",
+  //必填：文件入口
+  "version": "1.0.2",
+  //应用版本号
+  "single-instance": true,
+  //是否允许同时启动多个应用
+  "keywords": ["开店助理"],
+  //应用关键字
+  "description": "开店助理应用程序",
+  //应用描述
+  "window": {
+    "title": "开店助理",
+    //应用默认标题
+    "ico": "QQ.png",
+    //应用图标
+    "toolbar": false,
+    //是否显示工具栏
+    "width": 1360,
+    //应用宽度
+    "height": 820,
+    //应用高度
+    "position": "center",
+    //应用显示位置
+    "resizable": false,
+    //是否允许调整窗口大小
+    "always-on-top": false,
+    //是否始终放置在窗口最顶层
+    "show_in_taskbar": true,
+    //是否在任务栏显示图标
+    "fullscreen": false,
+    //是否全屏
+    "frame": false,
+    //是否显示应用边框
+    "kiosk": false
+    //是否启用kiosk模式，窗口将全屏，且锁定用户
+  },
+  "webkit": {
+    "plugin": true,
+    //是否启用插件
+    "page-cache": false
+    //是否启用缓存
+  }
+}

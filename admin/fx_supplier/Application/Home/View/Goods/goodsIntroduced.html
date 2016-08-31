@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <block name="title"></block>
+    <meta name="description" content="{if $page_description}{$page_description}{/if}{$site_info.SHOP_DESCRIPTION}" />
+    <link rel="stylesheet" href="__STATIC__/home/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__STATIC__/home/css/AdminLTE.css">
+    <link rel="stylesheet" href="__STATIC__/home/css/font-awesome.min.css">
+    <!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet"  href="__STATIC__/home/css/skins/_all-skins.min.css">
+    <link rel="stylesheet"  href="__STATIC__/home/css/skins/skin-red.css">
+    <link rel="stylesheet" href="__STATIC__/home/css/skins/skin-red-light.css">
+    <link rel="stylesheet" href="__STATIC__/home/css/bootstrap3-wysihtml5.min.css">
+    <block name="headerCss"></block>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/home/css/my.css">
+    <block name="headerJs"></block>
+</head>
+<body>
+    <div class="row">
+        <div class="col-xs-2"></div>
+        <volist name="shop" id="vo">
+            <div class="col-xs-4"><label><input {:xeq(checkShopGoods($vo['id'],I('get.goods_id')),true,'checked')} class="shop" value="{$vo.id}" type="checkbox"> {$vo.shop_name}</label></div>
+        </volist>
+        <div class="col-xs-2"></div>
+    </div>
+
+    <div class="box-footer">
+        <div class="row">
+            <div class="col-xs-12 text-center"><input type="submit" class="btn btn-warning btn-xs create" value="确定"></div>
+        </div>
+    </div>
+
+</body>
+
+<script src="__STATIC__/home/js/plugins/jQuery-2.2.0.min.js"></script>
+<script src="__STATIC__/home/js/bootstrap.min.js"></script>
+<script src="__STATIC__/home/js/app.min.js"></script> 
+<script type="text/javascript" src="__STATIC__/layer/layer.js"></script>
+</html>
+
+<script type="text/javascript">
+
+    $(document).ready(function ($) {
+        $('.create').click(function (event) {
+            /* Act on the event */
+            var postData = new Object(),
+                    postUrl = "{:U('goods/goodsShop',I('get.'))}",
+                    shop = new Array();
+            $('.shop:checked').each(function (index, el) {
+                shop[index] = $(this).val();
+            });
+            postData.shop = shop;
+            $.post(postUrl, postData, function (data, textStatus, xhr) {
+                if (1 == data.status) {
+                    parent.refurbish();
+                }
+            }, 'json');
+            //
+            return false;
+        });
+    });
+
+</script>

@@ -1,0 +1,136 @@
+  <extend name="Public/base" />
+  <block name="headerCss">
+  <link rel="stylesheet" type="text/css" href="__STATIC__/home/css/bootstrap-datetimepicker.min.css">
+  </block>
+  <block name="content">
+<div class="box box-warning">
+    
+            <!-- /.box-header -->
+        <div class="box-body">
+              <div class="row" >
+    <form class="form-inline" method="get" action="{:U('storage/logEdit',$mp)}">
+      <div class="form-group">
+       <label for="exampleInputName2">仓库名称:</label>
+        <select class="form-control input-xs" name="depot">
+              <option value="">选择仓库</option>
+              <volist name="depot" id="depot">
+                <option {:xeq(I('get.depot'),$depot['id'],'selected')} value="{$depot.id}">{$depot.depot_name}</option>
+              </volist>
+          </select>
+      </div>
+        <div class="form-group ">
+       <label for="exampleInputName2">商品类目:</label>
+        <select class="form-control input-xs" name="goods_category">
+              <option value="">主类目</option>
+              <volist name="goods_category" id="vo">
+                <option  {:xeq(I('get.goods_category'),$vo['cid'],'selected')} value="{$vo.cid}">{$vo.name}
+                </option>
+              </volist>
+      </select>
+      </div>
+          <div class="form-group ">
+               <label for="exampleInputName2">操作人:</label>
+               <input type="text" class="form-control input-xs" name="user_id" value="{:I('get.user_id')}">
+         </div>
+      <div class="row" >
+         <div class="form-group">
+              <label>操作时间:</label>
+          <input type="text" class="form-control input-xs" id="startTime" value="{:I('get.startTime')}" name="startTime" placeholder="开始时间">
+        </div>
+
+        <div class="form-group">
+          <input type="text" class="form-control input-xs" id="endTime" value="{:I('get.endTime')}" name="endTime" placeholder="结束时间">
+        </div>
+
+        <div class="form-group">
+          <select class="form-control input-xs" name="order_search" >
+                <option value="">选择关键字</option>
+                <option {:xeq(I('get.order_search'),'goods_name','selected')} value="goods_name">商品名称</option>
+                <option {:xeq(I('get.order_search'),'goods_no','selected')} value="goods_no">商品ID</option>
+                <option {:xeq(I('get.order_search'),'buyer_goods_no','selected')} value="buyer_goods_no">商家编码</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="text" name="search_word" {:xeq(I('get.order_search'),'','disabled')}  class="form-control input-xs" value="{:I('get.search_word')}"  placeholder="商品名称、商品ID、商家编码">
+        </div>
+        <div class="form-group">
+            <input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
+        </div>
+          
+      </div>
+     
+    </form>
+   </div>
+    </div>
+          </div>
+          <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th>系统时间</th>
+            <th>操作人</th>
+            <th>商品ID</th>
+            <th>修改时商家编码</th>
+            <th>修改时商品标题</th>
+            <th>SKU</th>
+            <th>原库存</th>
+            <th>变更后库存</th>
+          </tr>
+          <volist name="datas.list" id="list">
+          <tr>
+            <td>{:date('Y-m-d H:i',$list['log_time'])}</td>
+            <td>{$list.user_id}</td>
+            <td>{$list.goods_no}</td>
+            <td>{$list.buyer_goods_no}</td>
+            <td>{$list.goods_name}</td>
+            <td>{$list.sku_str_zh}</td>
+            <td>{$list.start_num}</td>
+            <td>{$list.end_num}</td>
+          </tr>
+          </volist>
+        </tbody>
+            </table>  
+            </div>
+
+            <div class="box-footer">
+            <div class="left" >
+      <form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+       <div class="form-group">
+       <select name="pagesize" class="form-control input-xs pagesize">
+            <option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+            <option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+            <option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+       </select>
+      </div>
+      </form>
+            </div>
+
+            <div class="right">
+            <div class="pagination">
+                {$datas.page} 
+            </div>
+            </div>
+            </div>
+          </div>
+          <!-- /.box -->
+    </div>    
+  </block>
+  <block name="footerJs">
+  <script type="text/javascript" src="__STATIC__/home/js/moment.js"></script>
+  <script src="__STATIC__/home/js/bootstrap-datetimepicker.min.js"> </script>
+  <script src="__STATIC__/home/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"> </script>
+  <script type="text/javascript" src="__STATIC__/home/js/custom.js"></script>
+  <script type="text/javascript">
+      $(document).ready(function(){
+        $('select[name="order_search"]').change(function(event) {
+            if ( '' == $(this).val() ){
+              $('input[name="search_word"]').attr('disabled', true);
+            }else{
+              $('input[name="search_word"]').removeAttr('disabled');
+            }
+        });
+      });
+  </script>
+  </block> 

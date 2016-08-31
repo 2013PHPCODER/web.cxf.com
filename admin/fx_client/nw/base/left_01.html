@@ -1,0 +1,60 @@
+<div class="public-left">
+    <p class="pub-logo"></p>
+    <ul class="pub-nav center">
+        <li class="select">
+        	<a href="javascript:;"><span>全部商品</span></a>
+        	<ul class="pub-nav-sm">
+        		<li><a href="">全部商品</a></li>
+        	</ul>
+        </li>
+        <li><a href="javascript:;"><span>热销推荐</span></a></li>
+        <li><a href="ojavascript:;"><span>活动专区</span></a></li>
+        <li><a href="javascript:;"><span>最新上架</span></a></li>
+        <li><a href="javascript:;"><span>时尚女装</span></a></li>
+        <li><a href="javascript:;"><span>精品男装</span></a></li>
+        <li><a href="javascript:;"><span>时尚箱包</span></a></li>
+        <li><a href="javascript:;"><span>童装/童鞋</span></a></li>
+        <li><a href="javascript:;"><span>服饰配件</span></a></li>
+        <li><a href="javascript:;"><span>男装</span></a></li>
+    </ul>
+</div>
+<script>
+	!function () {
+        var url = window.location.pathname.split('.')[0].split('/');
+        url = url[url.length-1];
+        var n;
+        switch (url) {
+            case '' :
+                n = 0;
+                break;
+            case '' :
+                n = 1;
+                break;
+            case '' :
+                n = 2;
+                break;
+            case '' :
+                n = 3;
+                break;
+            case '' :
+                n = 4;
+                break;
+            case '' :
+                n = 5;
+                break;
+            case '' :
+                n = 6;
+                break;    
+        }
+        $('.pub-nav>li').eq(n).addClass('select').siblings().removeClass('select');
+    }();
+    $('.pub-nav>li').click(function(){
+    	if($(this).children().children('span').hasClass('aali')){
+    		$(this).children().children('span').css('background','url(../images/client-icon.png) no-repeat left center');
+    	}else{
+    		$(this).children().children('span').addClass('aali');
+    		$(this).children().children('span').css('background','url(../images/p_navs.png) left center no-repeat');
+    	}  	
+    	$(this).children('.pub-nav-sm').slideToggle()
+    }) 
+</script>

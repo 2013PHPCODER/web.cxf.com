@@ -1,0 +1,617 @@
+<ol class="breadcrumb">
+	<li><i class="fa fa-dashboard"></i> 位置</li>
+	<li>
+		售后管理</li>
+	<li>售后仲裁</li>
+</ol> 
+<div class="box box-warning">
+	<div class="box-header with-border">
+		<div class="box-title">
+			<ul class="choose_ul">
+			<php> if( 1 == getPower(678395) ){ </php>
+				<li><a class="{:xeq(I('get.group_id',1),1,'btn btn-warning btn-xs')}" href="{:U('order/index',array('group_id' => 1 ))}" >所有售后</a></li>
+			<php>}</php>
+			<php> if( 1 == getPower(768429) ){ </php>
+				<li><a class="{:xeq(I('get.group_id'),2,'btn btn-warning btn-xs')}" href="{:U('order/index',array('group_id' => 2 ))}">待确认</a></li>
+			<php>}</php>
+			<php> if( 1 == getPower(949462) ){ </php>
+				<li><a class="{:xeq(I('get.group_id'),3,'btn btn-warning btn-xs')}" href="{:U('order/index',array('group_id' => 3 ) )}">待收货</a></li>
+			<php>}</php>
+			<php> if( 1 == getPower(126479) ){ </php>
+				<li><a class="{:xeq(I('get.group_id'),4,'btn btn-warning btn-xs')}" href="{:U('order/index',array('group_id' => 4 ) )}">待审核</a></li>
+			<php>}</php>
+			<php> if( 1 == getPower(349993) ){ </php>
+				<li><a class="{:xeq(I('get.group_id'),5,'btn btn-warning btn-xs')}" href="{:U('order/index',array('group_id' => 5 ) )}">待退款</a></li>
+			<php>}</php>
+			<php> if( 1 == getPower(349993) ){ </php>
+				<li><a class="{:xeq(I('get.group_id'),6,'btn btn-warning btn-xs')}" href="{:U('order/index',array('group_id' => 6 ) )}">已完成</a></li>
+			<php>}</php>
+			<php> if( 1 == getPower(692692) ){ </php>
+				<li><a  class="{:xeq(I('get.group_id'),7,'btn btn-warning btn-xs')}" href="{:U('order/index',array('group_id' => 7 ) )}">已拒绝</a></li>
+			<php>}</php>
+			<php> if( 1 == getPower(966287) ){ </php>
+				<li><a class="{:xeq(I('get.group_id'),8,'btn btn-warning btn-xs')}" href="{:U('order/index',array('group_id' => 8 ) )}">待仲裁</a></li>
+			<php>}</php>
+			<php> if( 1 == getPower(683748) ){ </php>
+				<li><a class="{:xeq(I('get.group_id'),9,'btn btn-warning btn-xs')}" href="{:U('order/index',array('group_id' => 9 ) )}">已仲裁</a></li>
+			<php>}</php>
+			</ul>
+		</div>
+		<div class="box-tools pull-left"> </div>
+	</div>
+	<!-- /.box-header -->
+	<div class="box-body">
+		<div class="row" >
+			<form class="form-inline" method="" action="" id="form_search" onsubmit="return X.toSerchVaild(this)">
+				<div class="form-group">
+					<label for="exampleInputName2">仓库名称:</label>
+					<select class="form-control input-xs" name="depot">
+						<option value="">选择仓库</option>
+						<volist name='depot' id='depot'>
+							<option {:xeq(I('get.depot'),$depot['id'],'selected')} value="{$depot.id}">{$depot.depot_name}</option>
+						</volist>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputName2">分销商:</label>
+					<select class="form-control input-xs" name="goods_category">
+						<option value="0">分销商（可搜索）</option>
+						<volist name="goods_category" id="gc">
+							<option {:xeq(I('get.goods_category'),$gc['cid'],'selected')} value="{$gc.cid}">{$gc.name}</option>
+						</volist>
+					</select>
+				</div>			
+				<div class="form-group ">
+					<label for="exampleInputName2">售后理由:</label>
+					<select class="form-control input-xs" name="remark">
+						<option value="">全部</option>
+						<option value="1" {:xeq(I('get.remark'),1,'selected')}  >有备注</option>
+					</select>
+				</div>
+				<div class="row">
+					<div class="form-group ">
+						<label for="exampleInputName2">售后类别:</label>
+						<select class="form-control input-xs" name="shipping_id">
+							<option value="">——请选择——</option>			
+							<option value="">退款</option>
+							<option value="">退货退款</option>
+						</select>
+					</div>
+					<div class="form-group ">
+						<label for="exampleInputName2">平台:</label>
+						<select class="form-control input-xs" name="shipping_id">
+							<option value="">全部</option>			
+							<option value="">星密码</option>
+							<option value="">创想范</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputName2">申请时间:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+						<!--<select class="form-control input-xs" name="time_type">
+							<option {:xeq(I('get.time_type'),'addtime','selected')} value="add_time">开始时间</option>
+							<option {:xeq(I('get.time_type'),'payment_time','selected')} value="payment_time">结束时间</option>
+						</select>-->
+					</div>					
+				</div>
+				<div class="row" >
+					<div class="form-group">
+						<label>开始时间:</label>
+						<input type="text" class="form-control input-xs" id="startTime" value="{:I('get.startTime')}" name="startTime">
+					</div>
+					<div class="form-group">
+						<label>结束时间:</label>
+						<input type="text" class="form-control input-xs" id="endTime" value="{:I('get.endTime')}" name="endTime">
+					</div>
+					<div class="form-group">
+						<select class="form-control input-xs" name="order_search" >
+							<option value="">选择关键字</option>
+							<option {:xeq(I('get.order_search'),'order_sn','selected')} value="order_sn">订单号</option>
+							<option {:xeq(I('get.order_search'),'goods_name','selected')} value="goods_name">商品名称</option>
+							<option {:xeq(I('get.order_search'),'goods_no','selected')}  value="goods_no">商品ID</option>
+							<option {:xeq(I('get.order_search'),'buyer_goods_no','selected')} value="buyer_goods_no">商家编码</option>
+							<option {:xeq(I('get.order_search'),'receiver_name','selected')} value="receiver_name">收件人姓名</option>
+							<option {:xeq(I('get.order_search'),'receiver_tel','selected')} value="receiver_tel">收件人手机号</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<input type="text" {:xeq(I('get.order_search'),'','disabled')} name="search_word" class="form-control input-xs" value="{:I('get.search_word')}"  placeholder="商品名称、货号、收件人姓名、电话">
+					</div>
+					<div class="form-group">
+						<input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
+                        <!--<input type="hidden" name="is_close" value="1" id="is_close" >
+                        <input type="hidden" name="is_cus" value="1" id="is_cus">-->
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="box">
+	
+	<!-- /.box-header -->
+	<div class="box-body table-responsive no-padding">
+		<table class="table table-hover">
+			<tbody>
+				<tr>
+					<th align="middle"><input type="checkbox" id="checkAll"></th>
+					<th>售后单号</th>
+					<th>售后时间</th>
+					<th>订单号</th>
+					<th>分销商账号</th>
+					<th>联系方式</th>
+					<th>收件人</th>
+					<th>手机号</th>
+					<th>售后类型</th>
+					<th>售后理由</th>
+					<th>售后留言</th>
+					<th>退货单号</th>
+					<th>商品ID</th>
+					<th>商家编码</th>
+					<th>售后状态</th>
+					<th>操作</th>
+				</tr>	
+				<tr>
+					<th align="middle"><input type="checkbox"></th>
+					<th>1333133</th>
+					<th>2016-4-6 14:03:51</th>
+					<th>2016041116563310000</th>
+					<th>分销商ID（账号）</th>
+					<th><input type="button" name="" id="" value="联系QQ" /></th>
+					<th>小强</th>
+					<th>13555656486</th>
+					<th>退货退款</th>
+					<th>7天无理由</th>
+					<th>客户要退，麻烦通过以下！谢谢！</th>
+					<th>465468787646</th>
+					<th>1356654</th>
+					<th>xcd-29-b-2#2123-1602</th>
+					<th><strong>待审核</strong></th>
+					<th><a href="javascript:;">仲裁</a>&nbsp;&nbsp;<a href="javascript:;">详情</a></th>
+				</tr>
+					<tr>
+					<th align="middle"><input type="checkbox"></th>
+					<th>1333133</th>
+					<th>2016-4-6 14:03:51</th>
+					<th>2016041116563310000</th>
+					<th>分销商ID（账号）</th>
+					<th><input type="button" name="" id="" value="联系QQ" /></th>
+					<th>小强</th>
+					<th>13555656486</th>
+					<th>退货退款</th>
+					<th>7天无理由</th>
+					<th>客户要退，麻烦通过以下！谢谢！</th>
+					<th>465468787646</th>
+					<th>1356654</th>
+					<th>xcd-29-b-2#2123-1602</th>
+					<th><strong>待审核</strong></th>
+					<th><a href="javascript:;">仲裁</a>&nbsp;&nbsp;<a href="javascript:;">详情</a></th>
+				</tr>
+					<tr>
+					<th align="middle"><input type="checkbox"></th>
+					<th>1333133</th>
+					<th>2016-4-6 14:03:51</th>
+					<th>2016041116563310000</th>
+					<th>分销商ID（账号）</th>
+					<th><input type="button" name="" id="" value="联系QQ" /></th>
+					<th>小强</th>
+					<th>13555656486</th>
+					<th>退货退款</th>
+					<th>7天无理由</th>
+					<th>客户要退，麻烦通过以下！谢谢！</th>
+					<th>465468787646</th>
+					<th>1356654</th>
+					<th>xcd-29-b-2#2123-1602</th>
+					<th><strong>待审核</strong></th>
+					<th><a href="javascript:;">仲裁</a>&nbsp;&nbsp;<a href="javascript:;">详情</a></th>
+				</tr>
+				
+			</tbody>
+		</table>
+	</div>
+	<div class="box-footer">
+		<div class="left" >
+			<form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+				<div class="form-group">
+					<label for="exampleInputName2">全选结果页: </label>
+					<input type="checkbox" id="selectall"  value="">
+				</div>
+				<div class="form-group">
+					<select name="pagesize" class="form-control input-xs pagesize">
+						<option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+						<option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+						<option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+					</select>
+				</div>
+			</form>
+		</div>
+		<div class="right">
+			<div class="pagination">
+                        <div class="row"><ul><li class="rows">共<b>278</b>条</li>   <li><span class="current">1</span></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">2</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/3.html">3</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/4.html">4</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/5.html">5</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/6.html">6</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/7.html">7</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/8.html">8</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/9.html">9</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/10.html">10</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/11.html">11</a></li> <li><a class="next" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">下一页</a></li> <li><a class="end" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/14.html">末页</a></li></ul></div>				</div>
+               </div>
+		</div>
+	</div>
+</div>
+<block name="footerJs"> 
+	<script type="text/javascript" src="__STATIC__/home/js/moment.js"></script> 
+	<script src="__STATIC__/home/js/bootstrap-datetimepicker.min.js"> </script> 
+	<script src="__STATIC__/home/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"> </script> 
+	<script type="text/javascript" src="__STATIC__/layer/layer.js"></script> 
+	<script type="text/javascript" src="__STATIC__/home/js/custom.js"></script> 
+	<script>
+			$('select[name="order_search"]').change(function(event) {
+				/* Act on the event */
+				if ( '' == $(this).val() ){
+					$('input[name="search_word"]').attr('disabled', true);
+					$('input[name="search_word"]').val('');
+				}
+				else{
+					$('input[name="search_word"]').removeAttr('disabled');
+				}
+			});
+			
+//			全选
+           var allCheake = false; 
+           $('#checkAll').click(function(){
+           	   allCheake == true ? function(){$('.table-responsive').find('input[type="checkbox"]').prop('checked',false);allCheake=false}(): function(){$('.table-responsive').find('input[type="checkbox"]').prop('checked',true);allCheake=true;}();      	  
+           })
+			
+/**
+ * 留言
+ *
+ */		
+  		// 留言提交
+ 		var postMessage = function(){
+ 			if($('#input_message').val()){	
+	         		var val = $('#input_message').val();
+	         		var order_id = $('#message_id').val();
+	         	$.post("{:U('order/saveMessage')}",{order_id:order_id,val:val},function(data){
+	         		if(data.status == 'success'){
+	         			var str = "<p>";
+	         				str+=data.time+"&nbsp;管理员&nbsp;"+val;
+	         				str+="</p>"	;
+	         			$("#message_content").append(str);
+	         			$('#input_message').val('');
+	         		}
+	         	});
+	         	}
+ 		}
+
+		   var addMessage = function(){
+	         	// if($('#input_message').val()){	
+	         	// 	var val = $('#input_message').val();
+	         	// 	var order_id = $('#message_id').val();
+	         	// $.post("{:U('order/saveMessage')}",{order_id:order_id,val:val},function(data){
+	         	// 	if(data.status == 'success'){
+	         	// 		var str = "<p>";
+	         	// 			str+=data.time+"&nbsp;管理员&nbsp;"+val;
+	         	// 			str+="</p>"	;
+	         	// 		$("#message_content").append(str);
+	         	// 		$('#input_message').val('');
+	         	// 	}
+	         	// });
+	         	// }
+	         	postMessage();
+             }
+        $(document).ready(function(){
+            //排序
+
+           $('.sort').change(function(){
+              $('#sortForm').submit();
+           });
+            //排除已关闭订单
+           $('.check_close').change(function(){
+               if( $(this).prop('checked')){
+                    $('#is_close').val('2');
+               }
+               $('#form_search').submit();
+           });
+            //排除已售后订单
+            $('.check_cus').change(function(){
+                if( $(this).prop('checked')){
+                    $('#is_cus').val('2');
+                }
+                $('#form_search').submit();
+            });
+			//单个页面取消
+			$('.one_cancel').click(function(){
+				var order_id =new Array();
+				order_id.push($(this).data('id'));
+				layer.confirm('订单取消后,将进入关闭状态,请确认',{title:'订单取消',btn:['确认','取消']},function(index){
+					$.post("{:U('order/cancelOrder')}",{order_id:order_id},function(result){
+						console.log(result);
+						if(result.status == 'ok'){
+							//layer.msg('操作成功,未成功确认'+result.total+"条",{time:1000});
+							layer.alert(result.content,{btn:['确定']},function(){
+								layer.close();
+								window.location.reload();
+							})
+						}
+						else{
+							layer.alert('操作失败',{btn:['确定']},function(){
+								layer.close();
+								window.location.reload();
+							});
+						}
+					})
+				})
+			})
+           //所有订单页面 取消
+           $('.all_cancel').click(function(){
+              if($('.choose:checked').serialize() || $("#selectall").is(':checked') ){
+                    layer.confirm('你确定要取消订单吗?取消订单后,客户不能再进行付款,请确认',
+                        { title:'取消订单确认',btn:['确认','取消'] },
+                        function(index){
+                          var data
+                          if($("#selectall").is(':checked') == true){
+                                data = {type:'all'};
+                          }else{
+                                data= $('.choose:checked').serialize();
+                          }
+
+                          var urlPost = "{:U('order/cancelOrder',I('get.'))}";
+                           $.post(urlPost ,data,function(result){
+                                if(result.status == 'ok'){
+                                    // layer.msg('操作成功',{time:1000}); 
+                                    	layer.alert('操作成功',{btn:['确定']},function(){
+                                    		layer.close();
+                                			window.location.reload();
+                                    	});
+                                }
+                                else{
+                                    //layer.msg('有不能取消的订单'+result.status+'条',{time:1000});
+                                   	layer.alert('有不能取消的订单'+result.status+'条',{btn:['确定']},function(){
+                                   		layer.close();
+                                   		window.location.reload();
+                                   	});
+                                }
+
+                                
+                           });
+                             
+                        },
+                        function(){
+
+                        }
+
+                    );
+              }
+                else{
+                  layer.alert('请选择要操作的订单');
+               }
+               return false ;
+           }); 
+
+           //所有订单页面 确认
+           $('.all_confirm').click(function(){
+              if($('.choose:checked').serialize() || $("#selectall").is(':checked')){
+                  layer.confirm('订单确认后,将进入发货状态,请确认',{title:'订单确认',btn:['确认','取消'] },function(index){
+                        var data
+                          if($("#selectall").is(':checked') == true){
+                                data = {type:'all'};
+                          }else{
+                                data= $('.choose:checked').serialize();
+                          }
+                          var urlPost = "{:U('Order/confirmOrder',I('get.'))}";
+                      $.post(urlPost,data,function(result){
+                      			console.log(result);
+                                if(result.status == 'ok'){
+                                    //layer.msg('操作成功,未成功确认'+result.total+"条",{time:1000});
+                                    layer.alert( '操作成功,未成功确认'+result.total+"条" ,{btn:['确定']},function(){
+                                    	layer.close();
+                                    	window.location.reload();
+                                    });  
+                                }
+                                else{
+                                    //layer.msg('操作失败',{time:1000})
+                                    layer.alert(result.content,{btn:['确定']},function(){
+                                    	layer.close();
+                                    	window.location.reload();
+                                    })
+                                }
+                      });
+                  },
+                   function(){
+
+                  }
+                  )
+              }
+                else{
+                  layer.alert('请选择要操作的订单');
+                }
+           })
+
+           //单个订单确认
+           $('.one_confirm').click(function(){
+           		var order_id =new Array();
+           			order_id.push($(this).data('id'));
+           		layer.confirm('订单确认后,将进入发货状态,请确认',{title:'订单确认',btn:['确认','取消']},function(index){
+           			$.post("{:U('order/confirmOrder')}",{order_id:order_id},function(result){
+           					console.log(result);
+       					  if(result.status == 'ok'){
+                                //layer.msg('操作成功,未成功确认'+result.total+"条",{time:1000});  
+                               layer.alert(result.content,{btn:['确定']},function(){
+                                    	layer.close();
+                                    	window.location.reload();
+                                    })
+                            }
+                            else{
+                                layer.alert('操作失败',{btn:['确定']},function(){
+                                	layer.close();
+                                    window.location.reload();
+                                });
+                            }
+           			})
+           		})
+           	return false;
+           });
+
+        //单个订单异常
+   		$('.one_excep').click(function(){
+   			var order_id = new Array();
+   				order_id.push($(this).data('id'));
+   			layer.confirm('订单确认后,将进入异常状态,请确认',{title:'订单异常',btn:['确认','取消'] },function(index){
+   				$.post("{:U('order/excepOrder')}",{order_id:order_id},function(result){
+   							 if(result.status == 'ok'){
+                                    // layer.msg('操作成功',{time:1000});
+                                    layer.alert(result.message,{btn:['确定']},function(){
+                                    	layer.close();
+                                    	window.location.reload();
+                                    })
+                                }
+                                else{
+                                    // layer.msg('有不能操作的订单'+result.status+'条',{time:1000})
+                                    layer.alert(result.message,{btn:['确定']},function(){
+                                    	layer.close();
+                                    	window.location.reload();
+                                    })
+                                }
+            	});
+   			});
+   			return false;
+   		});
+          //批量订单异常
+          $('.excep').click(function(){
+               if($('.choose:checked').serialize() || $("#selectall").is(':checked')){
+                  layer.confirm('订单确认后,将进入异常状态,请确认',{title:'订单异常',btn:['确认','取消'] },function(index){
+                        var data
+                          if($("#selectall").is(':checked') == true){
+                                data = {type:'all'};
+                          }else{
+                                data= $('.choose:checked').serialize();
+                          }
+                          var urlPost = "{:U('order/excepOrder',I('get.'))}";
+                      $.post(urlPost,data,function(result){
+                            if(result.status == 'ok'){
+                                // layer.msg('操作成功',{time:1000});  
+                            	layer.alert(result.content,{btn:['确定']},function(){
+                            		layer.close();
+                            		window.location.reload();
+                            	});
+                            }
+                            else{
+                                //layer.msg('有不能操作的订单'+result.status+'条',{time:1000})
+                                layer.alert(result.content,{btn:['确定']},function(){
+                                	layer.close();
+                                	window.location.reload();
+                                });
+                            }
+                      });
+                  },
+                   function(){
+
+                  }
+                  )
+              }
+                else{
+                  layer.alert('请选择要操作的订单');
+                }
+            return false;
+          })
+
+         //单个异常订单处理
+         $('.one_deal').click(function(){
+         		var order_id = new Array();
+   				order_id.push($(this).data('id'));
+         		layer.confirm('订单处理后,将进入待确认状态,请确认',{title:'异常处理',btn:['确认','取消'] },function(index){
+         			 $.post("{:U('order/dealOrder')}",{order_id:order_id},function(result){
+                            if(result.status == 'ok'){
+                                // layer.msg('操作成功',{time:1000});
+                                layer.alert(result.content,{btn:['确定']},function(){
+                                	layer.close();
+                                	window.location.reload();
+                                });
+                            }
+                            else{
+                                //layer.msg('有不能操作的订单'+result.status+'条',{time:1000})
+                                layer.alert(result.content,{btn:['确定']},function(){
+                                	layer.close();
+                                	window.location.reload();
+                                });
+                            }
+                      });
+         		});
+         });
+
+         //批量异常订单处理 
+             $('.all_deal').click(function(){
+               if($('.choose:checked').serialize() || $("#selectall").is(':checked')){
+                  layer.confirm('订单处理后,将进入待确认状态,请确认',{title:'异常处理',btn:['确认','取消'] },function(index){
+                        var data
+                          if($("#selectall").is(':checked') == true){
+                                data = {type:'all'};
+                          }else{
+                                data= $('.choose:checked').serialize();
+                          }
+                          var urlPost = "{:U('order/dealOrder',I('get.'))}";
+                      $.post(urlPost,data,function(result){
+                                   //console.log(result);
+                                if(result.status == 'ok'){
+                                    layer.alert('操作成功');  
+                                }
+                                else{
+                                    layer.alert('有不能操作的订单'+result.status+'条');
+                                }
+                                layer.close(index);
+                                window.location.reload();
+                      });
+                  },
+                   function(){
+
+                  }
+                  )
+              }
+                else{
+                  layer.alert('请选择要操作的订单');
+                }
+          })
+             //备注
+             $('.assign').click(function(){
+             			var order_id = $(this).next().val();
+             		$.post("{:U('order/addRemark')}",{order_id:order_id},function(result){
+             			layer.confirm(result,{title:"备注",btn:['确定','取消'],area:['400px','300px']},function(index){
+             				 	var memo =$('#memo').val();
+             				 $.post("{:U('order/updateRemark')}",{memo:memo,order_id:order_id},function(data){
+             				 		if(data.message == 'ok'){
+             				 			layer.msg('操作成功');
+             				 		}
+             				 		else{
+             				 			layer.msg('操作失败');
+             				 		}
+             				 	window.location.reload();
+             				 });
+             			});
+             		});
+             });
+
+             //获取消息页面
+             var  message = function(order_id){
+             	 $.post("{:U('order/Message')}",{order_id:order_id},function(result){
+             	 	layer.open({
+						  type: 1,
+						  title: "留言板",
+						  closeBtn: 1,
+						  shadeClose: true,
+						  area:['400px','300px'],
+						  content: result
+						});
+             	 	$('#layui-layer1').unbind('keydown');
+             	 	$("#input_message").keydown(function(event){
+             	 		var e = event || window.event;
+             	 		if(e.keyCode == 13){
+
+             	 			postMessage();
+             	 		}
+             	 	});
+             	 });
+             }
+          
+             $('.message').click(function(){
+             		var order_id = $(this).prev().val();
+             		message(order_id);
+             		return false;
+             });
+        });
+		
+	
+  </script> 
+</block>

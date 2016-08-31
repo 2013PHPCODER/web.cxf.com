@@ -1,0 +1,237 @@
+<style type="text/css">
+    .dalog-modal{
+        padding: 10px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -255px;
+        margin-top: -100px;
+        background: #E6E6E6;
+        border-radius: 5px;
+        width: 500px;
+        height: 200px;
+        display: none;
+    }
+    .dalog-modal h2{
+        text-align: left;
+        margin-top: 5px;
+    }
+    .dalog-modal .btn{ background-color: #f39c12;border-color: #e08e0b;color: #fff;}
+    .dalog-modal .row{margin-top: 0;padding-left: 30px;}
+    .g-modal-content{
+        font-family: "microsoft yahei";
+    }
+    .g-modal-content label{
+        float: left;
+        width: 200px;
+        width: 100%;
+        padding: 10px 0;
+    }
+    .sub-btn{
+        text-align: right;
+    }
+    .sub-btn .sumb{
+        height: 28px;
+        line-height: 28px;
+        margin: 0 6px;
+        padding: 0 15px;
+        border: 1px solid #dedede;
+        background-color: #f1f1f1;
+        color: #333;
+        border-radius: 2px;
+        font-weight: 400;
+        cursor: pointer;
+        text-decoration: none;	
+    }
+    .sub-btn .btn1{
+        border-color: #4898d5;
+        background-color: #2e8ded;
+        color: #fff;
+    }
+    .dalog-modal .close{
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 5px;
+    }
+</style>
+<block name="content">
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> 位置</li>
+        <li>
+            财务管理</li>
+        <li>收款管理</li>
+    </ol> 
+    <div class="box-header with-border">
+        <div class="box-title">
+            <ul class="choose_ul">
+                <li><a class="{:xeq(I('get.group_id',1),1,'btn btn-warning btn-xs')}" href="{:U('finance/collection/index',array('group_id' => 1 ))}" >收款列表</a></li>
+                <li><a class="{:xeq(I('get.group_id'),2,'btn btn-warning btn-xs')}" href="{:U('finance/collection/index',array('group_id' => 2 ))}">订单</a></li>
+                <li><a class="{:xeq(I('get.group_id'),3,'btn btn-warning btn-xs')}" href="{:U('finance/collection/index',array('group_id' => 3 ))}">充值</a></li>
+                <li><a class="{:xeq(I('get.group_id'),4,'btn btn-warning btn-xs')}" href="{:U('finance/collection/index',array('group_id' => 4 ) )}">补款</a></li>
+                <li><a class="{:xeq(I('get.group_id'),5,'btn btn-warning btn-xs')}" href="{:U('finance/collection/index',array('group_id' => 5 ) )}">虚拟订单</a></li>
+                
+            </ul>
+        </div>
+        <div class="box-tools pull-left"> </div>
+    </div>
+    <div class="box-body">
+        <div class="row" >
+            <form class="form-inline" method="get" action="{:U('finance/collection/index',array('group_id'=>I('get.group_id')))}" id="form_search" >
+                <input type="hidden" name='explode_list' value="0">
+                <div class="form-group">
+                    <label for="exampleInputName2">支付方式:</label>
+                    <select class="form-control input-xs" name="pay_type">
+                        <option value="">——请选择——</option>
+                        <?php foreach($pay_type as $key=>$val){ ?>
+                        <option value="<?php echo $key;?>"<?php if(I('get.pay_type')==$key){echo 'selected';}?>><?php echo $val;?></option>   
+                        <?php }?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">支付时间:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                </div>
+                <div class="form-group">
+                    <!--<label>开始时间:</label>-->
+                    <input type="text" class="form-control input-xs" onClick="WdatePicker()" value="{:I('get.start_time')}" name="start_time">
+                </div>
+                <div class="form-group">
+                    <!--<label>结束时间:</label>-->
+                    <input type="text" class="form-control input-xs"onClick="WdatePicker()" value="{:I('get.end_time')}" name="end_time">
+                </div>			
+                <div class="form-group ">
+                    <label for="exampleInputName2">状态:</label>
+                    <select class="form-control input-xs" name="status">
+                        <option value="">请选择</option>
+                        <?php foreach($pay_status as $k=>$v){ ?>
+                        <option value="<?php echo $k;?>"<?php if($status==$k && $status!=''){echo 'selected';}?>><?php echo $v;?></option>   
+                        <?php }?>
+                    </select>
+                </div>
+                <div class="form-group ">
+                    <select class="form-control input-xs" name="search_key" >
+                        <option value="">选取搜索条件类型:</option>
+                        <option {:xeq(I('get.search_key'),'source_sn','selected')} value="source_sn">订单号</option>
+                        <option {:xeq(I('get.search_key'),'trade_no','selected')}  value="trade_no">交易号</option>	
+                        <option {:xeq(I('get.search_key'),'pay_account','selected')}  value="pay_account">付款账户</option>
+                        <option {:xeq(I('get.search_key'),'receiver_account','selected')}  value="receiver_account">收款账户</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" {:xeq(I('get.search_key'),'','disabled')} name="search_words" class="form-control input-xs" value="{:I('get.search_words')}"  placeholder="录入相关信息">
+                </div>
+                <div class="form-group">
+                    <input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <button class="btn btn-default  import_price" id="exportListExecl">批量导出</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-default" id="importListExcel">批量导入</button>
+            </div>
+
+        </div>	
+    </div>
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th>类型</th>
+                    <th>订单号</th>
+                    <th>订单金额</th>
+                    <th>支付方式</th>
+                    <th>付款账户ID</th>
+                    <th>支付账号</th>
+                    <th>交易号</th>
+                    <th>收款账号</th>
+                    <th>支付时间</th>
+                    <th>状态</th>
+                    <th>到账时间</th>
+                    <th>操作</th>
+                </tr>	
+                <?php foreach($list_data['list'] as $val){?>
+                <tr>
+                    <th><?php echo $confirm_type[$val['type']] ;?></th>
+                    <th><?php echo  $val['source_sn'];?></th>
+                    <th>￥<?php echo  $val['confirm_money'];?></th>
+                    <th><?php echo  $receiver_platform[$val['pay_type']];?></th>
+                    <th><?php echo  $val['user_name'];?></th>
+                    <th><?php echo  $val['pay_account'];?></th>
+                    <th><?php echo  $val['trade_no'];?></th>
+                    <th><?php echo  $val['receiver_account'];?></th>
+                    <th><?php echo  $val['pay_time']?date('y-m-d H:i:s',$val['pay_time']):'--';?></th>
+                    <th><?php echo  $pay_status[$val['status']];?></th>
+                    <th><?php echo  $val['confirm_time']?date('y-m-d H:i:s',$val['confirm_time']):'--';?></th>
+                    <th><?php if($val['status']==1){echo '已到账';}else{ ?><a href="javascript:;" class="e-account" onclick="sure( <?php echo $val['id']; ?> );">到账</a><?php }?></th>
+                </tr>
+                <?php }?>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="right">
+        <div class="pagination">
+            {$list_data.page}
+        </div>
+    </div>
+</block>
+<script type="text/javascript" src="__PUBLIC__/js/webuploader/js/webuploader.min.js"></script> 
+<script>
+                        $('select[name="search_key"]').change(function (event) {
+                            /* Act on the event */
+                            if ('' == $(this).val()) {
+                                $('input[name="search_words"]').attr('disabled', true);
+                                $('input[name="search_words"]').val('');
+                            } else {
+                                $('input[name="search_words"]').removeAttr('disabled');
+                            }
+                        });
+                        //导出商品价格
+                        $("#exportListExecl").click(function (event) {
+                            $("#dataTable").find('.checkbox_goods_id:checked').each(function (index, element) {
+                                var cloneInput = $('.explode_goods_input:first()').clone();
+                                cloneInput.val($(this).val()).appendTo('.btnBox')
+                            });
+                            $('input[name="explode_list"]').val(1);
+                            $("#form_search").submit();
+                            $('input[name="explode_list"]').val(0);
+                            return false;
+                        });
+
+                        $('#importListExcel').click(function (event) {
+                            layer.open({
+                                type: 2,
+                                area: ['500px', '150px'],
+                                fix: false, //不固定
+                                maxmin: true,
+                                content: "{:U('finance/collection/importListExcel')}",
+                                title: '导入价格'
+                            });
+                            return false;
+                        });
+                        function sure(id) {
+                            layer.confirm('确定收款么？', {btn: ['确认', '取消']},
+                                    function (index) {
+                                        layer.close(index);
+                                        /* Act on the event */
+                                        var postUrl = "{:U('finance/collection/suer')}";
+                                        //var id = $(this).data('id');
+                                        $.post(postUrl, {"id": id}, function (data, textStatus, xhr) {
+                                            /*optional stuff to do after success */
+                                            layer.open({
+                                                content: data.message,
+                                                scrollbar: false,
+                                                yes: function (index) {
+                                                    layer.close(index);
+                                                    if (1 == data.status) {
+                                                        location.reload();
+                                                    }
+                                                }
+                                            });
+                                        }, 'json');
+                                    }, function (index) {
+                                layer.close(index);
+                                return false;
+                            });
+                        }
+</script>           

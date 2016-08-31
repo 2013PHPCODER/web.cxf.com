@@ -1,0 +1,538 @@
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/utf8-php/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/utf8-php/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/utf8-php/lang/zh-cn/zh-cn.js"></script>
+<style type="text/css">
+
+    .g-modal-content{
+        font-family: "microsoft yahei";
+    }
+    .g-modal-content label{
+        float: left;
+        width: 200px;
+        width: 100%;
+        padding: 10px 0;
+    }
+    .sub-btn{
+        text-align: right;
+    }
+    .sub-btn .sumb{
+        height: 28px;
+        line-height: 28px;
+        margin: 0 6px;
+        padding: 0 15px;
+        border: 1px solid #dedede;
+        background-color: #f1f1f1;
+        color: #333;
+        border-radius: 2px;
+        font-weight: 400;
+        cursor: pointer;
+        text-decoration: none;	
+    }
+    .sub-btn .btn1{
+        border-color: #4898d5;
+        background-color: #2e8ded;
+        color: #fff;
+    }
+    .dalog-modal2{display: none;position: fixed;top: 10%;left: 15%;z-index: 1000;background: #fff;}
+    .dalog-modal2>h3{font-size: 24px;text-align: center;}
+    .dalog-modal-editor{display: none;position: fixed;top: 10%;left: 15%;z-index: 1000;}
+    .dalog-add,.dalog-Modify{display: none;}
+    .zhezhao1{position: fixed;display: none; background: #000;opacity: .3;z-index: 999; filter: alpha(opacity=30);width: 100%;height: 100%;top: 0;left: 0;}
+    .dalog-modal{display: none;padding: 10px 0;position: fixed;top: 15%;left: 50%;margin-left: -250px; z-index: 1000;background: #fff;width: 600px;}
+    .dalog-modal .artical-mes{width: 500px;margin-left: 50px;}
+    .dalog-modal>h3{font-size: 24px;text-align: center;}
+</style>
+<block name="content">
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> 位置</li>
+        <li>
+            页面管理</li>
+        <li>文章管理</li>
+    </ol> 
+    <div class="zhezhao1"></div>
+    <div class="box-body">
+        <div class="row" >
+            <form class="form-inline" method="get" action="" id="form_search" onsubmit="return X.toSerchVaild(this)">
+                <div class="form-group">
+                    <label for="exampleInputName2">发布者:</label>
+                    <select class="form-control input-xs" name="adduser">
+                        <option value="">——请选择——</option>
+                        <volist name="adduser" id="vo">
+                            <option value="{$vo}">{$vo}</option>
+                        </volist>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">发布对象:</label>
+                    <select class="form-control input-xs" name="show_platform">
+                        <option value="">——请选择——</option>
+                        <option value="1">Web端</option>
+                        <option value="2">客户端</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">排序:</label>
+                    <select class="form-control input-xs" name="show_order">
+                        <option value="">——请选择——</option>
+                        <volist name="show_order" id="vo">
+                            <option value="{$vo}">{$vo}</option>
+                        </volist>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">发布时间:</label>
+                    <select class="form-control input-xs" name="time">
+                        <option value="">请选择</option>
+                        <option value="1">今天</option>
+                        <option value="2">最近7天</option>
+                        <option value="3">最近一个月</option>
+                        <option value="4">自定义</option>
+                    </select>
+                </div>		
+                <div class="form-group">
+                    <input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
+                    <input type="hidden" name="is_close" value="1" id="is_close" >
+                    <input type="hidden" name="is_cus" value="1" id="is_cus">
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <button class="btn btn-default e-add-announ">新增公告</button>
+            </div>
+        </div>	
+    </div>
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th>标题</th>
+                    <th>发布者</th>
+                    <th>发布对象</th>
+                    <th>发布时间</th>
+                    <th>是否上线</th>
+                    <th>排序</th>
+                    <th>操作</th>
+                </tr>
+            <volist name="datas.list" id="vo">
+                <tr>
+                    <th>{$vo.title}</th>
+                    <th>{$vo.adduser}</th>
+                    <th>{$vo.show_platform}</th>
+                    <th>{$vo.addtime}</th>
+                    <?php if(2==$vo['show_status']){ ?>
+                    <th>否</th>
+                    <?php }elseif(1==$vo['show_status']){?>
+                    <th>是</th>
+                    <?php } ?>
+                    <th>{$vo.show_order}</th>
+                    <?php if(2==$vo['show_status']){ ?>
+                    <th data-id="{$vo.id}"><a href="javascript:;" class="e-preview" data-id="{$vo.id}" >预览</a>&nbsp;&nbsp;<a href="javascript:;" data-id="{$vo.id}"  class="e-editor">编辑</a></th>
+                    <?php }elseif(1==$vo['show_status']){?>
+                    <th  data-id="{$vo.id}"><a href="javascript:;" class="e-preview" data-id="{$vo.id}" >预览</a>&nbsp;&nbsp;<a href="javascript:;" data-id="{$vo.id}"  class="e-editor">编辑</a>&nbsp;&nbsp;<a data-id="{$vo.id}" href="javascript:;" class="e-offline">下线</a></th>
+                    <?php } ?>
+                </tr>
+            </volist>
+            </tbody>
+        </table>
+    </div> 
+    <div class="dalog-modal">
+        <h3>文章标题</h3>
+        <div class="artical-mes">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.
+        </div>
+        <div class="row" style="text-align: center">
+            <button class="btn btn-default preview-confirm">确定</button>
+        </div>
+    </div>
+    <div class="dalog-modal2">
+        <a href="../../../../../../../../../../../../C:/Users/Administrator/Desktop/index.html"></a>
+        <h3 class="dalog-add">新增文章</h3>
+        <h3 class="dalog-Modify">修改文章</h3>
+        <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
+        <div class="row dalog-add">
+            <form class="form-inline" method="get" action="" id="form_search">
+                <div class="form-group">
+                    <label for="exampleInputName2">发布对象:</label>
+                    <select class="form-control input-xs  fb-obj" name="depot">
+                        <option value="">——请选择——</option>
+                        <option value="1">WEB端</option>
+                        <option value="2">客户端</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">排序:</label>
+                    <select class="form-control input-xs fb-sorting" name="depot">
+                        <option value="">——请选择——</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+                <div class="row" style="text-align: center;">				
+                    <input type="button" class="btn btn-default" id="btn-upLine-new" value="上线"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-default e-scancel" value="取消"/>				
+                </div>	
+            </form>	
+        </div>	
+        <div class="row dalog-Modify">
+            <form class="form-inline" method="get" action="" id="form_search">
+                <div class="form-group">
+                    <label for="exampleInputName2">发布对象:</label>
+                    <select class="form-control input-xs  fb-obj" name="depot">
+                        <option value="">——请选择——</option>
+                        <option value="1">WEB端</option>
+                        <option value="2">客户端</option>
+                        <option value="-1" selected="selected">原平台</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">排序:</label>
+                    <select class="form-control input-xs fb-sorting" name="depot">
+                        <option value="">——请选择——</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="-1" selected="selected">原排序</option>
+                    </select>
+                </div>
+                <div class="row" style="text-align: center;">				
+                    <input type="button" class="btn btn-default" id="btn-upLine-update"  value="上线"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-default e-scancel" value="取消"/>				
+                </div>	
+            </form>	
+        </div>	
+    </div>
+    <div class="box-footer">
+        <div class="left" >
+            <form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+                <div class="form-group">
+                    <label for="exampleInputName2">全选结果页: </label>
+                    <input type="checkbox" id="selectall"  value="">
+                </div>
+                <div class="form-group">
+                    <select name="pagesize" class="form-control input-xs pagesize">
+                        <option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+                        <option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+                        <option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="right">
+            <div class="pagination">
+                {$datas.page}
+            </div>
+        </div>
+    </div>
+</div>
+</block>
+<script>
+    $('select[name="order_search"]').change(function (event) {
+        /* Act on the event */
+        if ('' == $(this).val()) {
+            $('input[name="search_word"]').attr('disabled', true);
+            $('input[name="search_word"]').val('');
+        }
+        else {
+            $('input[name="search_word"]').removeAttr('disabled');
+        }
+    });
+
+//			全选
+    var allCheake = false;
+    $('#checkAll').click(function () {
+        allCheake == true ? function () {
+            $('.table-responsive').find('input[type="checkbox"]').prop('checked', false);
+            allCheake = false
+        }() : function () {
+            $('.table-responsive').find('input[type="checkbox"]').prop('checked', true);
+            allCheake = true;
+        }();
+    })
+//    预览
+    $('.e-preview').click(function () {
+        $('.dalog-modal').show();
+        $('.zhezhao1').show();
+        var data = {
+            'id': $(this).attr('data-id')
+        }
+
+        var p_url = "{:U('pageManage/newsPreview',I('get.'))}";
+        $.post(p_url, data, function (e) {
+            $('.dalog-modal>h3').html(e.title);
+            $('.artical-mes').html(e.content);
+        })
+
+    });
+    $('.preview-confirm').click(function () {
+        $('.dalog-modal').hide();
+        $('.zhezhao1').hide();
+    })
+
+
+// 新增公告
+    $('.e-add-announ').click(function () {
+        $('.dalog-modal2').show();
+        $('.dalog-add').show();
+        $('.dalog-Modify').hide();
+        $('.zhezhao1').show();
+        var data = {
+            "id": -1
+        }
+        var e_url = "{:U('pageManage/editNews',I('get.'))}";
+        $.post(e_url, data, function (e) {
+            console.log(e);
+            var oHtml = '<option value="">——请选择——</option>'
+            for (var i in e.show_order) {
+                oHtml += '<option value="' + e.show_order[i] + '">' + e.show_order[i] + '</option>';
+            }
+            $('select.fb-sorting').html(oHtml);
+        });
+    })
+// 编辑
+    var oId;
+    $('.e-editor').click(function () {
+        $('.dalog-modal2').show();
+        $('.dalog-Modify').show();
+        $('.dalog-add').hide();
+        $('.zhezhao1').show();
+        var data = {
+            "id": $(this).attr('data-id')
+        }
+        oId = $(this).attr('data-id');
+        var e_url = "{:U('pageManage/editNews',I('get.'))}";
+        $.post(e_url, data, function (e) {
+            console.log(e);
+            $("#ueditor_0").contents().find("body").html(e.title + e.content);
+
+            var oHtml = '<option value="">——请选择——</option>'
+            for (var i in e.show_order) {
+                oHtml += '<option value="' + e.show_order[i] + '">' + e.show_order[i] + '</option>';
+            }
+            oHtml += '<option value="-1"  selected="selected">原排序</option>';
+            $('select.fb-sorting').html(oHtml);
+
+
+            $("#ueditor_0").contents().find("body").html('<h1>' + e.title + '</h1>' + e.content);
+//            $('.dalog-Modify').find('.fb-obj').find('option').each(function () {
+//                if ($(this).html() == e.show_platform) {
+//                    $(this).attr('selected', 'selected');
+//                }
+//            })
+//            $('.dalog-Modify').find('.fb-sorting').find('option').each(function () {
+//                if ($(this).html() == e.show_order) {
+//                    $(this).attr('selected', 'selected');
+//                }
+//            })
+        })
+    })
+
+    $('.e-scancel').click(function () {
+        $('.dalog-modal2').hide();
+        $('.dalog-modal-editor').hide();
+        $('.zhezhao1').hide();
+    })
+    //  下线操作
+    $('.e-offline').click(function () {
+        var othis = $(this);
+        layer.confirm('你确定要下线么？', {btn: ['确认', '取消']},
+        function (index) {
+            var data = {
+                "id": othis.attr('data-id')
+            }
+//            console.log(data.id)
+            var p_url = "{:U('pageManage/changeStatus',I('get.'))}";
+            $.post(p_url, data, function (e) {
+                X.notice(e, 3);
+                setTimeout(function () {
+                    window.location.reload()
+                }, 1000);
+            })
+            layer.close(index);
+        }, function (index) {
+            layer.close(index);
+            return false;
+        });
+
+    })
+
+</script>
+<script type="text/javascript">
+
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+
+
+    function isFocus(e) {
+        alert(UE.getEditor('editor').isFocus());
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function setblur(e) {
+        UE.getEditor('editor').blur();
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function insertHtml() {
+        var value = prompt('插入html代码', '');
+        UE.getEditor('editor').execCommand('insertHtml', value)
+    }
+    function createEditor() {
+        enableBtn();
+        UE.getEditor('editor');
+    }
+    function getAllHtml() {
+        alert(UE.getEditor('editor').getAllHtml())
+    }
+    function getContent() {
+        var arr = [];
+        arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getContent());
+        alert(arr.join("\n"));
+    }
+    function getPlainTxt() {
+        var arr = [];
+        arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getPlainTxt());
+        alert(arr.join('\n'))
+    }
+    function setContent(isAppendTo) {
+        var arr = [];
+        arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
+        UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
+        alert(arr.join("\n"));
+    }
+    function setDisabled() {
+        UE.getEditor('editor').setDisabled('fullscreen');
+        disableBtn("enable");
+    }
+
+    function setEnabled() {
+        UE.getEditor('editor').setEnabled();
+        enableBtn();
+    }
+
+    function getText() {
+        //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+        var range = UE.getEditor('editor').selection.getRange();
+        range.select();
+        var txt = UE.getEditor('editor').selection.getText();
+        alert(txt)
+    }
+
+    function getContentTxt() {
+        var arr = [];
+        arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+        arr.push("编辑器的纯文本内容为：");
+        arr.push(UE.getEditor('editor').getContentTxt());
+        alert(arr.join("\n"));
+    }
+    function hasContent() {
+        var arr = [];
+        arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+        arr.push("判断结果为：");
+        arr.push(UE.getEditor('editor').hasContents());
+        alert(arr.join("\n"));
+    }
+    function setFocus() {
+        UE.getEditor('editor').focus();
+    }
+    function deleteEditor() {
+        disableBtn();
+        UE.getEditor('editor').destroy();
+    }
+    function disableBtn(str) {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++]; ) {
+            if (btn.id == str) {
+                UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+            } else {
+                btn.setAttribute("disabled", "true");
+            }
+        }
+    }
+    function enableBtn() {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++]; ) {
+            UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+        }
+    }
+
+    function getLocalData() {
+        alert(UE.getEditor('editor').execCommand("getlocaldata"));
+    }
+
+    function clearLocalData() {
+        UE.getEditor('editor').execCommand("clearlocaldata");
+        alert("已清空草稿箱")
+    }
+
+//    新增
+    $('#btn-upLine-new').click(function () {
+        var data = {
+            'title': $("#ueditor_0").contents().find("body").find('h1').html(),
+            'content': $("#ueditor_0").contents().find("body").html().split('/h1>')[1],
+            'order': $('.dalog-add').find('.fb-sorting').find('option:selected').val(),
+            'platform': $('.dalog-add').find('.fb-obj').find('option:selected').val()
+        }
+        console.log(data);
+        if (data.title == undefined) {
+            X.notice('请输入标题', 3);
+        } else if (data.content == '<p>​<br></p>' || data.content == '') {
+            X.notice('不能少于两个字符', 3);
+        } else if (data.platform == '' || data.order == '') {
+            X.notice('请选择发布选项', 3);
+        } else {
+            var n_url = "{:U('pageManage/newsAdd',I('get.'))}";
+            $.post(n_url, data, function (e) {
+                if (e == '添加成功') {
+                    X.notice('添加成功', 3);
+//                    $('.dalog-modal2').hide();
+//                    $('.zhezhao1').hide();
+                    setTimeout(function () {
+                        window.location.reload()
+                    }, 1000);
+                } else {
+                    X.notice(e, 3)
+                }
+            });
+        }
+    })
+//    编辑后更新
+    $('#btn-upLine-update').click(function () {
+        var data = {
+            'title': $("#ueditor_0").contents().find("body").find('h1').html(),
+            'content': $("#ueditor_0").contents().find("body").html().split('/h1>')[1],
+            'order': $('.dalog-Modify').find('.fb-sorting').find('option:selected').val(),
+            'platform': $('.dalog-Modify').find('.fb-obj').find('option:selected').val(),
+            'id': oId
+        }
+        console.log(data);
+        if (data.title == undefined) {
+            X.notice('请输入标题', 3);
+        } else if (data.content == '<p>​<br></p>' || data.content == '') {
+            X.notice('不能少于两个字符', 3);
+        } else if (data.obj == '' || data.sorting == '') {
+            X.notice('请选择发布选项', 3);
+        } else {
+            var p_url = "{:U('pageManage/newsUpdate',I('get.'))}";
+            $.post(p_url, data, function (e) {
+                if (e == "更新成功") {
+                    X.notice('上传成功', 3);
+
+//                    $('.dalog-modal2').hide();
+//                    $('.zhezhao1').hide();
+                    setTimeout(function () {
+                        window.location.reload()
+                    }, 1000);
+                } else {
+                    X.notice(e, 3)
+
+                }
+            });
+        }
+    })
+
+
+
+</script>

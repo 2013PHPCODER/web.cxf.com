@@ -1,0 +1,308 @@
+<style type="text/css">
+		.g-modal-content{
+			font-family: "microsoft yahei";
+		}
+		.g-modal-content label{
+			float: left;
+			width: 200px;
+			width: 100%;
+			padding: 10px 0;
+		}
+		.sub-btn{
+			text-align: right;
+		}
+		.sub-btn .sumb{
+			height: 28px;
+		    line-height: 28px;
+		    margin: 0 6px;
+		    padding: 0 15px;
+		    border: 1px solid #dedede;
+		    background-color: #f1f1f1;
+		    color: #333;
+		    border-radius: 2px;
+		    font-weight: 400;
+		    cursor: pointer;
+		    text-decoration: none;	
+		}
+		.sub-btn .btn1{
+		    border-color: #4898d5;
+		    background-color: #2e8ded;
+		    color: #fff;
+		}
+		.dalog-modal2{display: none;width: 280px;padding: 10px 0; position: fixed;top: 10%;left: 50%;margin-left: -140px; z-index: 1000;background: #fff;}
+		.dalog-modal2 .row{text-align: center;}
+		.dalog-modal2>h3{font-size: 24px;text-align: center;}
+		.dalog-modal2 textarea{width: 161px;min-width: 161px;}
+		.dalog-modal-editor{display: none;position: fixed;top: 10%;left: 15%;z-index: 1000;}
+		.dalog-add,.dalog-Modify{display: none;}
+		.zhezhao1{position: fixed;display: none; background: #000;opacity: .3;z-index: 999; filter: alpha(opacity=30);width: 100%;height: 100%;top: 0;left: 0;}
+		/*.dalog-modal{display: none;padding: 10px 0;position: fixed;top: 15%;left: 50%;margin-left: -250px; z-index: 1000;background: #fff;width: 600px;}
+		.dalog-modal .artical-mes{width: 500px;margin-left: 50px;}
+		.dalog-modal>h3{font-size: 24px;text-align: center;}*/
+</style>
+<block name="content">
+	<ol class="breadcrumb">
+		<li><i class="fa fa-dashboard"></i> 位置</li>
+		<li>
+			页面管理</li>
+		<li>站内信管理</li>
+	</ol> 
+	<div class="zhezhao1"></div>
+	<div class="box-body">
+		<div class="row" >
+			<form class="form-inline" method="get" action="" id="form_search" onsubmit="return X.toSerchVaild(this)">
+				<div class="form-group">
+					<label for="exampleInputName2">发布者:</label>
+					<select class="form-control input-xs" name="depot">
+						<option value="">——请选择——</option>
+                        <option value="">管理员账号</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputName2">发布对象:</label>
+					<select class="form-control input-xs" name="depot">
+						<option value="">——请选择——</option>
+                        <option value="">发布平台</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputName2">排序:</label>
+					<select class="form-control input-xs" name="depot">
+						<option value="">——请选择——</option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputName2">发布时间:</label>
+					<select class="form-control input-xs" name="depot">
+						<option value="">请选择</option>
+						<option value="">今天</option>
+                        <option value="">最近7天</option>
+                        <option value="">最近一个月</option>
+                        <option value="">自定义</option>
+					</select>
+				</div>		
+				<div class="form-group">
+					<input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
+                    <input type="hidden" name="is_close" value="1" id="is_close" >
+                    <input type="hidden" name="is_cus" value="1" id="is_cus">
+				</div>
+			</form>
+		</div>
+		<div class="row">
+			<div class="form-group">
+				<button class="btn btn-default e-add-announ">新增公告</button>
+			</div>
+		</div>	
+	</div>
+	<div class="box-body table-responsive no-padding">
+		<table class="table table-hover">
+			<tbody>
+				<tr>
+					<th>标题</th>
+					<th>内容</th>
+					<th>发布者</th>
+					<th>发布对象</th>
+					<th>发布时间</th>
+					<th>是否上线</th>
+					<th>操作</th>
+				</tr>	
+				<tr>
+					<th>公告1</th>
+					<th>内容1</th>
+					<th>admin1@gmail.com</th>
+					<th>开店助理</th>
+					<th>2016.7.29 14:00</th>
+					<th>是</th>
+					<th><a href="javascript:;" class="e-editor">编辑</a>&nbsp;&nbsp;<a href="javascript:;" class="e-offline">下线</a></th>
+				</tr>
+				<tr>
+					<th>公告1</th>
+					<th>内容1</th>
+					<th>admin1@gmail.com</th>
+					<th>开店助理</th>
+					<th>2016.7.29 14:00</th>
+					<th>是</th>
+					<th><a href="javascript:;" class="e-editor">编辑</a>&nbsp;&nbsp;<a href="javascript:;" class="e-offline">下线</a></th>
+				</tr>
+			</tbody>
+		</table>
+	</div> 
+	<!--<div class="dalog-modal">
+		<h3>文章标题</h3>
+		<div class="artical-mes">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.
+		</div>
+		<div class="row" style="text-align: center">
+			<button class="btn btn-default preview-confirm">确定</button>
+		</div>
+	</div>-->
+    <div class="dalog-modal2">
+    	<h3 class="dalog-add">新增文章</h3>
+    	<h3 class="dalog-Modify">修改文章</h3>
+    	<div class="row dalog-add">
+			<form class="form-inline" method="get" action="" id="form_search" onsubmit="return esubmit(this)">
+				<div class="row">
+					<label for="exampleInputName2">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题:</label>
+					<div class="form-group">
+						<input type="text" class="form-control input-xs" name="atitle" >
+					</div>
+				</div>
+				<div class="row">
+					<label for="exampleInputName2">内&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;容:</label>
+					<div class="form-group">
+						<textarea type="text" class="form-control input-xs" name="acontent"></textarea>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="exampleInputName2">发布对象:</label>
+					<select class="form-control input-xs" name="depot">
+						<option value="">——请选择——</option>
+                        <option value="">WEB端</option>
+                        <option value="">客户端</option>
+                        <option value="">供应商</option>
+                        <option value="">开店助理</option>
+					</select>
+				</div>
+				<div class="row" style="text-align: center;">				
+                  	<input type="submit" class="btn btn-default" value="上线"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-default e-scancel" value="取消"/>				
+				</div>	
+			</form>	
+		</div>	
+		<div class="row dalog-Modify">
+			<form class="form-inline" method="get" action="" id="form_search" onsubmit="return esubmit(this)">
+				<div class="row">
+					<label for="exampleInputName2">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题:</label>
+					<div class="form-group">
+						<input type="text" class="form-control input-xs" value="原标题" name="atitle">
+					</div>
+				</div>
+				<div class="row">
+					<label for="exampleInputName2">内&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;容:</label>
+					<div class="form-group">
+						<textarea type="text" class="form-control input-xs" name="acontent">原内容</textarea>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="exampleInputName2">发布对象:</label>
+					<select class="form-control input-xs" name="depot">
+						<option value="">——请选择——</option>
+                        <option value="">WEB端</option>
+                        <option value="" selected="selected">客户端</option>
+                        <option value="">供应商</option>
+                        <option value="">开店助理</option>
+					</select>
+				</div>
+				<div class="row" style="text-align: center;">				
+                  	<input type="submit" class="btn btn-default" value="上线"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-default e-scancel" value="取消"/>				
+				</div>	
+			</form>	
+		</div>	
+    </div>
+    <div class="box-footer">
+		<div class="left" >
+			<form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+				<div class="form-group">
+					<label for="exampleInputName2">全选结果页: </label>
+					<input type="checkbox" id="selectall"  value="">
+				</div>
+				<div class="form-group">
+					<select name="pagesize" class="form-control input-xs pagesize">
+						<option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+						<option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+						<option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+					</select>
+				</div>
+			</form>
+		</div>
+		<div class="right">
+			 <div class="pagination">
+                        <div class="row"><ul><li class="rows">共<b>278</b>条</li>   <li><span class="current">1</span></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">2</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/3.html">3</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/4.html">4</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/5.html">5</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/6.html">6</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/7.html">7</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/8.html">8</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/9.html">9</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/10.html">10</a></li><li><a class="num" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/11.html">11</a></li> <li><a class="next" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/2.html">下一页</a></li> <li><a class="end" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5/page/14.html">末页</a></li></ul></div>				</div>
+               </div>
+		</div>
+	</div>
+</block>
+<script>
+//  提交验证
+    function esubmit(obj) {
+    	
+        if ($(obj).find('input[name="atitle"]').val() == '') {
+            X.notice('标题不能为空', 3);
+            return false;
+        }
+        if ($(obj).find('textarea[name="acontent"]').val() == '') {
+            X.notice('内容不能为空', 3);
+            return false;
+        }
+        if ($(obj).find('select').find('option:selected').index() == 0) {
+            X.notice('发布对象不能为空', 3);
+            return false;
+        }
+        return true;
+    }
+	$('select[name="order_search"]').change(function(event) {
+		/* Act on the event */
+		if ( '' == $(this).val() ){
+			$('input[name="search_word"]').attr('disabled', true);
+			$('input[name="search_word"]').val('');
+		}
+		else{
+			$('input[name="search_word"]').removeAttr('disabled');
+		}
+	});
+	
+//			全选
+   var allCheake = false; 
+   $('#checkAll').click(function(){
+   	   allCheake == true ? function(){$('.table-responsive').find('input[type="checkbox"]').prop('checked',false);allCheake=false}(): function(){$('.table-responsive').find('input[type="checkbox"]').prop('checked',true);allCheake=true;}();      	  
+   })
+
+   
+   
+// 新增公告
+   $('.e-add-announ').click(function(){
+   	  $('.dalog-modal2').show();
+   	  $('.dalog-add').show();
+   	  $('.dalog-Modify').hide();
+   	  $('.zhezhao1').show();
+   })
+// 编辑
+   $('.e-editor').click(function(){
+   	  $('.dalog-modal2').show();
+   	  $('.dalog-Modify').show();
+   	  $('.dalog-add').hide();
+   	  $('.zhezhao1').show();
+   })
+   $('.e-scancel').click(function(){
+   	  $('.dalog-modal2').hide();
+   	  $('.dalog-modal-editor').hide();
+   	  $('.zhezhao1').hide();
+   })
+ 
+    $('.e-offline').click(function(){
+    	layer.confirm('你确定要下线么？',{btn:['确认','取消']},
+		 	function(index){
+		 		layer.close(index);
+				/* Act on the event */
+//				$.post(postUrl, postData, function(data, textStatus, xhr) {
+//					/*optional stuff to do after success */
+//						layer.open({
+//							  content: data.message,
+//							  scrollbar: false,
+//							  yes: function(index){
+//								   layer.close(index);
+//								   if( 1 == data.status ){
+//								   		location.reload();
+//								   }
+//							  }
+//						});
+//				},'json');
+			},function(index){
+				layer.close(index);
+				return false;
+			});
+
+    })
+</script>

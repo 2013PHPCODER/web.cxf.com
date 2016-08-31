@@ -1,0 +1,2929 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=9">
+
+		<meta name="description" content="{if $page_description}{/if}">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/AdminLTE.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"> -->
+		<link rel="stylesheet" href="css/skins/_all-skins.min.css">
+		<link rel="stylesheet" href="css/skins/skin-red.css">
+		<link rel="stylesheet" href="css/skins/skin-red-light.css">
+		<link rel="stylesheet" href="css/bootstrap3-wysihtml5.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.min.css">
+		<link rel="stylesheet" type="text/css" href="css/my.css">
+		<link rel="stylesheet" href="layer/skin/layer.css" id="layui_layer_skinlayercss">
+		<script src="js/plugins/jQuery-2.2.0.min.js"></script>
+	</head>
+
+	<body class="skin-yellow-light sidebar-mini">
+		<!--header start-->
+		<header class="main-header">
+			<a href="#" class="logo">
+				<span class="logo-mini"><b>创想范</b></span>
+				<span class="logo-lg"><b>创想范</b><small> 分销管理后台</small></span>
+				<span>Goods</span>
+			</a>
+			<nav class="navbar navbar-static-top">
+				<div class="navbar-nav top-bar">
+					<ul class="nav navbar-nav first-nav">
+						<li>
+							<a class="active" href="/index.php/Home/Goods/index/menu_id/1/second_menu_id/4.html"><b>商品</b></a>
+						</li>
+						<li>
+							<a class="" href="/index.php/Home/Order/index/menu_id/2/second_menu_id/8.html"><b>订单</b></a>
+						</li>
+						<li>
+							<a class="" href="/index.php/Home/Storage/index/menu_id/3/second_menu_id/10.html"><b>仓储</b></a>
+						</li>
+					</ul>
+				</div>
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+						<li class=" user user-menu">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<span class="hidden-xs">13800138000</span>
+							</a>
+						</li>
+						<li>
+							<a href="/index.php/Home/login/index/logout/1.html">
+								<span class="hidden-xs">退出登录</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<!--header end-->
+		<!--wrapper start-->
+		<div class="content-wrapper" style="min-height: 368px;">
+			<aside class="main-sidebar">
+				<!-- sidebar: style can be found in sidebar.less -->
+				<section class="sidebar">
+					<ul class="sidebar-menu">
+						<li class="header">&nbsp;</li>
+						<li>
+							<a class="active" href="/index.php/Home/Goods/index/menu_id/1/second_menu_id/4.html"> <i class="fa fa-fw  fa-circle-o"></i> 商品列表</a>
+						</li>
+						<li>
+							<a class="" href="/index.php/Home/Goods/goodsRelease/menu_id/1/second_menu_id/5.html"> <i class="fa fa-fw  fa-circle-o"></i> 商品发布</a>
+						</li>
+						<li>
+							<a class="" href="/index.php/Home/Goods/importGoods/menu_id/1/second_menu_id/6.html"> <i class="fa fa-fw  fa-circle-o"></i> 新增商品</a>
+						</li>
+						<li>
+							<a class="" href="/index.php/Home/Goods/goodsNoList/menu_id/1/second_menu_id/7.html"> <i class="fa fa-fw  fa-circle-o"></i> 货号列表</a>
+						</li>
+					</ul>
+				</section>
+				<!-- /.sidebar -->
+			</aside>
+			<section class="content">
+				<ol class="breadcrumb">
+					<li><i class="fa fa-dashboard"></i> 位置</li>
+					<li>
+						商品 </li>
+					<li>商品列表</li>
+				</ol>
+
+				<div class="box box-warning">
+					<div class="box-header with-border">
+						<div class="box-title">
+							<ul class="choose_ul">
+								<li>
+									<a class="btn btn-warning btn-xs" href="/index.php/Home/goods/index/group_id/1/menu_id/1/second_menu_id/4.html">所有商品</a>
+								</li>
+
+								<li>
+									<a class="" href="/index.php/Home/goods/index/group_id/2/menu_id/1/second_menu_id/4.html">新上传</a>
+								</li>
+								<li>
+									<a class="" href="/index.php/Home/goods/index/group_id/3/menu_id/1/second_menu_id/4.html">已下架</a>
+								</li>
+								<li>
+									<a class="" href="/index.php/Home/goods/index/group_id/4/menu_id/1/second_menu_id/4.html">已上架</a>
+								</li>
+								<li>
+									<a class="" href="/index.php/Home/goods/index/group_id/5/menu_id/1/second_menu_id/4.html">待审核</a>
+								</li>
+								<li>
+									<a class="" href="/index.php/Home/goods/index/group_id/6/menu_id/1/second_menu_id/4.html">未通过</a>
+								</li>
+							</ul>
+						</div>
+						<div class="box-tools pull-left"> </div>
+					</div>
+					<!-- /.box-header -->
+					<div class="box-body">
+						<div class="row">
+							<form class="form-inline" method="get" action="/index.php/Home/goods/index/menu_id/1/second_menu_id/4/group_id/1.html" id="searchForm">
+								<div class="form-group">
+									<label for="exampleInputName2">仓库名称:</label>
+									<select class="form-control input-xs" name="depot">
+										<option value="">选择仓库</option>
+										<option value="1">浙江省/杭州市/杭州仓</option>
+										<option value="2">广东省/广州市/广州仓</option>
+										<option value="3">1688仓</option>
+										<option value="4">DF仓</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputName2">商品类目:</label>
+									<select class="form-control input-xs" name="goods_category">
+										<option value="0">主类目</option>
+										<option value="11">电脑配件</option>
+										<option value="14">数码相机/单反相机/摄像机</option>
+										<option value="16">女装</option>
+										<option value="20">电玩/配件/游戏/攻略</option>
+										<option value="21">居家日用</option>
+										<option value="23">古董/邮币/字画/收藏</option>
+										<option value="25">玩具/童车/益智/积木/模型</option>
+										<option value="26">汽车/用品/配件/改装</option>
+										<option value="27">家装主材</option>
+										<option value="28">ZIPPO/瑞士军刀/眼镜</option>
+										<option value="29">宠物/宠物食品及用品</option>
+										<option value="30">男装</option>
+										<option value="33">书籍/杂志/报纸</option>
+										<option value="34">音乐/影视/明星/音像</option>
+										<option value="35">奶粉/辅食/营养品/零食</option>
+										<option value="40">腾讯QQ专区</option>
+										<option value="98">包装</option>
+										<option value="99">网络游戏点卡</option>
+										<option value="1101">笔记本电脑</option>
+										<option value="1201">MP3/MP4/iPod/录音笔</option>
+										<option value="1512">手机</option>
+										<option value="1625">内衣</option>
+										<option value="1801">美容护肤/美体/精油</option>
+										<option value="2813">成人用品/情趣用品</option>
+										<option value="50002766">零食/坚果/特产</option>
+										<option value="50002768">个人护理/保健/按摩器材</option>
+										<option value="50004958">移动/联通/电信充值中心</option>
+										<option value="50006842">箱包皮具/热销女包/男包</option>
+										<option value="50006843">女鞋</option>
+										<option value="50007216">鲜花速递/花卉仿真/绿植园艺</option>
+										<option value="50007218">办公设备/耗材/相关服务</option>
+										<option value="50008075">餐饮美食</option>
+										<option value="50008090">3C数码配件</option>
+										<option value="50008141">酒类</option>
+										<option value="50008163">床上用品</option>
+										<option value="50008164">住宅家具</option>
+										<option value="50008165">童装</option>
+										<option value="50008907">手机号码/套餐/增值业务</option>
+										<option value="50010404">服饰配件</option>
+										<option value="50010728">运动/瑜伽/健身/球迷用品</option>
+										<option value="50010788">彩妆/香水/美妆工具</option>
+										<option value="50011397">珠宝/钻石/翡翠/黄金</option>
+										<option value="50011665">网游装备/游戏币/帐号/代练</option>
+										<option value="50011699">体育/健身/运动装</option>
+										<option value="50011740">男鞋</option>
+										<option value="50011949">特价酒店/特色客栈/公寓旅馆</option>
+										<option value="50011972">影音电器</option>
+										<option value="50012029">运动鞋new</option>
+										<option value="50012082">厨房电器</option>
+										<option value="50012100">生活电器</option>
+										<option value="50012164">闪存卡/U盘/存储/移动硬盘</option>
+										<option value="50013864">首饰/发饰</option>
+										<option value="50013886">户外/登山/野营/旅行用品</option>
+										<option value="50014442">交通票</option>
+										<option value="50014811">软件</option>
+										<option value="50014812">尿片/洗护/喂哺/推车床</option>
+										<option value="50014927">教育培训</option>
+										<option value="50016348">家庭/个人清洁工具</option>
+										<option value="50016349">厨房/烹饪用具</option>
+										<option value="50016350">保险（汇金收费）</option>
+										<option value="50016422">粮油米面/南北干货/调味品</option>
+										<option value="50016891">游戏物品交易平台</option>
+										<option value="50017300">乐器/吉他/钢琴/配件</option>
+										<option value="50017652">TP服务商大类</option>
+										<option value="50018004">电子词典/电纸书/文化用品</option>
+										<option value="50018222">DIY电脑</option>
+										<option value="50018252">淘商号</option>
+										<option value="50018264">网络设备/网络相关</option>
+										<option value="50019095">消费卡</option>
+										<option value="50019379">合作商家</option>
+										<option value="50019780">平板电脑</option>
+										<option value="50020275">传统滋补营养品</option>
+										<option value="50020332">基础建材</option>
+										<option value="50020485">五金/工具</option>
+										<option value="50020579">电子/电工</option>
+										<option value="50020611">商业/办公家具</option>
+										<option value="50020808">家居饰品</option>
+										<option value="50020857">特色手工艺</option>
+										<option value="50022517">孕妇装/孕产妇用品/营养</option>
+										<option value="50022703">大家电</option>
+										<option value="50023282">美发护发/假发</option>
+										<option value="50023575">房产/租房/新房/二手房/委托服务</option>
+										<option value="50023717">OTC药品/医疗器械/计生用品</option>
+										<option value="50023722">隐形眼镜/护理液</option>
+										<option value="50023724">其他</option>
+										<option value="50023804">装修设计/施工/监理</option>
+										<option value="50023878">自用闲置转让</option>
+										<option value="50023904">国货精品数码</option>
+										<option value="50024099">电子元器件市场</option>
+										<option value="50024186">保险</option>
+										<option value="50024451">外卖/外送/订餐(请勿发布)</option>
+										<option value="50024612">外卖/外送/订餐服务（垂直市场）</option>
+										<option value="50024971">新车/二手车</option>
+										<option value="50025004">个性定制/设计服务/DIY</option>
+										<option value="50025110">电影/演出/体育赛事</option>
+										<option value="50025111">本地化生活服务</option>
+										<option value="50025618">理财</option>
+										<option value="50025705">洗护清洁剂/卫生巾/纸/香薰</option>
+										<option value="50025707">度假线路/签证送关/旅游服务</option>
+										<option value="50025968">司法拍卖拍品专用</option>
+										<option value="50026316">咖啡/麦片/冲饮</option>
+										<option value="50026523">休闲娱乐</option>
+										<option value="50026535">医疗及健康服务</option>
+										<option value="50026555">购物提货券</option>
+										<option value="50026800">保健食品/膳食营养补充食品</option>
+										<option value="50050359">水产肉类/新鲜蔬果/熟食</option>
+										<option value="50050471">婚庆/摄影/摄像服务</option>
+										<option value="50074001">摩托车/装备/配件</option>
+										<option value="50158001">网络店铺代金/优惠券</option>
+										<option value="50230002">服务商品</option>
+										<option value="50454031">景点门票/实景演出/主题乐园</option>
+										<option value="50468001">手表</option>
+										<option value="50510002">运动包/户外包/配件</option>
+										<option value="50602001">淘宝同城(测试，勿发商品)</option>
+										<option value="50690010">无线生活服务</option>
+										<option value="50734010">资产</option>
+										<option value="120886001">公益</option>
+										<option value="120894001">淘女郎</option>
+										<option value="120950001">保险分销</option>
+										<option value="120950002">天猫点券</option>
+										<option value="121266001">众筹</option>
+										<option value="121380001">国内机票/国际机票/增值服务</option>
+										<option value="121536003">数字娱乐</option>
+										<option value="121536007">全球购代购市场</option>
+										<option value="121938001">淘点点预定点菜</option>
+										<option value="121940001">淘点点现金券</option>
+										<option value="122650005">童鞋</option>
+										<option value="122684003">自行车/骑行装备/零配件</option>
+										<option value="122718004">家庭保健</option>
+										<option value="122852001">居家布艺</option>
+										<option value="122918002">无敌卡(新)</option>
+										<option value="122928002">收纳整理</option>
+										<option value="122950001">定制礼品</option>
+										<option value="122952001">餐饮具</option>
+										<option value="122966004">处方药</option>
+										<option value="123500005">资产（政府类专用）</option>
+										<option value="123536002">阿里通信专属类目</option>
+										<option value="123690003">精制中药材</option>
+										<option value="124024001">农业生产资料（农村淘宝专用）</option>
+										<option value="124044001">品牌台机/品牌一体机/服务器</option>
+										<option value="124050001">全屋定制</option>
+										<option value="124110010">淘宝海外虚拟订单</option>
+										<option value="124116010">零售O2O</option>
+										<option value="124242008">智能设备</option>
+										<option value="124354002">电动车/配件/交通工具</option>
+										<option value="124458005">茶</option>
+										<option value="124466001">农用物资</option>
+										<option value="124468001">农机/农具/农膜</option>
+										<option value="124470001">畜牧/养殖物资</option>
+										<option value="124470006">整车(经销商)</option>
+										<option value="124484008">模玩/动漫/周边/cos/桌游</option>
+										<option value="124568010">室内设计师</option>
+										<option value="124698018">装修服务</option>
+										<option value="124750013">俪人购(俪人购专用)</option>
+										<option value="124844002">拍卖会专用</option>
+										<option value="124852003">二手数码</option>
+										<option value="124868003">盒马生鲜</option>
+										<option value="124912001">合约机</option>
+										<option value="125022006">全球购官网直购（专用）</option>
+										<option value="125102006">到家业务</option>
+									</select>
+								</div>
+
+								<div class="form-group ">
+									<label for="exampleInputName2">商品状态:</label>
+									<select name="goods_status" class="form-control input-xs">
+										<option value="">全部</option>
+										<option value="2">新上传</option>
+										<option value="3">已下架</option>
+										<option value="4">已上架</option>
+										<option value="5">待审核</option>
+										<option value="6">未通过</option>
+									</select>
+								</div>
+
+								<div class="row">
+									<div class="form-group">
+										<select class="form-control input-xs" name="time_type">
+											<option value="sale_time">上架时间</option>
+											<option value="addtime">上传时间</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control input-xs" value="" placeholder="开始时间" id="startTime" name="startTime">
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control input-xs" value="" id="endTime" name="endTime" placeholder="结束时间">
+									</div>
+									<div class="form-group">
+										<select class="form-control input-xs" name="goods_search">
+											<option value="">选择搜索内容</option>
+											<option value="goods_name">商品名称</option>
+											<option value="goods_no">商品ID</option>
+											<option value="buyer_goods_no">商家编码</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<input type="text" name="search_word" value="" class="form-control input-xs" disabled="" placeholder="输入商品名称或者货号">
+									</div>
+									<div class="form-group btnBox">
+										<input type="submit" class="btn btn-block btn-warning btn-xs" value="搜索">
+										<input type="hidden" name="allData" value="0">
+										<input type="hidden" class="explode_goods_input" name="explodeGoods[]" value="0">
+										<input type="hidden" name="explode_goods" value="0">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="box">
+					<div class="box-header">
+						<h3 class="box-title">
+<div>
+<form class="form-inline" id="sortForm" action="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0.html" method="get">
+<select class="form-control input-xs sort" name="sort">
+    <option value="">商品排序</option>
+    <option value="addtime~asc,goods_id~asc">上传时间升序</option>
+    <option value="addtime~desc,goods_id~desc">上传时间降序</option>
+    </select>
+</form>
+</div> </h3>
+
+						<div class="box-tools">
+							<div class="input-group order">
+								<ul>
+									<li>
+										<a href="#" class="btn btn-default btn-xs" id="cancel_passed_batch">取消</a>
+									</li>
+									<li>
+										<a href="#" data-id="1" class="btn btn-default btn-xs" id="update_goods_sale_batch">上架</a>
+									</li>
+									<li>
+										<a href="#" data-id="2" class="btn btn-default btn-xs" id="off_goods_sale_batch">下架</a>
+									</li>
+									<li>
+										<a href="#" class="btn btn-default btn-xs" id="passed_batch">审核</a>
+									</li>
+									<li>
+										<a href="#" class="btn btn-default btn-xs" id="goods_delete_batch">删除</a>
+									</li>
+								</ul>
+							</div>
+
+						</div>
+					</div>
+					<!-- /.box-header -->
+					<div class="box-body table-responsive no-padding">
+						<table class="table table-hover" id="dataTable">
+							<tbody>
+								<tr>
+									<th align="middle"><input type="checkbox" id="checkAll"></th>
+									<th align="middle"></th>
+									<th>商家ID/最新商家编码</th>
+									<th>主图</th>
+									<th>名称</th>
+									<th>商品类目</th>
+									<th>成本价</th>
+									<th>分销价</th>
+									<th>市场价</th>
+									<th>商品状态</th>
+									<th>操作</th>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="290">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000289</p>
+										<p>商家编码：BNN*ASB*WG137*39</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											韩版简约甜美小巧可爱女士单肩斜挎包 </p>
+										<p> 上传时间：2016-07-19 15:55 上架时间：2016-07-19 15:56 </p>
+									</td>
+									<td>
+										箱包皮具/热销女包/男包 / 女包 </td>
+									<td>
+										68.20 </td>
+									<td>
+										68.20 </td>
+									<td>
+										68.20 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="290" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：91）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;</td>
+													<td>91</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="289">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000288</p>
+										<p>商家编码：TBDD07</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											2G 4G 8G 16G 32G 64G旋转式u盘 </p>
+										<p> 上传时间：2016-07-19 14:53 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										闪存卡/U盘/存储/移动硬盘 / U盘/存储卡 </td>
+									<td>
+										103.00 </td>
+									<td>
+										103.00 </td>
+									<td>
+										103.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="289" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：29999）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:2G;</td>
+													<td>4999</td>
+												</tr>
+												<tr>
+													<td>颜色分类:4G;</td>
+													<td>5000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:8G;</td>
+													<td>5000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:16G;</td>
+													<td>5000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:32G;</td>
+													<td>5000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:64G;</td>
+													<td>5000</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="288">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000287</p>
+										<p>商家编码：TBDD06</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											4G 8G 16G 32G 64G迷你时尚U盘 </p>
+										<p> 上传时间：2016-07-19 14:53 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										闪存卡/U盘/存储/移动硬盘 / U盘/存储卡 </td>
+									<td>
+										124.00 </td>
+									<td>
+										124.00 </td>
+									<td>
+										124.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="288" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：24894）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:4GB;</td>
+													<td>4987</td>
+												</tr>
+												<tr>
+													<td>颜色分类:8GB;</td>
+													<td>4925</td>
+												</tr>
+												<tr>
+													<td>颜色分类:16GB;</td>
+													<td>4987</td>
+												</tr>
+												<tr>
+													<td>颜色分类:32GB;</td>
+													<td>4995</td>
+												</tr>
+												<tr>
+													<td>颜色分类:64GB;</td>
+													<td>5000</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="287">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000286</p>
+										<p>商家编码：TBDD01</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											不锈钢子弹头U盘4G 8G 16G 32G 64G </p>
+										<p> 上传时间：2016-07-19 14:53 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										闪存卡/U盘/存储/移动硬盘 / U盘/存储卡 </td>
+									<td>
+										126.00 </td>
+									<td>
+										126.00 </td>
+									<td>
+										126.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="287" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：10000）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:4G;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:8G;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:16G;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:32;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:64G;</td>
+													<td>2000</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="286">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000285</p>
+										<p>商家编码：TBDD04</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											卡片U盘4G 8G 16G 32G 64G </p>
+										<p> 上传时间：2016-07-19 14:53 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										闪存卡/U盘/存储/移动硬盘 / U盘/存储卡 </td>
+									<td>
+										109.00 </td>
+									<td>
+										109.00 </td>
+									<td>
+										109.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="286" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：24832）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:4GB;</td>
+													<td>4968</td>
+												</tr>
+												<tr>
+													<td>颜色分类:8GB;</td>
+													<td>4883</td>
+												</tr>
+												<tr>
+													<td>颜色分类:16GB;</td>
+													<td>4993</td>
+												</tr>
+												<tr>
+													<td>颜色分类:32GB;</td>
+													<td>4994</td>
+												</tr>
+												<tr>
+													<td>颜色分类:64GB;</td>
+													<td>4994</td>
+												</tr>
+												<tr>
+													<td>颜色分类:2GB;</td>
+													<td>0</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="285">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000284</p>
+										<p>商家编码：TBDD05</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											卡片钥匙U盘4G 8G 16 32G 64G </p>
+										<p> 上传时间：2016-07-19 14:53 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										闪存卡/U盘/存储/移动硬盘 / U盘/存储卡 </td>
+									<td>
+										109.00 </td>
+									<td>
+										109.00 </td>
+									<td>
+										109.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="285" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：300000）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:2G;</td>
+													<td>50000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:4G;</td>
+													<td>50000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:8G;</td>
+													<td>50000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:16G;</td>
+													<td>50000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:32G;</td>
+													<td>50000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:64G;</td>
+													<td>50000</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="284">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000283</p>
+										<p>商家编码：TBDD03</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											苹果安卓电脑8G/16/32G/64G/128G U盘 </p>
+										<p> 上传时间：2016-07-19 14:53 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										闪存卡/U盘/存储/移动硬盘 / U盘/存储卡 </td>
+									<td>
+										293.00 </td>
+									<td>
+										293.00 </td>
+									<td>
+										293.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="284" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：24986）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:8GB;</td>
+													<td>4989</td>
+												</tr>
+												<tr>
+													<td>颜色分类:16GB;</td>
+													<td>4999</td>
+												</tr>
+												<tr>
+													<td>颜色分类:32GB;</td>
+													<td>4998</td>
+												</tr>
+												<tr>
+													<td>颜色分类:64GB;</td>
+													<td>5000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:128GB;</td>
+													<td>5000</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="283">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000282</p>
+										<p>商家编码：TBDD02</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											苹果安卓电脑三合一8g16g32g64g128gU盘 </p>
+										<p> 上传时间：2016-07-19 14:53 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										闪存卡/U盘/存储/移动硬盘 / U盘/存储卡 </td>
+									<td>
+										287.00 </td>
+									<td>
+										287.00 </td>
+									<td>
+										287.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="283" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：50000）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:8G;</td>
+													<td>10000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:16G;</td>
+													<td>10000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:32G;</td>
+													<td>10000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:64G;</td>
+													<td>10000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:128G;</td>
+													<td>10000</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="282">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000281</p>
+										<p>商家编码：gd-45-a-5#529-c-151</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											2016夏季短袖牛仔欧美休闲套装 </p>
+										<p> 上传时间：2016-07-19 14:49 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										女装 / 套装/学生校服/工作制服 / 时尚套装 </td>
+									<td>
+										55.00 </td>
+									<td>
+										55.00 </td>
+									<td>
+										55.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="282" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：15994）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:卡其色上衣;尺码:L;</td>
+													<td>1996</td>
+												</tr>
+												<tr>
+													<td>颜色分类:卡其色上衣;尺码:M;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:卡其色上衣;尺码:S;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:卡其色上衣;尺码:XL;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:兰色牛仔裙;尺码:L;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:兰色牛仔裙;尺码:M;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:兰色牛仔裙;尺码:S;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:兰色牛仔裙;尺码:XL;</td>
+													<td>1998</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="281">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000280</p>
+										<p>商家编码：gdjs-30-a-2#01-a-659</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											2016新款性感蕾丝舒适女士文胸 </p>
+										<p> 上传时间：2016-07-19 14:49 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										内衣 / 文胸 </td>
+									<td>
+										40.00 </td>
+									<td>
+										40.00 </td>
+									<td>
+										40.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="281" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：47999）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:白色;尺码:70B;</td>
+													<td>1999</td>
+												</tr>
+												<tr>
+													<td>颜色分类:白色;尺码:70C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:白色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:白色;尺码:75C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:白色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:白色;尺码:80C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:70C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:75C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:80C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:70C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:75C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:80C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅紫色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅紫色;尺码:70C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅紫色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅紫色;尺码:75C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅紫色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅紫色;尺码:80C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="280">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000279</p>
+										<p>商家编码：gdjs-49-a-1#1f-57-854</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											2016新款无痕聚拢女士文胸 </p>
+										<p> 上传时间：2016-07-19 14:49 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										内衣 / 文胸 </td>
+									<td>
+										59.00 </td>
+									<td>
+										59.00 </td>
+									<td>
+										59.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="280" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：32000）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:红色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:红色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:红色;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅黄色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅黄色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅黄色;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:深蓝色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:深蓝色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:深蓝色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:深蓝色;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅黄色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:红色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="279">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000278</p>
+										<p>商家编码：gdjs-22-a-2#01-a-8163</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											2016日系波点女士文胸 </p>
+										<p> 上传时间：2016-07-19 14:49 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										内衣 / 文胸 </td>
+									<td>
+										32.00 </td>
+									<td>
+										32.00 </td>
+									<td>
+										32.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="279" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：36000）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:70A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:70C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:75A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:75C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:80A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:80C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:深蓝色;尺码:70A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:深蓝色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:深蓝色;尺码:70C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:深蓝色;尺码:75A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:深蓝色;尺码:75C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:深蓝色;尺码:80A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:深蓝色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:深蓝色;尺码:80C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:深蓝色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="278">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000277</p>
+										<p>商家编码：gdjs-33-a-2#01-a-603</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											一片式无痕性感妩媚女士文胸 </p>
+										<p> 上传时间：2016-07-19 14:49 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										内衣 / 文胸 </td>
+									<td>
+										43.00 </td>
+									<td>
+										43.00 </td>
+									<td>
+										43.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="278" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：95998）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:70A;</td>
+													<td>1998</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:70C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:75A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:75C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:80A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:80C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:85A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:85C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:西瓜红;尺码:70A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:西瓜红;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:西瓜红;尺码:70C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:西瓜红;尺码:75A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:西瓜红;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:西瓜红;尺码:75C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:西瓜红;尺码:80A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:西瓜红;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:西瓜红;尺码:80C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:西瓜红;尺码:85A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:西瓜红;尺码:85C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:70A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:70C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:75A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:75C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:80C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:85A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:85C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:70A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:70C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:75A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:75C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:80A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:80C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:85A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:85C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:西瓜红;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:浅绿色;尺码:80A;</td>
+													<td>2000</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="277">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000276</p>
+										<p>商家编码：gdjs-42-a-1#1f-57-876</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											夏季新款女士拉丝背心文胸厚胸 </p>
+										<p> 上传时间：2016-07-19 14:49 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										内衣 / 文胸 </td>
+									<td>
+										52.00 </td>
+									<td>
+										52.00 </td>
+									<td>
+										52.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="277" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：32000）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:桔红色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:桔红色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:桔红色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:桔红色;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:红色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:红色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:红色;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:红色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="276">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000275</p>
+										<p>商家编码：gdjs-36-a-2#01-a-641</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											新款性感低V蕾丝聚拢型女士内衣 </p>
+										<p> 上传时间：2016-07-19 14:49 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										内衣 / 文胸 </td>
+									<td>
+										46.00 </td>
+									<td>
+										46.00 </td>
+									<td>
+										46.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="276" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：53999）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:70A;</td>
+													<td>1999</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:70C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:75A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:75C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:80A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:80C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:70A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:75A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:75C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:80A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:80C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:蓝色;尺码:70A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:蓝色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:蓝色;尺码:70C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:蓝色;尺码:75A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:粉红色;尺码:70C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:蓝色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:蓝色;尺码:75C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:蓝色;尺码:80A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:蓝色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:蓝色;尺码:80C;</td>
+													<td>2000</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="275">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000274</p>
+										<p>商家编码：gdjs-40-a-2#01-a-3302</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											新款立体深v性感女士内衣文胸 </p>
+										<p> 上传时间：2016-07-19 14:49 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										内衣 / 文胸 </td>
+									<td>
+										50.00 </td>
+									<td>
+										50.00 </td>
+									<td>
+										50.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="275" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：17999）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:绿色;尺码:70A;</td>
+													<td>1999</td>
+												</tr>
+												<tr>
+													<td>颜色分类:绿色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:绿色;尺码:70C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:绿色;尺码:75A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:绿色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:绿色;尺码:75C;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:绿色;尺码:80A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:绿色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:绿色;尺码:80C;</td>
+													<td>2000</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="274">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000273</p>
+										<p>商家编码：gdjs-50-a-1#1f-57-856</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											时尚性感绣花女士无痕内衣套装 </p>
+										<p> 上传时间：2016-07-19 14:49 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										内衣 / 文胸套装 </td>
+									<td>
+										60.00 </td>
+									<td>
+										60.00 </td>
+									<td>
+										60.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="274" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：31999）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:70B;</td>
+													<td>1999</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:酒红色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:酒红色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:酒红色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:酒红色;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:宝蓝色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:宝蓝色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:宝蓝色;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:紫罗兰;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:紫罗兰;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:紫罗兰;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:紫罗兰;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:宝蓝色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="273">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000272</p>
+										<p>商家编码：gdjs-33-a-2#01-a-665</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											简约无痕美背聚拢按摩女士文胸 </p>
+										<p> 上传时间：2016-07-19 14:49 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										内衣 / 文胸 </td>
+									<td>
+										43.00 </td>
+									<td>
+										43.00 </td>
+									<td>
+										43.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="273" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：17999）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:70B;</td>
+													<td>1999</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:透明;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:橘粉色;尺码:70B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:橘粉色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:橘粉色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="272">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000271</p>
+										<p>商家编码：gdjs-29-a-2#01-a-8813</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											舒适透气蕾丝镂空女士文胸套装 </p>
+										<p> 上传时间：2016-07-19 14:49 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										内衣 / 文胸套装 </td>
+									<td>
+										39.00 </td>
+									<td>
+										39.00 </td>
+									<td>
+										39.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="272" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：35997）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:75A;</td>
+													<td>1998</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:80A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:85A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:黑色;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:绿色;尺码:75A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:绿色;尺码:75B;</td>
+													<td>1999</td>
+												</tr>
+												<tr>
+													<td>颜色分类:绿色;尺码:80A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:绿色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:绿色;尺码:85A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:绿色;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:蓝色;尺码:75A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:蓝色;尺码:75B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:蓝色;尺码:80A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:蓝色;尺码:80B;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:蓝色;尺码:85A;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:蓝色;尺码:85B;</td>
+													<td>2000</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="checkbox_goods_id choose" value="271">
+
+									</td>
+									<td>
+										<i class="glyphicon glyphicon-plus-sign sku_tab"></i>
+									</td>
+									<td>
+										<p>商品ID:1000270</p>
+										<p>商家编码：gd-30-a-4#442-b-1865</p>
+									</td>
+									<td style="width:30px;"><img class="table_img" src="">
+									</td>
+									<td>
+										<p>
+											韩版时尚潮流套装 </p>
+										<p> 上传时间：2016-07-19 14:49 上架时间：2016-07-19 15:49 </p>
+									</td>
+									<td>
+										女装 / 套装/学生校服/工作制服 / 时尚套装 </td>
+									<td>
+										40.00 </td>
+									<td>
+										40.00 </td>
+									<td>
+										40.00 </td>
+									<td>
+										已上架 </td>
+									<td>
+										<p>
+											<a class="off_goods_sale" data-id="271" href="#">下架</a>
+										</p>
+
+									</td>
+								</tr>
+								<tr class="hidden">
+									<td colspan="10">
+										<table class="table">
+											<tbody>
+												<tr>
+													<th>商品SKU属性</th>
+													<th>库存（合计：9999）</th>
+												</tr>
+												<tr>
+													<td>颜色分类:图片色;尺码:L;</td>
+													<td>1999</td>
+												</tr>
+												<tr>
+													<td>颜色分类:图片色;尺码:M;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:图片色;尺码:S;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:图片色;尺码:XL;</td>
+													<td>2000</td>
+												</tr>
+												<tr>
+													<td>颜色分类:图片色;尺码:XXL;</td>
+													<td>2000</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="box-footer">
+						<div class="left">
+							<form class="form-inline" id="pagesizeForm" action="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0.html" method="get">
+								<div class="form-group">
+									<label for="exampleInputName2">全选结果页:  </label><input type="checkbox" class="allGoods" name="allGoods" value="">
+								</div>
+								<div class="form-group">
+									<select name="pagesize" class="form-control input-xs pagesize">
+										<option value="20">20条</option>
+										<option value="50">50条</option>
+										<option value="100">100条</option>
+									</select>
+								</div>
+							</form>
+
+						</div>
+
+						<div class="right">
+							<div class="pagination">
+								<div class="row">
+									<ul>
+										<li class="rows">共<b>278</b>条</li>
+										<li><span class="current">1</span></li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/2.html">2</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/3.html">3</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/4.html">4</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/5.html">5</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/6.html">6</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/7.html">7</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/8.html">8</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/9.html">9</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/10.html">10</a>
+										</li>
+										<li>
+											<a class="num" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/11.html">11</a>
+										</li>
+										<li>
+											<a class="next" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/2.html">下一页</a>
+										</li>
+										<li>
+											<a class="end" href="/index.php/Home/Goods/index/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0/page/14.html">末页</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</section>
+		</div>
+		<!--wrapper end-->
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/app.min.js"></script>
+		<script type="text/javascript" src="js/moment.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"> </script>
+		<script src="js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"> </script>
+		<script type="text/javascript" src="js/custom.js"></script>
+		<script type="text/javascript" src="layer/layer.js"></script>
+		<script type="text/javascript">
+	var refurbish = function(){
+ 		location.reload();
+ 	};
+$(document).ready(function(){
+	$('select[name="goods_search"]').change(function(event) {
+		/* Act on the event */
+		if ( '' == $(this).val() ){
+			$('input[name="search_word"]').attr('disabled', true);
+		}else{
+			$('input[name="search_word"]').removeAttr('disabled');
+		}
+	});
+
+	$('.import_price').click(function(event) {
+			layer.open({
+			  type: 2,
+			  area: ['500px', '150px'],
+			  fix: false, //不固定
+			  maxmin: true,
+			  content:"/index.php/Home/goods/importPrice.html",
+			  title: '导入价格'
+			});
+			return false;
+	});
+
+	//单个商品上架
+	$('.goods_sale').click(function(event) {
+		var postData = new Object(),
+			postUrl  = "/index.php/Home/goods/goodsSaleAjax.html";
+		postData.goods_id = $(this).data('id');
+		layer.confirm('你确定要上架么？',{btn:['确认','取消']},
+		 	function(index){
+		 		layer.close(index);
+				/* Act on the event */
+				$.post(postUrl, postData, function(data, textStatus, xhr) {
+					/*optional stuff to do after success */
+						layer.open({
+							  content: data.message,
+							  scrollbar: false,
+							  yes: function(index){
+								   layer.close(index);
+								   if( 1 == data.status ){
+								   		location.reload();
+								   }
+							  }
+						});
+				},'json');
+			},function(index){
+				layer.close(index);
+				return false;
+			});
+		return false;
+	});
+
+
+
+	//单个商品下架
+	$('.off_goods_sale').click(function(event) {
+		/* Act on the event */
+		var postData = new Object(),
+			postUrl  = "/index.php/Home/goods/goodsOffSaleAjax.html";
+		postData.goods_id = $(this).data('id');
+		layer.confirm('你确定要下架么？',{btn:['确认','取消']},
+				 	function(index){
+				 		layer.close(index);		
+						$.post(postUrl, postData, function(data, textStatus, xhr) {
+							/*optional stuff to do after success */
+
+								layer.open({
+									  content: data.message,
+									  scrollbar: false,
+									  yes: function(index){
+										   layer.close(index);
+										   if( 1 == data.status ){
+										   		location.reload();
+										   }
+									  }
+								});
+						},'json');
+						return false;
+						},function(index){
+				layer.close(index);
+			});
+		return false;
+	});
+
+
+	//单个商品取消
+	$('.cancel_goods_sale').click(function(event) {
+		var postData = new Object(),
+			postUrl  = "/index.php/Home/goods/goodsCancelSale.html";
+			postData.goods_id = $(this).data('id');
+			layer.confirm('你确定要取消么？',{btn:['确认','取消']},
+		 	function(index){
+		 		layer.close(index);
+				$.post(postUrl, postData, function(data, textStatus, xhr) {
+					/*optional stuff to do after success */
+						layer.open({
+							  content: data.message,
+							  scrollbar: false,
+							  yes: function(index){
+								   layer.close(index);
+								   if( 1 == data.status ){
+								   		location.reload();
+								   }
+							  }
+						});
+				},'json');
+				return false;	
+			},function(index){
+				layer.close(index);
+				return false;
+			});		
+	});
+
+
+
+	//删除单个商品
+	$('.goods_delete').click(function(event) {
+		var postData = new Object(),
+			postUrl  = "/index.php/Home/goods/goodsDelete.html";
+			postData.goods_id = $(this).data('id');
+			layer.confirm('你确定要删除么？',{btn:['确认','取消']},
+		 	function(index){
+		 		layer.close(index);
+
+				$.post(postUrl, postData, function(data, textStatus, xhr) {
+					/*optional stuff to do after success */
+						layer.open({
+							  content: data.message,
+							  scrollbar: false,
+							  yes: function(index){
+								   layer.close(index);
+								   if( 1 == data.status ){
+								   		location.reload();
+								   }
+							  }
+						});
+				},'json');
+				return false;	
+			},function(index){
+				layer.close(index);
+				return false;
+			});
+			return false;			
+	});
+
+
+
+	var goodsDeleteBatch = function( mPostData ){
+		var postUrl  = "/index.php/Home/goods/goodsDeleteBatch/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0.html";
+		$.post( postUrl, mPostData, function(data, textStatus, xhr) {
+			/*optional stuff to do after success */
+				layer.open({
+					  content: data.message,
+					  scrollbar: false,
+					  yes: function(index){
+						   layer.close(index);
+						   if( 1 == data.status ){
+						   		location.reload();
+						   }
+					  }
+				});
+		},'json');
+	};
+
+	/**
+	 * 商品批量删除ajax操作
+	 */
+	$('#goods_delete_batch').click(function(event) {
+		var postData = new Object();
+		postData = getPostData();
+
+		if ( false == postData ){
+			layer.alert('请选择商品', {icon: 6});
+			return false;
+		}
+		layer.confirm('确定需要删除商品么？',{btn:['确认','取消']},
+		 	function(index){
+		 		goodsDeleteBatch(postData);
+			},function(index){
+				layer.close(index);
+			}
+		);
+		return false;		
+	});
+
+
+
+	var passed = function( mPostData ){
+		postUrl = "/index.php/Home/goods/goodsPassed.html";
+		$.post(postUrl , mPostData, function(data, textStatus, xhr) {
+			/*optional stuff to do after success */
+				layer.open({
+					  content: data.message,
+					  scrollbar: false,
+					  yes: function(index){
+						   layer.close(index);
+						   if( 1 == data.status ){
+						   		location.reload();
+						   }
+					  }
+				});
+		},'json');		
+	};
+
+	$('.passed').click(function(event) {
+		var postData = new Object();
+			postData.goods_id = $(this).data('id');
+		layer.confirm('请选择是通过或拒绝审核', {
+  			btn: ['通过','拒绝'] //按钮
+		},function(){
+			postData.goods_status = 3;
+			passed(postData);
+		},function(){
+			postData.goods_status = 2;
+			passed(postData);
+		});
+		return false;
+	});
+
+
+
+	var passedBatch = function( mPostData ){
+		var postUrl  = "/index.php/Home/goods/passedBatch/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0.html";
+		$.post( postUrl, mPostData, function(data, textStatus, xhr) {
+			/*optional stuff to do after success */
+				layer.open({
+					  content: data.message,
+					  scrollbar: false,
+					  yes: function(index){
+						   layer.close(index);
+						   if( 1 == data.status ){
+						   		location.reload();
+						   }
+					  }
+				});
+		},'json');
+	};
+
+	/**
+	 * 商品批量审核ajax操作
+	 */
+	$('#passed_batch').click(function(event) {
+		var postData = new Object();
+		postData = getPostData();
+		if( postData == false ){
+			layer.alert('请选择商品', {icon: 6});
+			return false;
+		}
+		layer.confirm('请选择是通过或拒绝审核',{btn:['通过','拒绝']},
+		 	function(index){
+		 		postData.goods_status = 3;
+		 		passedBatch(postData);
+			},function(){
+				postData.goods_status = 2;
+				passedBatch(postData);
+			}
+		);
+		return false;	
+	});
+
+
+	var cancelPassedBatch = function( mPostData ){
+		var postUrl  = "/index.php/Home/goods/cancelPassedBatch/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0.html";
+		$.post(postUrl , mPostData, function(data, textStatus, xhr) {
+			/*optional stuff to do after success */
+				layer.open({
+					  content: data.message,
+					  scrollbar: false,
+					  yes: function(index){
+						   layer.close(index);
+						   if( 1 == data.status ){
+						   		location.reload();
+						   }
+					  }
+				});
+		},'json');	
+	};
+
+
+	var offGoodsSaleBatch = function( mPostData ){
+		var postUrl  = "/index.php/Home/goods/offGoodsSaleBatch/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0.html";
+		$.post(postUrl , mPostData, function(data, textStatus, xhr) {
+			/*optional stuff to do after success */
+				layer.open({
+					  content: data.message,
+					  scrollbar: false,
+					  yes: function(index){
+						   layer.close(index);
+						   if( 1 == data.status ){
+						   		location.reload();
+						   }
+					  }
+				});
+		},'json');	
+	};
+
+
+	/**
+	 * 商品批量下架ajax操作
+	 */
+	$('#off_goods_sale_batch').click(function(event) {
+		var postData = new Object();
+		postData = getPostData();
+		if ( false == postData ){
+			layer.alert('请选择商品', {icon: 6});
+			return false;
+		}
+		layer.confirm('您确定要将已选的商品下架么？',{btn:['确认','取消']},
+		 	function(index){
+		 		offGoodsSaleBatch(postData);
+			},function(index){
+				layer.close(index);
+			}
+		);
+		return false;	
+	});	
+
+	/**
+	 * 商品批量取消ajax操作
+	 */
+	$('#cancel_passed_batch').click(function(event) {
+		var postData = new Object();
+
+		postData = getPostData();
+
+		if ( false == postData ){
+			layer.alert('请选择商品', {icon: 6});
+			return false;
+		}
+		layer.confirm('确定需要取消审核么？',{btn:['确认','取消']},
+		 	function(index){
+		 		cancelPassedBatch(postData);
+			},function(index){
+				layer.close(index);
+			}
+		);
+		return false;	
+	});
+
+
+
+	var updateGoodsSaleBatch = function( mPostData ){
+		var postUrl  = "/index.php/Home/goods/updateGoodsSaleBatch/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0.html";
+		$.post(postUrl , mPostData, function(data, textStatus, xhr) {
+			/*optional stuff to do after success */
+				layer.open({
+					  content: data.message,
+					  scrollbar: false,
+					  yes: function(index){
+						   layer.close(index);
+						   if( 1 == data.status ){
+						   		location.reload();
+						   }
+					  }
+				});
+		},'json');			
+	}
+
+	/**
+	 * 商品批量上架ajax操作
+	 */
+	$('#update_goods_sale_batch').click(function(event) {
+		var postData = new Object();
+		postData = getPostData();
+		if ( false == postData ){
+			layer.alert('请选择商品', {icon: 6});
+			return false;
+		}
+		layer.confirm('确定要将商品上架审核么',{btn:['确认','取消']},
+		 	function(index){
+		 		updateGoodsSaleBatch(postData);
+			},function(index){
+				layer.close(index);
+			}
+		);
+		return false;	
+	});
+
+
+	$('.cancel_passed').click(function(event) {
+		/* Act on the event */
+		var postData = new Object(),
+			postUrl = "/index.php/Home/goods/goodsPassed.html";
+		postData.goods_id = $(this).data('id');
+		$.post(postUrl , postData, function(data, textStatus, xhr) {
+			/*optional stuff to do after success */
+				layer.open({
+					  content: data.message,
+					  scrollbar: false,
+					  yes: function(index){
+						   layer.close(index);
+						   if( 1 == data.status ){
+						   		location.reload();
+						   }
+					  }
+				});
+		},'json');
+		return false;
+	});
+
+	$('.sort').change(function(){
+		$('#sortForm').submit();
+	});
+
+	$('.allGoods').click(function(event) {
+		$('input[name="allData"]').val($(this).is(':checked')?1:0);
+	});
+
+	//导出商品价格
+	$("#exportPriceExecl").click(function(event) {
+		/* Act on the event */
+		if( $('.allGoods').is(':checked') ){
+			$("input[name='allData']").val(1)
+		}else{
+			$("#dataTable").find('.checkbox_goods_id:checked').each(function(index, element) {
+				var cloneInput = $('.explode_goods_input:first()').clone();
+				cloneInput.val( $(this).val() ).appendTo('.btnBox')
+			});
+			if( 1 == $('.explode_goods_input').length ){
+				layer.alert('请选择商品', {icon: 6});
+				return false;
+			}
+		}
+		$('.explode_goods_input:first()').remove();
+		$('input[name="explode_goods"]').val(1);
+		$("#searchForm").submit();
+		$('input[name="explode_goods"]').val(0);
+		return false;
+	});
+
+	var getPostData = function(){
+		var postData = new Object();
+		postData.alldata = 0;
+		var goods = new Array();
+		if( $('.allGoods').is(":checked") ){
+			postData.alldata = 1;
+		}else{
+			$("#dataTable").find('.checkbox_goods_id:checked').each(function(index, element) {
+            	goods[index] = $(this).val();
+        	});
+        	if( 0 == goods.length ){
+        		return false;
+        	}
+		}
+		postData.goods = goods;
+		return postData;
+	};
+
+
+
+	//商品上架
+	$('＃update_goods_sale').click(function(){
+		var postUrl  = "/index.php/Home/goods/goodsSale/group_id/1/menu_id/1/second_menu_id/4/explodeGoods/0.html";
+		var postData = getPostData();
+		if( 0 == postData.alldata ){
+			if( 0 == postData.goods.length )return false;
+		}
+		$.post( postUrl ,postData ,function(rData){
+				layer.open({
+					  content: rData.message,
+					  scrollbar: false,
+					  yes: function(index){
+						   layer.close(index);
+						   if( 1 == rData.status ){
+						   		location.reload();
+						   }
+					  }
+				});
+		},'json');
+		return false;
+	});
+
+	$('.sku_tab').click(function(event) {
+		/* Act on the event */
+		if( $(this).hasClass('glyphicon-plus-sign') ){
+			$(this).removeClass('glyphicon-plus-sign');
+			$(this).addClass('glyphicon-minus-sign');
+			$(this).parents("tr").next().removeClass('hidden');
+		}else{
+			$(this).removeClass('glyphicon-minus-sign');
+			$(this).addClass('glyphicon-plus-sign');
+			$(this).parents("tr").next().addClass('hidden');
+		}
+	});
+});
+
+
+
+</script>
+	</body>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <block name="title"></block>
+    <meta name="description" content="{if $page_description}{$page_description}{/if}{$site_info.SHOP_DESCRIPTION}" />
+    <link rel="stylesheet" href="__STATIC__/home/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__STATIC__/home/css/AdminLTE.css">
+    <link rel="stylesheet" href="__STATIC__/home/css/font-awesome.min.css">
+    <!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="__STATIC__/home/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="__STATIC__/home/css/skins/skin-red.css">
+    <link rel="stylesheet" href="__STATIC__/home/css/skins/skin-red-light.css">
+    <link rel="stylesheet" href="__STATIC__/home/css/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet" href="__STATIC__/webuploader/css/webuploader.css">
+    <block name="headerCss"></block>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/home/css/my.css">
+    <block name="headerJs"></block>
+</head>
+<body>
+    <div class="box-body">
+        <div class="row" >
+            <div class="col-xs-3">
+                <div id="uploader" class="wu-example">
+                    <!--用来存放文件信息-->
+                    <div class="btns">
+                        <div id="picker">选择文件</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-5">
+                <select class="form-control" name="shop_id">
+                    <option value="">选择平台</option>
+                    <volist name='shop' id='vo'>
+                        <option value="{$vo.id}">{$vo.shop_name}</option>
+                    </volist>
+                </select>
+            </div>
+
+            <div class="col-xs-3">
+                <button id="ctlBtn" class="btn btn-default">开始上传</button>
+            </div>
+        </div>
+
+        <div class="row filelist">
+
+            <div class="col-xs-12"></div>
+        </div>
+    </div>
+</body>
+
+<script src="__STATIC__/home/js/plugins/jQuery-2.2.0.min.js"></script>
+<script src="__STATIC__/home/js/bootstrap.min.js"></script>
+<script src="__STATIC__/home/js/app.min.js"></script> 
+<script type="text/javascript" src="__STATIC__/webuploader/js/webuploader.min.js"></script>
+<script type="text/javascript" src="__STATIC__/layer/layer.js"></script>
+</html>
+
+<script type="text/javascript">
+
+    $(document).ready(function ($) {
+        $('.create').click(function (event) {
+            /* Act on the event */
+            var postData = new Object(),
+                    postUrl = "{:U('goods/goodsShop',I('get.'))}",
+                    shop = new Array();
+            $('.shop:checked').each(function (index, el) {
+                shop[index] = $(this).val();
+            });
+            postData.shop = shop;
+            if (0 == postData.shop.length) {
+                layer.alert('请选择要发布的平台！')
+            }
+            $.post(postUrl, postData, function (data, textStatus, xhr) {
+                if (1 == data.status) {
+                    parent.refurbish();
+                }
+            }, 'json');
+            return false;
+        });
+
+        var uploader = WebUploader.create({
+            // swf文件路径
+            swf: '/js/Uploader.swf',
+            // 文件接收服务端。
+            server: "{:U('goods/importPriceAdd')}",
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#picker',
+            // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+            resize: false,
+            threads: 5
+        })
+
+
+        $list = $('.filelist');
+        uploader.on('fileQueued', function (file) {
+            $list.append('<div id="' + file.id + '" class="item col-xs-12">' +
+                    file.name +
+                    '<span class="state">等待上传...</span>' +
+                    '</div>');
+        });
+
+        uploader.on('uploadBeforeSend', function (object, data, headers) {
+            // do some things.
+            data.shop_id = $("select[name='shop_id']").val();
+        });
+
+        $('#ctlBtn').click(function (event) {
+            if (0 == uploader.getFiles().length) {
+                layer.alert('请选择要导入价格表！', {icon: 6});
+                return false;
+            }
+            /* Act on the event */
+            if ('' == $("select[name='shop_id']").val()) {
+                layer.alert('请选择平台！', {icon: 6});
+                return false;
+            }
+            uploader.upload();
+        });
+
+        uploader.on('uploadProgress', function (file, percentage) {
+            var $li = $('#' + file.id);
+            $li.find('span.state').text('上传中');
+        });
+
+        uploader.on('uploadSuccess', function (file, response) {
+            $('#' + file.id).find('span.state').text('已上传成功');
+            if (0 == uploader.getStats().queueNum) {
+                layer.open({
+                    content: response.message,
+                    scrollbar: false,
+                    yes: function (index) {
+                        layer.close(index);
+                        parent.refurbish();
+                    }
+                });
+            }
+        });
+
+        // 文件上传失败，显示上传出错。
+        uploader.on('uploadError', function (file) {
+            $('#' + file.id).find('span.state').text('上传失败');
+            layer.alert('上传失败', {icon: 6});
+        });
+
+    });
+
+</script>

@@ -1,0 +1,95 @@
+<ol class="breadcrumb">
+    <li><i class="fa fa-dashboard"></i> 敏感词</li>
+    <li>修改</li>
+</ol> 				
+
+<div class="dalog-modal" id="">
+    <h3>修改敏感词</h3>
+    <div class="g-modal-content">
+        <form class="form-inline" method="post" action="{:U('system/pageManage/editSensitive')}">
+            <div class="row">
+                <label for="exampleInputName2">内容:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" class="form-control input-xs" value="{$list.sensitive}" maxlength="20"   placeholder="(20个字符以内)" name="sensitive">
+            </div>
+            <!--div class="row">
+                <label for="exampleInputName2">类型:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select class="form-control input-xs" name="type">
+                    <option value="政治" {:xeq($list['type'],'政治','selected')}>政治</option>
+                    <option value="暴力" {:xeq($list['type'],'暴力','selected')}>暴力</option>
+                    <option value="涉黄" {:xeq($list['type'],'涉黄','selected')}>涉黄</option>
+                    <option value="赌博" {:xeq($list['type'],'赌博','selected')}>赌博</option>
+                </select>
+            </div>				
+            <div class="row">
+                <label for="exampleInputName2">等级:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select class="form-control input-xs" name="grade">
+                    <option value="1" {:xeq($list['grade'],1,'selected')}>1</option>
+                    <option value="2" {:xeq($list['grade'],2,'selected')}>2</option>
+                    <option value="3"{:xeq($list['grade'],3,'selected')}>3</option>
+                </select>
+            </div-->
+            <div style="margin: 20px 0;font-size: 18px;text-align: left;padding-left: 20px;">
+                <label for="exampleInputName2">是否可用:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                是<input type="radio" class="" value="1"  name="status" <eq name="list.status" value="1">checked="checked"</eq> >&nbsp;&nbsp;&nbsp;&nbsp;
+                否<input type="radio" class="" value="-1"  name="status" <eq name="list.status" value="-1">checked="checked"</eq>>
+            </div>
+            {__TOKEN__}
+            <input name="id" type="hidden" value="{$list.id}" />
+            <div class="sub-btn"><input type="submit" class="btn btn-primary sumb btn1" value="确定"/><input type="button" class="btn btn-primary sumb btn-cancel" value="取消"/></div>
+        </form>
+    </div>
+</div>
+<style>
+.dalog-modal{font-family: "microsoft yahei"; width: 500px;margin: 0 auto;text-align: center;padding: 10px;border: 1px solid #ECECEC;}
+ .dalog-modal h3{font-family: "microsoft yahei"; margin: 0; width: 100%;height: 50px;line-height: 50px;color: #fff;background: #f39c12;}   
+    .s-date ul, .s-date ol, .s-date li {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }	
+    .sub-btn input{margin-left: 20px;}
+    .row{font-size: 18px;}
+    .row .form-control.input-xs{width: 300px;height: 30px;line-height: 30px;font-size: 18px;}
+    .modal-body p{text-align: center}
+    .modal-body p span{margin-right: 20px}
+</style>
+<script>
+            pager({$total});
+
+            $('#date1').calendar({
+                trigger: '.e-date1',
+                zIndex: 999,
+                format: 'yyyy-mm-dd',
+            });
+            $('#date2').calendar({
+                trigger: '.e-date2',
+                zIndex: 999,
+                format: 'yyyy-mm-dd',
+            });
+
+            var q = $('#e-modify');
+
+            $('.btn-confirm').click(function () {
+
+                $.ajax({
+                    type: 'post', url: '{:U("system/index/edit")}', data: q.find('form').serialize(), async: false,
+                    success: function (e) {
+                        switch (e.status) {
+                            case 'error':
+                                X.notice(e.msg);
+                                break;
+                            case 'failed':
+                                X.notice(e.msg);
+                                break;
+                            case 'success':
+                                X.notice(e.msg);
+                                window.location.reload();
+                                break;
+                            default:
+                                X.notice('未知系统错误');
+                                break;
+                        }
+                    }
+                })
+            })
+</script>

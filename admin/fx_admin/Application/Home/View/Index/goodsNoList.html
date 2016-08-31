@@ -1,0 +1,188 @@
+  <extend name="Public/base" />
+  <block name="headerCss">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/webuploader/css/webuploader.css">
+  </block>
+  <block name="content">
+  	<div class="content-wrapper">
+	<section class="content">
+     <ol class="breadcrumb">
+	        <li><a href="#"><i class="fa fa-dashboard"></i> 位置</a></li>
+	        <li><a href="#">商品</a></li>
+	        <li class="active">商品列表</li>
+	</ol>
+
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Responsive Hover Table</h3>
+
+              <div class="box-tools">
+		            <div class="form-group order">
+			   			<input type="submit" name="" class=" btn btn-default form-control " value="搜索">
+			  		</div>
+              		<div class="form-group order">
+			 			 <input type="text" name="" class="form-control" placeholder="请输入搜索内容">
+			 		</div>	
+			 		<div class="form-group order">
+			 			 <select class="form-control">
+				            <option>选择排序</option>
+				            <option>option 2</option>
+			       		</select>
+			 		</div> 
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+	              <table class="table table-hover">
+	              <tbody>
+				<tr>
+	  				<th align="middle"><input type="checkbox" name=""></th>
+	  				<th>商家ID/最新商家编码</th>
+	  				<th>主图/和名称</th>
+	  				<th>商品类目</th>
+	  				<th>成本价</th>
+	  				<th>分销价</th>
+	  				<th>市场价</th>
+	  				<th>商品状态</th>
+	  				<th>操作</th>
+  				</tr>
+					<tr>
+						<td><input type="checkbox" name=""></td>
+						<td>
+							<p>商品ID:1354654</p>
+							<p>商家编码：b-2#2123-1601</p>
+						</td>
+						<td>
+							韩版新款渐变色修身显瘦破洞小脚牛仔女裤
+						</td>
+						<td>
+							类目:服饰/女装/连衣裙
+						</td>
+						<td>
+							35$
+						</td>
+						<td>
+							50$
+						</td>
+						<td>
+							100$
+						</td>
+						<td>
+							待审核
+						</td>
+						<td>
+							<p>通过</p>
+							<p>取消</p>
+						</td>	
+					</tr>
+					<tr>
+						<td><input type="checkbox" name=""></td>
+						<td>
+							<p>商品ID:1354654</p>
+							<p>商家编码：b-2#2123-1601</p>
+						</td>
+						<td>
+							韩版新款渐变色修身显瘦破洞小脚牛仔女裤
+						</td>
+						<td>
+							类目:服饰/女装/连衣裙
+						</td>
+						<td>
+							35$
+						</td>
+						<td>
+							50$
+						</td>
+						<td>
+							100$
+						</td>
+						<td>
+							待审核
+						</td>
+						<td>
+							<p>通过</p>
+							<p>取消</p>
+						</td>	
+					</tr>
+					<tr>
+						<td><input type="checkbox" name=""></td>
+						<td>
+							<p>商品ID:1354654</p>
+							<p>商家编码：b-2#2123-1601</p>
+						</td>
+						<td>
+							韩版新款渐变色修身显瘦破洞小脚牛仔女裤
+						</td>
+						<td>
+							类目:服饰/女装/连衣裙
+						</td>
+						<td>
+							35$
+						</td>
+						<td>
+							50$
+						</td>
+						<td>
+							100$
+						</td>
+						<td>
+							待审核
+						</td>
+						<td>
+							<p>通过</p>
+							<p>取消</p>
+						</td>	
+					</tr>
+				</tbody>
+	          </table>
+            </div>
+            <!-- /.box-body -->
+          <!-- /.box -->
+        </div>
+        </section> 
+  	</div>    
+  </block>
+  <block name="footerJs">
+  	<script type="text/javascript" src="__STATIC__/webuploader/js/webuploader.min.js"></script>
+  	<script type="text/javascript">
+		 var uploader = WebUploader.create({
+
+		    // swf文件路径
+		    swf: '/js/Uploader.swf',
+
+		    // 文件接收服务端。
+		    server: "{:U('Goods/addImportGoods')}",
+
+		    // 选择文件的按钮。可选。
+		    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+		    pick: '#picker',
+
+		    // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+		    resize: false
+		}) 	
+
+
+		var $list = $(".uploader-list"),
+			$btn  = $('#ctlBtn');
+		// 当有文件被添加进队列的时候
+		uploader.on( 'fileQueued', function( file ) {
+		    $list.append( '<div id="' + file.id + '" class="item">' +
+		        '<h4 class="info">' + file.name + '</h4>' +
+		        '<p class="state">等待上传...</p>' +
+		    '</div>' );
+		});	
+
+		$btn.on( 'click', function() {
+	         uploader.upload();
+	         return false;
+	    });		
+
+		uploader.on( 'uploadSuccess', function( file , response ) {
+			if( 1 == response.status ){
+				alert( response.message );
+			}
+		});
+
+
+
+  	</script>
+  </block>

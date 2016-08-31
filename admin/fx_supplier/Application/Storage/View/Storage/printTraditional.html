@@ -1,0 +1,12 @@
+{__NOLAYOUT__}
+<div id="printTraditional">
+<volist name="order" key="key" id="vo" >
+<div style="position:relative;width:{$vo.property.2.@attributes.value}mm;height:{$vo.property.1.@attributes.value}mm;" class="template_one" data-orderId ="{$vo.order_id}">
+	<volist name="vo.template" id="te" >
+		<div style="position:absolute;height:{$te.@attributes.height}px;width:{$te.@attributes.width}px;top:{$te.@attributes.y}px;left:{$te.@attributes.x}px;">{$te.@attributes._text}
+		</div>
+	</volist>
+</div>
+</volist>
+</div>
+

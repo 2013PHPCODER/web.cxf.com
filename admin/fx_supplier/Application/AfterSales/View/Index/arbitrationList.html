@@ -1,0 +1,218 @@
+<style>
+	.btn-active{color:white;background: #f39c12; padding: 2px 5px;border-radius: 5px}
+	.btn-active:hover{background: #f2c374;color: white}
+</style>
+
+<section class="content">
+	<ol class="breadcrumb">
+		<li><i class="fa fa-dashboard"></i> 位置</li>
+		<li>
+			售后管理	        
+		</li>
+		<li>仲裁结果</li>
+	</ol>
+
+	<div class="box box-warning">
+		<div class="box-header with-border">
+			<div class="box-title">
+				<ul class="choose_ul" id="e-menu">
+					<li>
+						<a class="" href="{:U('afterSales/index/arbitrationList')}">所有仲裁</a>
+					</li>
+					<li>
+						<a class="" href="{:U('afterSales/index/arbitrationList', ['return'=>6])}"  data-return="6">待补款</a>
+					</li>
+					<li>
+						<a class="" href="{:U('afterSales/index/arbitrationList', ['refund'=>5, 'return'=>5])}"  data-refund="5" data-return="5">待退款</a>
+					</li>					
+					<li>
+						<a class="" href="{:U('afterSales/index/arbitrationList', ['refund'=>2, 'return'=>2])}"  data-refund="2" data-return="2">已拒绝</a>
+					</li>
+				</ul>
+			</div>
+			<div class="box-tools pull-left"></div>
+		</div>
+		<div class="box-body">
+			<div class="row">
+				<form class="form-inline" action="{:U('afterSales/index/arbitrationList')}" method="get" id="aftersale-form">
+						<div class="form-group ">
+							<label for="exampleInputName2">售后理由:</label>
+							<select class="form-control input-xs" name="condition[refund_reason]">
+								<option value="">全部</option>
+								<option value="1">七天无理由</option>
+								<option value="2">质量问题</option>
+								<option value="3">其他原因</option>
+							</select>
+						</div>
+						<div class="form-group ">
+							<label for="exampleInputName2">售后类别:</label>
+							<select class="form-control input-xs" name="condition[cus_type]">
+								<option value="">全部</option>
+								<option value="2">退款</option>
+								<option value="1">退货退款</option>
+							</select>
+						</div>
+						<div class="row">
+							<div class="form-group">
+								<label>申请时间:</label>
+								<input type="text" class="form-control input-xs" value="" placeholder="开始时间" name="condition[addtime][0]" onclick="WdatePicker()"></div>
+								<div class="form-group">
+									<label>结束时间:</label>
+									<input type="text" class="form-control input-xs" value="" placeholder="结束时间" name="condition[addtime][1]" onclick="WdatePicker()"></div>
+									<div class="form-group">
+										<select class="form-control input-xs" name="condition[key_type]">
+											<option value="">选择关键字</option>
+											<option value="id">售后单号</option>
+											<option value="receiver_name">收件人姓名</option>
+											<option value="receiver_mobile">收件人电话</option>
+											<option value="shipping_code">退货物流单号</option>
+											<option value="buyer_goods_no">商家编码</option>
+											<option value="goods_id"> 商品ID</option>
+											<option value="order_id">订单号</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<input type="text" name="condition[key]"  class="form-control input-xs" value="" placeholder="商品名称、货号、收件人姓名、电话">
+									</div>
+									<div class="form-group">
+										<input type="hidden" name="return">
+										<input type="hidden" name="refund">
+										<input type="button" class="btn btn-block btn-warning btn-xs" value="搜索" id="btn-search">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">&nbsp;</h3>
+	<!-- 			批量操作				<div class="box-tools">
+									<div class="input-group order ">
+										<ul>
+											<li>
+												<a href="javascript:" class="btn btn-default btn-xs cusConfirm e-btn-batch">批量审核</a>
+											</li>
+
+										</ul>
+									</div>
+								</div> -->
+							</form>	
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body table-responsive no-padding">
+							<table class="table table-hover">
+								<tr>
+<!-- 									<th align="middle">
+										<input type="checkbox" id="checkAll">
+									</th> -->
+									<th>售后单号</th>
+									<th>售后时间</th>
+									<th>订单号</th>
+									<th>收件人姓名</th>
+									<th>收件人电话</th>						
+									<th>售后类别</th>
+									<th>售后理由</th>
+									<th width="100" style="word-break:break-all">售后留言</th>
+									<th>退货物流单号</th>
+									<th>商品ID</th>
+									<th>商家编码</th>						
+									<th>售后状态</th>
+									<th>操作</th>
+								</tr>
+								<foreach name="list" item="q">
+									<tr>
+										<!-- <td><input type="checkbox" class="choose" name="cus_order_id[]" value="{$q.id}"></td> -->
+										<td>{$q.id}</td>
+										<td>{$q.addtime}</td>
+										<td><a target="_blank" href="{:U('Orders/orders/orderDetail', ['order_id'=>$q['order_id']])}">{$q.order_sn}</a></td>
+										<td>{$q.receiver_name}</td>
+										<td>{$q.receiver_mobile}</td>							
+										<td>{$q.cus_type}</td>
+										<td>{$q.refund_reason}</td>
+										<td>{$q.remark}</td>
+										<td>{$q.shipping_code}</td>
+										<td>{$q.goods_id}</td>
+										<td>{$q.buyer_goods_no}</td>							
+										<td>{$q.status}</td>
+										<td>
+											<if condition="$q['is_arbitration']">
+												<p><a href="{:U('/afterSales/index/detailArbitration', ['id'=>$q['id'],'order_id'=>$q['order_id']])}" target="_blank">详情</a>&nbsp;</p>
+												<else/>
+												<p><a href="{:U('/afterSales/index/detail', ['id'=>$q['id'],'order_id'=>$q['order_id']])}" target="_blank">详情</a>&nbsp;</p>											
+											</if>
+<!-- 											<if condition="$q['operator']">
+												<p><a href="#e-modal" data-id="{$q.id}" data-type="{$q['type']}" data-toggle="modal" class="e-single">审核</a></p>
+											</if>	 -->
+										</td>
+									</tr>	
+								</foreach>				
+							</table>
+						</div>
+						<div class="box-footer">
+							<div id="kkpager"></div>
+						</div>
+					</div>
+				</div>		
+			</section>
+
+
+<!-- <div class="modal fade" id="e-modal" data-backdrop="static" data-keyboard="false"><div class="modal-dialog"><div class="modal-content row">
+	<div class="modal-header col-sm-12">
+		<h4 class="center e-title">审核售后订单</h3>
+		</div>
+		<form class="modal-body" action="{:U('afterSales/index/changeStatus')}" method="post">
+			<h4>您需要确认该售后申请成立，或是拒绝该售后申请。</h4>
+			<div style="padding: 10% 30%">
+				<button class="btn btn-success e-btn-confirm ">确认</button>
+				<button class="btn btn-danger e-btn-cancel pull-right">拒绝</button>				
+			</div>
+			<input type="hidden" name="action" id="e-input-action" value="1">
+
+		</form> 
+		<div class="modal-footer col-sm-12">
+			<div class="front">
+
+				<button class="btn" data-dismiss="modal">关闭</button>
+			</div>
+		</div>
+</div></div></div>   -->	
+
+
+
+
+
+<script>
+	$("#btn-search").click(function(){					//搜索按钮
+		var href=$('#e-menu .btn-active').attr('href');
+		$(this).parents('form').attr('action', href);
+		$(this).parents('form').submit();
+	})
+
+		var path=window.location.pathname;
+		$('#e-menu').find('a').each(function(){
+			if ($(this).attr('href')==path) {
+				$(this).addClass('btn-active');
+				$('#aftersale-form input[name="return"]').val($(this).data('return'));
+				$('#aftersale-form input[name="refund"]').val($(this).data('refund'));				
+			};
+		});
+	pager({$total});
+
+
+	$('.e-btn-confirm').click(function(){
+		$('#e-modal #e-input-action').val(1);
+		$('#e-modal form').submit();
+	})
+	$('.e-btn-cancel').click(function(){
+		$('#e-modal #e-input-action').val(0);
+		$('#e-modal form').submit();
+	})
+
+	$('.e-single').click(function(){				//单个审核的数据处理
+		var form=$('#e-modal form');
+		form.find('input[name="id[]"]').remove();				//每次单审核必须清空之前数据
+		form.find('input[name="type[]"]').remove();
+		form.append('<input type="hidden" name="id[]" value="'+$(this).data('id')+'"/>');
+		form.append('<input type="hidden" name="type[]" value="'+$(this).data('type')+'"/>');		
+	})
+
+</script>

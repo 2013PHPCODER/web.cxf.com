@@ -1,0 +1,181 @@
+<style type="text/css">
+	.box-content{
+		border: 1px solid #555555;
+		padding: 15px 10px;
+		width: 800px;
+		position: relative;
+		font-family: "microsoft yahei";
+	}
+	.box-content h2{
+		margin: 0;
+	}
+	.box-content h2 h3{
+		margin: 0;
+		font-size: 14px;
+	}
+	.box-content>input{
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		color: #f39c12;
+	}
+	.box-content>p input{
+		width: 100px;
+	}
+	.sub-btn{
+		text-align: right;
+	}
+	.sub-btn .sumb{
+		height: 28px;
+		line-height: 28px;
+		margin: 0 6px;
+		padding: 0 15px;
+		border: 1px solid #dedede;
+		background-color: #f1f1f1;
+		color: #333;
+		border-radius: 2px;
+		font-weight: 400;
+		cursor: pointer;
+		text-decoration: none;	
+	}
+	.sumb{
+		height: 28px;
+		line-height: 28px;
+		margin: 0 6px;
+		padding: 0 15px;
+		border: 1px solid #dedede;
+		background-color: #f1f1f1;
+		color: #333;
+		border-radius: 2px;
+		font-weight: 400;
+		cursor: pointer;
+		text-decoration: none;	
+	}
+	.sub-btn .btn1{
+		border-color: #4898d5;
+		background-color: #2e8ded;
+		color: #fff;
+	}
+	.addMoney-p{display: none;}
+	.btn-confirm{display: none;}
+	.box-content input{position: relative;top: 0;right: 0}
+	.box-content label{color:red;}
+	.s-hide{display: none;}
+	.s-table{width: 100%;}
+
+	.s-thead span{font-weight: bold;display: inline-block; width: 140px}
+	.s-tbody .s-td{display: inline-block; width: 140px}
+	.s-grey{color: rgb(200,200,200);}
+</style>
+<div class="box-body">
+	<ol class="breadcrumb">
+		<li><i class="fa fa-dashboard"></i> 位置</li>
+		<li>
+			系统管理</li>
+			<li>财务设置</li>
+		</ol> 
+		<div>
+			<div class="row">
+				<div class="box-content">
+					<h2>收款账号</h2>
+
+					
+						<div class="s-table">
+							<div class="s-thead">
+								<span>收款平台</span>
+								<span>收款账号</span>
+								<span>收款人</span>
+								<span style="width:50px">操作</span>
+								<span style="width:200px">修改人</span>
+							</div>
+							<foreach name="list" item="q">
+								<form method="post" action="{:U('system/setting/editFinance')}">
+									<div class="s-tbody">
+										<span class="s-td">
+											<label>
+												<span>{$q.receiver_platform}</span>
+												<select name="platform" class="s-hide" data-platform="{$q.receiver_platform_code}">
+													<option value="1">支付宝</option>
+													<option value="2">银行卡</option>
+													<option value="3">微信</option>
+												</select>
+											</label>
+										</span>
+										<span class="s-td">
+											<label><span>{$q.receiver_account}</span><input type="text" name="account" value="{$q.receiver_account}" class="s-hide"></label>
+										</span>
+										<span class="s-td"> 
+											<label><span>{$q.receiver_name}</span><input type="text" name="name" value="{$q.receiver_name}" class="s-hide"></label>
+										</span>
+										
+										<span class="s-td" style="width:50px">		
+											<input type="hidden" name="id" value="{$q.id}">			
+											<input type="button" name="" class="box-content-btn btn-change" value="编辑" />
+											<input type="button" name="" class="box-content-btn btn-confirm" value="确认" />
+										</span>
+										<span class="s-td s-grey" style="width:200px">{$q.update_user}|{$q.update_time}</span>
+									</div>
+								</form>	
+							</foreach>							
+						</div>
+						<a class="addMoney sumb">新增</a>
+
+						<form class="addMoney-p" method="post" action="{:U('system/setting/addFinance')}" id="addForm">			
+							<p>
+								<select name="platform">
+									<option value="1">支付宝</option>
+									<option value="3">微信</option>
+									<option value="2">银行卡</option>
+								</select>
+							</p>
+							<p><input type="text" value="" placeholder="新增收款账号" name="account"></p>
+							<p><input type="text" value="" placeholder="收款人" name="name"></p>	
+							<a class="add-confirm sumb">确认</a><a class="add-cancel sumb">取消</a>		
+						</form>
+					</div>
+				</div>		
+			</div>
+		</div>
+		<script>
+			$('.btn-change').click(function(){
+				$(this).hide();
+				$(this).siblings('.btn-confirm').show();
+				$(this).parents('.s-tbody').find('label span').html('');
+				var a=$(this).parents('.s-tbody').find('select').data('platform');
+				console.log(a);
+				$(this).parents('.s-tbody').find('option[value="'+a+'"]').attr('selected', true);
+
+
+				$(this).parents('.s-tbody').find('.s-hide').show();
+
+			})
+			$('.btn-confirm').click(function(){
+				$(this).hide();
+				$(this).parents('form').submit();
+			})
+			$('.addMoney').click(function(){
+				$(this).hide();
+				$('.addMoney-p').show();
+			})
+			$('.add-cancel').click(function(){
+				$('.addMoney-p').hide();
+				$('.addMoney').show();
+			})
+			$('.add-confirm').click(function(){
+				var arr = []
+				$('#addForm input').each(function(){
+					arr.push($(this).val());
+				});
+				var html = '<p>'+arr[0]+'：<label>'+arr[1]+'</label>&nbsp;&nbsp;&nbsp;收款人：<label>'+arr[2]+'</label></p>'
+				var oo = true;
+				for(var i=0;i<arr.length;i++){
+					if(arr[i] == ''){oo=false}
+				}
+			if(arr.length>=2 && oo){
+				$('#addForm').submit();
+			}else{
+				X.notice('尚未填写完整',3)
+			}
+
+		})
+		</script>

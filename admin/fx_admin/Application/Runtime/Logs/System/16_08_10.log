@@ -1,0 +1,102 @@
+[ 2016-08-10T15:42:55+08:00 ] 127.0.0.1 /System/pageManage/editNews.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+SQL: SHOW COLUMNS FROM `fx_admin_logs` [ RunTime:0.0020s ]
+SQL: INSERT INTO `fx_admin_logs` (`admin_user_id`,`detail`,`module`,`add_time`) VALUES ('1','/System/PageManage/editNews | post:{\"id\":\"-1\"}','system','1470814975') [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `fx_article` [ RunTime:0.0030s ]
+SQL: SELECT `title`,`content` FROM `fx_article` WHERE `id` = -1 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `show_order` FROM `fx_article` WHERE `show_status` = 2  [ RunTime:0.0010s ]
+
+[ 2016-08-10T15:45:13+08:00 ] 127.0.0.1 /System/pageManage/editNews.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005000s ]
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+SQL: SHOW COLUMNS FROM `fx_admin_logs` [ RunTime:0.0020s ]
+SQL: INSERT INTO `fx_admin_logs` (`admin_user_id`,`detail`,`module`,`add_time`) VALUES ('1','/System/PageManage/editNews | post:{\"id\":\"-1\"}','system','1470815113') [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `fx_article` [ RunTime:0.0020s ]
+SQL: SELECT `title`,`content` FROM `fx_article` WHERE `id` = -1 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `show_order` FROM `fx_article` WHERE `show_status` = 2  [ RunTime:0.0010s ]
+
+[ 2016-08-10T15:46:19+08:00 ] 127.0.0.1 /System/pageManage/editNews.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+SQL: SHOW COLUMNS FROM `fx_admin_logs` [ RunTime:0.0020s ]
+SQL: INSERT INTO `fx_admin_logs` (`admin_user_id`,`detail`,`module`,`add_time`) VALUES ('1','/System/PageManage/editNews | post:{\"id\":\"32\"}','system','1470815179') [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `fx_article` [ RunTime:0.0010s ]
+SQL: SELECT `title`,`content` FROM `fx_article` WHERE `id` = 32 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `show_order` FROM `fx_article` WHERE `show_status` = 2  [ RunTime:0.0010s ]
+
+[ 2016-08-10T15:47:00+08:00 ] 127.0.0.1 /System/pageManage/editNews.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005000s ]
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+SQL: SHOW COLUMNS FROM `fx_admin_logs` [ RunTime:0.0020s ]
+SQL: INSERT INTO `fx_admin_logs` (`admin_user_id`,`detail`,`module`,`add_time`) VALUES ('1','/System/PageManage/editNews | post:{\"id\":\"32\"}','system','1470815220') [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `fx_article` [ RunTime:0.0020s ]
+SQL: SELECT `title`,`content` FROM `fx_article` WHERE `id` = 32 LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT `show_order` FROM `fx_article` WHERE `show_status` = 2  [ RunTime:0.0020s ]
+
+[ 2016-08-10T15:51:51+08:00 ] 127.0.0.1 /System/pageManage/editNews.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+SQL: SHOW COLUMNS FROM `fx_admin_logs` [ RunTime:0.0020s ]
+SQL: INSERT INTO `fx_admin_logs` (`admin_user_id`,`detail`,`module`,`add_time`) VALUES ('1','/System/PageManage/editNews | post:{\"id\":\"-1\"}','system','1470815511') [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `fx_article` [ RunTime:0.0010s ]
+SQL: SELECT `title`,`content` FROM `fx_article` WHERE `id` = -1 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `show_order` FROM `fx_article` WHERE `show_status` = 2  [ RunTime:0.0020s ]
+
+[ 2016-08-10T15:53:09+08:00 ] 127.0.0.1 /System/pageManage/editNews.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005000s ]
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+SQL: SHOW COLUMNS FROM `fx_admin_logs` [ RunTime:0.0010s ]
+SQL: INSERT INTO `fx_admin_logs` (`admin_user_id`,`detail`,`module`,`add_time`) VALUES ('1','/System/PageManage/editNews | post:{\"id\":\"-1\"}','system','1470815589') [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `fx_article` [ RunTime:0.0010s ]
+SQL: SELECT `title`,`content` FROM `fx_article` WHERE `id` = -1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `show_order` FROM `fx_article` WHERE `show_status` = 2  [ RunTime:0.0010s ]
+
+[ 2016-08-10T15:54:06+08:00 ] 127.0.0.1 /System/pageManage/newsAdd.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+SQL: SHOW COLUMNS FROM `fx_admin_logs` [ RunTime:0.0020s ]
+SQL: INSERT INTO `fx_admin_logs` (`admin_user_id`,`detail`,`module`,`add_time`) VALUES ('1','/System/PageManage/newsAdd | post:{\"title\":\"werwerwerwwewerrwrerwerwerwerwrwer\",\"content\":\"<p>​<br><\\/p><p><br><\\/p><p>werwerwerwrwerwerwerwer<\\/p>\",\"order\":\"2\",\"platform\":\"1\"}','system','1470815646') [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `fx_article` [ RunTime:0.0010s ]
+SQL: INSERT INTO `fx_article` (`title`,`content`,`show_platform`,`show_order`,`adduser`,`addtime`) VALUES ('werwerwerwwewerrwrerwerwerwerwrwer','​werwerwerwrwerwerwerwer','1','2','超级管理员','2016-08-10 15-54-06') [ RunTime:0.0000s ]
+
+[ 2016-08-10T15:54:11+08:00 ] 127.0.0.1 /System/pageManage/newsPreview.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+SQL: SHOW COLUMNS FROM `fx_admin_logs` [ RunTime:0.0010s ]
+SQL: INSERT INTO `fx_admin_logs` (`admin_user_id`,`detail`,`module`,`add_time`) VALUES ('1','/System/PageManage/newsPreview | post:{\"id\":\"33\"}','system','1470815651') [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `fx_article` [ RunTime:0.0020s ]
+SQL: SELECT `title`,`content` FROM `fx_article` WHERE ( id=33 ) LIMIT 1   [ RunTime:0.0010s ]
+

@@ -1,0 +1,152 @@
+<section class="content">
+	<ol class="breadcrumb">
+		<li><i class="fa fa-dashboard"></i> 位置</li>
+		<li>
+			售后管理	        
+		</li>
+		<li>售后列表</li>
+		<li>售后详情</li>
+	</ol>
+
+	<div class=" order_detail box">
+		<div class="box-body table-responsive no-padding ">
+			<h4 class="order_type"> 
+				售后状态: <span class="text-red"><strong>{$info['status']}</strong></span> 
+			</h4>
+			<h4 class="order_type"> 订单状态: {$order_status}			
+			</h4>
+		</div>
+	</div>
+			<!--发货信息-->
+	<div class=" order_detail box" style="padding-bottom:20px;">
+		<div class="box-header">
+			<h4 class="order_type">退货信息</h4>
+		</div>
+		<div class="box-body table-responsive no-padding ship_border"> 
+			<div class="order_type">
+				<div class="shipping_info">
+					<table cellspacing="0" cellpadding="0">
+						<tr>
+							<td rowspan="2" colspan="1" style="padding:0;"><img src="{$a.img_path}"></td>
+							<td colspan="4" style="padding:0 10px;">{$goods.goods_name}</td>
+						</tr>
+						<tr>
+							<td colspan="4" style="padding:0 10px;">{$goods.buyer_goods_no}</td>
+						</tr>
+					</table>
+					<table cellspacing="0" cellpadding="0">
+						<tr>
+							<td style="padding:0 10px;">{$goods.sku} </td>
+							<td> 单价：￥{$goods.shop_price}；</td>
+							<td> 数量：{$goods.goods_num} </td>
+						</tr>
+					</table>
+				</div>			
+			</div>
+			<div class="order_type order_type_padding">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td>发货时间：</td>
+						<td>{$info.return_time}</td>
+					</tr>
+					<tr>
+						<td>物流公司：</td>
+						<td>{$info.company_name}</td>
+					</tr>
+					<tr>
+						<td>运&nbsp;&nbsp;单&nbsp;&nbsp;号：</td>
+						<td>{$info.shipping_code}</a> &nbsp;&nbsp; 
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class=" order_detail box">
+		<div class="box-header">
+			<h4 class="order_type">售后信息:</h4>
+		</div>
+		<ul class="box-header-ul clearfix">
+			<div class="order_type ">
+				<p>售后单号：{$info.id}</p>
+				<p>售后时间：{$info.addtime}</p>
+				<p>售后类别：{$info.cus_type}</p>
+				<p>退货数量：{$goods.goods_num}</p>
+				<p style="color:red">退款金额：{$info.show_refund}元</p>
+				<p>售后理由：{$info.refund_reason}</p>
+			</div>	
+            <div class="order_type ">
+                <p>平台审核时间：{$info.verify_time}</p>   
+                <p>供应商确认时间: {$info.conf_time}</p>               
+                <p>买家发货时间：{$info.return_time}</p>   
+                <p>供应商收货时间: {$info.receipt_time}</p>                    
+                <p>退款时间：{$info.refund_money_time}</p>   <!--此处应该加一个字段，让财务来写入-->
+                <p>平台仲裁时间: {$info.arbitration_time}</p>
+                <p>完成时间：{$info.close_time}</p>
+            </div> 			
+		</ul>
+		<div class="box-body table-responsive no-padding ">
+			<div class="order_type SHorder_type">
+				<p>分销商售后理由：</p>
+				<p class="clearfix"><textarea disabled>申请说明: {$info.remark}</textarea></p>
+				<p class="clearfix"><span>凭证</span>
+					<foreach name="imgs" item="q">
+						<a href="{$q.img_path}" target="_blank"><img src="{$q.img_thumb}"></a>
+					</foreach>				
+				</p>
+			</div>
+			<div class="order_type SHorder_type">
+				<p>供应商拒绝理由：</p>
+				<p class="clearfix"><textarea disabled>拒绝说明: {$info.supplier_refuse_reason}</textarea></p>
+				<p>收到商品后：
+					<if condition="$goods['goods_status']">
+						<span>{$goods.goods_status}；</span>
+						<span><span style="color:red">责任方</span>：{$goods.responsible}；</span>				
+						<span><span style="color:red">说明</span>：{$goods.damaged}</span>	
+					</if>	
+				</p>
+				<p class="clearfix"><span>凭证</span>
+					<foreach name="supplier_imgs" item="q">
+						<a href="{$q.img_path}" target="_blank"><img src="{$q.img_thumb}"></a>
+					</foreach>				
+				</p>				
+			</div>
+			<div class="order_type SHorder_type">
+				<p>平台仲裁说明：{$info.admin_arbitration_reason}</p>
+			</div>
+		</div>
+	
+	</div>	
+
+	<div class="box order_detail">
+		<div class="box-header">
+			<h3 class="box-title">售后操作日志</h3>
+			<div class="box-tools">
+				<div class="input-group order"></div>
+			</div>
+		</div>
+		<!-- /.box-header -->
+		<div class="box-body table-responsive no-padding">
+			<table class="table table-hover">
+				<tr>
+					<th>操作人</th>
+					<th>操作内容</th>
+					<th>操作时间</th>
+					<th>系统备注</th>
+				</tr>
+				<foreach name="logs" item="q">
+					<tr>
+						<td>{$q.user_name}</td>
+						<td>{$q.action}</td>
+						<td>{$q.add_time}</td>
+						<td>{$q.remark}</td>
+					</tr>
+				</foreach>			
+			</table>
+		</div>
+	</div>
+</section>
+
+
+
+

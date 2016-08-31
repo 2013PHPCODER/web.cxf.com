@@ -1,0 +1,101 @@
+<style type="text/css">
+	.box-content{
+		border: 1px solid #555555;
+		padding: 15px 10px;
+		width: 550px;
+		position: relative;
+		font-family: "microsoft yahei";
+	}
+	.box-content h2{
+		margin: 0;
+	}
+	.box-content h2 h3{
+		margin: 0;
+		font-size: 14px;
+	}
+	.box-content .box-content-btn{
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		color: #f39c12;
+	}
+	.box-content>p input{
+		width: 50px;
+	}
+	.sub-btn{
+			text-align: right;
+		}
+		.sub-btn .sumb{
+			height: 28px;
+		    line-height: 28px;
+		    margin: 0 6px;
+		    padding: 0 15px;
+		    border: 1px solid #dedede;
+		    background-color: #f1f1f1;
+		    color: #333;
+		    border-radius: 2px;
+		    font-weight: 400;
+		    cursor: pointer;
+		    text-decoration: none;	
+		}
+		.sub-btn .btn1{
+		    border-color: #4898d5;
+		    background-color: #2e8ded;
+		    color: #fff;
+		}
+		.btn-confirm{display: none;}
+		/*.box-content p{position: relative;}*/
+		.box-content input{position: relative;top: 0;right: 0}
+		.color-grey{color: rgb(200,200,200);}
+		.box-content label{color: red;}
+		.s-hide{display: none;}
+</style>
+<div class="box-body">
+	<ol class="breadcrumb">
+		<li><i class="fa fa-dashboard"></i> 位置</li>
+		<li>
+			系统管理</li>
+		<li>用户等级设置</li>
+	</ol> 
+	<form method="post" action="{:U('system/setting/editDistribute')}">
+		<div class="row">
+			<div class="box-content">
+				<h2>分销商</h2>
+				<h3>商品售价</h3>
+				<foreach name="d" item="q">
+					<p>{$q.level}级：商品售价=成本价*（1+<label><span>{$q.price}</span><input type="text" name="l{$q.level}" class="s-hide" value="{$q.price}"/></label>%）&nbsp;&nbsp;<span class="color-grey">修改人：{$q.update_user}; 修改时间: {$q.update_time}</span></p>
+				</foreach>
+				<input type="button" name="" class="box-content-btn btn-change" value="编辑" />
+				<input type="button" name="" class="box-content-btn btn-confirm" value="确认" />
+			</div>
+	    </div>
+	</form>    
+	<form method="post" action="{:U('system/setting/editSupplier')}">  
+		<div class="row">
+			<div class="box-content">
+				<h2>供应商</h2>
+				<h3>批量上传商品包大小</h3>
+				<foreach name="s" item="q">
+					<p>{$q.level}级：<label><span>{$q.num}</span><input type="text" name="l{$q.level}" class="s-hide" value="{$q.num}" /></label>个 &nbsp;&nbsp;&nbsp;<span class="color-grey">修改人：{$q.update_user}; 修改时间: {$q.update_time}</span></p>
+
+				</foreach>
+				<input type="button" name="" class="box-content-btn btn-change" value="编辑" />
+				<input type="button" name="" class="box-content-btn btn-confirm" value="确认" />
+			</div>
+		</div>	
+	</form>
+</div>
+<script>
+	$('.btn-change').click(function(){
+		$(this).hide();
+		$(this).parent().children('.btn-confirm').show();
+		var i=1;
+
+		$(this).parent().find('label span').html('');
+		$(this).parent().find('label input').show();
+	})
+	$('.btn-confirm').click(function(){
+		$(this).hide();
+		$(this).parents('form').submit();
+	})
+</script>

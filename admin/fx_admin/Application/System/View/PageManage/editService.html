@@ -1,0 +1,86 @@
+<ol class="breadcrumb">
+    <li><i class="fa fa-dashboard"></i> 客服账号</li>
+    <li>修改</li>
+</ol> 				
+
+<div class="dalog-modal" id="">
+    <h3>修改客服</h3>
+    <div class="g-modal-content">
+        <form class="form-inline" method="post" action="{:U('system/pageManage/editService')}">
+            <div class="row">
+                <label for="exampleInputName2">账号:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="number" class="form-control input-xs" value="{$list.qq}" maxlength="15"   placeholder="(15个数字以内)" name="qq">
+            </div>
+            <div class="row">
+                <label for="exampleInputName2">类型:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select class="form-control input-xs" name="type">
+                    <option value="">请选择</option>
+                    <option value="售前" {:xeq($list['type'],"售前",'selected')}>售前</option>
+                    <option value="售后" {:xeq($list['type'],"售后",'selected')}>售后</option>
+                </select>
+            </div>				
+            <div style="margin: 20px 0">
+                <label for="exampleInputName2">状态:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                是<input type="radio" class="" value="1"  name="status" <eq name="list.status" value="1">checked="checked"</eq>>&nbsp;&nbsp;&nbsp;&nbsp;
+                否<input type="radio" class="" value="-1"  name="status" <eq name="list.status" value="-1">checked="checked"</eq>>
+            </div>
+            {__TOKEN__}
+            <input name="id" value="{$list.id}" type="hidden">
+            <div class="sub-btn"><input type="submit" class="sumb btn1 btn btn-primary" value="确定"/><input type="button" class="sumb btn-cancel btn btn-primary" value="取消"/></div>
+        </form>
+    </div>
+</div>
+<style>
+.dalog-modal{font-family: "microsoft yahei"; width: 500px;margin: 0 auto;text-align: center;padding: 10px;border: 1px solid #ECECEC;}
+ .dalog-modal h3{font-family: "microsoft yahei"; margin: 0; width: 100%;height: 50px;line-height: 50px;color: #fff;background: #f39c12;}   
+    .s-date ul, .s-date ol, .s-date li {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }	
+    .sub-btn input{margin-left: 20px;}
+    .row{font-size: 18px;}
+    .row .form-control.input-xs{width: 300px;height: 30px;line-height: 30px;font-size: 18px;}
+    .modal-body p{text-align: center}
+    .modal-body p span{margin-right: 20px}
+</style>
+<script>
+            pager({$total});
+
+            $('#date1').calendar({
+                trigger: '.e-date1',
+                zIndex: 999,
+                format: 'yyyy-mm-dd',
+            });
+            $('#date2').calendar({
+                trigger: '.e-date2',
+                zIndex: 999,
+                format: 'yyyy-mm-dd',
+            });
+
+            var q = $('#e-modify');
+
+            $('.btn-confirm').click(function () {
+
+                $.ajax({
+                    type: 'post', url: '{:U("system/index/edit")}', data: q.find('form').serialize(), async: false,
+                    success: function (e) {
+                        switch (e.status) {
+                            case 'error':
+                                X.notice(e.msg);
+                                break;
+                            case 'failed':
+                                X.notice(e.msg);
+                                break;
+                            case 'success':
+                                X.notice(e.msg);
+                                window.location.reload();
+                                break;
+                            default:
+                                X.notice('未知系统错误');
+                                break;
+                        }
+                    }
+                })
+            })
+</script>

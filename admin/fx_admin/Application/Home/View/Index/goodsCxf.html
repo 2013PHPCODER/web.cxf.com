@@ -1,0 +1,240 @@
+  <extend name="Public/base" />
+  <block name="headerCss">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/home/css/daterangepicker-bs3.css">
+  </block>
+  <block name="content">
+  	<div class="content-wrapper">
+		
+	<section class="content">
+     <ol class="breadcrumb">
+	        <li><a href="#"><i class="fa fa-dashboard"></i> 位置</a></li>
+	        <li><a href="#">商品</a></li>
+	        <li class="active">商品发布</li>
+	</ol>
+
+<div class="box box-warning">
+    <div class="box-header with-border">
+      <div class="box-title"><ul class="choose_ul">
+		<li ><a href="{:U('index/goodsRelease')}">所有商品</a></li>
+		<li class="active"><a href="{:U('index/goodsCxf')}">创想范</a></li>
+		<li><a href="{:U('index/goodsXmm')}">星密码</a></li>
+		<li><a href="{:U('index/goodsWaitRelease')}">待发布</a></li>
+	</ul></div>
+	<div class="box-tools pull-left">  
+	 </div>
+</div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row" >
+		<form class="form-inline" ">
+		  <div class="form-group">
+		   <label for="exampleInputName2">仓库名称:</label>
+		    <select class="form-control">
+	            <option>option 1</option>
+	            <option>option 2</option>
+	            <option>option 3</option>
+	            <option>option 4</option>
+	            <option>option 5</option>
+       		</select>
+		  </div>
+		  <div class="form-group">
+		   <label for="exampleInputName2">商品类目:</label>
+		    <select class="form-control">
+	            <option>主类目</option>
+	            <option>option 2</option>
+	            <option>option 3</option>
+	            <option>option 4</option>
+	            <option>option 5</option>
+       		</select>
+		  </div>
+		  <div class="form-group">
+		   <label for="exampleInputName2">商品状态:</label>
+		    <select class="form-control">
+	            <option>全部</option>
+	            <option>option 2</option>
+	            <option>option 3</option>
+	            <option>option 4</option>
+	            <option>option 5</option>
+       		</select>
+		  </div>
+		  <div class="row" >
+			  	<div class="form-group">
+			   <label for="exampleInputName2">上架时间:</label>
+			    <select class="form-control">
+		            <option>全部</option>
+		            <option>option 2</option>
+	       		</select>
+			  </div>
+
+		
+
+              <div class="form-group">
+              <label>开始时间-结束时间:</label>
+			    <input type="text" class="form-control" id="reservationtime">
+			  </div>
+
+
+              <div class="form-group">
+			    <select class="form-control">
+		            <option>选择搜索内容</option>
+		            <option>option 2</option>
+	       		</select>
+			  </div>
+			  <div class="form-group">
+			   		<input type="text" name="" class="form-control">
+			  </div>
+			  <div class="form-group">
+			   		<input type="submit" name="" class="btn btn-block btn-default" value="搜索">
+			  </div>
+			  	
+		  </div>
+		 
+		</form>
+	 </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+              
+            </div>
+          </div>
+
+	 </section> 
+	 <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Responsive Hover Table</h3>
+
+              <div class="box-tools">
+                <div class="input-group order" ">
+	 			<ul>
+	 				<li><a href="#" class="btn btn-default">取消</a></li>
+	 				<li><a href="#" class="btn btn-default">上架</a></li>
+	 				<li><a href="#" class="btn btn-default">上架</a></li>
+	 				<li><a href="#" class="btn btn-default">审核</a></li>
+	 				<li><a href="#" class="btn btn-default">删除</a></li>
+	 			</ul>
+	 		</div>
+	 		<div class="form-group order">
+	 			 <select class="form-control">
+		            <option>选择排序</option>
+		            <option>option 2</option>
+	       		</select>
+	 		</div> 
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+	              <table class="table table-hover">
+	              <tbody>
+				<tr>
+	  				<th align="middle"><input type="checkbox" name=""></th>
+	  				<th>商家ID/最新商家编码</th>
+	  				<th>主图/和名称</th>
+	  				<th>商品类目</th>
+	  				<th>成本价</th>
+	  				<th>分销价</th>
+	  				<th>市场价</th>
+	  				<th>商品状态</th>
+	  				<th>操作</th>
+  				</tr>
+					<tr>
+						<td><input type="checkbox" name=""></td>
+						<td>
+							<p>商品ID:1354654</p>
+							<p>商家编码：b-2#2123-1601</p>
+						</td>
+						<td>
+							韩版新款渐变色修身显瘦破洞小脚牛仔女裤
+						</td>
+						<td>
+							类目:服饰/女装/连衣裙
+						</td>
+						<td>
+							35$
+						</td>
+						<td>
+							50$
+						</td>
+						<td>
+							100$
+						</td>
+						<td>
+							待审核
+						</td>
+						<td>
+							<p>通过</p>
+							<p>取消</p>
+						</td>	
+					</tr>
+					<tr>
+						<td><input type="checkbox" name=""></td>
+						<td>
+							<p>商品ID:1354654</p>
+							<p>商家编码：b-2#2123-1601</p>
+						</td>
+						<td>
+							韩版新款渐变色修身显瘦破洞小脚牛仔女裤
+						</td>
+						<td>
+							类目:服饰/女装/连衣裙
+						</td>
+						<td>
+							35$
+						</td>
+						<td>
+							50$
+						</td>
+						<td>
+							100$
+						</td>
+						<td>
+							待审核
+						</td>
+						<td>
+							<p>通过</p>
+							<p>取消</p>
+						</td>	
+					</tr>
+					<tr>
+						<td><input type="checkbox" name=""></td>
+						<td>
+							<p>商品ID:1354654</p>
+							<p>商家编码：b-2#2123-1601</p>
+						</td>
+						<td>
+							韩版新款渐变色修身显瘦破洞小脚牛仔女裤
+						</td>
+						<td>
+							类目:服饰/女装/连衣裙
+						</td>
+						<td>
+							35$
+						</td>
+						<td>
+							50$
+						</td>
+						<td>
+							100$
+						</td>
+						<td>
+							待审核
+						</td>
+						<td>
+							<p>通过</p>
+							<p>取消</p>
+						</td>	
+					</tr>
+				</tbody>
+	          </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+  	</div>    
+  </block>
+  <block name="footerJs">
+  <script type="text/javascript" src="__STATIC__/home/js/moment.js"></script>
+  <script src="__STATIC__/home/js/daterangepicker.js"> </script>
+  	<script type="text/javascript" src="__STATIC__/home/js/date.js"></script>
+  </block>

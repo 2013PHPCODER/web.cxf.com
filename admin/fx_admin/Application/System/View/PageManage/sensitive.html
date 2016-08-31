@@ -1,0 +1,237 @@
+<ol class="breadcrumb">
+    <li><i class="fa fa-dashboard"></i> 页面设置</li>
+    <li>敏感词列表</li>
+</ol> 
+<div class="box box-warning">
+    <div class="box-header with-border">
+        <div class="box-title">
+            <ul class="choose_ul">
+                <li><a class="btn btn-default addSensi" >添加敏感词</a></li>
+            </ul>
+        </div>
+        <div class="box-tools pull-left"> </div>
+    </div>
+    <div class="box-body">
+        <div class="row" >
+            <form class="form-inline" method="get" action="{:U(ACTION_NAME, I('get.'))}" id="searchForm">
+                <div class="form-group">
+                    <label for="exampleInputName2">添加人:</label>
+                    <select class="form-control input-xs" name="admin">
+                        <option value="">选择添加人</option>
+                        <volist name="admin" id="vo">
+                            <option value="{$vo.admin_user_id}" {:xeq(I('get.admin'),$vo[admin_user_id],'selected')} >{$vo.name}</option>
+                        </volist>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">敏感词:</label>
+                    <input name="sensitive" value="{:I('get.sensitive')}" type="text" />
+                </div>
+                
+                <!--div class="form-group">
+                    <label for="exampleInputName2">类型:</label>
+                    <select class="form-control input-xs" name="type">
+                        <option value="">请选择</option>
+                        <option value="政治" {:xeq(I('get.type'),'政治','selected')}>政治</option>
+                        <option value="暴力" {:xeq(I('get.type'),'暴力','selected')}>暴力</option>
+                        <option value="涉黄" {:xeq(I('get.type'),'涉黄','selected')}>涉黄</option>
+                        <option value="赌博" {:xeq(I('get.type'),'赌博','selected')}>赌博</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">等级:</label>
+                    <select class="form-control input-xs" name="grade">
+                        <option value="">请选择</option>
+                        <option value="1" {:xeq(I('get.grade'),1,'selected')}>1</option>
+                        <option value="2" {:xeq(I('get.grade'),2,'selected')}>2</option>
+                        <option value="3" {:xeq(I('get.grade'),3,'selected')}>3</option>
+                    </select>
+                </div-->
+                <div class="form-group">
+                    <input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="box">
+    <!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th align="middle">敏感词</th>
+                    <!--th>类型</th>
+                    <th>等级</th-->
+                    <th>添加人</th>
+                    <th>添加时间</th>
+                    <th>操作</th>
+                </tr>
+            <empty name="datas">
+                <tr><td colspan="6" style="text-align: center;"><font color="red">暂无数据</font></td></tr>
+                <else/>
+
+                <volist name="datas" id='vo'>
+                    <tr>
+                        <td>{$vo.sensitive}</td>
+                        <!--td>{$vo.type}</td>
+                        <td>{$vo.grade}</td-->
+                        <td>{$vo.name}</td>
+                        <td>{$vo.datetime|date='Y-m-d H:i:s',###}</td>
+                        <td data-id="{$vo.id}"><a href="{:U('system/pageManage/editSensitive', ['id'=>$vo['id']])}">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="javascript:;" class="delete_data">删除</a></td>
+                    </tr>
+                </volist>
+            </empty>
+            </tbody>
+        </table>
+    </div>
+    <div class="box-footer">
+        <div class="left" >
+            <form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+                <div class="form-group">
+                    <select name="pagesize" class="form-control input-xs pagesize">
+                        <option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+                        <option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+                        <option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="right">
+            <div class="pagination"> {$pager} </div>
+        </div>
+    </div>
+</div>
+<div class="dalog-modal" id="aleatMoudle">
+    <h3>添加敏感词</h3>
+    <div class="g-modal-content">
+        <form class="form-inline" method="post" action="{:U('system/pageManage/addSensitive')}">
+            <div class="row">
+                <label for="exampleInputName2">内容:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" class="form-control input-xs" value="" maxlength="20"   placeholder="(20个字符以内)" name="sensitive">
+            </div>
+            <!--div class="row">
+                <label for="exampleInputName2">类型:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select class="form-control input-xs" name="type">
+                    <option value="政治">政治</option>
+                    <option value="暴力">暴力</option>
+                    <option value="涉黄">涉黄</option>
+                    <option value="赌博">赌博</option>
+                </select>
+            </div>				
+            <div class="row">
+                <label for="exampleInputName2">等级:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <select class="form-control input-xs" name="grade">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div-->
+            <div style="margin: 20px 0">
+                <label for="exampleInputName2">是否可用:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                是<input type="radio" class="" value="1"  name="status" checked="checked">&nbsp;&nbsp;&nbsp;&nbsp;
+                否<input type="radio" class="" value="-1"  name="status">
+            </div>
+            {__TOKEN__}
+            <div class="sub-btn"><input type="submit" class="sumb btn1" value="确定"/><input type="button" class="sumb btn-cancel" value="取消"/></div>
+        </form>
+    </div>
+    <span class="close" id="dalogModalClose">×</span>
+</div>
+<style>
+    .s-date ul, .s-date ol, .s-date li {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }	
+    .modal-body p{text-align: center}
+    .modal-body p span{margin-right: 20px}
+    .box-header{padding: 20px;}
+    .dalog-modal{
+        padding: 10px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -255px;
+        margin-top: -100px;
+        background: #E6E6E6;
+        border-radius: 5px;
+        width: 500px;
+        height: 280px;
+        display: none;
+        z-index: 5001;
+    }		
+    .dalog-modal h2{
+        text-align: left;
+        margin-top: 5px;
+    }
+    .dalog-modal .btn{ background-color: #f39c12;border-color: #e08e0b;color: #fff;}
+    .dalog-modal .row{margin-top: 8px;padding-left: 30px;}
+    .g-modal-content{
+        font-family: "microsoft yahei";
+    }
+    .g-modal-content label{
+        /*float: left;*/
+        /*width: 200px;*/
+        /*width: 100%;*/
+        /*padding: 10px 0;*/
+        margin-left: 50px;
+    }
+    .sub-btn{
+        text-align: right;
+    }
+    .sub-btn .sumb{
+        height: 28px;
+        line-height: 28px;
+        margin: 0 6px;
+        padding: 0 15px;
+        border: 1px solid #dedede;
+        background-color: #f1f1f1;
+        color: #333;
+        border-radius: 2px;
+        font-weight: 400;
+        cursor: pointer;
+        text-decoration: none;	
+    }
+    .sub-btn .btn1{
+        border-color: #4898d5;
+        background-color: #2e8ded;
+        color: #fff;
+    }
+    .dalog-modal .close{
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 5px;
+    }
+</style>
+<script>
+    $('.addSensi').click(function () {
+        $('.dalog-modal').show();
+        $('.zhezhao').show();
+    })
+    $('.dalog-modal .btn-cancel,.dalog-modal .close').click(function () {
+        $('.dalog-modal').hide();
+        $('.zhezhao').hide();
+    })
+
+    $('.delete_data').click(function () {
+        var id = $(this).parent().data('id');
+        layer.confirm('你确定删除吗？', {btn: ['确认', '取消']},
+                function (index) {
+                    layer.close(index);
+                    $.ajax({
+                        type: 'post', url: "{:U('system/PageManage/delSensitive')}", data: {id: id},
+                        success: function (e) {
+                            X.notice(e.info, 3);
+                            setTimeout("location.replace(location.href)", 3000);
+                        }
+                    });
+                }, function (index) {
+            layer.close(index);
+            return false;
+        });
+
+    })
+</script>

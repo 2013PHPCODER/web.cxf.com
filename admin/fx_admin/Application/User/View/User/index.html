@@ -1,0 +1,265 @@
+<style type="text/css">
+
+    .box-title .choose_ul>li {
+        width: 98px;
+    }
+
+</style>
+<block name="content">
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> 位置</li>
+        <li>用户管理</li>
+        <li>分销商管理</li>
+        <li>分销商列表</li>
+    </ol>
+    {$disUserDetail.usernick}
+    <div class="box-body">
+        <form class="form-inline" method="get" action="" id="form_search" onsubmit="return X.toSerchVaild(this)">
+            <div class="row" >
+                <div class="form-group">
+                    <label for="exampleInputName2">用户等级:</label>
+                    <select class="form-control input-xs" name="dengji">
+                        <option value="">——请选择——</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">状态:</label>
+                    <select class="form-control input-xs" name="zhaungtai">
+                        <option value="">——请选择——</option>
+                        <option value="1">禁用</option>
+                        <option value="2">启用</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">来源:</label>
+                    <select class="form-control input-xs" name="laiyuan">
+                        <option value="">——请选择——</option>
+                        <option value="1">星密码</option>
+                        <option value="2">创想范</option>
+                        <option value="3">代理商</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" >
+                <div class="form-group ">
+                    <label for="exampleInputName2">选择时间范围:</label>
+                    <select class="form-control input-xs" name="time" id="fqy_time">
+                        <option value="">——请选择——</option>
+                        <option value="1">今天</option>
+                        <option value="2">最近七天</option>
+                        <option value="3">最近一个月</option>
+                        <option value="4">自定义</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="startTime" class="form-control input-xs" onClick="WdatePicker()" value="{:I('get.startTime')}" style="display: none"  placeholder="开始时间">
+                </div>
+                <div class="form-group">
+                    <input type="text"  name="endTime" class="form-control input-xs" onClick="WdatePicker()" value="{:I('get.endTime')}" style="display: none"  placeholder="结束时间">
+                </div>
+
+                <div class="form-group ">
+                    <label for="exampleInputName2">搜索条件:</label>
+                    <select class="form-control input-xs" name="order_search">
+                        <option value="">——请选择——</option>
+                        <option value="1">邮箱</option>
+                        <option value="2">昵称</option>
+                        <option value="3">手机号</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" {:xeq(I('get.order_search'),'','disabled')} name="search_word" class="form-control input-xs" value="{:I('get.search_word')}"  placeholder="邮箱/昵称/手机号">
+                </div>
+                <div class="form-group">
+                    <input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
+                    <input type="hidden" name="is_close" value="1" id="is_close" >
+                    <input type="hidden" name="is_cus" value="1" id="is_cus">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th>开通时间</th>
+                    <th>邮箱</th>
+                    <th>昵称</th>
+                    <th>手机号</th>
+                    <th>QQ</th>
+                    <th>旺旺</th>
+                    <th>来源</th>
+                    <th>用户等级</th>
+                    <th>操作</th>
+                </tr>
+            <volist name="datas.list" id="vo">
+                <tr>
+                    <td>{$vo.addtime}</td>
+                    <td>{$vo.email}</td>
+                    <td>{$vo.usernick}</td>
+                    <td>{$vo.mobile}</td>
+                    <td>{$vo.qq}</td>
+                    <td>{$vo.wangwang}</td>
+                    <?php if (1 == $vo['source']){ ?>
+                    <td>星密码</td>
+                    <?php } elseif (2 == $vo['source']){ ?>
+                    <td>创想范</td>
+                    <?php } else{?>
+                    <td>代理商</td>
+                    <?php } ?>
+                    <td>{$vo.leavel}</td>                  
+                    <td><a class="fqy_gysLook" onclick="open_detail('{$vo.id}')">查看</a></td>
+                </tr>
+            </volist>
+            </tbody>
+        </table>
+    </div>
+    <div class="box-footer">
+        <div class="left" >
+            <form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+                <div class="form-group">
+                    <label for="exampleInputName2">全选结果页: </label>
+                    <input type="checkbox" id="selectall"  value="">
+                </div>
+                <div class="form-group">
+                    <select name="pagesize" class="form-control input-xs pagesize">
+                        <option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+                        <option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+                        <option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        
+        <div class="right">
+            <div class="pagination"> {$datas.page} </div>
+        </div>
+    </div>
+</div>
+
+<!--弹窗Start-->
+<div class="fqy_Mask">
+    <div class="fqy_Popup">
+        <div class="fqy_upOldPass">
+            <div class="fqy_popHead">
+                <b>代理商资料</b>
+                <span class="fqy_popClose">×</span>
+            </div>
+            <div class="fqy_popContent">
+                <div class="fqy_fxsPOP">
+                    <b>基本信息</b>
+                    <table>
+                        <tr>
+                            <td>昵称：</td> 
+                            <td class="fq-m-nc">{$disUserDetail.usernick}</td>
+                        </tr>
+                        <tr>
+                            <td>真实姓名：</td>
+                            <td class="fq-m-name">{$disUserDetail.realname}</td>
+                            <td>身份证：</td>
+                            <td class="fq-m-idcard">{$disUserDetail.idcard}</td>
+                        </tr>
+                        <tr>
+                            <td>邮箱：</td>
+                            <td class="fq-m-email">{$disUserDetail.email}</td>
+                            <td>手机：</td>
+                            <td class="fq-m-phone">{$disUserDetail.mobile}</td>
+                        </tr>
+                        <tr>
+                            <td>QQ：</td>
+                            <td class="fq-m-qq">{$disUserDetail.qq}</td>
+                            <td>旺旺：</td>
+                            <td class="fq-m-ww">{$disUserDetail.wangwang}</td>
+                        </tr>
+                        <tr>
+                            <td>账号来源：</td>
+                            <td class="fq-m-ret">{$disUserDetail.source}</td>
+                            <td>代理商账号：</td>
+                            <td class="fq-m-dl">{$disUserDetail.agentaccount}</td>
+                        </tr>
+                        <tr></tr>
+                    </table>
+                    <p class="fqy_canlce"><button>确认</button></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--弹窗End-->
+</block>
+<script>
+    $('select[name="order_search"]').change(function (event) {
+        /* Act on the event */
+        if ('' == $(this).val()) {
+            $('input[name="search_word"]').attr('disabled', true);
+            $('input[name="search_word"]').val('');
+        }
+        else {
+            $('input[name="search_word"]').removeAttr('disabled');
+        }
+    });
+
+
+    $('table').on('click', '.fqy_gysLook', function () {
+        $('.fqy_Mask').css('visibility', 'visible');
+        autocenter();
+    });
+
+    //    选择自定义时间 显示隐藏
+    $('#fqy_time').change(function () {
+        var val = $('#fqy_time  option:selected').val();
+
+        if (val == 4) {
+            $('#startTime,#endTime').show();
+        } else {
+            $('#startTime,#endTime').hide();
+        }
+    });
+    
+    function open_detail(did){
+        $.post("/user/user/distributeDetail?userid="+did,function(result){
+        	console.log(result);
+            var data = result,
+                q = $('.fqy_fxsPOP');
+          q.find('.fq-m-nc').html(data.usernick);
+          q.find('.fq-m-name').html(data.realname)
+          q.find('.fq-m-idcard').html(data.idcard);
+          q.find('.fq-m-email').html(data.email)
+          q.find('.fq-m-phone').html(data.mobile);
+          q.find('.fq-m-qq').html(data.qq)
+          q.find('.fq-m-ww').html(data.wangwang);
+          q.find('.fq-m-ret').html(data.source)
+          q.find('.fq-m-dl').html(data.acting_account)
+        });
+    }
+
+
+    //弹出层
+    function autocenter() {
+        var W = $(window).width() / 2;
+        var H = $(window).height() / 2;
+        var eleW = $('.fqy_Popup').width();
+        var eleH = $('.fqy_Popup').height();
+//        alert(eleH);
+
+        $('.fqy_Popup').css({left: (W - eleW / 2) + 'px', top: (H - eleH / 2) + 'px'});
+        //关闭弹出层
+        $('.fqy_popClose,.fqy_canlce').click(function () {
+            $('.fqy_Mask').css('visibility', 'hidden');
+
+        });
+    }
+    window.onload = function () {
+        autocenter();
+    };
+    window.onresize = function () {
+        autocenter();
+    };
+
+</script>           

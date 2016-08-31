@@ -1,0 +1,43 @@
+<div class="public-left">
+    <p class="pub-logo"></p>
+    <ul class="pub-nav">
+        <li class="select"><a href="index.html"><i></i>首页</a></li>
+        <li><a href="goods_list.html"><i></i><span>商品管理</span></a></li>
+        <li><a href="orderlist.html"><i></i><span>订单管理</span></a></li>
+        <li><a href="after_sale_list.html"><i></i><span>售后管理</span></a></li>
+        <li><a href="user_collection.html"><i></i><span>收藏夹</span></a></li>
+        <li><a href="statement.html"><i></i><span>资金明细</span></a></li>
+        <li><a href="open_account.html"><i></i><span>开通账户</span></a></li>
+    </ul>
+</div>
+<script>
+	!function () {
+        var url = window.location.pathname.split('.')[0].split('/');
+        url = url[url.length-1];
+        var n;
+        switch (url) {
+            case 'index' :
+                n = 0;
+                break;
+            case 'goods_list' :
+                n = 1;
+                break;
+            case 'orderlist' :
+                n = 2;
+                break;
+            case 'after_sale_list' :
+                n = 3;
+                break;
+            case 'user_collection' :
+                n = 4;
+                break;
+            case 'statement' :
+                n = 5;
+                break;
+            case 'open_account' :
+                n = 6;
+                break;    
+        }
+        $('.pub-nav>li').eq(n).addClass('select').siblings().removeClass('select');
+    }();
+</script>

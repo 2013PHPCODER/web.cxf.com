@@ -1,0 +1,133 @@
+<extend name="Public/base" />
+<block name="headerCss">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/webuploader/css/webuploader.css">
+</block>
+<block name="content">
+<div class="box">
+	<div class="box-header">
+		<h3 class="box-title">货号列表</h3>
+		<div class="box-tools">
+			<form action="{:U('Goods/goodsNoList',$mp)}" method="get">
+				<div class="input-group order">
+					<ul>
+						<li>
+							<input type="submit" value="搜索" >
+						</li>
+					</ul>
+				</div>
+				<div class="form-group order">
+					<input type="text" class="form-control input-xs" name="search_word" {:xeq(I('get.goods_search'),'','disabled')} value="{:I('get.search_word')}" placeholder="请输入商品名称或系统货号">
+				</div>
+				<div class="form-group order">
+					<select name="goods_search" class="form-control input-xs">
+						<option value="0">请选择输入内容</option>
+						<option {:xeq(I('get.goods_search'),'goods_name','selected')} value="goods_name">商品名称</option>
+						<option {:xeq(I('get.goods_search'),'goods_no','selected')} value="goods_no">商品ID</option>
+						<option {:xeq(I('get.goods_search'),'buyer_goods_no','selected')} value="buyer_goods_no">商家编码</option>
+					</select>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="box-body table-responsive no-padding">
+		<table class="table table-hover">
+			<tbody>
+				<tr>
+					<th align="middle"><input type="checkbox" id="checkAll"></th>
+					<th>标题</th>
+					<th>商品ID</th>
+					<th>商家编码</th>
+					<th>添加时间</th>
+					<th>商品状态</th>
+					<th>操作</th>
+				</tr>
+				<volist name="datas.list" id="vo">
+					<tr>
+						<td><input type="checkbox" class="choose" name="goods[]" value="{$goods.id}" ></td>
+						<td> {$vo.goods_name} </td>
+						<td> {$vo.goods_no} </td>
+						<td><volist name="vo.goodsArtList" id="v">
+								<p>{$v.art_no}</p>
+							</volist></td>
+						<td>{:date('Y-m-d H:i',$vo[addtime])}</td>
+						<td>
+						<eq name="vo.new_upload" value='1'>
+							<switch name="vo.goods_status">
+							    <case value="1">
+							    	<eq name="vo.goods_sale" value="2" >
+							    		已下架
+							    	<else />
+							    		待审核
+							    	</eq>
+							    </case>
+							    <case value="2">未通过</case>
+							    <case value="3">已上架</case>
+							</switch>
+						<else />
+							新上传
+						</eq>
+						</td>
+						<td>
+						<php> if( 1 == getPower(431238) ) { </php>
+							<p><a data-id="{$vo.goods_id}" class="addGoodsNo" href="#">添加</a></p>
+						<php>}</php>
+						</td>
+					</tr>
+				</volist>
+			</tbody>
+		</table>
+	</div>
+	<div class="box-footer">
+		<div class="left" >
+			<form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+				<div class="form-group">
+					<select name="pagesize" class="form-control input-xs pagesize">
+						<option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+						<option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+						<option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+					</select>
+				</div>
+			</form>
+		</div>
+		<div class="right">
+			<div class="pagination"> {$datas.page} </div>
+		</div>
+	</div>
+</div>
+</block>
+<block name="footerJs"> 
+	<script type="text/javascript" src="__STATIC__/home/js/custom.js"></script> 
+	<script type="text/javascript" src="__STATIC__/layer/layer.js"></script> 
+	<script type="text/javascript">
+		$(document).ready(function(e) {
+			$('select[name="goods_search"]').change(function(event) {
+				/* Act on the event */
+				if ( 0 == $(this).val() ){
+					$('input[name="search_word"]').attr('disabled', true);
+				}else{
+					$('input[name="search_word"]').removeAttr('disabled');
+				}
+			});
+			$('.addGoodsNo').on('click', function(){
+				$_this = $(this);
+			   layer.prompt(function(val){
+					var postUrl 	= "{:U('goods/addArtNo')}";
+					var postData	= new Object();
+					postData.goods_id 	= $_this.data('id');
+					postData.art_no 	= val;
+			     	$.post( postUrl ,postData ,function( rData ){
+					//屏蔽浏览器滚动条
+					layer.open({
+					  content: rData.message,
+					  scrollbar: false,
+					  yes: function(index){
+						   layer.close(index);
+						   location.reload();
+					  }
+					});
+					},'json');
+				});
+			});
+		});
+		</script> 
+</block>

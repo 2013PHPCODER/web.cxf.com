@@ -1,0 +1,24 @@
+[ 2016-08-24T14:10:03+08:00 ] 127.0.0.1 /finance/collection/suer.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000687s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000775s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002434s ]
+NOTIC: [8] Undefined index: finance D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+NOTIC: [8] Undefined index: finance D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+NOTIC: [8] Undefined index: finance D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 28 行.
+SQL: SHOW COLUMNS FROM `fx_admin_logs` [ RunTime:0.0015s ]
+SQL: INSERT INTO `fx_admin_logs` (`admin_user_id`,`detail`,`module`,`add_time`) VALUES ('1','/Finance/Collection/suer | post:{\"id\":\"40\"}','finance','1472019003') [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `confirm_success_trade` [ RunTime:0.0016s ]
+SQL: SELECT `id`,`user_type`,`source_id`,`pay_account`,`user_id`,`user_name`,`pay_type`,`confirm_money`,`type`,`status`,`trade_no` FROM `confirm_success_trade` WHERE `id` = 40 LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `fx_statement` [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `order_list` [ RunTime:0.0018s ]
+SQL: UPDATE `confirm_success_trade` SET `status`='1',`confirm_user_id`='1',`confirm_time`='1472019003' WHERE `id` = 40 AND `status` = 0 [ RunTime:0.0004s ]
+SQL: INSERT INTO `fx_statement` (`user_type`,`user_id`,`user_name`,`in_money`,`out_money`,`now_balance`,`trade_account`,`trade_account_type`,`trade_no`,`add_time`,`remark`,`trade_type`) VALUES ('2','1','test1','0','-598','0','432534535435','1','4323423412312312312','1472019003','收款已成功','4') [ RunTime:0.0009s ]
+SQL: UPDATE `order_list` SET `order_state`='1',`payment_time`='1472019003' WHERE `order_id` = 68 AND `order_state` = 0 [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0017s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Common\function.php on line 340 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','超级管理员','2','Finance','/Finance/Collection/suer.html','收款成功，操作前收款表数据：{\"id\":\"40\",\"user_type\":\"2\",\"source_id\":\"68\",\"pay_account\":\"432534535435\",\"user_id\":\"1\",\"user_name\":\"test1\",\"pay_type\":\"1\",\"confirm_money\":\"598.00\",\"type\":\"1\",\"status\":\"0\",\"trade_no\":\"4323423412312312312\"}','1472019003','127.0.0.1','{\"id\":\"40\"}') [ RunTime:0.0005s ]
+

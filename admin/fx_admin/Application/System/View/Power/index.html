@@ -1,0 +1,222 @@
+<style type="text/css">
+	.dalog-modal{
+			padding: 10px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-left: -255px;
+			margin-top: -100px;
+			background: #E6E6E6;
+			border-radius: 5px;
+			width: 500px;
+			height: 280px;
+			display: none;
+			z-index: 5001;
+		}		
+		.dalog-modal h2{
+			text-align: left;
+			margin-top: 5px;
+		}
+		.dalog-modal .btn{ background-color: #f39c12;border-color: #e08e0b;color: #fff;}
+		.dalog-modal .row{margin-top: 8px;padding-left: 30px;}
+		.g-modal-content{
+			font-family: "microsoft yahei";
+		}
+		.g-modal-content label{
+			/*float: left;*/
+			/*width: 200px;*/
+			/*width: 100%;*/
+			/*padding: 10px 0;*/
+			margin-left: 50px;
+		}
+		.sub-btn{
+			text-align: right;
+		}
+		.sub-btn .sumb{
+			height: 28px;
+		    line-height: 28px;
+		    margin: 0 6px;
+		    padding: 0 15px;
+		    border: 1px solid #dedede;
+		    background-color: #f1f1f1;
+		    color: #333;
+		    border-radius: 2px;
+		    font-weight: 400;
+		    cursor: pointer;
+		    text-decoration: none;	
+		}
+		.sub-btn .btn1{
+		    border-color: #4898d5;
+		    background-color: #2e8ded;
+		    color: #fff;
+		}
+		.dalog-modal .close{
+			position: absolute;
+			top: 0;
+			right: 0;
+			padding: 5px;
+		}
+</style>
+<ol class="breadcrumb">
+	<li><i class="fa fa-dashboard"></i> 位置</li>
+	<li>
+		系统管理</li>
+	<li>员工管理</li>
+</ol> 				
+<div class="box-body">
+	<div class="row">
+		<div class="form-group">
+			<button class="btn btn-default e-addUser">添加员工信息</button>
+		</div>
+	</div>	
+	<div class="row" >
+		<form class="form-inline" method="get" action="{:U('/system/power/index')}" id="form_search" >
+			<div class="form-group">
+				<label for="exampleInputName2">姓名:</label>
+				<input type="text" name="name" class="form-control input-xs" value=""  placeholder="">
+			</div>
+			<div class="form-group">
+				<select class="form-control input-xs" name="status">
+					<option value="">所有</option>
+					<option value="1">可用</option>                 
+                    <option value="0">冻结</option>         
+				</select>
+			</div>
+
+			<div class="form-group">
+				<input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
+			</div>
+		</form>
+	</div>
+	<div class="row table-responsive no-padding">
+		<table class="table table-hover">
+			<tbody>
+				<tr>
+					<th>姓名</th>
+					<th>账号</th>
+					<th>创建时间</th>
+					<th>更新时间</th>
+					<th>是否可用</th>
+					<th>操作</th>
+				</tr>	
+				<foreach name="list" item="q">
+					<tr>
+						<th>{$q.name}</th>
+						<th>{$q.account}</th>
+						<th>{$q.add_time}</th>
+						<th>{$q.update_time}</th>
+						<th>{$q.status}&nbsp;&nbsp;&nbsp;
+						<if condition="$q['status'] eq 是">
+							<button class="btn btn-xs btn-grey e-btn-status" data-status='0' data-id="{$q.admin_user_id}">冻结</button>
+						<else/>
+							<button class="btn btn-xs btn-success e-btn-status" data-status='1' data-id="{$q.admin_user_id}">开启</button>
+						</if>
+						</th>
+						<th data-id="{$q.admin_user_id}">
+						<a href="{:U('system/power/editShow', ['id'=>$q['admin_user_id']])}">编辑权限</a>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="javascript:;" class="e-resetPassw">重置密码</a></th>
+					</tr>
+				</foreach>
+			</tbody>
+		</table>
+	</div>	
+	<div class="box-footer">
+		<div id="kkpager"></div>
+	</div>
+	<div class="dalog-modal" id="aleatMoudle">
+		<h3>添加用户</h3>
+		<div class="g-modal-content">
+			<form class="form-inline" method="post" action="{:U('system/power/addOperator')}">
+				<div class="row">
+			       <label for="exampleInputName2">账号:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+				   <input type="text" class="form-control input-xs" value=""  placeholder="(50个字符以内)" name="account">
+				</div>
+				<div class="row">
+			       <label for="exampleInputName2">姓名:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+				   <input type="text" class="form-control input-xs" value=""  placeholder="(20个字符以内)" name="name">
+				</div>				
+				<div class="row">
+			       <label for="exampleInputName2">密码:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+				   <input type="text" class="form-control input-xs" value=""  placeholder="(不填则默认为123456)" name="pwd">
+				</div>
+				<div style="margin: 20px 0">
+			       <label for="exampleInputName2">是否可用:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+				   是<input type="radio" class="" value=""1  name="status" checked="checked">&nbsp;&nbsp;&nbsp;&nbsp;
+				   否<input type="radio" class="" value="0"  name="status">
+				</div>
+				<div class="sub-btn"><input type="submit" class="sumb btn1" value="确定"/><input type="button" class="sumb btn-cancel" value="取消"/></div>
+			</form>
+		</div>
+		<span class="close" id="dalogModalClose">×</span>
+	</div>
+</div>
+<script>
+pager({$total});
+
+	$('.e-resetPassw').click(function(){
+		var id=$(this).parent().data('id');
+    	layer.confirm('你确定重置密码吗？默认密码123456',{btn:['确认','取消']},
+		 	function(index){
+		 		layer.close(index);
+		 		$.ajax({
+		 			type:'post', url: "{:U('system/power/resetPwd')}", data: {id: id},
+		 			success: function(e){
+		 				X.notice(e.msg, 4);
+
+		 				// switch(e.status){
+		 				// 	X.notice(e.status);
+		 				// 	case 'success':
+		 				// 		break;
+		 				// 	case 'failed':
+		 				// 		break;
+		 				// 	case 'error':
+		 				// 		break;		 								 						
+		 				// }
+		 			}
+
+		 		});
+				/* Act on the event */
+				// $.post(postUrl, postData, function(data, textStatus, xhr) {
+				// 	/*optional stuff to do after success */
+				// 		layer.open({
+				// 			  content: data.message,
+				// 			  scrollbar: false,
+				// 			  yes: function(index){
+				// 				   layer.close(index);
+				// 				   if( 1 == data.status ){
+				// 				   		location.reload();
+				// 				   }
+				// 			  }
+				// 		});
+				// },'json');
+			},function(index){
+				layer.close(index);
+				return false;
+			});
+
+    })
+	$('.e-addUser').click(function(){
+		$('.dalog-modal').show();
+		$('.zhezhao').show();
+	})
+	$('.dalog-modal .btn-cancel,.dalog-modal .close').click(function(){
+		$('.dalog-modal').hide();
+		$('.zhezhao').hide();
+	})
+	$('.e-btn-status').click(function(){
+		$.ajax({
+			type:'post', url:"{:U('system/power/changeStatus')}", data:{status:$(this).data('status'),id:$(this).data('id')},
+			success:function(e){
+				switch (e.status){
+					case 'success':
+						X.notice(e.msg);
+						window.location.reload(); 
+						break;
+					default:
+						X.notice(e.msg);
+						break;
+				}
+			}
+		})
+	})
+</script>

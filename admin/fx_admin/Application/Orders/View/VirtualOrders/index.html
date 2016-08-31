@@ -1,0 +1,155 @@
+<block name="headerCss">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-datetimepicker.min.css">
+</block>
+<block name="content">
+    <div class="box box-warning">
+        <div class="box-header with-border">
+            <div class="box-title">
+                <ul class="choose_ul">
+                    <li><a class="{:xeq(I('get.group_id',''),'','btn btn-warning btn-xs')}" href="{:U('virtualOrders/index')}" >所有订单</a></li>
+                    <li><a  class="{:xeq(I('get.group_id'),1,'btn btn-warning btn-xs')}" href="{:U('virtualOrders/index',array('group_id' => 1 ))}">待付款</a></li>
+                    <li><a class="{:xeq(I('get.group_id'),2,'btn btn-warning btn-xs')}" href="{:U('virtualOrders/index',array('group_id' => 2 ))}">已完成</a></li>
+                </ul>
+            </div>
+            <div class="box-tools pull-left"> </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row" >
+                <form class="form-inline" method="get" action="{:U('virtualOrders/index',$mp)}" id="form_search">
+                    <div class="form-group ">
+                        <label for="exampleInputName2">分销商:</label>
+                        <input type="text" class="form-control input-xs" name="buyer_name" value="{:I('get.buyer_name')}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName2">时间:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <select class="form-control input-xs" name="time_type">
+                            <option {:xeq(I('get.time_type'),'addtime','selected')} value="add_time">下单时间</option>
+                            <option {:xeq(I('get.time_type'),'payment_time','selected')} value="payment_time">支付时间</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                            <label>开始时间:</label>
+                            <input type="text" class="form-control input-xs" onClick="WdatePicker()"  value="{:I('get.startTime')}" name="startTime"/>
+                        </div>
+                        <div class="form-group">
+                            <label>结束时间:</label>
+                            <input type="text" class="form-control input-xs" onClick="WdatePicker()"  value="{:I('get.endTime')}" name="endTime"/>
+                        </div>
+                    <div class="form-group">
+                        订单号：
+                        <input type="text" name="search_word" class="form-control input-xs" value="{:I('get.search_word')}"  placeholder="订单号">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-header">
+            <div class="box-tools">
+                <form id="sortForm" action="{:U(ACTION_NAME,I('get.'))}" method="get">
+                    <?php if(in_array(I('get.group_id')?I('get.group_id'):1,array('1','2','3','7'))){?>
+                    <div class="fomr-group order">
+                        <select class="form-control input-xs sort" name="sort">
+                            <option value="">订单排序</option>
+                            <option <?php if($_GET['sort']=="add_time~asc") echo "selected"; ?> value="add_time~asc">下单时间升序</option>
+                            <option <?php if($_GET['sort']=="add_time~desc") echo "selected"; ?> value="add_time~desc">下单时间降序</option>
+                            <option <?php if($_GET['sort']=="payment_time~asc") echo "selected"; ?> value="payment_time~asc">付款时间升序</option>
+                            <option <?php if($_GET['sort']=="payment_time~desc") echo "selected"; ?> value="payment_time~desc">付款时间降序</option>
+                        </select>
+                    </div>
+                    <?php }?>
+                </form>
+            </div>
+        </div>
+        <br/>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th>订单号</th>
+                        <th>分销商账号</th>
+                        <th>订单金额</th>
+                        <th>支付金额</th>
+                        <th>下单时间</th>
+                        <th>支付时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                <volist name='datas.list' id='list'>
+                    <tr>
+                        <td>{$list.order_sn}</td>
+                        <td>{$list.buyer_name}</td>
+                        <td>{:number_format($list['price'], 2, '.', '')}</td>
+                        <td>{:number_format($list['pay_money'], 2, '.', '')}</td>
+                        <td>{:date('Y-m-d H:i:s',$list['add_time'])}</td>
+                        <td>{:date('Y-m-d H:i:s',$list['payment_time'])}</td>
+                        <td>
+                            <switch name="list.status">
+                    <case value='1'>待付款</case>
+                    <case value='2'>已完成</case>
+                    <case value='3'>已关闭</case>
+                    </switch>
+                    </td>
+                    <td>
+                        <p> <a href="{:U('virtualOrders/orderDetail',array('id'=>$list['id']))}" target="_blank">详情</a></p>
+                    </td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+        </div>
+        <div class="box-footer">
+            <div class="left" >
+                <form class="form-inline" id="pagesizeForm" action="{:U(ACTION_NAME, I('get.'))}" method="get">
+                    <div class="form-group">
+                        <label for="exampleInputName2">全选结果页: </label>
+                        <input type="checkbox" id="selectall"  value="">
+                    </div>
+                    <div class="form-group">
+                        <select name="pagesize" class="form-control input-xs pagesize">
+                            <option {:xeq(I('get.pagesize'), 20, 'selected')} value="20">20条</option>
+                            <option {:xeq(I('get.pagesize'), 50, 'selected')} value="50">50条</option>
+                            <option {:xeq(I('get.pagesize'), 100, 'selected')} value="100">100条</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="right">
+                <div class="pagination"> {$datas.page} </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.box -->
+</div>
+</block>
+<block name="footerJs"> 
+    <script type="text/javascript" src="__PUBLIC__/js/moment.js"></script> 
+    <script src="__PUBLIC__/js/bootstrap-datetimepicker.min.js"></script> 
+    <script src="__PUBLIC__/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script> 
+    <script type="text/javascript" src="__PUBLIC__/static/layer/layer.js"></script> 
+    <script type="text/javascript" src="__PUBLIC__/js/custom.js"></script> 
+    <script>
+        $('select[name="order_search"]').change(function (event) {
+            /* Act on the event */
+            if ('' == $(this).val()) {
+                $('input[name="search_word"]').attr('disabled', true);
+                $('input[name="search_word"]').val('');
+            } else {
+                $('input[name="search_word"]').removeAttr('disabled');
+            }
+        });
+
+        $(document).ready(function () {
+            //排序
+            $('.sort').change(function () {
+                $('#sortForm').submit();
+            });
+        });
+    </script> 
+</block>

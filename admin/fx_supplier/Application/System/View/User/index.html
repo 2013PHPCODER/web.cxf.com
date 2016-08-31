@@ -1,0 +1,293 @@
+<style type="text/css">
+	.user-modal{display:none;z-index: 999; width: 100%;position: absolute;top: 0;left: 0;height: 100%;background: rgba(0,0,0,0.5);}
+	.user-modal-box{position: relative; width: 390px;border: 1px solid #555555;margin: 0 auto;background: #fff;margin-top: 300px;}
+	.user-modal-box h2{margin: 0; width: 100%;height: 50px;line-height: 50px;color: #fff;background: #f39c12;font-family: "microsoft yahei";text-align: center;}
+	.user-modal-box .row{padding: 10px 20px;}
+	.user-modal-box .row span{height: 30px;line-height: 30px; display: block;float: left;width: 100px;text-align: right;}
+	.user-modal-box .row input{line-height: 30px;border: 1px solid rgb(221,221,221); height:30px;outline: none;width: 195px;float: left;}
+	.user-modal-box .row .user-code{width: 80px;}
+	.user-modal-box .row strong{margin-left: 10px; display: block;float: left;height: 30px;line-height: 30px;}
+	.user-modal-box .row strong img{width: 150px;height: 30px;cursor: pointer;}
+	.user-modal-box .row a{display: block;float: left;height: 30px;line-height: 30px;margin-left: 8px;}
+	.user-modal-box .row  .tel-code{width: 110px;}
+	.user-modal-box .row  .up-tel{border: 1px solid rgb(221,221,221);width: 100px;text-align: center;}
+	.user-modal-box .row  .user-submit{margin-left: 119px; width: 110px;background: #f39c12;border: none;color: #fff;letter-spacing: 5px;font-family: "microsoft yahei";font-size: 16px;}
+	.user-modal-box .row  b{display: block;height: 30px;line-height: 30px;font-family: "microsoft yahei";font-size: 14px;font-weight: normal;}
+	.btn.btn-primary{margin-left: 10px;}
+	#user-btn{margin-left: 119px;display: none;}
+	.row-box{display: none;}
+	#abolish{position: absolute;right: 10px;top:10px;color: #fff;font-family: "microsoft yahei";font-size: 20px;}
+	#new-abolish{position: absolute;right: 10px;top:10px;color: #fff;font-family: "microsoft yahei";font-size: 20px;}
+</style>
+<div class="row">
+	<label for="">账号：<span>{$account}</span> </label>
+</div>
+<div class="row">
+	<label for="">手机：<span>{$mobile}</span>
+	<if condition="$mobile">
+		<input type="button" class="btn btn-primary" name="" id="e-amend" value="修改" />
+	<else/>
+		<input type="button" class="btn btn-primary" name="" id="e-tanchuang" value="绑定" />
+	</if>	
+</div>
+
+
+
+<if condition="$mobile">
+	<!--修改手机绑定-->
+	<div class="user-modal" id="amend-user-modal">
+		<div class="user-modal-box">
+			<div class="old-box">
+				<h2>绑定手机</h2>
+				<div class="row clearfix">
+					<span>原绑定手机：</span><b>{$mobile}</b>
+				</div>
+				<div class="row clearfix">
+					<span>验证码：</span><input type="text" class="user-code" name="" id="captcha" value="" maxlength="8"/><strong><img src="{:U('system/user/picVerify')}" id="codeimg"/></strong>
+				</div>
+				<div class="row clearfix">
+					<span>短信验证码：</span><input type="text" class="tel-code" name="" id="tel-code" value="" maxlength="20"/><a href="javascript:;" id="get-code" class="up-tel">获取短信验证码</a>
+				</div>
+				<div class="row clearfix sumbit">
+					<input type="button" class="user-submit" name="" id="old-btn" value="确定" />
+					<!--<input type="button" name="user-submit" class="user-submit" id="abolish" value="取消" />-->
+				</div>
+			</div>
+			<div class="row-box">
+				<div class="row clearfix">
+					<span>新手机：</span><input type="text" name="" id="tel-num" value="" />
+				</div>
+				<!--<div class="row clearfix">
+					<span>新短信验证码：</span><input type="text" class="tel-code" name="" id="new-tel-code" value="" maxlength="20"/><a href="javascript:;" id="get-new-code" class="up-tel">获取新短信验证码</a>
+				</div>-->
+				<div class="row clearfix">
+					<span>确认新手机：</span><input type="text" name="" id="tel-num-r" value="" />
+				</div>
+				<div class="row clearfix sumbit">
+					<input type="button" class="user-submit" name="" id="bound" value="绑定" />
+					<!--<input type="button" name="user-submit" class="user-submit" id="abolish" value="取消" />-->
+				</div>
+			</div>
+			<span id="abolish">x</span>
+		</div>
+	</div>
+
+<else/>
+	<!--绑定新手机-->
+	<div class="user-modal" id="new-user-modal">
+		<div class="user-modal-box">
+			<h2>绑定手机</h2>
+			<div class="row clearfix">
+				<span>手机号码：</span><input type="text" name="" id="new-tel" value="" maxlength="20"/>
+			</div>
+			<div class="row clearfix">
+				<span>验证码：</span><input type="text" class="user-code" name="" id="old-code" value="" maxlength="8"/><strong><img src="{:U('system/user/picVerify')}"/></strong>
+			</div>
+			<div class="row clearfix">
+				<span>短信验证码：</span><input type="text" class="tel-code" name="" id="tel-old-code" value="" maxlength="20"/><a href="javascript:;" class="up-tel" id="get-old-code">获取短信验证码</a>
+			</div>
+			<div class="row clearfix sumbit">
+				<input type="button" class="user-submit" name="" id="old-bound" value="绑定" />
+				<!--<input type="button" name="user-submit" class="user-submit" id="new-abolish" value="取消" />-->
+			</div>
+			<span id="new-abolish">x</span>
+		</div>
+	</div>
+
+</if>
+
+
+<script src="__PUBLIC__/js/plus.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	
+	//图形验证码 点击刷新
+	$('.row strong img').click(function(){
+		$(this).attr('src', '{:U("System/user/picVerify")}' + '?'+Math.random());
+	})
+	//绑定新手机验证
+	
+	$('#e-tanchuang').click(function(){  //弹窗弹出/关闭事件
+		$('#new-user-modal').show();
+	});
+	
+	$('#new-abolish').click(function(){
+		$('#new-user-modal').hide();
+	});
+
+
+
+	$('#old-bound').click(function(){
+//		var code_val=$('#old-code').val();
+		var tel_old_code=$('#tel-old-code').val()
+		var tel_val=$('#new-tel').val();
+		var data={
+			"mobile":$('#new-tel').val(),
+			"sms":$('#tel-old-code').val()
+		};
+		if($('#new-tel').val()==''){
+			X.notice('手机号不能为空',3)
+		}else if($("#tel-old-code").val()==''){
+			X.notice('短信验证码不能为空',3)
+		}else{
+			$.post('{:U("System/user/bindMobile")}',data,function(result){				X.notice(result.msg,3);
+				if(result.status == 'success'){
+					$('#new-user-modal').hide();
+				}else{
+					$('.row strong img').click();
+					X.notice(result.msg,3);
+				}
+			})
+		}
+
+	})
+	
+	
+//修改绑定手机验证
+	$('#e-amend').click(function(){  //弹窗弹出/关闭事件
+		$('#amend-user-modal').show();
+	});
+	$('#abolish').click(function(){
+		$('#amend-user-modal').hide();
+	});
+	
+
+
+	//验证手机验证码  倒计时
+//验证手机验证码  倒计时
+	$('#get-old-code').click(function(){
+		var tel_val=$('#new-tel').val();
+		if(tel_val==''){
+			X.notice('请输入手机号码',3)
+		}else if(tel_val.length!==11 && !tel_val.match(/^1[3-9][0-9]+$/)){
+			X.notice('请输入正确的手机号码',3)
+		}else if($('#old-code').val() == ''){
+			X.notice('请输入验证码',3)
+		}else{
+		var oData={'code': $('#old-code').val(),'mobile':$('#new-tel').val()}
+		$.ajax({
+			type:'post', url:'{:U("system/user/smsFromForm")}', data:oData,
+			success:function(e){
+					X.notice(e.msg,3);
+					$('.row strong img').click();
+				switch(e.status){
+					case 'failed':
+						break;
+					case 'error':
+						break;
+						case 'success':		//成功后的逻辑
+						var n=59;
+						var timer=setInterval(function(){
+							if($('#new-user-modal').css('display') == 'block'){
+								if(n>=0){
+									$('#get-old-code').html(n+'s');
+									n--;
+								}else{			
+									$('#get-old-code').html('请重新获取');
+									clearInterval(timer);
+								}								
+							}else{
+								clearInterval(timer);
+								$('#get-old-code').html('请重新获取');	
+							}							
+						},1000);
+						break;												
+				}
+			}
+		})
+			}
+		
+	
+		
+	})
+	/*例子*/
+	//两个url    {:U("system/user/smsFromDb")}---不需要从表单获得手机。 {:U("system/user/smsFromForm")}	 手机字段：mobile，验证码字段：code	---需要从表单获得手机
+	$('#get-code').click(function(){
+		if($('#captcha').val() == ''){
+			X.notice('请输入验证码',2);
+			return false;
+		}
+		$.ajax({
+			type:'post', url:'{:U("system/user/smsFromDb")}', data:{code: $('#captcha').val()},
+			success:function(e){
+				X.notice(e.msg,3);
+				$('.row strong img').click();
+				switch(e.status){
+					case 'failed':
+						break;
+					case 'error':
+						break;
+					case 'success':  //成功后的逻辑
+						var n=59;
+				//		console.log("0");
+						var timer=setInterval(function(){
+				//			console.log("1");
+							if($('#amend-user-modal').css('display') == 'block'){
+				//				console.log("2");
+								if(n>=0){
+				//					console.log("3");
+									$('#get-code').html(n+'s');
+									n--;
+								}else{		
+				//					console.log("4");
+									$('#get-code').html('请重新获取');
+										clearInterval(timer);
+								}
+									
+							}else{
+								clearInterval(timer);
+								$('#get-new-code').html('请重新获取');	
+							}
+							
+						},1000);
+						$('.row-box').show();
+						break;												
+				}
+			}
+		})
+//		return;
+		
+	})
+	$('#old-btn').click(function(){
+		if($('#captcha').val()==''){
+			X.notice('验证码不能为空',3)
+		}else if($('#tel-code').val()==''){
+			X.notice('手机验证码不能为空',3)
+		}
+//		$.post(url,tel_old_code,function(result){
+//			if(tel_old_code==''){
+//				X.notice('请输入手机验证码',3)
+//			}else if(result==1){
+//					$('.old-box').hide();
+//					$('.row-box').show();
+//				}else{
+//					X.notice('输入验证码错误',3)
+//				}
+//		})
+	})
+	$('#bound').click(function(){
+//		var code_val=$('#old-code').val();
+		var tel_old_code=$('#tel-old-code').val()
+		var tel_val=$('#tel-num').val();
+		var tel_val_r=$('#tel-num-r').val();
+		var data={
+			"mobile":tel_val,
+			"code":tel_old_code
+		};
+		if($('#tel_old_code').val()==''){
+			X.notice('验证码不能为空',3)
+		}else if(tel_val==''){
+			X.notice('手机号不能为空',3)
+		}else if(tel_val_r==''){
+			X.notice('确认手机号不能为空',3)
+		}else if(tel_val != tel_val_r){
+			X.notice('两次输入手机不一致',3)
+		}else{
+			$.post('{:U(system/user/bindMobile)}',data,function(result){
+				X.notice(result.msg,3);
+				if(result.status == 'success'){
+					$('#amend-user-modal').hide();
+		}
+	})
+		}
+	})
+</script>

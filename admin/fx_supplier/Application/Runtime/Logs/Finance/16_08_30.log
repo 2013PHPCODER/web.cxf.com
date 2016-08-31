@@ -1,0 +1,117 @@
+[ 2016-08-30T19:27:17+08:00 ] 127.0.0.1 /finance/finance/getAccPayPass.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000612s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001081s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002170s ]
+SQL: SHOW COLUMNS FROM `fx_sms_code` [ RunTime:0.0494s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fx_sms_code` WHERE `user_id` = 42 AND `type` = 1 AND `addtime` > 1472556376 AND `status` > 0 LIMIT 1   [ RunTime:0.0429s ]
+
+[ 2016-08-30T19:28:39+08:00 ] 127.0.0.1 /finance/finance/getAccPayPass.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000630s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001177s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002440s ]
+SQL: SHOW COLUMNS FROM `fx_sms_code` [ RunTime:0.0483s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fx_sms_code` WHERE `user_id` = 42 AND `type` = 1 AND `addtime` > 1472556459 AND `status` > 0 LIMIT 1   [ RunTime:0.0469s ]
+
+[ 2016-08-30T19:34:27+08:00 ] 127.0.0.1 /finance/finance/getAccPayPass.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000896s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002108s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003851s ]
+SQL: SHOW COLUMNS FROM `fx_sms_code` [ RunTime:0.0538s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fx_sms_code` WHERE `user_id` = 42 AND `type` = 1 AND `addtime` > 1472556807 AND `status` > 0 LIMIT 1   [ RunTime:0.0475s ]
+
+[ 2016-08-30T19:34:33+08:00 ] 127.0.0.1 /finance/finance/getAccPayPass.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000826s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001278s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002868s ]
+SQL: SHOW COLUMNS FROM `fx_sms_code` [ RunTime:0.0500s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fx_sms_code` WHERE `user_id` = 42 AND `type` = 1 AND `addtime` > 1472556813 AND `status` > 0 LIMIT 1   [ RunTime:0.0468s ]
+
+[ 2016-08-30T19:35:51+08:00 ] 127.0.0.1 /finance/finance/getAccPayPass.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000591s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001284s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002783s ]
+SQL: SHOW COLUMNS FROM `fx_sms_code` [ RunTime:0.0496s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fx_sms_code` WHERE `user_id` = 42 AND `type` = 1 AND `addtime` > 1472556891 AND `status` > 0 LIMIT 1   [ RunTime:0.0479s ]
+
+[ 2016-08-30T19:36:49+08:00 ] 127.0.0.1 /finance/finance/getAccPayPass.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000638s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001398s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002629s ]
+SQL: SHOW COLUMNS FROM `fx_sms_code` [ RunTime:0.0502s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fx_sms_code` WHERE `user_id` = 42 AND `type` = 1 AND `addtime` > 1472556948 AND `status` > 0 LIMIT 1   [ RunTime:0.0503s ]
+SQL: INSERT INTO `fx_sms_code` (`mobile`,`user_id`,`type`,`content`,`addtime`,`status`) VALUES ('18580250064','42','1','181325','1472557008','1') [ RunTime:0.0504s ]
+
+[ 2016-08-30T19:38:01+08:00 ] 127.0.0.1 /finance/finance/editPayPwd.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000607s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001239s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002355s ]
+
+[ 2016-08-30T19:38:15+08:00 ] 127.0.0.1 /finance/finance/editPayPwd.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000735s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001475s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002757s ]
+
+[ 2016-08-30T19:38:20+08:00 ] 127.0.0.1 /finance/finance/editPayPwd.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000635s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001279s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002526s ]
+
+[ 2016-08-30T19:40:22+08:00 ] 127.0.0.1 /finance/finance/editPayPwd.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001076s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001896s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003522s ]
+NOTIC: [8] Undefined variable: passwd D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Finance\Controller\FinanceController.class.php 第 87 行.
+NOTIC: [8] Undefined variable: userinfo D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Finance\Controller\FinanceController.class.php 第 87 行.
+
+[ 2016-08-30T19:40:34+08:00 ] 127.0.0.1 /finance/finance/editPayPwd.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000645s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001280s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002483s ]
+
+[ 2016-08-30T19:40:41+08:00 ] 127.0.0.1 /finance/finance/editPayPwd.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000809s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001263s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002894s ]
+
+[ 2016-08-30T19:40:47+08:00 ] 127.0.0.1 /finance/finance/editPayPwd.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000606s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001160s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002389s ]
+NOTIC: [8] Undefined variable: passwd D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Finance\Controller\FinanceController.class.php 第 87 行.
+NOTIC: [8] Undefined variable: userinfo D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Finance\Controller\FinanceController.class.php 第 87 行.
+
+[ 2016-08-30T19:40:56+08:00 ] 127.0.0.1 /finance/finance/editPayPwd.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000727s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001504s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002752s ]
+NOTIC: [8] Undefined variable: passwd D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Finance\Controller\FinanceController.class.php 第 87 行.
+NOTIC: [8] Undefined variable: userinfo D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Finance\Controller\FinanceController.class.php 第 87 行.
+
+[ 2016-08-30T19:43:03+08:00 ] 127.0.0.1 /finance/finance/editPayPwd.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000650s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001271s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002401s ]
+
+[ 2016-08-30T19:43:19+08:00 ] 127.0.0.1 /finance/finance/editPayPwd.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000586s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001130s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002167s ]
+SQL: SHOW COLUMNS FROM `fx_sms_code` [ RunTime:0.0504s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `fx_sms_code` WHERE `user_id` = 42 AND `content` = '181325' AND `mobile` = '18580250064' AND `status` > 0 AND `addtime` >= 1472557338 LIMIT 1   [ RunTime:0.0436s ]
+

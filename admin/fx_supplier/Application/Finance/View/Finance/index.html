@@ -1,0 +1,304 @@
+<section class="content">
+    <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> 位置</li>
+        <li>财务管理</li>
+        <li>账户管理</li>
+    </ol>
+    <div class="box-body fqy_skzh">
+        <p>账户余额：<span>{:number_format($supplier_info['balance'], 2, '.', '')}</span></p>
+        <p>未结算订单总金额：<span>{$balance}</span></p>
+        <empty name="supplier_info['pay_pwd']"><p>支付密码：<span>未设置</span><button class="fqy_Addbtn1 btn btn-default">添加</button></p>
+            <else/><p>支付密码：<span>已设置</span><button class="fqy_Addbtn1 btn btn-default">修改</button></empty>
+        <empty name="supplier_info['receiver_account_name']">
+            <p>收款账号：<span>未设置</span><button class="fqy_Addbtn2 btn btn-default" <empty name="supplier_info['pay_pwd']">disabled="disabled"</empty>>添加</button></p>
+            <else/><p>收款账号：<span>已设置</span><button class="fqy_Addbtn2 btn btn-default" <empty name="supplier_info['pay_pwd']">disabled="disabled"</empty>>修改</button></p></empty>
+    </div>
+    <!--弹窗Start-->
+    <div class="fqy_Mask">
+        <div class="fqy_Popup">
+            <div class="fqy_aplay" style="display: none">
+                <div class="fqy_popHead">
+                    <b>设置支付密码</b>
+                    <span class="fqy_popClose">×</span>
+                </div>
+                <div class="fqy_popContent">
+                    <form action="{:U('finance/editPayPwd')}" method="post" id="set_pay_pwd">
+                        <table>
+                            <tr>
+                                <td>登录密码：</td>
+                                <td><input type="password" name="loginPass" class="loginPass" placeholder="请输入登陆密码"></td>
+                                <td><span class="fqy_tips">登陆密码错误</span></td>
+                            </tr>
+                            <tr>
+                                <td>支付密码：</td>
+                                <td><input type="password" name="payPass"  class="payPass" placeholder="请输入支付密码"></td>
+                                <td><span class="fqy_tips">支付密码错误</span></td>
+                            </tr>
+                            <tr>
+                                <td>再次输入支付密码：</td>
+                                <td><input type="password" name="againPayPass"  class="againPayPass" placeholder="请输入支付密码"></td>
+                                <td><span class="fqy_tips">支付密码错误</span></td>
+                            </tr>
+                            <tr>
+                                <td>已验证手机：</td>
+                                <td class="fqy_phone"><input name="mobile" type="hidden" value="{$supplier_info['mobile']}">{$supplier_info['mobile']}</td>
+                            </tr>
+                            <tr>
+                                <td>请填写手机校验码：</td>
+                                <td><input type="text" name="phoneCode"  class="phoneCode" placeholder="请输入手机校验码"></td>
+                                <td><a class="btn btn-default getAccPayPass" href="#" role="button">获取短信校验码</a></td>
+                                <td><span class="fqy_tips">短信校验码错误</span></td>
+                            </tr>
+                            <tr>
+                                <td>请输入验证码：</td>
+                                <td><input type="text" name="checkCode" placeholder="验证码" class='checkCode'></td>
+                                <td>
+                                    <img class="refreshCode" height="50" alt="验证码" src="{:U('finance/finance/verify_c',array())}" title="点击刷新"/>  
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center!important;" colspan="4"><input class="fqy_setPassBtn" type="button"  value="提交"></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+
+            <div class="fqy_Account">
+                <div class="fqy_popHead">
+                    <b>设置收款账号</b>
+                    <span class="fqy_popClose">×</span>
+                </div>
+                <div class="fqy_popContent">
+                    <form id="set_account" action="{:U('finance/editAccount')}" method="post">
+                        <table>
+                            <tr>
+                                <td>支付密码：</td>
+                                <td><input type="password" name="accPayPass" class="accPayPass" placeholder="请输入支付密码"></td>
+                                <td><span class="fqy_tips">请输入支付密码</span></td>
+                            </tr>
+                            <tr>
+                                <td>收款账户类型：</td>
+                                <td><label><input name="receiver_account_type" type="radio"
+                                                  <if condition="$supplier_info.receiver_account_type eq '' ||  $supplier_info.receiver_account_type eq 1"> checked="checked" </if> value="1" />支付宝 </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label><input name="receiver_account_type" type="radio" value="2" <eq name="supplier_info.receiver_account_type" value="2">checked="checked"</eq> />银行卡 </label> </td>
+                                <td><span class="fqy_tips">请输入支付账号</span></td>
+                            </tr>
+                            <tr class="alipay">
+                                <td>支付宝收款账号：</td>
+                                <td><input type="text" name="receiver_account" value="{$supplier_info.receiver_account}" class="receiver_account" placeholder="请输入支付宝收款账号"></td>
+                                <td><span class="fqy_tips">请输入收款账号</span></td>
+                            </tr>
+                            <tr class="bank">
+                                <td>开户行：</td>
+                                <td><input type="text" name="open_bank_address" value="{$supplier_info.open_bank_address}" class="open_bank_address" placeholder="例:河北大学保定支行"></td>
+                                <td><span class="fqy_tips">请输入开户行</span></td>
+                            </tr>
+                            <tr class="bank"> 
+                                <td>银行卡号：</td>
+                                <td><input type="number" name="receiver_bank_card" value="{$supplier_info.receiver_bank_card}"  class="receiver_bank_card" maxlength="25" placeholder="请输入卡号"></td>
+                                <td><span class="fqy_tips">请输入卡号</span></td>
+                            </tr >
+                            <tr> 
+                                <td>收款人姓名：</td>
+                                <td><input type="text" name="receiver_account_name" value="{$supplier_info.receiver_account_name}"  class="receiver_account_name" placeholder="收款账号对应收款人姓名"></td>
+                                <td><span class="fqy_tips">请输入收款账户名</span></td>
+                            </tr >
+                            <tr>
+                                <td>已验证手机：</td>
+                                <td class="fqy_phone"><input name="mobile" type="hidden" value="{$supplier_info['mobile']}">{$supplier_info['mobile']}</td>
+                            </tr>
+                            <tr>
+                                <td>请填写手机校验码：</td>
+                                <td><input type="text" name="accPhoneCode" class="accPhoneCode" placeholder="请输入手机校验码"></td>
+                                <td><a class="btn btn-default getAccPayPass" href="#" role="button">获取短信校验码</a></td>
+                            </tr>
+                            <tr>
+                                <td>请输入验证码：</td>
+                                <td><input type="text" name="checkCode" placeholder="验证码" class='checkCode'></td>
+                                <td>
+                                    <img class="refreshCode" height="50" alt="验证码" src="{:U('finance/finance/verify_c',array())}" title="点击刷新"/>  
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center!important;" colspan="4"><input class="fqy_setAccountBtn" type="button"  value="提交"></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--弹窗End-->
+</section>
+
+<script type="text/javascript" src="__PUBLIC__/static/layer/layer.js"></script> 
+<script>
+    var receiver_account_type = "{$supplier_info.receiver_account_type}";
+    if(1 == receiver_account_type){
+         $('.bank').hide();
+    }else{
+        $('.alipay').hide();
+    }
+   
+    $("input[name='receiver_account_type']").click(function(){
+        var v = $(this).val();
+        if(1 == v){
+            $('.bank').hide();
+            $('.alipay').show();
+        }else{
+            $('.alipay').hide();
+            $('.bank').show();
+        }
+    });
+    //刷新验证码
+    $('.refreshCode').click(function () {
+        var verifyimg = $('.refreshCode').attr("src");
+        if (verifyimg.indexOf('?') > 0) {
+            $(this).attr("src", verifyimg + '&random=' + Math.random());
+        } else {
+            $(this).attr("src", verifyimg.replace(/\?.*$/, '') + '?' + Math.random());
+        }
+    });
+    //添加支付账号及密码
+    $('.fqy_skzh').on('click', '.fqy_Addbtn1', function () {
+        fqy_yzm();
+        $('.fqy_Mask').css('visibility', 'visible');
+        $('.fqy_Account').hide();
+        $('.fqy_aplay').show();
+    });
+    $('.fqy_skzh').on('click', '.fqy_Addbtn2', function () {
+        fqy_yzm();
+        $('.fqy_Mask').css('visibility', 'visible');
+        $('.fqy_aplay').hide();
+        $('.fqy_Account').show();
+    });
+
+    //    设置支付密码输入校验
+    $('.fqy_setPassBtn').click(function () {
+        var PaypassData = {
+            loginPass: $('.loginPass').val(),
+            payPass: $('.payPass').val(),
+            againPayPass: $('.againPayPass').val(),
+            phoneCode: $('.phoneCode').val(),
+            checkCode: $('.checkCode').val(),
+            fqy_yzmText: $('.fqy_yzmText').html()
+        };
+        if (PaypassData.loginPass == '') {
+            showTips('loginPass', '登陆密码不能为空');
+        } else if (PaypassData.loginPass.length < 6) {
+            showTips('loginPass', '密码长度小于6位数');
+        } else if (PaypassData.payPass == '') {
+            showTips('payPass', '支付密码密码不能为空');
+        } else if (PaypassData.payPass.length < 6) {
+            showTips('payPass', '密码长度小于6位数');
+        } else if (PaypassData.againPayPass == '' || PaypassData.againPayPass != PaypassData.payPass) {
+            showTips('againPayPass', '两次密码不一致');
+        } else {
+            var data;
+            data = $('#set_pay_pwd').serialize();
+            $.post("{:U('finance/finance/editPayPwd')}", data, function (result) {
+                if (result.status == 1) {
+                    layer.alert(result.info, {btn: ['确定']}, function (index) {
+                        layer.close(index);
+                        window.location.reload();
+                    });
+                } else {
+                    layer.alert(result.info, {btn: ['确定']}, function (index) {
+                        $(".refreshCode").click();
+                        layer.close(index);
+                    });
+                }
+            });
+        }
+    });
+    //    设置收款账号输入校验
+    $('.fqy_setAccountBtn').click(function () {
+        var AccountData = {
+            accNum: $('.accNum').val(),
+            accPayPass: $('.accPayPass').val(),
+            accPhoneCode: $('.accPhoneCode').val(),
+            accCheckCode: $('.accCheckCode').val(),
+            fqy_yzmText: $('.fqy_yzmText').html()
+        };
+        if (AccountData.accNum == '') {
+            showTips('accNum', '支付账号不能为空');
+        } else if (AccountData.accPayPass == '') {
+            showTips('accPayPass', '支付密码不能为空');
+        } else {
+            var data;
+            data = $('#set_account').serialize();
+            $.post("{:U('finance/finance/editAccount')}", data, function (result) {
+                if (result.status == 1) {
+                    layer.alert(result.info, {btn: ['确定']}, function (index) {
+                        layer.close(index);
+                        window.location.reload();
+                    });
+                } else {
+                    layer.alert(result.info, {btn: ['确定']}, function (index) {
+                        layer.close(index);
+                    });
+                }
+            });
+        }
+    });
+
+    $('.getAccPayPass').click(function () {
+        var mobile = "{$supplier_info['mobile']}";
+        if('' == mobile){
+            layer.alert('手机号为空', {btn: ['确定']}, function (index) {
+                    layer.close(index);
+                });
+                return false;
+        }
+        $.post("{:U('finance/finance/getAccPayPass')}", {phone: "{$supplier_info['mobile']}"}, function (result) {
+            if (result.status == 1) {
+                layer.alert(result.info, {btn: ['确定']}, function (index) {
+                    layer.close(index);
+                });
+            }
+            layer.alert(result.message, {btn: ['确定']}, function (index) {
+                layer.close(index);
+            });
+        });
+    });
+
+    //提示信息
+    function showTips(ele, text) {
+        $('.' + ele).css('borderColor', '#cc3300');
+        $('.' + ele).parent('td').next('td').find('.fqy_tips').text(text).fadeIn();
+        setTimeout(function () {
+            $('.' + ele).css('borderColor', '#ccc');
+            $('.' + ele).parent('td').next('td').find('.fqy_tips').text(text).fadeOut();
+        }, 2500);
+    }
+    //    验证码
+    function fqy_yzm() {
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'], str = '';
+        for (var i = 0, j = 0; i < arr.length, j < 4; i++, j++) {
+            str += arr[Math.ceil(Math.random() * 35)];
+        }
+        $('.fqy_yzmText').empty().text(str).css({'letter-spacing': Math.ceil(Math.random() * 29), 'font-size': Math.ceil(13 + Math.random() * 8), 'line-height': Math.ceil(10 + Math.random() * 40) + 'px'});
+    }
+    //弹出层
+    function autocenter() {
+        var W = $(window).width() / 2;
+        var H = $(window).height() / 2;
+        var eleW = $('.fqy_Popup').width();
+        var eleH = $('.fqy_Popup').height();
+//        alert(eleH);
+
+        $('.fqy_Popup').css({left: (W - eleW / 2) + 'px', top: (H - eleH / 2) + 'px'});
+        //关闭弹出层
+        $('.fqy_popClose,.fqy_canlce').click(function () {
+            $('.fqy_Mask').css('visibility', 'hidden');
+
+        });
+    }
+    window.onload = function () {
+        autocenter();
+    };
+    window.onresize = function () {
+        autocenter();
+    };
+</script>

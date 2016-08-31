@@ -1,0 +1,25 @@
+[ 2016-08-24T14:10:29+08:00 ] 127.0.0.1 /Orders/Orders/confirmOrder.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000649s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001184s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002468s ]
+SQL: SHOW COLUMNS FROM `order_list` [ RunTime:0.0022s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `order_list` WHERE ( order_id = 68 and is_cus = 1 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `order_list` INNER JOIN order_goods ON order_goods.order_id = order_list.order_id  WHERE ( order_list.order_id = 68 ) LIMIT 1   [ RunTime:0.0017s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0018s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `hub_order` WHERE ( order_id=68 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: INSERT INTO `hub_order` (`order_id`,`order_sn`,`buyer_id`,`buyer_name`,`ship_stats`,`hub_type`,`memo`,`order_time`,`receiver_name`,`receiver_tel`,`shop_id`,`buyer_goods_no`,`depot_id`,`shipping_fee`,`con_time`,`addtime`) VALUES ('68','1160824020958102059','1','test1','0','0','','1472018998','','','1','DSJD-B-2#A216-Q11-40','5','0.00','1472019029','1472019029') [ RunTime:0.0024s ]
+SQL: SHOW COLUMNS FROM `order_goods_sku` [ RunTime:0.0016s ]
+SQL: SELECT `sku_comb_id` FROM `order_goods_sku` WHERE ( order_id = 68 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0014s ]
+SQL: INSERT INTO `hub_order_goods` (`hub_id`,`sku_comb_id`,`order_id`,`goods_id`,`goods_name`,`category_parent`,`goods_num`,`addtime`) VALUES ('32','80','68','6','2016新款圆领潮流印花长袖T恤','50000436','4','1472019029') [ RunTime:0.0015s ]
+SQL: UPDATE `order_list` SET `order_id`='68',`order_sn`='1160824020958102059',`other_order_sn`='',`other_shop`='淘宝订单',`buyer_id`='1',`buyer_name`='test1',`shop_id`='1',`add_time`='1472018998',`payment_time`='1472019003',`finnshed_time`='0',`goods_amount`='598.00',`order_amount`='598.00',`pay_amount`='598.00',`order_state`='2',`con_time`='1472019029',`send_hub_time`='0',`close_time`='0',`order_marked`='0',`shipping_code`='',`shipping_id`='0',`shipping_name`='',`shipping_fee`='0.00',`qq`='1052214395',`message_starts`='1',`memo`='',`is_send_hub`='0',`is_cus`='0',`hub_type`='0',`receiver_name`='',`receiver_tel`='',`is_edit_address`='0',`shipping_info`='',`supplier_id`='1',`is_supplier_close`='0' WHERE ( order_id =68 ) [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0015s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php on line 71 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','超级管理员','2','Orders','/Orders/Orders/confirmOrder.html','订单已确认','1472019029','127.0.0.1','{\"order_id\":[\"68\"]}') [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0015s ]
+SQL: INSERT INTO `log_list` (`log_info`,`pid`,`handle_info`,`cid`,`user_id`,`addtime`,`ip_address`) VALUES ('订单已确认','68','订单确认,进入待发货','1','1','1472019029','127.0.0.1') [ RunTime:0.0014s ]
+

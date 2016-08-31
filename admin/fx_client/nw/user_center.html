@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>货源管家-个人设置</title>
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" type="text/css" href="css/fqy_style.css"/>
+        <link rel="stylesheet" href="css/yz.css">
+        <script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/knockout-3.3.0.js" type="text/javascript" charset="utf-8"></script>	
+		<script src="js/plus.js" type="text/javascript" charset="utf-8"></script>	
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/message.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+    <body>
+        <div class="main clearfix">
+            <div id="p_left"></div>
+            <div class="wraper">
+               <div id="p_top"></div>
+                <div class="person-set">
+                    <table id="userinfo">
+                        <tr>
+                            <td><img src="images/main/per_set01.png"/></td>
+                            <td>用户名： </td>
+                            <td><span data-bind = "text:user_account">fenxiaoshang@qq.com</span><a href="javascript:;" id="updata-pwd">修改密码</a><a href="javascript:;" id="updata-pay">修改支付密码</a></td>
+                        </tr>
+                        <tr>
+                            <td><img src="images/main/per_set02.png"/></td>
+                            <td>手机号： </td>
+                            <td><span data-bind = "text:mobile">187****8797</span><label>已验证</label><a href="javascript:;" id="updata-mobile">修改</a></td>
+                        </tr>
+                        <tr>
+                            <td><img src="images/main/per_set04.png"/></td>
+                            <td>QQ： </td>
+                            <td><span data-bind = "text:qq">4654687987 </span></td>
+                        </tr>
+                        <tr>
+                            <td><img src="images/main/per_set05.png"/></td>
+                            <td>邮箱： </td>
+                            <td><span data-bind = "text:email">fenxiaoshang@qq.com </span><label>已验证</label><a href="javascript:;" id="updata-email">修改</a></td>
+                        </tr>
+                        <tr>
+                            <td><img src="images/main/per_set06.png"/></td>
+                            <td>注册时间： </td>
+                            <td><span data-bind = "text:addtime">2016-7-28 20:15:10</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>   
+        <div id="p_footer"></div>
+        <div class="marks" id="updata-login" style="display: none;">
+            <div class="PopDiv Security_yz" style="display: none;" id="yzinfo">
+                <div class="PopHeader">
+                    <img src="images/markicon01.png" alt="">
+                    <span class="PopTitle">安全验证</span>
+                    <div class="PopColse"></div>
+                </div>
+                <div class="PopBody">
+                    <p class="p-username">用户名:<span data-bind = "text:user_account">fenxiaoshang@qq.com</span></p>
+                    <div class="mark-secVerify">
+                        <p class="m-email"><input type="radio" name="m_secVer" data-id='email' checked="" data-bind = "attr:{value:email}" >邮箱验证<span data-bind = "text:email">fenx****hang@qq.com7</span></p>
+                        <p class="m-mobile"><input type="radio" name="m_secVer" data-id='mobile' data-bind = "attr:{value:mobile}">手机验证<span data-bind = "text:mobile">187****8797</span></p>
+                    </div>	    
+                    <div class="sec-code">填写验证码：<input type="text" class="s-code"><span class="s-send" style="display: inline-block;padding: 5px 6px;background-color: #f40;color: #fff;">发送验证码</span></div>
+                </div>
+                <div class="PopFooter">
+                    <button id="next" disabled style="background-color: #ccc;color: #444;cursor: not-allowed">下一步</button>
+                </div>
+            </div>
+            <div class="PopDiv updata-pop change-loginPassword"  style="display: none;">
+                <div class="PopHeader">
+                    <img src="images/markicon01.png" alt="">
+                    <span class="PopTitle">修改登录密码</span>
+                    <div class="PopColse"></div>
+                </div>
+                <div class="PopBody">
+                    <p class="p-username">输入新密码:<input type="password" value="" id="dl_pwd" /></p>
+                    <p class="p-username">确认新密码:<input type="password" value="" id="dl_repwd"/></p>
+                </div>
+                <div class="PopFooter">
+                    <button class="prev">上一步</button><button class="confirm">确定</button>
+                </div>
+            </div>
+        </div>
+        <div class="marks" style="display: none;" id="updata-payed">
+            <div class="PopDiv Security_yz" style="display: none;" id="yzinfo">
+                <div class="PopHeader">
+                    <img src="images/markicon01.png" alt="">
+                    <span class="PopTitle">安全验证</span>
+                    <div class="PopColse"></div>
+                </div>
+                <div class="PopBody">
+                    <p class="p-username">用户名:<span data-bind = "text:user_account">fenxiaoshang@qq.com</span></p>
+                    <div class="mark-secVerify">
+                        <p class="m-email"><input type="radio" name="m_secVer" data-id='email' checked="" data-bind = "attr:{value:email}" >邮箱验证<span data-bind = "text:email">fenx****hang@qq.com7</span></p>
+                        <p class="m-mobile"><input type="radio" name="m_secVer" data-id='mobile' data-bind = "attr:{value:mobile}">手机验证<span data-bind = "text:mobile">187****8797</span></p>
+                    </div>	    
+                    <div class="sec-code">填写验证码：<input type="text" class="s-code"><span class="s-send" style="display: inline-block;padding: 5px 6px;background-color: #f40;color: #fff;">发送验证码</span></div>
+                </div>
+                <div class="PopFooter">
+                    <button id="next" disabled style="background-color: #ccc;color: #444;cursor: not-allowed">下一步</button>
+                </div>
+            </div>
+            <div class="PopDiv updata-pop change-payPassword"  style="display: none;">
+                <div class="PopHeader">
+                    <img src="images/markicon01.png" alt="">
+                    <span class="PopTitle">修改支付密码</span>
+                    <div class="PopColse"></div>
+                </div>
+                <div class="PopBody">
+                    <p class="p-username">输入新密码:<input type="password" value=""  id="pay_pwd"/></p>
+                    <p class="p-username">确认新密码:<input type="password" value=""  id="pay_repwd"/></p>
+                </div>
+                <div class="PopFooter">
+                    <button class="prev">上一步</button><button class="confirm">确定</button>
+                </div>
+            </div>
+        </div>
+        <div class="marks" style="display: none;" id="updata-phone">
+            <div class="PopDiv Security_yz" style="display: none;" id="yzinfo">
+                <div class="PopHeader">
+                    <img src="images/markicon01.png" alt="">
+                    <span class="PopTitle">安全验证</span>
+                    <div class="PopColse"></div>
+                </div>
+                <div class="PopBody">
+                    <p class="p-username">用户名:<span data-bind = "text:user_account">fenxiaoshang@qq.com</span></p>
+                    <div class="mark-secVerify">
+                        <p class="m-email"><input type="radio" name="m_secVer" data-id='email' checked="" data-bind = "attr:{value:email}" >邮箱验证<span data-bind = "text:email">fenx****hang@qq.com7</span></p>
+                        <p class="m-mobile"><input type="radio" name="m_secVer" data-id='mobile' data-bind = "attr:{value:mobile}">手机验证<span data-bind = "text:mobile">187****8797</span></p>
+                    </div>	    
+                    <div class="sec-code">填写验证码：<input type="text" class="s-code" id="f_code_val" ><span class="s-send" id="f_code" style="display: inline-block;padding: 5px 6px;background-color: #f40;color: #fff;">发送验证码</span></div>
+                </div>
+                <div class="PopFooter">
+                    <button id="next" disabled style="background-color: #ccc;color: #444;cursor: not-allowed">下一步</button>
+                </div>
+            </div>
+            <div class="PopDiv updata-pop change-mobile" style="display: none;">
+                <div class="PopHeader">
+                    <img src="images/markicon01.png" alt="">
+                    <span class="PopTitle">修改手机号</span>
+                    <div class="PopColse"></div>
+                </div>
+                <div class="PopBody">
+                    <p class="p-username">输入新手机:<input type="text" value="" id="new_mobile"/></p>
+                    <p class="p-username" style="text-align: center;">填写验证码：<input type="text" class="s-code" id="s_code_val"><span class="s-send" id="s_code" style="display: inline;padding: 5px 6px;background-color: #f40;color: #fff;cursor: pointer;">发送验证码</span></p>
+                </div>
+                <div class="PopFooter">
+                    <button class="prev">上一步</button><button class="confirm">确定</button>
+                </div>
+            </div>
+        </div>
+        <div class="marks" style="display: none;" id="updata-Email">
+            <div class="PopDiv Security_yz" style="display: none;" id="yzinfo">
+                <div class="PopHeader">
+                    <img src="images/markicon01.png" alt="">
+                    <span class="PopTitle">安全验证</span>
+                    <div class="PopColse"></div>
+                </div>
+                <div class="PopBody">
+                    <p class="p-username">用户名:<span data-bind = "text:user_account">fenxiaoshang@qq.com</span></p>
+                    <div class="mark-secVerify">
+                        <p class="m-email"><input type="radio" name="m_secVer" data-id='email' checked="" data-bind = "attr:{value:email}" >邮箱验证<span data-bind = "text:email">fenx****hang@qq.com7</span></p>
+                        <p class="m-mobile"><input type="radio" name="m_secVer" data-id='mobile' data-bind = "attr:{value:mobile}">手机验证<span data-bind = "text:mobile">187****8797</span></p>
+                    </div>	    
+                    <div class="sec-code">填写验证码：<input type="text" class="s-code" id="old_email"><span class="s-send" id="old_email_code" style="display: inline-block;padding: 5px 6px;background-color: #f40;color: #fff;">发送验证码</span></div>
+                </div>
+                <div class="PopFooter">
+                    <button id="next" disabled style="background-color: #ccc;color: #444;cursor: not-allowed">下一步</button>
+                </div>
+            </div>
+            <div class="PopDiv updata-pop change-email" style="display: none;">
+                <div class="PopHeader">
+                    <img src="images/markicon01.png" alt="">
+                    <span class="PopTitle">修改邮箱</span>
+                    <div class="PopColse"></div>
+                </div>
+                <div class="PopBody">
+                    <p class="p-username">输入邮箱:<input type="text" value="" id="new_email_val" /></p>
+                    <p class="p-username" style="text-align: center;">填写验证码：<input type="text" class="s-code" id="new_email"><span class="s-send" id="email_code" style="display: inline;padding: 5px 6px;background-color: #f40;color: #fff;cursor: pointer;">发送验证码</span></p>
+                </div>
+                <div class="PopFooter">
+                    <button class="prev">上一步</button><button class="confirm">确定</button>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">
+    	$(function(){
+    		X.bindModel(requestUrl.userinfo,1,{'user_id':localStorage.getItem('user_id')},'body.list',['userinfo','updata-login','updata-payed','updata-phone','updata-Email'],function(){})
+    	})
+    	//显示修改用户密码模态框 第一步  校验
+    	$('#updata-pwd').click(function(){
+    		$('#updata-login').fadeIn();
+    		$('#updata-login .Security_yz').fadeIn();
+    		var cancel='email';
+			ss(cancel);
+			$('#updata-login .mark-secVerify input').click(function(){
+				cancel=$(this).attr('data-id');
+				ss(cancel)
+			})
+			var fdata;
+			function ss(cancel){
+				if(cancel=='email'){
+				fdata=localStorage.getItem('email');
+				}else if(cancel=='mobile'){
+					fdata=localStorage.getItem('mobile')
+				}
+			}
+    		$('#updata-login .s-send').click(function(){
+    			X.Post(requestUrl.paye_code,1,{'to':fdata,'type':cancel,'target':'change_pwd'},function(e){
+    				X.notice(e.header.msg,3);
+                    $("#updata-login #next").css({backgroundColor: "#f40", color: "#fff", cursor: "pointer"}).prop("disabled", false);
+    			})
+    		});
+
+
+    		//校验成功跳转到下一步
+    		$('#updata-login #next').click(function(){
+    		    var v = $('#updata-login .s-code').val();
+    		    if(v) {
+                    X.Post(requestUrl.pay_check,1,{'verify':$('#updata-login .s-code').val(),'target':'change_pwd','field':cancel,'field_data':fdata},function(e){
+                        if(e.header.stats==0){
+                            $('#updata-login .Security_yz').fadeOut();
+                            $('#updata-login .change-loginPassword').fadeIn();
+                            $('#updata-login .prev').click(function(){
+                                window.history.back(-1);
+                            })
+                            $('#updata-login .confirm').click(function(){
+                                X.Post(requestUrl.change_pwd,1,{'user_id':localStorage.getItem('user_id'),'type':1,'pwd':$('#dl_pwd').val(),'repwd':$('#dl_repwd').val()},function(e){
+                                    if(e.header.stats==0){
+                                        X.notice(e.body.list.msg,1)
+                                        $('#updata-login').fadeIn();
+                                        window.location.reload();
+                                    }else{
+                                        X.notice(e.header.msg,3)
+                                    }
+                                })
+                            })
+                            X.notice(e.body.list.msg)
+                        }else{
+                            X.notice(e.header.msg,1)
+                        }
+                    })
+                }else {
+                    X.notice("请填写验证码", 1);
+                }
+
+			})//修改登录密码结束
+    	})
+    	//修改支付密码
+		$('#updata-pay').click(function(){
+				$('#updata-payed').fadeIn();
+    			$('#updata-payed .Security_yz').fadeIn();
+    			var cancel='email';
+				ss(cancel);
+				$('#updata-payed .mark-secVerify input').click(function(){
+					cancel=$(this).attr('data-id');
+					ss(cancel)
+				})
+				var fdata;
+				function ss(cancel){
+					if(cancel=='email'){
+					fdata=localStorage.getItem('email');
+					}else if(cancel=='mobile'){
+						fdata=localStorage.getItem('mobile')
+					}
+				}
+				//验证码校验
+	    		$('#updata-payed .s-send').click(function(){
+	    			X.Post(requestUrl.paye_code,1,{'to':fdata,'type':cancel,'target':'change_pwd'},function(e){
+	    				X.notice(e.header.msg,3)
+	    				$("#updata-payed #next").css({backgroundColor: "#f40", color: "#fff", cursor: "pointer"}).prop("disabled", false);
+	    			})
+	    		})
+	    		//修改支付密码
+	    		$('#updata-payed #next').click(function(){
+                    var v = $('#updata-payed .s-code').val();
+                    if(v) {
+                        X.Post(requestUrl.pay_check,1,{'verify':$('#updata-payed .s-code').val(),'target':'change_pwd','field':cancel,'field_data':fdata},function(e){
+                            if(e.header.stats==0){
+                                $('#updata-payed .Security_yz').fadeOut();
+                                $('#updata-payed .change-payPassword').fadeIn();
+                                $('.prev').click(function(){
+                                    window.history.back(-1);
+                                })
+                                $('#updata-payed .confirm').click(function(){
+                                    X.Post(requestUrl.change_pwd,1,{'user_id':localStorage.getItem('user_id'),'type':2,'pwd':$('#pay_pwd').val(),'repwd':$('#pay_repwd').val()},function(e){
+                                        if(e.header.stats==0){
+                                            X.notice(e.body.list.msg,3)
+                                            $('#updata-payed').fadeIn();
+                                            window.location.reload();
+                                        }else{
+                                            X.notice(e.header.msg,3)
+                                        }
+                                    })
+                                })
+                                X.notice(e.body.list.msg)
+                            }else{
+                                X.notice(e.header.msg,3)
+                            }
+                        })
+                    }else {
+                        X.notice("请填写验证码", 1);
+                    }
+
+				})//修改支付密码结束
+			})
+    	//修改手机号
+		$('#updata-mobile').click(function(){
+					$('#updata-phone').fadeIn();
+	    			$('#updata-phone .Security_yz').fadeIn();
+					//验证码校验
+					var phone_type;
+		    		$('#f_code').click(function(){
+		    			var cancel='email';
+							ss(cancel);
+							$('#updata-phone .mark-secVerify input').click(function(){
+								cancel=$(this).attr('data-id');
+								ss(cancel)
+							})
+							var fdata;
+							function ss(cancel){
+								if(cancel=='email'){
+								fdata=localStorage.getItem('email');
+								}else if(cancel=='mobile'){
+									fdata=localStorage.getItem('mobile')
+								}
+							}
+		    			X.Post(requestUrl.mobile_code,1,{'field_data':fdata,'field':cancel},function(e){
+		    				if(e.header.stats==0){
+		    					X.notice(e.body.list.msg,3)
+		    					phone_type=e.body.list.target
+		    					$('#updata-phone #next').prop("disabled", false).css({backgroundColor: "#f40", color: "#fff", cursor: "pointer"});
+		    				}else{
+		    					X.notice(e.header.msg,3);
+		    				}          
+		    			})
+		    		});
+		    		var updata_field;
+		    		$('#updata-phone #next').click(function(){
+                        var v = $('#f_code_val').val();
+                        if(v) {
+                            X.Post(requestUrl.up_mobile,1,{'code':$('#f_code_val').val(),'user_id':localStorage.getItem('user_id'),'field':cancel,'field_data':fdata,'target':phone_type},function(e){
+                                if(e.header.stats==0){
+                                    $('#updata-phone .Security_yz').fadeOut();
+                                    $('#updata-phone .change-mobile').fadeIn();
+                                    $('#updata-phone .prev').click(function(){
+                                        window.history.back(-1);
+                                    })
+                                    $('#s_code').click(function(){
+                                    	var mobile=$('#new_mobile').val();
+                                    	var data={
+	                                    	'field':'mobile',
+	                                    	'field_data':mobile	
+                                    	}
+                                    	X.Post(requestUrl.mobile_code,1,data,function(e){
+                                    		if(e.header.stats==0){
+//                                  			X.notice(e.body.list.msg,3);
+                                    			phone_type=e.body.list.target
+                                    		}else{
+                                    			X.notice(e.header.msg,3)
+                                    		}
+                                    	})
+                                    })
+                                    $('#updata-phone .confirm').click(function(){
+                                    	updata_field=$('#new_mobile').val();
+	                                    	var data={
+	                                    	'code':$('#s_code_val').val(),
+	                                    	'user_id':localStorage.getItem('user_id'),
+	                                    	'target':phone_type,
+	                                    	'field':'mobile',
+	                                    	'field_data':updata_field,
+	                                    	'update_data':updata_field
+	                                    }
+                                        X.Post(requestUrl.up_mobile,1,data,function(e){
+                                        	console.log(e);
+                                            if(e.header.stats==0){
+                                                X.notice(e.body.list.msg,3)
+                                                $('#updata-phone').fadeIn();
+                                                window.location.reload();
+                                            }else{
+                                                X.notice(e.header.msg,3)
+                                            }
+                                        })
+                                    })
+                                    X.notice(e.body.list.msg)
+                                }else{
+                                    X.notice(e.header.msg,3)
+                                }
+                            })
+                        }else {
+                            X.notice("请填写验证码", 1);
+                        }
+
+					})
+				})
+		//修改邮箱		
+		$('#updata-email').click(function(){
+					$('#updata-Email').fadeIn();
+	    			$('#updata-Email .Security_yz').fadeIn();
+					//验证码校验
+		    		$('#old_email_code').click(function(){
+		    			var cancel='email';
+						ss(cancel);
+						$('#updata-Email .mark-secVerify input').click(function(){
+							cancel=$(this).attr('data-id');
+							ss(cancel)
+						});
+						var fdata;
+						function ss(cancel){
+							if(cancel=='email'){
+							fdata=localStorage.getItem('email');
+							}else if(cancel=='mobile'){
+								fdata=localStorage.getItem('mobile')
+							}
+						}
+		    			X.Post(requestUrl.mobile_code,1,{'field_data':fdata,'field':cancel},function(e){
+		    				if(e.header.stats==0){
+		    					X.notice(e.body.list.msg,3);
+                            	$('#updata-Email #next').prop("disabled", false).css({backgroundColor: "#f40", color: "#fff",cursor: "pointer"});
+		    				}else{
+		    					X.notice(e.header.msg,3)
+		    				}	
+		    			})
+		    		});
+		    		$('#updata-Email #next').click(function(){
+                        var v = $('#old_email').val();
+                        if(v) {
+                            X.Post(requestUrl.up_mobile,1,{'code':$('#old_email').val(),'field_data':fdata,'field':cancel},function(e){
+                            	var email_type=e.body.list.target
+                                if(e.header.stats==0){
+                                    $('#updata-Email .Security_yz').fadeOut();
+                                    $('#updata-Email .change-email').fadeIn();
+                                    $('#updata-Email .prev').click(function(){
+                                        window.history.back(-1);
+                                    })
+                                    
+                                    $('#email_code').click(function(){
+                                    	var new_email=$('#new_email_val').val();
+                                    	var data={
+                                    		'field':'email',
+                                    		'field_data':new_email
+                                    	}
+                                    	X.Post(requestUrl.mobile_code,1,data,function(e){
+                                    		if(e.header.stats==0){
+                                    			X.notice(e.body.list.msg,3)
+                                    		}else{
+                                    			X.notice(e.header.msg,3)
+                                    		}
+                                    	})
+                                    })
+                                    
+                                    $('#updata-Email .confirm').click(function(){
+                                    	var new_email=$('#new_email_val').val();
+                                    	var data={
+                                    		'user_id':localStorage.getItem('user_id'),
+                                    		'field':'email',
+                                    		'field_data':new_email,
+                                    		'target':email_type,
+                                    		'update_data':new_email
+                                    	}
+                                        X.Post(requestUrl.up_mobile,1,data,function(e){
+                                            if(e.header.stats==0){
+                                                X.notice(e.body.list.msg,3)
+                                                $('#updata-Email').fadeIn();
+                                                window.location.reload();
+                                            }else{
+                                                X.notice(e.header.msg,3)
+                                            }
+                                        })
+                                    })
+                                    X.notice(e.body.list.msg)
+                                }else{
+                                    X.notice(e.header.msg,3)
+                                }
+                            })
+                        }else {
+                            X.notice("请填写验证码", 1);
+                        }
+
+					})
+				})	
+    	
+    </script>
+</html>

@@ -1,0 +1,102 @@
+  <extend name="Public/base" />
+  <block name="headerCss">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/home/css/bootstrap-datetimepicker.min.css">
+  </block>
+  <block name="content">
+		<div>
+		<form method="post" enctype="multipart/form-data" action="{:U('goods/addImportGoods')}" >
+		<input type="file" name="file">
+
+<div class="col-xs-5">
+          <select class="form-control" name="depot">
+                <option value="">选择仓库</option>
+                <option value="1">四川省/成都市/新都仓</option><option value="2">广东省/广州市/广州仓</option>              </select>
+        </div>
+    
+		<input type="submit" name="">
+		</form>
+		</div>
+
+  </block>
+  <block name="footerJs">
+  <script type="text/javascript" src="__STATIC__/home/js/moment.js"></script>
+  <script src="__STATIC__/home/js/bootstrap-datetimepicker.min.js"> </script>
+  <script src="__STATIC__/home/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"> </script>
+  <script type="text/javascript" src="__STATIC__/home/js/custom.js"></script>
+  
+  <script type="text/javascript">
+  			$(document).ready(function(){
+  				$('.sort').change(function(){
+  					$('#sortForm').submit();
+  				});
+
+  				//导出商品价格
+  				$("#exportPriceExecl").click(function(event) {
+  					/* Act on the event */
+  					if( $('.allGoods').is(':checked') ){
+  						$("input[name='allData']").val(1)
+  					}else{
+  						$("#dataTable").find('.checkbox_goods_id:checked').each(function(index, element) {
+  							var cloneInput = $('.explode_goods_input:first()').clone();
+  							cloneInput.val( $(this).val() ).appendTo('.btnBox')
+  						});
+  						if( 1 == $('.explode_goods_input').length ){
+  							return false;
+  						}
+  					}
+  					$('.explode_goods_input:first()').remove();
+  					$('input[name="explode_goods"]').val(1);
+  					$("#searchForm").submit();
+  					return false;
+  				});
+
+  				var getPostData = function(){
+  					var postData = new Object();
+  					postData.alldata = 0;
+  					var goods = new Array();
+  					if( $('.allGoods').is(":checked") ){
+  						postData.alldata = 1;
+  					}else{
+  						$("#dataTable").find('.checkbox_goods_id:checked').each(function(index, element) {
+                            goods[index] = $(this).val();
+                        });
+  					}
+  					postData.goods = goods;
+  					return postData;
+  				};
+
+
+  				$('.cancel_goods_sale').click(function(event) {
+  					var postUrl  = "{:U('goods/goodsSale', I('get.'))}";
+  				});
+				
+				$('.update_goods_sale').click(function(){
+					var postUrl  = "{:U('goods/goodsSale', I('get.'))}";
+					var postData = getPostData();
+					if( 0 == postData.alldata ){
+						if( 0 == postData.goods.length )return false;
+					}
+					
+					postData.sale = $(this).data('id');
+					$.post( postUrl ,postData ,function(rData){
+						alert(rData);
+					},'text');
+					return false;
+				});
+
+  				$('i').click(function(){
+  					var attr= $(this).attr('class');
+  					if(attr == "glyphicon glyphicon-plus-sign"){
+  						$(this).attr('class','glyphicon glyphicon-minus-sign');
+  						$(this).parent().parent().next().css('display','');
+  					}else{
+  						$(this).attr('class','glyphicon glyphicon-plus-sign');
+  						$(this).parent().parent().next().css('display','none');
+  					}	
+  				});
+				
+				
+				
+  			});
+  </script>
+  </block>

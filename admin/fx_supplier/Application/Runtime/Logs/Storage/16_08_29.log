@@ -1,0 +1,680 @@
+[ 2016-08-29T14:00:48+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-29T14:00:58+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-29T14:01:15+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-29T14:02:13+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-29T14:02:19+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-29T14:02:22+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-29T14:03:20+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-29T14:03:52+08:00 ] 127.0.0.1 /Storage/storage/hubDistribution.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000471s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001075s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002075s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 256  ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 256 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 256 ) [ RunTime:0.0022s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0016s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','256','1','1472450632','127.0.0.1') [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0013s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:256','1472450632','127.0.0.1','{\"order_id\":[\"256\"]}') [ RunTime:0.0005s ]
+
+[ 2016-08-29T14:03:53+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-29T14:03:58+08:00 ] 127.0.0.1 /Storage/storage/hubDistribution.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000551s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001078s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002271s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0031s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 1  ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 1 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 1 ) [ RunTime:0.0018s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0012s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','1','1','1472450638','127.0.0.1') [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0015s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:1','1472450638','127.0.0.1','{\"order_id\":[\"1\"]}') [ RunTime:0.0004s ]
+
+[ 2016-08-29T14:04:11+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000432s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000811s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001632s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0017s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000077s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000174s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.047957s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.048049s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000413s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000602s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001136s ]
+
+[ 2016-08-29T14:04:19+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000573s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001615s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002717s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T14:04:19+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000518s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001184s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002569s ]
+ERR: Think\Controller:newTaoBaoApi方法不存在！
+
+[ 2016-08-29T14:07:28+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000644s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001381s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002658s ]
+ERR: Think\Controller:newTaoBaoApi方法不存在！
+
+[ 2016-08-29T14:07:28+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000600s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001383s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002606s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T14:09:18+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000500s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001031s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002030s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T14:09:18+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000506s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001037s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002050s ]
+
+[ 2016-08-29T14:10:02+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000828s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001160s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002501s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T14:10:02+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000603s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001148s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002527s ]
+ERR: Think\Controller:newTaoBaoApi方法不存在！
+
+[ 2016-08-29T14:14:00+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T14:14:03+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T14:14:03+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T14:33:06+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T14:33:08+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T14:33:44+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000530s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001156s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002178s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T14:33:44+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000617s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001141s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002283s ]
+ERR: Think\Controller:newTaoBaoApi方法不存在！
+
+[ 2016-08-29T14:37:43+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000816s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001644s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0018s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000076s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000163s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007384s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007472s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000458s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000819s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001400s ]
+
+[ 2016-08-29T14:37:58+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000621s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001295s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002395s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T14:37:58+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000566s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001096s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002185s ]
+ERR: Think\Controller:newTaoBaoApi方法不存在！
+
+[ 2016-08-29T14:40:59+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000606s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001213s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002403s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T14:40:59+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000841s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001320s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002733s ]
+
+[ 2016-08-29T14:42:22+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000444s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000979s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001929s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0018s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 256  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0017s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0016s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0006s ]
+
+[ 2016-08-29T14:42:22+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000607s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001228s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002368s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T14:45:02+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000542s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001090s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002180s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T14:45:02+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000627s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001236s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002375s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0017s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 256  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0016s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0013s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0005s ]
+
+[ 2016-08-29T14:45:08+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000581s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001692s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002771s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0016s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =4 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 256  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0017s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0015s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0006s ]
+
+[ 2016-08-29T14:45:08+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001031s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001778s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003539s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T15:43:40+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000566s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001034s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002074s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0018s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =4 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 256  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0017s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0017s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0004s ]
+
+[ 2016-08-29T15:43:40+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000573s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001280s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002353s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T15:48:41+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000636s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001041s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002172s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T15:48:42+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000604s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001204s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002360s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0016s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =4 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 256  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0013s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0006s ]
+
+[ 2016-08-29T15:54:06+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000661s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001342s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002918s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0019s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =4 ) LIMIT 1   [ RunTime:0.0005s ]
+
+[ 2016-08-29T15:54:06+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000750s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001464s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002893s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T15:55:52+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000604s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001237s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002489s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0016s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =4 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 256  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0014s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0005s ]
+
+[ 2016-08-29T15:55:52+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001218s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001908s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003771s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T15:57:17+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000707s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001552s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002899s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T15:57:17+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000852s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001182s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002548s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0017s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =4 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 256  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0016s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0021s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0007s ]
+
+[ 2016-08-29T16:14:12+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000523s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001132s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002219s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0023s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0018s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000075s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000162s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007945s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008033s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000491s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000661s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001271s ]
+
+[ 2016-08-29T16:14:22+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000701s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001078s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002339s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T16:14:22+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000423s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001042s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002003s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0017s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 256  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0015s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0016s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0005s ]
+
+[ 2016-08-29T16:18:23+08:00 ] 127.0.0.1 /Storage/storage/assginShipAll/group_id/3.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000838s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001237s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002598s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `hub_order` WHERE `order_id` IN ('256','260','259','1') AND `hub_type` = 0  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000207s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000448s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.292189s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.292394s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001272s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001896s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003583s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001690s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001943s ]
+
+[ 2016-08-29T16:18:39+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000614s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001142s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002444s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T16:18:39+08:00 ] 127.0.0.1 /Storage/storage/getAllShipCode/group_id/3.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001070s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001656s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003555s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0021s ]
+SQL: SELECT * FROM `hub_order` WHERE `order_id` IN ('256','260','259','1') AND `hub_type` = 0  [ RunTime:0.0011s ]
+
+[ 2016-08-29T18:59:23+08:00 ] 127.0.0.1 /Storage/Storage/index/page/3.html
+ERR: 1054:Unknown column 'order_goods.distribution_priceorder_amount' in 'field list'
+ [ SQL语句 ] : SELECT *,hub_order.id as hub_id,order_list.memo,`contact_name`,`contact_address`,`tel`,`province`,`city`,`dist`,order_goods.distribution_priceorder_amount,`is_cus` FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id INNER JOIN order_goods ON order_list.order_id = order_goods.order_id  WHERE hub_order.shop_id = '1' AND order_list.supplier_id = '1' ORDER BY hub_order.id desc LIMIT 40,20  
+
+[ 2016-08-29T19:05:49+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&hub_search=&__hash__=109616714a6438714ce709cd05d5ed8b_0b1ceea1c7bc5e977b80af49880da642
+ERR: 1052:Column 'price' in field list is ambiguous
+ [ SQL语句 ] : SELECT *,hub_order.id as hub_id,order_list.memo,`contact_name`,`contact_address`,`tel`,`province`,`city`,`dist`,order_goods.distribution_price,`cost_price`,`price`,`shipping_feeorder_amount`,`is_cus` FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id INNER JOIN order_goods ON order_list.order_id = order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' ORDER BY hub_order.id desc LIMIT 0,20  
+
+[ 2016-08-29T19:06:14+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&hub_search=&__hash__=109616714a6438714ce709cd05d5ed8b_0b1ceea1c7bc5e977b80af49880da642
+ERR: 1054:Unknown column 'shipping_feeorder_amount' in 'field list'
+ [ SQL语句 ] : SELECT *,hub_order.id as hub_id,order_list.memo,`contact_name`,`contact_address`,`tel`,`province`,`city`,`dist`,order_goods.distribution_price,`cost_price`,order_goods.price,`shipping_feeorder_amount`,`is_cus` FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id INNER JOIN order_goods ON order_list.order_id = order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' ORDER BY hub_order.id desc LIMIT 0,20  
+
+[ 2016-08-29T19:06:40+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&hub_search=&__hash__=109616714a6438714ce709cd05d5ed8b_0b1ceea1c7bc5e977b80af49880da642
+ERR: 1052:Column 'shipping_fee' in field list is ambiguous
+ [ SQL语句 ] : SELECT *,hub_order.id as hub_id,order_list.memo,`contact_name`,`contact_address`,`tel`,`province`,`city`,`dist`,order_goods.distribution_price,`cost_price`,order_goods.price,`shipping_fee`,`order_amount`,`is_cus` FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id INNER JOIN order_goods ON order_list.order_id = order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' ORDER BY hub_order.id desc LIMIT 0,20  
+
+[ 2016-08-29T19:41:07+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&hub_search=&__hash__=6e71734a821602add2ae0b4e5f6f8e5b_ceb9b70316d140f392539559e4eee7f4
+ERR: 1054:Unknown column 'order_list.memo' in 'where clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` left join goods_sku_comb ON goods_sku_comb.id = order_goods_sku.sku_comb_id  WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-29T19:42:07+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&hub_search=&__hash__=6e71734a821602add2ae0b4e5f6f8e5b_ceb9b70316d140f392539559e4eee7f4
+ERR: 1054:Unknown column 'order_list.memo' in 'where clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` left join goods_sku_comb ON goods_sku_comb.id = order_goods_sku.sku_comb_id  WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-29T19:50:36+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&hub_search=&__hash__=6e71734a821602add2ae0b4e5f6f8e5b_ceb9b70316d140f392539559e4eee7f4
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.buyer_goods_no,hub_order.con_time,``,hub_order.id as hub_id,order_list.memo,`co' at line 2
+ [ SQL语句 ] : SELECT order_list.order_id,order_list.order_sn,order_goods.goods_name
+                        hub_order.buyer_goods_no,hub_order.con_time,``,hub_order.id as hub_id,order_list.memo,`contact_name`,`contact_address`,`tel`,`province`,`city`,`dist`,order_goods.distribution_price,`cost_price`,order_goods.price,order_list.shipping_fee,`order_amount`,`is_cus` FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id INNER JOIN order_goods ON order_list.order_id = order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' ORDER BY hub_order.id desc LIMIT 0,20  
+
+[ 2016-08-29T19:51:00+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&hub_search=&__hash__=6e71734a821602add2ae0b4e5f6f8e5b_ceb9b70316d140f392539559e4eee7f4
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.buyer_goods_no,hub_order.con_time,hub_order.id as hub_id,order_list.memo,`conta' at line 2
+ [ SQL语句 ] : SELECT order_list.order_id,order_list.order_sn,order_goods.goods_name
+                        hub_order.buyer_goods_no,hub_order.con_time,hub_order.id as hub_id,order_list.memo,`contact_name`,`contact_address`,`tel`,`province`,`city`,`dist`,order_goods.distribution_price,`cost_price`,order_goods.price,order_list.shipping_fee,`order_amount`,`is_cus` FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id INNER JOIN order_goods ON order_list.order_id = order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' ORDER BY hub_order.id desc LIMIT 0,20  
+
+[ 2016-08-29T19:52:30+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&hub_search=&__hash__=6e71734a821602add2ae0b4e5f6f8e5b_ceb9b70316d140f392539559e4eee7f4
+ERR: 1054:Unknown column 'order_goods.img_pathtel' in 'field list'
+ [ SQL语句 ] : SELECT order_list.order_id,order_list.order_sn,order_goods.goods_name,hub_order.buyer_goods_no,hub_order.con_time,hub_order.id as hub_id,order_list.memo,`contact_name`,`contact_address`,order_goods.img_pathtel,`province`,`city`,`dist`,order_goods.distribution_price,`cost_price`,order_goods.price,order_list.shipping_fee,`order_amount`,`is_cus` FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id INNER JOIN order_goods ON order_list.order_id = order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' ORDER BY hub_order.id desc LIMIT 0,20  
+
+[ 2016-08-29T19:54:19+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&hub_search=&__hash__=c0a5e50e2c0f95279c48b2bf7c932862_0f1db3820c7c556168506b9217edadc0
+ERR: 1054:Unknown column 'hub_order.ship_statstel' in 'field list'
+ [ SQL语句 ] : SELECT order_list.order_id,order_list.order_sn,order_goods.goods_name,hub_order.buyer_goods_no,hub_order.con_time,hub_order.id as hub_id,order_list.memo,`contact_name`,`contact_address`,order_goods.img_path,hub_order.ship_statstel,`province`,`city`,`dist`,order_goods.distribution_price,`cost_price`,order_goods.price,order_list.shipping_fee,`order_amount`,`is_cus` FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id INNER JOIN order_goods ON order_list.order_id = order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' ORDER BY hub_order.id desc LIMIT 0,20  
+
+[ 2016-08-29T20:08:21+08:00 ] 127.0.0.1 /Storage/Storage/index/remark/2/time_type/order_time/__hash__/c0a5e50e2c0f95279c48b2bf7c932862_0f1db3820c7c556168506b9217edadc0/page/1.html
+ERR: 1054:Unknown column 'order_list.orer_id' in 'on clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id INNER JOIN order_goods ON order_list.order_id = order_goods.order_id INNER JOIN order_goods_sku ON order_goods_sku.order_id = order_list.orer_id and order_goods.goods_id=order_goods_sku.goods_id INNER JOIN goods_sku_comb ON goods_sku_comb.id = order_goods_sku.sku_comb_id  WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-29T20:09:24+08:00 ] 127.0.0.1 /Storage/Storage/index/remark/2/time_type/order_time/__hash__/c0a5e50e2c0f95279c48b2bf7c932862_0f1db3820c7c556168506b9217edadc0/page/1.html
+ERR: 1054:Unknown column 'order_list.order_id' in 'field list'
+ [ SQL语句 ] : SELECT order_list.order_id,order_list.order_sn,order_goods.goods_name,hub_order.buyer_goods_no,hub_order.con_time,hub_order.id as hub_id,order_list.memo,`contact_name`,`contact_address`,order_goods.img_path,hub_order.ship_stats,`tel`,`province`,`city`,`dist`,order_goods.distribution_price,`cost_price`,order_goods.price,order_list.shipping_fee,`order_amount`,`is_cus` FROM `hub_order` WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' ORDER BY hub_order.id desc LIMIT 0,20  
+
+[ 2016-08-29T20:10:28+08:00 ] 127.0.0.1 /Storage/Storage/index/remark/2/time_type/order_time/__hash__/c0a5e50e2c0f95279c48b2bf7c932862_0f1db3820c7c556168506b9217edadc0/page/1.html
+ERR: 1054:Unknown column 'order_list.order_id' in 'field list'
+ [ SQL语句 ] : SELECT order_list.order_id,order_list.order_sn,order_goods.goods_name,hub_order.buyer_goods_no,hub_order.con_time,hub_order.id as hub_id,order_list.memo,`contact_name`,`contact_address`,order_goods.img_path,hub_order.ship_stats,`tel`,`province`,`city`,`dist`,order_goods.distribution_price,`cost_price`,order_goods.price,order_list.shipping_fee,`order_amount`,`is_cus` FROM `hub_order` WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' ORDER BY hub_order.id desc LIMIT 0,20  
+
+[ 2016-08-29T20:10:31+08:00 ] 127.0.0.1 /Storage/Storage/index/remark/2/time_type/order_time/__hash__/c0a5e50e2c0f95279c48b2bf7c932862_0f1db3820c7c556168506b9217edadc0/page/1.html
+ERR: 1054:Unknown column 'order_list.order_id' in 'field list'
+ [ SQL语句 ] : SELECT order_list.order_id,order_list.order_sn,order_goods.goods_name,hub_order.buyer_goods_no,hub_order.con_time,hub_order.id as hub_id,order_list.memo,`contact_name`,`contact_address`,order_goods.img_path,hub_order.ship_stats,`tel`,`province`,`city`,`dist`,order_goods.distribution_price,`cost_price`,order_goods.price,order_list.shipping_fee,`order_amount`,`is_cus` FROM `hub_order` WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' ORDER BY hub_order.id desc LIMIT 0,20  
+
+[ 2016-08-29T20:10:31+08:00 ] 127.0.0.1 /Storage/Storage/index/remark/2/time_type/order_time/__hash__/c0a5e50e2c0f95279c48b2bf7c932862_0f1db3820c7c556168506b9217edadc0/page/1.html
+ERR: 1054:Unknown column 'order_list.order_id' in 'field list'
+ [ SQL语句 ] : SELECT order_list.order_id,order_list.order_sn,order_goods.goods_name,hub_order.buyer_goods_no,hub_order.con_time,hub_order.id as hub_id,order_list.memo,`contact_name`,`contact_address`,order_goods.img_path,hub_order.ship_stats,`tel`,`province`,`city`,`dist`,order_goods.distribution_price,`cost_price`,order_goods.price,order_list.shipping_fee,`order_amount`,`is_cus` FROM `hub_order` WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' ORDER BY hub_order.id desc LIMIT 0,20  
+
+[ 2016-08-29T20:10:32+08:00 ] 127.0.0.1 /Storage/Storage/index/remark/2/time_type/order_time/__hash__/c0a5e50e2c0f95279c48b2bf7c932862_0f1db3820c7c556168506b9217edadc0/page/1.html
+ERR: 1054:Unknown column 'order_list.order_id' in 'field list'
+ [ SQL语句 ] : SELECT order_list.order_id,order_list.order_sn,order_goods.goods_name,hub_order.buyer_goods_no,hub_order.con_time,hub_order.id as hub_id,order_list.memo,`contact_name`,`contact_address`,order_goods.img_path,hub_order.ship_stats,`tel`,`province`,`city`,`dist`,order_goods.distribution_price,`cost_price`,order_goods.price,order_list.shipping_fee,`order_amount`,`is_cus` FROM `hub_order` WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' ORDER BY hub_order.id desc LIMIT 0,20  
+
+[ 2016-08-29T20:10:32+08:00 ] 127.0.0.1 /Storage/Storage/index/remark/2/time_type/order_time/__hash__/c0a5e50e2c0f95279c48b2bf7c932862_0f1db3820c7c556168506b9217edadc0/page/1.html
+ERR: 1054:Unknown column 'order_list.order_id' in 'field list'
+ [ SQL语句 ] : SELECT order_list.order_id,order_list.order_sn,order_goods.goods_name,hub_order.buyer_goods_no,hub_order.con_time,hub_order.id as hub_id,order_list.memo,`contact_name`,`contact_address`,order_goods.img_path,hub_order.ship_stats,`tel`,`province`,`city`,`dist`,order_goods.distribution_price,`cost_price`,order_goods.price,order_list.shipping_fee,`order_amount`,`is_cus` FROM `hub_order` WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' ORDER BY hub_order.id desc LIMIT 0,20  
+
+[ 2016-08-29T20:10:48+08:00 ] 127.0.0.1 /Storage/Storage/index/remark/2/time_type/order_time/__hash__/c0a5e50e2c0f95279c48b2bf7c932862_0f1db3820c7c556168506b9217edadc0/page/1.html
+ERR: 1054:Unknown column 'order_list.order_id' in 'field list'
+ [ SQL语句 ] : SELECT order_list.order_id,order_list.order_sn,order_goods.goods_name,hub_order.buyer_goods_no,hub_order.con_time,hub_order.id as hub_id,order_list.memo,`contact_name`,`contact_address`,order_goods.img_path,hub_order.ship_stats,`tel`,`province`,`city`,`dist`,order_goods.distribution_price,`cost_price`,order_goods.price,order_list.shipping_fee,`order_amount`,`is_cus` FROM `hub_order` WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' ORDER BY hub_order.id desc LIMIT 0,20  
+
+[ 2016-08-29T20:14:28+08:00 ] 127.0.0.1 /Storage/Storage/index/remark/2/time_type/order_time/__hash__/c0a5e50e2c0f95279c48b2bf7c932862_0f1db3820c7c556168506b9217edadc0/page/1.html
+ERR: 1054:Unknown column 'order_list.memo' in 'where clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` WHERE order_list.memo  = '' AND hub_order.shop_id = '1' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-29T20:41:00+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000751s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001386s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002705s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0499s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0513s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0486s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0485s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000122s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000275s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012509s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012654s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000865s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001244s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002329s ]
+
+[ 2016-08-29T20:41:04+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000651s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001539s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002780s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T20:41:05+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000689s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001169s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002374s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0481s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0472s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0486s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 256  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0479s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0486s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0521s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0502s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0477s ]
+
+[ 2016-08-29T20:42:12+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000529s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001073s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002172s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T20:42:12+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000785s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001509s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002897s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0431s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0408s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0448s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 256  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0440s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0436s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0427s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0436s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0441s ]
+
+[ 2016-08-29T20:42:42+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000508s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001040s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002159s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0569s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0475s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0539s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 256  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0476s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0509s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0471s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0513s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0470s ]
+
+[ 2016-08-29T20:42:42+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000870s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001377s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002863s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T20:43:08+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000562s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001121s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002237s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0553s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0536s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0494s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 256  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0508s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0499s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0507s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0495s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0517s ]
+
+[ 2016-08-29T20:43:08+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000629s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001193s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002291s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T20:46:02+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000566s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001256s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002348s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0498s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0492s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0518s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 256  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0519s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0478s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0490s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0488s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0525s ]
+
+[ 2016-08-29T20:46:02+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000722s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001384s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002662s ]
+ERR: 无法加载控制器:TbApi
+
+[ 2016-08-29T20:46:28+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000523s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001294s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002367s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0522s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0478s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0536s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 256  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0505s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0517s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0526s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0484s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =256 ) LIMIT 1   [ RunTime:0.0466s ]
+
+[ 2016-08-29T20:46:28+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000684s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001400s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002659s ]
+ERR: 无法加载控制器:TbApi
+

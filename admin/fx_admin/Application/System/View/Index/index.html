@@ -1,0 +1,124 @@
+<ol class="breadcrumb">
+	<li><i class="fa fa-dashboard"></i> 位置</li>
+	<li>个人中心</li>
+</ol> 				
+<div class="box-body">
+	<div><a class="btn btn-success btn-xs" href="#e-modify" data-toggle="modal">修改密码</a></div>
+	<div class="row" >
+		<form class="form-inline" method="get" action="{:U('system/index/index')}" id="form_search" onsubmit="return X.toSerchVaild(this)">
+			<div class="form-group">
+				<select class="form-control input-xs" name="module">
+					<option value="">选择操作模块</option>
+					<foreach name="modules" item="v" key="k">
+						<option value="{$k}">{$v}</option>
+					</foreach>    
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="exampleInputName2">操作时间:&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" onClick="WdatePicker()"/></label>
+			</div>
+			<div class="form-group">
+                            
+				<input type="text" class="form-control input-xs e-date1" onClick="WdatePicker()" value="" name="time1">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control input-xs e-date2" onClick="WdatePicker()" value="" name="time2">
+			</div>			
+			<div id="date1" class="s-date"></div><div id="date2" class="s-date"></div>
+			<div class="form-group">
+				<input type="submit"  class="btn btn-block btn-warning btn-xs" value="筛选">
+			</div>
+		</form>
+		
+	</div>
+	<div class="row table-responsive no-padding">
+		<table class="table table-hover">
+			<tbody>
+				<tr>
+					<th>操作模块</th>
+					<th>操作内容</th>
+					<th>操作人</th>
+					<th>操作时间</th>
+				</tr>	
+				<foreach name="list" item="q">
+					<tr>
+						<th>{$q.module}</th>
+						<th>{$q.detail}</th>
+						<th>{$q.name}</th>
+						<th>{$q.add_time}</th>
+					</tr>
+				</foreach>
+			</tbody>
+		</table>
+	</div>	
+	<div class="box-footer">
+		<div id="kkpager"></div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="e-modify" data-backdrop="static" data-keyboard="false"><div class="modal-dialog"><div class="modal-content row">
+	<div class="modal-header col-sm-12">
+		<h4 class="center">修改密码</h3>
+		</div>
+		<form class="modal-body">
+			<p><span>原密码：</span><input type="text" placeholder="请输入原密码" name="old"></p>
+			<p><span>新密码：</span><input type="password" placeholder="请输入新密码" name="pw1"></p>
+			<p><span>确认新密码：</span><input type="password" placeholder="请再次输入新密码" name="pw2"></p>
+		</form> 
+		<div class="modal-footer col-sm-12">
+			<div class="front">
+				<button class="btn btn-success btn-confirm ">保存</button>
+				<button class="btn" data-dismiss="modal">关闭</button>
+			</div>
+		</div>
+	</div></div></div>  	
+
+
+
+	<script src="__PUBLIC__/js/calendar.js"></script> 
+	<style>
+		.modal-body p{text-align: center}
+		.modal-body p span{margin-right: 20px}
+	</style>
+	<script>
+		pager({$total});
+
+//		$('#date1').calendar({
+//			trigger: '.e-date1',
+//			zIndex: 999,
+//			format: 'yyyy-mm-dd',
+//		});	
+//		$('#date2').calendar({
+//			trigger: '.e-date2',
+//			zIndex: 999,
+//			format: 'yyyy-mm-dd',
+//		});	    
+
+		var q=$('#e-modify');
+
+		$('.btn-confirm').click(function(){
+
+			$.ajax({
+				type:'post', url: '{:U("system/index/edit")}', data:q.find('form').serialize(),async:false,
+				success:function(e){
+					switch(e.status){
+						case 'error':
+							X.notice(e.msg);			
+							break;
+						case 'failed':
+							X.notice(e.msg);
+							break;
+						case 'success':
+							X.notice(e.msg);
+							window.location.reload(); 
+							break;
+						default:
+							X.notice('未知系统错误');
+							break;	
+					}
+				}
+			})
+		})
+	</script>

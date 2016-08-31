@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>收藏夹</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fqy_style.css">
+    <link rel="stylesheet" type="text/css" href="css/zl.css"/>
+    <script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/knockout-3.3.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/plus.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/message.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="css/yz.css">
+</head>
+<body>
+<div class="main clearfix">
+    <div id="p_left"></div>
+    <div class="wraper">
+        <div id="p_top"></div>
+        <div class="orderManageDiv">
+            <div class="odMHeader">
+                <ul>
+                    <li>是否铺货:
+                        <select name="" id="PHType">
+                            <option value="">——请选择——</option>
+                            <option value="1">已铺货</option>
+                            <option value="2">未铺货</option>
+                        </select>
+                    </li>
+                </ul>
+                <!--<div class="odMSearch">
+                    <span>关键字：</span><input type="text" placeholder="请输入关键字">
+                    <button>搜索</button>
+                </div>-->
+            </div>
+
+            <table class="odMTabSty" id="accept">
+                <tr>
+                    <!--<th><input type="checkbox"></th>-->
+                    <th></th>
+                    <th>主图</th>
+                    <th>宝贝名称</th>
+                    <th>采购价</th>
+                    <th>库存</th>
+                    <th>添加时间</th>
+                    <th>是否铺货</th>
+                    <th>操作</th>
+                </tr>
+                <tbody class="_accept" data-bind="foreach:{data:item,as:'auto'}" id="scjTbody">
+                <tr data-bind="attr:{'data-id':goods_id,'data-num':buyer_goods_no,'name':goods_name}">
+                    <td><input type="checkbox"></td>
+                    <td><img class="orderGoodsPic" data-bind="attr:{src:img_path,id:goods_id}" src=""></td>
+                    <td class="orderGoodsName">
+                    	<a class="coll-goodsname">
+                        	<p data-bind="text:goods_name"></p>
+                       		<p data-bind="text:buyer_goods_no"></p>
+                        </a>
+                    </td>
+                    <td>
+                        <p class="price_highlight">基础价：<span data-bind="text:price.basic_price"></span></p>
+                        <p class="price_highlight">中级价：<span data-bind="text:price.middle_price"></span></p>
+                        <p class="price_highlight">高级价：<span data-bind="text:price.senior_price"></span></p>
+                    </td>
+                    <td><span class="openStock" data-bind="text:total_stock_num" style="cursor: pointer;color: #00a0e9"></span></td>
+                    <td data-bind="text:addtime"></td>
+                    <td data-bind="text:is_up_taobao"></td>
+                    <td id="handle">
+                        <p class="goodsSj" data-bind="attr:{'goods_id':goods_id}">一键铺货</p>
+                        <p class="orderDelBtn" id="PHdelet">删除</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="contentFooter">
+            <label><input type="checkbox" id="all-select">全选</label>
+            <div>
+                <button class="publicHbtn" id="all-PH">一键铺货</button>
+                <button id="all-delet">删除</button>
+            </div>
+        </div>
+
+        <div class="PopDiv goodsAdmin" id="ku_cun" style="display: none;">
+            <div class="PopHeader goodsHeader">
+                <span class="PopTitleText">可用总库存：300</span>
+                <div class="PopColse"></div>
+            </div>
+            <div class="PopBody goodsAdminTab">
+                <table data-bind="foreach:{data:sku,as:'auto'}">
+                    <tr>
+                        <td><label data-bind="text:sku_str_zh"></label><span data-bind="text:stock_num"></span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="p_footer"></div>
+</div>
+
+<!--一键铺货-->
+    
+
+<script type="text/javascript">
+    var oHtml = $('#ku_cun').html();
+    $('#PH .PopColse').click(function () {
+        $('#PH').fadeOut()
+    });
+
+	//库存
+
+    $(function () {
+        $('.PopDiv .PopHeader').unbind('mousedown');
+        $(".PopColse").on("click", function () {
+            $(this).parents(".PopDiv").css({display: "none"});
+        });
+        var level = localStorage.getItem("user_level"), levelStr = "", o = $(".price_highlight");
+        switch (level) {
+            case "0":
+                $(o[0]).css({color: "#f40"});
+                break;
+            case "1":
+                $(o[0]).css({color: "#f40"});
+                break;
+            case "2":
+                $(o[1]).css({color: "#f40"});
+                break;
+            case "3":
+                $(o[2]).css({color: "#f40"});
+                break;
+        }
+
+
+        var data = {
+            'user_id': localStorage.getItem('user_id')
+        };
+        var kuc = X.bindModel(requestUrl.accept, 1, data, 'body.list', ['accept'], function () {
+        	//商品详情
+        	$('#scjTbody tr td.orderGoodsName,#scjTbody tr td img').click(function(){
+        		$('.marks').show();
+                $('.marks .goods_detail').show();
+                $('.marksPHGoods').hide();
+				var data = {
+                    'goods_id':$(this).parents('tr').attr('data-id'),    //商品ID
+                    'user_id':localStorage.getItem('user_id'),  //用户ID
+                    'platform':1                    //平台号
+                };
+                goodDetail(data);
+			})
+        	//库存
+            $('.openStock').on("click", function () {
+                var ku_cun = $('#ku_cun');
+                ku_cun.fadeIn();
+                var xx = kuc.item[$(this).parents('tr').index()];
+                ko.cleanNode(document.getElementById("ku_cun"));
+                ku_cun.html(oHtml);
+                ko.applyBindings(xx, document.getElementById('ku_cun'));
+                $('.goodsAdmin .PopColse').click(function () {
+                    $('.PopDiv').fadeOut();
+                })
+            });
+            $('#PH .PopColse').click(function () {
+                $('#PH').fadeOut();
+                $('#PH>div').fadeOut()
+            });
+
+            //一键铺货
+            $('.goodsSj').click(function () {
+                var goodsName = $(this).parents('tr').attr('name');
+                var goodID = $(this).parents('tr').attr('goods_id');
+                var goodNum = $(this).parents('tr').attr('data-num');
+                var DetailViewModel = {
+                    goodsArr: [
+                        {
+                            goodsID: goodID,
+                            goods_name: goodsName,
+                            buyer_goods_no: goodNum
+                        }]
+                }
+
+                yijinPH(DetailViewModel)
+            })
+//          删除	
+            $('.orderDelBtn').click(function () {
+                var dataId = $(this).parents('tr').attr('data-id');
+                localStorage.setItem('goods_id', dataId);
+                var delData = {
+                    'user_id': localStorage.getItem('user_id'),
+                    'goods_id': localStorage.getItem('goods_id'),
+                    'page': 1,
+                    'is_up_taobao': 1
+                };
+                var self = this;
+                X.Post(requestUrl.coll_delet + "?random=" + Math.random(), 1, delData, function (e) {
+                    if (e.header.stats == 0) {
+                        X.notice(e.body.list.msg, 3);
+                        $(self).parents('tr').remove();
+                    } else {
+                        X.notice(e.header.msg, 3)
+                    }
+
+
+                })
+            })
+        }, function (e) {
+            if (e.item == undefined) {
+                e.item = [];
+                return e
+            }
+        })
+    })
+
+    var PHhtml = $('#accept').html();
+    $('#PHType').change(function () {
+        ko.cleanNode(document.getElementById("accept"));
+        $('#accept').html(PHhtml);
+        data = {
+            'user_id': localStorage.getItem('user_id'),
+            'is_up_taobao': $('#PHType option:selected').val()
+        }
+//  	console.log(data.is_up_taobao);
+        X.bindModel(requestUrl.accept, 1, data, 'body.list', ['accept'], function () {
+            $('#accept table tbody>tr').each(function () {
+                $(this).children('td').eq(0).append('<img class="collcet-img" style="width: 68px" src="' + $(this).children('td').attr('data-src') + '"/>');
+                var oo = $(this).children('td').eq(0).find('input');
+                if (oo) {
+                    oo.attr('type', 'checkbox').css({'margin-right': '15px'})
+                }
+            });
+            $('.PopColse').click(function () {
+                $('.PH').hide();
+            });
+            $('.goodsSj').click(function () {
+                var goodsName = $(this).parents('tr').attr('name');
+                localStorage.setItem('goods_name', goodsName)
+                var DetailViewModel = {
+                    goodsArr: [
+                        {
+                            goodsID: localStorage.getItem('goods_id'),
+                            goods_name: goodsName,
+                            buyer_goods_no: $(this).parents('tr').attr('data-num')
+                        }]
+                };
+
+                yijinPH(DetailViewModel)
+
+            });
+            $('.orderDelBtn').click(function () {
+                var dataId = $(this).parents('tr').attr('data-id');
+                localStorage.setItem('goods_id', dataId);
+                var delData = {
+                    'user_id': localStorage.getItem('user_id'),
+                    'goods_id': dataId,
+                    'page': 1,
+                    'is_up_taobao': 1
+                };
+                X.Post(requestUrl.coll_delet + "?random=" + Math.random(), 1, delData, function (e) {
+                    if (e.header.stats == 0) {
+                        X.notice(e.body.list.msg, 3);
+                        $(this).parents('tr').remove();
+                    } else {
+                        X.notice(e.header.msg, 3)
+                    }
+
+
+                })
+            })
+        }, function (e) {
+            if (e.item == undefined) {
+                e.item = [];
+                return e
+            }
+        })
+    })
+</script>
+
+<!--批量铺货  批量删除-->
+<script type="text/javascript">
+    var checkFlag = false;
+    $('#all-select').click(function () {
+        if (!checkFlag) {
+            $('#accept td').find('input').prop('checked', true);
+            $(this).prop('checked', true);
+            checkFlag = true;
+        } else {
+            $('#accept td').find('input').prop('checked', false)
+            $(this).prop('checked', false)
+            checkFlag = false;
+        }
+
+    })
+
+    $('#all-PH').click(function () {
+        var DetailViewModel = {
+            goodsArr: []
+        }
+        if (checkFlag) {
+            $('#scjTbody tr').each(function () {
+                DetailViewModel.goodsArr.push({
+                    goodsID: $(this).attr('data-id'),
+                    goods_name: $(this).attr('name'),
+                    buyer_goods_no: $(this).attr('data-num')
+                });
+            })
+            yijinPH(DetailViewModel)
+        } else {
+            X.notice('请选择商品', 3)
+        }
+
+    })
+
+    //批量删除
+    $('#all-delet').click(function () {
+
+        var checked = $('._accept').find('input:checked').parents('tr');
+        var goods_id = [];
+        $.each(checked, function (i, d) {
+            goods_id[i] = $(d).attr('data-id');
+        });
+        if (goods_id.length > 0) {
+            var allDeletdata = {
+                user_id: localStorage.user_id,
+                goods_id: goods_id
+            };
+            X.Post(requestUrl.coll_delet + "?random=" + Math.random(), 1, allDeletdata, function (e) {
+                if (e.body.list.sucess == 1) {
+                    $('#accept').find('input:checked').parents('tr').remove();
+                    X.notice(e.body.list.msg, 3);
+                } else {
+                    X.notice(e.header.msg, 3)
+                }
+            })
+        } else {
+            X.notice("请至少选择一件商品", 3);
+        }
+
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,416 @@
+<style type="text/css">
+    .box-title .choose_ul>li {
+        width: 98px;
+    }
+
+</style>
+<ol class="breadcrumb">
+    <li><i class="fa fa-dashboard"></i> 位置</li>
+    <li>
+        财务中心</li>
+    <li>支出列表</li>
+    <li>打款列表</li>
+</ol> 
+<div class="box-header with-border">
+    <div class="box-title">
+        <ul class="choose_ul">
+            <li><a class="{:xeq(I('get.group_id',0),0,'btn btn-warning btn-xs')}" href="{:U('finance/payment/index')}">打款列表</a></li>
+            <li><a class="{:xeq(I('get.group_id'),1,'btn btn-warning btn-xs')}" href="{:U('finance/payment/index',array('group_id' => 1 ))}" >提现列表</a></li>
+            <li><a class="{:xeq(I('get.group_id'),2,'btn btn-warning btn-xs')}" href="{:U('finance/payment/index',array('group_id' => 2 ))}">完结订单列表</a></li>
+            <li><a class="{:xeq(I('get.group_id'),3,'btn btn-warning btn-xs')}" href="{:U('finance/payment/index',array('group_id' => 3 ) )}">售后打款列表</a></li>
+        </ul>
+    </div>
+    <div class="box-tools pull-left"> </div>
+</div>
+<div class="box-body">		
+    <form class="form-inline" method="get" action="{:U('finance/payment/index',array('group_id'=>I('get.group_id')))}" id="form_search">
+        <div class="row" >
+            <div class="form-group">
+                <label for="exampleInputName2">打款账号类型:</label>
+                <select class="form-control input-xs" name="pay_account_type">
+                    <option value="">全部</option>
+                    <volist name="pay_account_type" id="pay_account_type_v" key="pay_account_type_k">
+                        <option value="{$pay_account_type_k}" <?php if(I('get.pay_account_type')==$pay_account_type_k){echo 'selected';}?>>{$pay_account_type_v}</option>
+                    </volist> 
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName2">收款账号类型:</label>
+                <select class="form-control input-xs" name="receiver_account_type">
+                    <option value="">全部</option>
+                    <volist name="receiver_platform" id="receiver_platform_v" key="receiver_platform_k">
+                        <option value="{$receiver_platform_k}" <?php if(I('get.receiver_account_type')==$receiver_platform_k){echo 'selected';}?>>{$receiver_platform_v}</option>
+                    </volist> 
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName2">处理状态:</label>
+                <select class="form-control input-xs" name="status">
+                    <option value="">——请选择——</option>
+                    <?php
+                    foreach($catch_money_status as $catch_money_status_k=>$catch_money_status_v){
+                    ?>
+                    <option value="{$catch_money_status_k}"<?php if(I('get.status')==$catch_money_status_k){echo 'selected';}?>>{$catch_money_status_v}</option>
+                    <?php
+                    }
+                    ?>
+                </select>
+            </div>	
+            <div class="form-group">
+                <label for="exampleInputName2">打款类型:</label>
+                <select class="form-control input-xs" name="catch_type">
+                    <option value="">——请选择——</option>
+                    <volist name="catch_money_type" id="catch_money_type_v" key="catch_money_type_k">
+                        <option value="{$catch_money_type_k}"<?php if(I('get.catch_type')== $catch_money_type_k){echo 'selected';}?>  >{$catch_money_type_v}</option>
+                    </volist> 
+                </select>
+            </div>	
+            <div class="form-group ">
+                <label for="exampleInputName2">完成时间:</label>
+                <div class="form-group">
+                    <input type="text" class="form-control input-xs" onClick="WdatePicker()"  value="{:I('get.start_time')}" name="start_time"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-xs" onClick="WdatePicker()"  value="{:I('get.end_time')}" name="end_time"/>
+                </div>
+            </div>
+            <div class="form-group ">
+                <select class="form-control input-xs" name="search_key" >
+                    <option value="">选取搜索条件类型:</option>
+                    <option {:xeq(I('get.search_key'),'pay_account','selected')} value="pay_account">打款账户</option>
+                    <option {:xeq(I('get.search_key'),'receiver_account','selected')} value="receiver_account">收款账户</option>
+                    <option {:xeq(I('get.search_key'),'trade_no','selected')}  value="trade_no">交易号</option>	
+                    <option {:xeq(I('get.search_key'),'receiver_name','selected')}  value="receiver_name">真实姓名</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" {:xeq(I('get.search_key'),'','disabled')} name="search_words" class="form-control input-xs" value="{:I('get.search_words')}"  placeholder="请填写具体的搜索条件">
+            </div>
+            <div class="form-group">
+                <input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
+            </div>
+        </div>	
+    </form>
+</div>
+<div class="row">
+    <div class="form-group">
+        <button id="exportPriceExecl" class="btn btn-default">批量打款</button>
+    </div>
+</div>	
+<div class="box-body table-responsive no-padding">
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th align="middle"><input type="checkbox" id="checkAll"></th>
+                <th>打款金额</th>
+                <th>订单号</th>
+                <th>类型</th>
+                <th>收款账号类型</th>
+                <th>收款账号</th>
+                <th>开户行</th>
+                <th>申请时间</th>
+                <th>打款账户类型</th>
+                <th>打款账号</th>
+                <th>打款状态</th>
+                <th>交易号</th>
+                <th>打款时间</th>
+                <th>真实姓名</th>
+                <th>失败原因</th>
+                <th>备注</th>
+                <th>操作</th>
+            </tr>	
+        <volist name='list_data.list' id='list'>
+            <tr>
+                <td><input type="checkbox" data-id="{$list.id}" class="checkbox_goods_id choose"></td>
+                <td>{$list.repay}</td>
+                <td>{$list.source_sn}</td>
+                <td>{$list.catch_type}</td>
+                <td>{$list.receiver_account_type}</td>
+                <td>{$list.receiver_account}</td>
+                <td>{$list.bank_deposit}</td>
+                <td>{$list.addtime}</td>
+                <td>{$list.pay_account_type}</td>
+                <td>{$list.pay_account}</td>
+                <td <?php if(1==$list['status']) echo "style='color:red;'";?>>{$catch_money_status[$list['status']]}</td>
+                <td>{$list.trade_no}</td>
+                <td>{$list.deal_time}</td>
+                <td>{$list.receiver_name}</td>
+                <td>{$list.failcause}</td>
+                <td>{$list.remark}</td>
+                <td><a href="javascript:;" onclick="remarks_add({$list.id})" class="remarks">备注</a>&nbsp;&nbsp;&nbsp;<?php if(1==$list['status']){?><a href="javascript:;" class="e-account">打款</a><?php }?></td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+</div>	
+<div class="box-footer">
+    <div class="right">
+        <div class="pagination">
+            {$list_data.page}
+        </div>
+    </div>
+</div>
+<!--弹窗Start-->
+<div class="fqy_Mask">
+    <div class="fqy_Popup">
+        <div class="allPaly">
+            <div class="fqy_popHead">
+                <b>批量打款</b>
+                <span class="fqy_popClose">×</span>
+            </div>
+            <div class="fqy_popContent">
+                <form>
+                    <table>
+                        <tr>
+                            <td>选中待打款金额：</td>
+                            <td id="amount">0.00</td>
+                        </tr>
+                        <tr>
+                            <td><label><input type="radio" value="0" name="radio" checked> 打款成功</label></td>
+                            <td><label><input type="radio" value="1" name="radio"> 打款失败</label></td>
+                        </tr>
+                        <tr class="succeed">
+                            <td>打款账户类型：</td>
+                            <td>
+                                <select name="pay_account_type" class="pay_account_type">
+                                    <volist name="pay_account_type" id="pay_account_type_v" key="pay_account_type_k">
+                                        <option value="{$pay_account_type_k}" <?php if(I('get.pay_account_type')==$pay_account_type_k){echo 'selected';}?>>{$pay_account_type_v}</option>
+                                    </volist> 
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="succeed">
+                            <td>打款账号：</td>
+                            <td><input type="text" name="playNumber" class="playNumber" placeholder="请输入打款账号"></td>
+                        </tr>
+                        <tr class="succeed">
+                            <td>交易号：</td>
+                            <td><input type="text" name="tradeNumber" class="tradeNumber" placeholder="请输入交易号"></td>
+                        </tr>
+                        <tr class="fail" style="display: none">
+                            <td>失败原因：</td>
+                            <td>
+                                <textarea name="failCause" class="failCause"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center!important;" colspan="4"><input class="fqy_setPassBtn" type="button"  value="提交"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="singleRemark" style="display: none">
+            <div class="fqy_popHead">
+                <b>打款备注</b>
+                <span class="fqy_popClose">×</span>
+            </div>
+            <div class="fqy_popContent">
+                <form>
+                    <table>
+                        <tr class="fail">
+                            <td>
+                                <textarea name="onefailCause" class="onefailCause"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center!important;" colspan="4"><input class="fqy_ok" type="button"  value="确定"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--弹窗End-->
+<script>
+    $(".tmp-time-div").hide();
+    //选择自定义时间
+    $("select[name='deal_time']").change(function () {
+        var v = $(this).val();
+        if (4 == v) {
+            $(".tmp-time-div").show();
+        } else {
+            $(".tmp-time-div").hide();
+        }
+    });
+    $('select[name="search_key"]').change(function (event) {
+        /* Act on the event */
+        if ('' == $(this).val()) {
+            $('input[name="search_words"]').attr('disabled', true);
+            $('input[name="search_words"]').val('');
+        } else {
+            $('input[name="search_words"]').removeAttr('disabled');
+        }
+    });
+    function remarks_add(id) {
+        $('.fqy_Mask').css('visibility', 'visible').find('.allPaly').hide().end().find('.singleRemark').show();
+    }
+
+
+    var arr = [];
+    var Amount = 0;
+    var Alldata = {};
+    $('#exportPriceExecl').click(function () {
+        var len = $('.table td input[type="checkbox"]:checked').length;
+        if (len <= 0) {
+            layer.alert('请选择打款条目!!!');
+        } else {
+            arr = [];
+            layer.confirm('你确定要打款么？', {btn: ['确认', '取消']}, function (index) {
+                layer.close(index);
+                $('.fqy_Mask').css('visibility', 'visible').find('.allPaly').show().end().find('.singleRemark').hide();
+                var active = $('.table td input[type="checkbox"]:checked');
+                $(active).each(function () {
+                    var _this = $(this);
+                    autoData(_this);
+                });
+            });
+        }
+
+    });
+    function autoData(_this) {
+        var data = {
+            id: _this.parents('tr').find('td').eq(0).find('input').attr('data-id'),
+            money: _this.parents('tr').find('td').eq(1).text(),
+            account: _this.parents('tr').find('td').eq(4).text()
+        };
+        Amount += parseFloat(data.money);
+        $('#amount').text(Amount.toFixed(2));
+        arr.push(data);
+        return arr;
+    }
+
+    $('.table td').on('click', '.remarks', function () {
+        arr = [];
+        var _this = $(this);
+        autoData(_this);
+        $('.fqy_Mask').css('visibility', 'visible').find('.allPaly').hide().end().find('.singleRemark').show();
+        $('.fqy_ok').unbind('click').click(function () {
+            var failCause = $('.onefailCause').val();
+            if (failCause == '') {
+                showTips('failCause');
+            } else {
+                Alldata.obj = arr;
+                Alldata.remark = $('.onefailCause').val();
+                postCatchMoney(Alldata); //请求数据
+            }
+        });
+    });
+    var radioFlag = true;
+    $('input[type=radio]').click(function () {
+        var cla = $(this).val();
+        if (cla == 0) {
+            $('.succeed').show();
+            $('.fail').hide();
+            radioFlag = true;
+        } else {
+            $('.succeed').hide();
+            $('.fail').show();
+            radioFlag = false;
+        }
+    });
+    $('.fqy_setPassBtn').click(function () {
+        var data = {
+            playNumber: $('.playNumber').val(),
+            tradeNumber: $('.tradeNumber').val(),
+            failCause: $('.failCause').val()
+        };
+        if (radioFlag) {
+            if (data.playNumber == '') {
+                showTips('playNumber');
+            } else if (data.tradeNumber == '') {
+                showTips('tradeNumber');
+            } else {
+                Alldata.obj = arr;
+                Alldata.playNumber = $('.playNumber').val();
+                Alldata.tradeNumber = $('.tradeNumber').val();
+                Alldata.pay_account_type = $('.pay_account_type').val();
+                Alldata.sing = 1;
+            }
+        } else {
+            if (data.failCause == '') {
+                showTips('failCause');
+            } else {
+                Alldata.obj = arr;
+                Alldata.failCause = $('.failCause').val();
+                Alldata.sing = 2;
+            }
+        }
+        postCatchMoney(Alldata); //请求数据
+    });
+    /**
+     * 保存数据
+     * @param {type} Alldata
+     * @returns {undefined}
+     */
+    function postCatchMoney(Alldata) {
+        $.post("{:U('finance/payment/saveCatchMoney')}", Alldata, function (result) {
+            Alldata = {};
+            $('.fqy_Mask').css('visibility', 'hidden');
+            layer.alert(result.message, {icon: 1}, function () {
+                location.reload();
+            });
+        });
+    }
+
+    //弹出层
+    function autocenter() {
+        var W = $(window).width() / 2;
+        var H = $(window).height() / 2;
+        var eleW = $('.fqy_Popup').width();
+        var eleH = $('.fqy_Popup').height();
+        $('.fqy_Popup').css({left: (W - eleW / 2) + 'px', top: (H - eleH / 2) + 'px'});
+        //关闭弹出层
+        $('.fqy_popClose,.fqy_canlce').click(function () {
+            $('.fqy_Mask').css('visibility', 'hidden');
+        });
+    }
+    window.onload = function () {
+        autocenter();
+    };
+    window.onresize = function () {
+        autocenter();
+    };
+    //提示信息
+    function showTips(ele, text) {
+        $('.' + ele).focus();
+        $('.' + ele).css('borderColor', '#cc3300');
+        $('.' + ele).parent('td').next('td').find('.fqy_tips').text(text).fadeIn();
+        $('.' + ele).blur(function () {
+            $('.' + ele).css('borderColor', '#ccc');
+        });
+        setTimeout(function () {
+            $('.' + ele).css('borderColor', '#ccc');
+            $('.' + ele).parent('td').next('td').find('.fqy_tips').text(text).fadeOut();
+        }, 2500);
+    }
+    $('.e-account').click(function () {
+        var _this = $(this);
+        layer.confirm('你确定要打款么？', {btn: ['确认', '取消']},
+                function (index) {
+                    layer.close(index);
+                    arr = [];
+                    $('.fqy_Mask').css('visibility', 'visible').find('.allPaly').show().end().find('.singleRemark').hide();
+                    autoData(_this);
+                }, function (index) {
+            layer.close(index);
+            return false;
+        });
+    })
+
+//全选
+    var allCheake = false;
+    $('#checkAll').click(function () {
+        allCheake == true ? function () {
+            $('.table-responsive').find('input[type="checkbox"]').prop('checked', false);
+            allCheake = false
+        }() : function () {
+            $('.table-responsive').find('input[type="checkbox"]').prop('checked', true);
+            allCheake = true;
+        }();
+    })
+    $('#p_account').click(function () {
+        alert('批量付款');
+    });
+</script>           

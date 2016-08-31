@@ -1,0 +1,110 @@
+{__NOLAYOUT__}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>快递模版</title>
+<link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+<link rel="stylesheet" href="__PUBLIC__/css/AdminLTE.css">
+<link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css">
+<style>
+.test_padding {
+	margin: 20px;
+	display: inline-block;
+}
+#order_id {
+	width: 120px
+}
+.form-control {
+	width: 145px;
+	display: inline-block;
+}
+.block_width {
+	display: inline-block;
+	float: right;
+}
+.input_width {
+	width: 50px
+}
+.express {
+	width: auto;
+	height: auto;
+}
+.express_content{
+	position: absolute;
+	float: left;
+	top: 55px;
+	width: 960px;
+	height: 529px;
+}
+
+</style>
+<script type="text/javascript">
+function MM_jumpMenu(targ,selObj,restore){ //v3.0
+  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0;
+}
+
+</script>
+</head>
+<body>
+<div class="container">
+	<div class="test_padding">
+		<select name="jumpMenu" id="jumpMenu" onChange="MM_jumpMenu('parent',this,0)" class="form-control">
+			<?php foreach($all_express as $k=>$v){ ?>
+			<option value="getParseXML?code=<?php echo $v['shipping_code'] ?>" 
+			<?php if($_GET['code']== $v['shipping_code']){ 
+					echo "selected"; 
+					if($_GET['code']=='' || !isset($_GET['code'])){
+						if($v['shipping_code']=='ZTO')echo 'selected';
+					}
+				} ?>>
+			<?= $v['shipping_name'] ?>
+			</option>
+			<?php } ?>
+		</select>
+		<form action="{:U('physical')}" method="post" class="block_width">
+			<input name="express_code" type="hidden" value="{:I('get.code')}">
+			长度：
+			<input class="form-control input_width" name="physicalWidth" type="text" value="<?= $property[2]['@attributes']['value'] ?>">
+			毫米&nbsp;&nbsp;&nbsp;&nbsp;
+			高度：
+			<input class="form-control input_width" name="physicalHeight" type="text" value="<?= $property[1]['@attributes']['value'] ?>">
+			毫米
+			<input name="" type="submit" value="修改快递单尺寸" class="btn">
+		</form>
+		<div class="express">
+			<notempty name="Think.get.code"><php>if(file_exists("Public/static/home/images/".$_GET['code'].".png")){</php>
+				<img src="__STATIC__/home/images/{:I('get.code')}.png" /><php>}</php>
+			</notempty>
+		</div>
+		<form action="{:U('Index/edit')}" method="post" name="">
+			<table id="printData" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+				<thead>
+					<tr role="row" align="center" style="background:#efefef">
+						<th>名称</th>
+						<th>宽 <small>(像素[px])</small></th>
+						<th>高 <small>(像素[px])</small></th>
+						<th>上边距(x) <small>(像素[px])</small></th>
+						<th>左边距(y) <small>(像素[px])</small></th>
+					</tr>
+				</thead>
+				<tbody>
+					<foreach name="element" key="k" item="vo">
+						<tr role="row" class="odd">
+							<td>{$vo.@attributes.text}</td>
+							<td><input type="text" class="form-control" name="width[{$k}]" value="{$vo.@attributes.width}"/></td>
+							<td><input type="text" class="form-control" name="height[{$k}]" value="{$vo.@attributes.height}"/></td>
+							<td><input type="text" class="form-control" name="x[{$k}]" value="{$vo.@attributes.x}"/></td>
+							<td><input type="text" class="form-control" name="y[{$k}]" value="{$vo.@attributes.y}"/></td>
+						</tr>
+					</foreach>
+				</tbody>
+			</table>
+			<input name="express_code" type="hidden" value="{$express.express_code}">
+			<input type="submit" class="btn btn-info pull-right">
+		</form>
+	</div>
+</div>
+</body>
+</html>

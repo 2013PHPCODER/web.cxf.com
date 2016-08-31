@@ -1,0 +1,845 @@
+[ 2016-08-24T11:16:11+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T11:16:23+08:00 ] 127.0.0.1 /Storage/storage/setStock_locak_num.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000537s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001078s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002144s ]
+SQL: SHOW COLUMNS FROM `goods_sku_comb` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `goods_sku_comb` WHERE ( goods_id = 1 )  [ RunTime:0.0016s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000207s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000467s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.027826s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.028025s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001202s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001932s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003489s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001695s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001953s ]
+
+[ 2016-08-24T11:16:59+08:00 ] 127.0.0.1 /Storage/storage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000755s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000896s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002341s ]
+SQL: SHOW COLUMNS FROM `goods_sku_comb` [ RunTime:0.0016s ]
+SQL: SELECT `id`,`stock_num` FROM `goods_sku_comb` WHERE ( goods_id =1 )  [ RunTime:0.0008s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_num`='123' WHERE ( goods_id = 1 ) [ RunTime:0.0028s ]
+ERR: Think\Controller:setStockLog方法不存在！
+
+[ 2016-08-24T11:18:18+08:00 ] 127.0.0.1 /Storage/storage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000483s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000969s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001949s ]
+SQL: SHOW COLUMNS FROM `goods_sku_comb` [ RunTime:0.0019s ]
+SQL: SELECT `id`,`stock_num` FROM `goods_sku_comb` WHERE ( goods_id =1 )  [ RunTime:0.0006s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_num`='123' WHERE ( goods_id = 1 ) [ RunTime:0.0027s ]
+ERR: Think\Controller:setStockLog方法不存在！
+
+[ 2016-08-24T11:19:17+08:00 ] 127.0.0.1 /Storage/storage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000571s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001327s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002487s ]
+
+[ 2016-08-24T11:20:24+08:00 ] 127.0.0.1 /Storage/storage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000604s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001205s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002381s ]
+
+[ 2016-08-24T11:20:47+08:00 ] 127.0.0.1 /Storage/storage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000577s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001142s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002270s ]
+
+[ 2016-08-24T11:21:02+08:00 ] 127.0.0.1 /Storage/storage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000470s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000970s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002220s ]
+
+[ 2016-08-24T11:22:22+08:00 ] 127.0.0.1 /Storage/storage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000580s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000999s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002127s ]
+
+[ 2016-08-24T11:22:55+08:00 ] 127.0.0.1 /Storage/storage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000496s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000984s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001920s ]
+
+[ 2016-08-24T11:23:20+08:00 ] 127.0.0.1 /Storage/storage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000707s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001104s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002683s ]
+
+[ 2016-08-24T11:24:50+08:00 ] 127.0.0.1 /Storage/storage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000759s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001316s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002945s ]
+
+[ 2016-08-24T11:28:22+08:00 ] 127.0.0.1 /Storage/storage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000644s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001174s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002363s ]
+
+[ 2016-08-24T11:29:26+08:00 ] 127.0.0.1 /Storage/storage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000499s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001024s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002144s ]
+
+[ 2016-08-24T11:30:10+08:00 ] 127.0.0.1 /Storage/storage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000561s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001091s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002184s ]
+
+[ 2016-08-24T13:18:52+08:00 ] 127.0.0.1 /Storage/storage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000555s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001337s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002425s ]
+
+[ 2016-08-24T13:20:01+08:00 ] 127.0.0.1 /Storage/storage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000539s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001066s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002436s ]
+SQL: SHOW COLUMNS FROM `goods_sku_comb` [ RunTime:0.0017s ]
+SQL: SELECT `id`,`stock_num` FROM `goods_sku_comb` WHERE ( goods_id =1 )  [ RunTime:0.0008s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_num`='333' WHERE ( goods_id = 1 ) [ RunTime:0.0033s ]
+ERR: Think\Controller:setStockLog方法不存在！
+
+[ 2016-08-24T13:21:51+08:00 ] 127.0.0.1 /Storage/storage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001023s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001670s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003367s ]
+SQL: SHOW COLUMNS FROM `goods_sku_comb` [ RunTime:0.0017s ]
+SQL: SELECT `id`,`stock_num` FROM `goods_sku_comb` WHERE ( goods_id =1 )  [ RunTime:0.0007s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_num`='333' WHERE ( goods_id = 1 ) [ RunTime:0.0023s ]
+ERR: Think\Controller:setStockLog方法不存在！
+
+[ 2016-08-24T13:22:55+08:00 ] 127.0.0.1 /Storage/storage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000582s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001047s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002173s ]
+SQL: SHOW COLUMNS FROM `goods_sku_comb` [ RunTime:0.0017s ]
+SQL: SELECT `id`,`stock_num` FROM `goods_sku_comb` WHERE ( goods_id =1 )  [ RunTime:0.0006s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_num`='4546' WHERE ( goods_id = 1 ) [ RunTime:0.0027s ]
+ERR: Think\Controller:setStockLog方法不存在！
+
+[ 2016-08-24T13:23:34+08:00 ] 127.0.0.1 /Storage/StorageManage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001152s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001570s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003559s ]
+SQL: SHOW COLUMNS FROM `goods_sku_comb` [ RunTime:0.0017s ]
+SQL: SELECT `id`,`stock_num` FROM `goods_sku_comb` WHERE ( goods_id =1 )  [ RunTime:0.0008s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_num`='666' WHERE ( goods_id = 1 ) [ RunTime:0.0025s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =5 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `goods_list` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `log_cus_list` [ RunTime:0.0018s ]
+ERR: 1048:Column 'user_id' cannot be null
+ [ SQL语句 ] : INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016214',NULL,'1','修改库存','5','127.0.0.1','4546','666')
+ERR: 1048:Column 'user_id' cannot be null
+ [ SQL语句 ] : INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016214',NULL,'1','修改库存','5','127.0.0.1','4546','666')
+
+[ 2016-08-24T13:24:54+08:00 ] 127.0.0.1 /Storage/StorageManage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000626s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001068s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002253s ]
+SQL: SHOW COLUMNS FROM `goods_sku_comb` [ RunTime:0.0018s ]
+SQL: SELECT `id`,`stock_num` FROM `goods_sku_comb` WHERE ( goods_id =1 )  [ RunTime:0.0007s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_num`='666' WHERE ( goods_id = 1 ) [ RunTime:0.0028s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =5 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `goods_list` [ RunTime:0.0027s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `log_cus_list` [ RunTime:0.0023s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','5','127.0.0.1','666','666') [ RunTime:0.0017s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0018s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =6 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0016s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','6','127.0.0.1','666','666') [ RunTime:0.0015s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0016s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =7 ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0014s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','7','127.0.0.1','666','666') [ RunTime:0.0019s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0017s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =8 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','8','127.0.0.1','666','666') [ RunTime:0.0013s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0016s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =17 ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0015s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','17','127.0.0.1','666','666') [ RunTime:0.0021s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0018s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =18 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','18','127.0.0.1','666','666') [ RunTime:0.0018s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0019s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =19 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0016s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','19','127.0.0.1','666','666') [ RunTime:0.0014s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0017s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =20 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','20','127.0.0.1','666','666') [ RunTime:0.0015s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0016s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =13 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0014s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','13','127.0.0.1','666','666') [ RunTime:0.0016s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0016s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =14 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','14','127.0.0.1','666','666') [ RunTime:0.0014s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0017s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =15 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0018s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','15','127.0.0.1','666','666') [ RunTime:0.0015s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0017s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =16 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','16','127.0.0.1','666','666') [ RunTime:0.0017s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0017s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =1 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','1','127.0.0.1','666','666') [ RunTime:0.0015s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0017s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =2 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0015s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','2','127.0.0.1','666','666') [ RunTime:0.0014s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0016s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =3 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','3','127.0.0.1','666','666') [ RunTime:0.0014s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0016s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =4 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','4','127.0.0.1','666','666') [ RunTime:0.0014s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0019s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =9 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','9','127.0.0.1','666','666') [ RunTime:0.0015s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0017s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =10 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','10','127.0.0.1','666','666') [ RunTime:0.0015s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0016s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =11 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','11','127.0.0.1','666','666') [ RunTime:0.0014s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0016s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =12 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0015s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','12','127.0.0.1','666','666') [ RunTime:0.0014s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0019s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =21 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0021s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','21','127.0.0.1','666','666') [ RunTime:0.0020s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0020s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =22 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0013s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','22','127.0.0.1','666','666') [ RunTime:0.0023s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0018s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =23 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','23','127.0.0.1','666','666') [ RunTime:0.0015s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0022s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =24 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 1 ) LIMIT 1   [ RunTime:0.0016s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016294','1','1','修改库存','24','127.0.0.1','666','666') [ RunTime:0.0014s ]
+SQL: UPDATE `goods_list` SET `goods_id`='1',`goods_no`='1000000',`goods_category`='50000671',`goods_name`='夏季新款韩版V领休闲短袖T恤',`goods_sale`='1',`sale_time`='1472007436',`off_sale_time`='1472007425',`goods_status`='1',`conf_time`='1471943773',`buyer_goods_no`='NEJ-A-4#C405-F-31278-15',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='d62328e601b669f7e936dab88491ce26',`stock_update_time`='1472016294',`is_delete`='0',`addtime`='1471871727',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='45991',`price`='90.00',`top_category`='16',`platform`='1',`item_weight`='1',`sale_count`='2009',`fx_count`='0',`collect_count`='3',`picture_path`=NULL,`img_paths`='[\"d62328e601b669f7e936dab88491ce26\",\"45a32e9e8aa03f0b7df53729ca14db6e\",\"d5fa0cfacc19fc31c4732434a05c9dc0\",\"32e2664e1e8c598ca7fcf028375c2de7\",\"311cee20ada92cb7084ec75b8e6d02b5\"]' WHERE ( goods_id = 1 ) [ RunTime:0.0017s ]
+
+[ 2016-08-24T13:25:07+08:00 ] 127.0.0.1 /Storage/StorageManage/allEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000981s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001424s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003075s ]
+SQL: SHOW COLUMNS FROM `goods_sku_comb` [ RunTime:0.0014s ]
+SQL: SELECT `id`,`stock_num` FROM `goods_sku_comb` WHERE ( goods_id =4 )  [ RunTime:0.0005s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_num`='9999' WHERE ( goods_id = 4 ) [ RunTime:0.0029s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =59 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `goods_list` [ RunTime:0.0019s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 4 ) LIMIT 1   [ RunTime:0.0021s ]
+SQL: SHOW COLUMNS FROM `log_cus_list` [ RunTime:0.0018s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016307','1','4','修改库存','59','127.0.0.1','21688','9999') [ RunTime:0.0017s ]
+SQL: UPDATE `goods_list` SET `goods_id`='4',`goods_no`='1000003',`goods_category`='50000436',`goods_name`='2016秋款圆领字母套头长袖T恤',`goods_sale`='1',`sale_time`='1471872944',`off_sale_time`='0',`goods_status`='3',`conf_time`='1471872961',`buyer_goods_no`='DSJD-B-2#A216-Q16-40',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='030f00daa92d9843344499a83ab286a1',`stock_update_time`='1472016307',`is_delete`='0',`addtime`='1471871854',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='195191',`price`='115.00',`top_category`='30',`platform`='1',`item_weight`='1',`sale_count`='21689',`fx_count`='0',`collect_count`='1',`picture_path`=NULL,`img_paths`='[\"030f00daa92d9843344499a83ab286a1\",\"78700cd4483dad7344e5ec1daeb7ebbc\",\"2f25d94b20bf573301935f8bba210f7f\",\"f992ecfdb2c129e6365eb8e3537aff1d\",\"286b95b7da35096614c00d151d2e3de7\",\"42ece1282231133f9bcb83c61f682c95\",\"86e59bbb7fe446ee14287993c773d973\"]' WHERE ( goods_id = 4 ) [ RunTime:0.0019s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =55 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 4 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016307','1','4','修改库存','55','127.0.0.1','21687','9999') [ RunTime:0.0015s ]
+SQL: UPDATE `goods_list` SET `goods_id`='4',`goods_no`='1000003',`goods_category`='50000436',`goods_name`='2016秋款圆领字母套头长袖T恤',`goods_sale`='1',`sale_time`='1471872944',`off_sale_time`='0',`goods_status`='3',`conf_time`='1471872961',`buyer_goods_no`='DSJD-B-2#A216-Q16-40',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='030f00daa92d9843344499a83ab286a1',`stock_update_time`='1472016307',`is_delete`='0',`addtime`='1471871854',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='195191',`price`='115.00',`top_category`='30',`platform`='1',`item_weight`='1',`sale_count`='21689',`fx_count`='0',`collect_count`='1',`picture_path`=NULL,`img_paths`='[\"030f00daa92d9843344499a83ab286a1\",\"78700cd4483dad7344e5ec1daeb7ebbc\",\"2f25d94b20bf573301935f8bba210f7f\",\"f992ecfdb2c129e6365eb8e3537aff1d\",\"286b95b7da35096614c00d151d2e3de7\",\"42ece1282231133f9bcb83c61f682c95\",\"86e59bbb7fe446ee14287993c773d973\"]' WHERE ( goods_id = 4 ) [ RunTime:0.0026s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =56 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 4 ) LIMIT 1   [ RunTime:0.0012s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016307','1','4','修改库存','56','127.0.0.1','21688','9999') [ RunTime:0.0020s ]
+SQL: UPDATE `goods_list` SET `goods_id`='4',`goods_no`='1000003',`goods_category`='50000436',`goods_name`='2016秋款圆领字母套头长袖T恤',`goods_sale`='1',`sale_time`='1471872944',`off_sale_time`='0',`goods_status`='3',`conf_time`='1471872961',`buyer_goods_no`='DSJD-B-2#A216-Q16-40',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='030f00daa92d9843344499a83ab286a1',`stock_update_time`='1472016307',`is_delete`='0',`addtime`='1471871854',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='195191',`price`='115.00',`top_category`='30',`platform`='1',`item_weight`='1',`sale_count`='21689',`fx_count`='0',`collect_count`='1',`picture_path`=NULL,`img_paths`='[\"030f00daa92d9843344499a83ab286a1\",\"78700cd4483dad7344e5ec1daeb7ebbc\",\"2f25d94b20bf573301935f8bba210f7f\",\"f992ecfdb2c129e6365eb8e3537aff1d\",\"286b95b7da35096614c00d151d2e3de7\",\"42ece1282231133f9bcb83c61f682c95\",\"86e59bbb7fe446ee14287993c773d973\"]' WHERE ( goods_id = 4 ) [ RunTime:0.0017s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =57 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 4 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016307','1','4','修改库存','57','127.0.0.1','21688','9999') [ RunTime:0.0015s ]
+SQL: UPDATE `goods_list` SET `goods_id`='4',`goods_no`='1000003',`goods_category`='50000436',`goods_name`='2016秋款圆领字母套头长袖T恤',`goods_sale`='1',`sale_time`='1471872944',`off_sale_time`='0',`goods_status`='3',`conf_time`='1471872961',`buyer_goods_no`='DSJD-B-2#A216-Q16-40',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='030f00daa92d9843344499a83ab286a1',`stock_update_time`='1472016307',`is_delete`='0',`addtime`='1471871854',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='195191',`price`='115.00',`top_category`='30',`platform`='1',`item_weight`='1',`sale_count`='21689',`fx_count`='0',`collect_count`='1',`picture_path`=NULL,`img_paths`='[\"030f00daa92d9843344499a83ab286a1\",\"78700cd4483dad7344e5ec1daeb7ebbc\",\"2f25d94b20bf573301935f8bba210f7f\",\"f992ecfdb2c129e6365eb8e3537aff1d\",\"286b95b7da35096614c00d151d2e3de7\",\"42ece1282231133f9bcb83c61f682c95\",\"86e59bbb7fe446ee14287993c773d973\"]' WHERE ( goods_id = 4 ) [ RunTime:0.0020s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =58 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 4 ) LIMIT 1   [ RunTime:0.0015s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016307','1','4','修改库存','58','127.0.0.1','21688','9999') [ RunTime:0.0016s ]
+SQL: UPDATE `goods_list` SET `goods_id`='4',`goods_no`='1000003',`goods_category`='50000436',`goods_name`='2016秋款圆领字母套头长袖T恤',`goods_sale`='1',`sale_time`='1471872944',`off_sale_time`='0',`goods_status`='3',`conf_time`='1471872961',`buyer_goods_no`='DSJD-B-2#A216-Q16-40',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='030f00daa92d9843344499a83ab286a1',`stock_update_time`='1472016307',`is_delete`='0',`addtime`='1471871854',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='195191',`price`='115.00',`top_category`='30',`platform`='1',`item_weight`='1',`sale_count`='21689',`fx_count`='0',`collect_count`='1',`picture_path`=NULL,`img_paths`='[\"030f00daa92d9843344499a83ab286a1\",\"78700cd4483dad7344e5ec1daeb7ebbc\",\"2f25d94b20bf573301935f8bba210f7f\",\"f992ecfdb2c129e6365eb8e3537aff1d\",\"286b95b7da35096614c00d151d2e3de7\",\"42ece1282231133f9bcb83c61f682c95\",\"86e59bbb7fe446ee14287993c773d973\"]' WHERE ( goods_id = 4 ) [ RunTime:0.0018s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =64 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 4 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016307','1','4','修改库存','64','127.0.0.1','21688','9999') [ RunTime:0.0014s ]
+SQL: UPDATE `goods_list` SET `goods_id`='4',`goods_no`='1000003',`goods_category`='50000436',`goods_name`='2016秋款圆领字母套头长袖T恤',`goods_sale`='1',`sale_time`='1471872944',`off_sale_time`='0',`goods_status`='3',`conf_time`='1471872961',`buyer_goods_no`='DSJD-B-2#A216-Q16-40',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='030f00daa92d9843344499a83ab286a1',`stock_update_time`='1472016307',`is_delete`='0',`addtime`='1471871854',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='195191',`price`='115.00',`top_category`='30',`platform`='1',`item_weight`='1',`sale_count`='21689',`fx_count`='0',`collect_count`='1',`picture_path`=NULL,`img_paths`='[\"030f00daa92d9843344499a83ab286a1\",\"78700cd4483dad7344e5ec1daeb7ebbc\",\"2f25d94b20bf573301935f8bba210f7f\",\"f992ecfdb2c129e6365eb8e3537aff1d\",\"286b95b7da35096614c00d151d2e3de7\",\"42ece1282231133f9bcb83c61f682c95\",\"86e59bbb7fe446ee14287993c773d973\"]' WHERE ( goods_id = 4 ) [ RunTime:0.0019s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =60 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 4 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016307','1','4','修改库存','60','127.0.0.1','21688','9999') [ RunTime:0.0015s ]
+SQL: UPDATE `goods_list` SET `goods_id`='4',`goods_no`='1000003',`goods_category`='50000436',`goods_name`='2016秋款圆领字母套头长袖T恤',`goods_sale`='1',`sale_time`='1471872944',`off_sale_time`='0',`goods_status`='3',`conf_time`='1471872961',`buyer_goods_no`='DSJD-B-2#A216-Q16-40',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='030f00daa92d9843344499a83ab286a1',`stock_update_time`='1472016307',`is_delete`='0',`addtime`='1471871854',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='195191',`price`='115.00',`top_category`='30',`platform`='1',`item_weight`='1',`sale_count`='21689',`fx_count`='0',`collect_count`='1',`picture_path`=NULL,`img_paths`='[\"030f00daa92d9843344499a83ab286a1\",\"78700cd4483dad7344e5ec1daeb7ebbc\",\"2f25d94b20bf573301935f8bba210f7f\",\"f992ecfdb2c129e6365eb8e3537aff1d\",\"286b95b7da35096614c00d151d2e3de7\",\"42ece1282231133f9bcb83c61f682c95\",\"86e59bbb7fe446ee14287993c773d973\"]' WHERE ( goods_id = 4 ) [ RunTime:0.0016s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =61 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 4 ) LIMIT 1   [ RunTime:0.0016s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016307','1','4','修改库存','61','127.0.0.1','21688','9999') [ RunTime:0.0014s ]
+SQL: UPDATE `goods_list` SET `goods_id`='4',`goods_no`='1000003',`goods_category`='50000436',`goods_name`='2016秋款圆领字母套头长袖T恤',`goods_sale`='1',`sale_time`='1471872944',`off_sale_time`='0',`goods_status`='3',`conf_time`='1471872961',`buyer_goods_no`='DSJD-B-2#A216-Q16-40',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='030f00daa92d9843344499a83ab286a1',`stock_update_time`='1472016307',`is_delete`='0',`addtime`='1471871854',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='195191',`price`='115.00',`top_category`='30',`platform`='1',`item_weight`='1',`sale_count`='21689',`fx_count`='0',`collect_count`='1',`picture_path`=NULL,`img_paths`='[\"030f00daa92d9843344499a83ab286a1\",\"78700cd4483dad7344e5ec1daeb7ebbc\",\"2f25d94b20bf573301935f8bba210f7f\",\"f992ecfdb2c129e6365eb8e3537aff1d\",\"286b95b7da35096614c00d151d2e3de7\",\"42ece1282231133f9bcb83c61f682c95\",\"86e59bbb7fe446ee14287993c773d973\"]' WHERE ( goods_id = 4 ) [ RunTime:0.0018s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =62 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 4 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016307','1','4','修改库存','62','127.0.0.1','0','9999') [ RunTime:0.0015s ]
+SQL: UPDATE `goods_list` SET `goods_id`='4',`goods_no`='1000003',`goods_category`='50000436',`goods_name`='2016秋款圆领字母套头长袖T恤',`goods_sale`='1',`sale_time`='1471872944',`off_sale_time`='0',`goods_status`='3',`conf_time`='1471872961',`buyer_goods_no`='DSJD-B-2#A216-Q16-40',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='030f00daa92d9843344499a83ab286a1',`stock_update_time`='1472016307',`is_delete`='0',`addtime`='1471871854',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='195191',`price`='115.00',`top_category`='30',`platform`='1',`item_weight`='1',`sale_count`='21689',`fx_count`='0',`collect_count`='1',`picture_path`=NULL,`img_paths`='[\"030f00daa92d9843344499a83ab286a1\",\"78700cd4483dad7344e5ec1daeb7ebbc\",\"2f25d94b20bf573301935f8bba210f7f\",\"f992ecfdb2c129e6365eb8e3537aff1d\",\"286b95b7da35096614c00d151d2e3de7\",\"42ece1282231133f9bcb83c61f682c95\",\"86e59bbb7fe446ee14287993c773d973\"]' WHERE ( goods_id = 4 ) [ RunTime:0.0016s ]
+SQL: SELECT `goods_id` FROM `goods_sku_comb` WHERE ( id =63 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `goods_list` WHERE ( goods_id = 4 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: INSERT INTO `log_cus_list` (`addtime`,`user_id`,`goods_id`,`log_info`,`sku_comb_id`,`ip_address`,`start_num`,`end_num`) VALUES ('1472016307','1','4','修改库存','63','127.0.0.1','21688','9999') [ RunTime:0.0014s ]
+SQL: UPDATE `goods_list` SET `goods_id`='4',`goods_no`='1000003',`goods_category`='50000436',`goods_name`='2016秋款圆领字母套头长袖T恤',`goods_sale`='1',`sale_time`='1471872944',`off_sale_time`='0',`goods_status`='3',`conf_time`='1471872961',`buyer_goods_no`='DSJD-B-2#A216-Q16-40',`supplier_id`='1',`depot_id`='5',`new_upload`='1',`is_missing`='0',`img_path`='030f00daa92d9843344499a83ab286a1',`stock_update_time`='1472016307',`is_delete`='0',`addtime`='1471871854',`goods_lack`='0',`goods_lack_momo`='',`stock_num`='195191',`price`='115.00',`top_category`='30',`platform`='1',`item_weight`='1',`sale_count`='21689',`fx_count`='0',`collect_count`='1',`picture_path`=NULL,`img_paths`='[\"030f00daa92d9843344499a83ab286a1\",\"78700cd4483dad7344e5ec1daeb7ebbc\",\"2f25d94b20bf573301935f8bba210f7f\",\"f992ecfdb2c129e6365eb8e3537aff1d\",\"286b95b7da35096614c00d151d2e3de7\",\"42ece1282231133f9bcb83c61f682c95\",\"86e59bbb7fe446ee14287993c773d973\"]' WHERE ( goods_id = 4 ) [ RunTime:0.0017s ]
+
+[ 2016-08-24T13:25:18+08:00 ] 127.0.0.1 /Storage/storage/setStock_locak_num.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000576s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000951s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002066s ]
+SQL: SHOW COLUMNS FROM `goods_sku_comb` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `goods_sku_comb` WHERE ( goods_id = 1 )  [ RunTime:0.0015s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000080s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000178s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007445s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007538s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000467s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000756s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001347s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000709s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000824s ]
+
+[ 2016-08-24T13:25:52+08:00 ] 127.0.0.1 /Storage/storage/saveStock_locak_num.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000606s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001132s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002260s ]
+SQL: SHOW COLUMNS FROM `goods_sku_comb` [ RunTime:0.0021s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='123' WHERE ( id =5 ) [ RunTime:0.0023s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='234' WHERE ( id =6 ) [ RunTime:0.0013s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='456' WHERE ( id =7 ) [ RunTime:0.0016s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='789' WHERE ( id =8 ) [ RunTime:0.0014s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='901' WHERE ( id =17 ) [ RunTime:0.0014s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='123' WHERE ( id =18 ) [ RunTime:0.0013s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='234' WHERE ( id =19 ) [ RunTime:0.0016s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='345' WHERE ( id =20 ) [ RunTime:0.0014s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='456' WHERE ( id =13 ) [ RunTime:0.0014s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='0' WHERE ( id =14 ) [ RunTime:0.0014s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='0' WHERE ( id =15 ) [ RunTime:0.0015s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='0' WHERE ( id =16 ) [ RunTime:0.0013s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='0' WHERE ( id =1 ) [ RunTime:0.0015s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='0' WHERE ( id =2 ) [ RunTime:0.0015s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='0' WHERE ( id =3 ) [ RunTime:0.0012s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='0' WHERE ( id =4 ) [ RunTime:0.0015s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='0' WHERE ( id =9 ) [ RunTime:0.0013s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='0' WHERE ( id =10 ) [ RunTime:0.0013s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='0' WHERE ( id =11 ) [ RunTime:0.0013s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='0' WHERE ( id =12 ) [ RunTime:0.0013s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='0' WHERE ( id =21 ) [ RunTime:0.0014s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='0' WHERE ( id =22 ) [ RunTime:0.0014s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='0' WHERE ( id =23 ) [ RunTime:0.0014s ]
+SQL: UPDATE `goods_sku_comb` SET `stock_lock_num`='0' WHERE ( id =24 ) [ RunTime:0.0014s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000732s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000813s ]
+
+[ 2016-08-24T13:31:00+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T13:31:08+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T13:31:24+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T13:33:26+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T13:33:39+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T13:48:37+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T13:59:22+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:00:03+08:00 ] 127.0.0.1 /Storage/storage/hubDistribution.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000809s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001867s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003223s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0019s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 66  ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 66 ) LIMIT 1   [ RunTime:0.0012s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 66 ) [ RunTime:0.0024s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0012s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','66','1','1472018403','127.0.0.1') [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0014s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:66','1472018403','127.0.0.1','{\"order_id\":[\"66\"]}') [ RunTime:0.0005s ]
+
+[ 2016-08-24T14:01:12+08:00 ] 127.0.0.1 /Storage/storage/hubDistribution.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000662s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001283s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002488s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0019s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 1  ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 1 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 1 ) [ RunTime:0.0023s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0016s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','1','1','1472018472','127.0.0.1') [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0015s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:1','1472018472','127.0.0.1','{\"order_id\":[\"1\"]}') [ RunTime:0.0006s ]
+
+[ 2016-08-24T14:01:24+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000801s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001807s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003183s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0018s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =1 ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000068s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000146s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007231s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007408s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001371s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001273s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002939s ]
+
+[ 2016-08-24T14:01:37+08:00 ] 127.0.0.1 /Storage/storage/saveOneShip.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000728s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001165s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002467s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `hub_order` WHERE ( shipping_code='1231231231231' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT `hub_type` FROM `hub_order` WHERE ( order_id =1 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0012s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE ( id =3 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: UPDATE `hub_order` SET `shipping_code`='1231231231231',`shipping_name`='中通快递',`ship_stats`='2',`shipping_no`='ZTO',`hub_type`='1' WHERE ( order_id =1 ) [ RunTime:0.0029s ]
+SQL: SHOW COLUMNS FROM `order_list` [ RunTime:0.0018s ]
+SQL: UPDATE `order_list` SET `shipping_code`='1231231231231',`shipping_id`='3',`shipping_name`='中通快递',`hub_type`='1' WHERE ( order_id = 1 ) [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0014s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('分配运单号后,更新到订单表','操作','1','1','1','1472018497','127.0.0.1') [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0017s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/saveOneShip.html','分配运单号成功','1472018497','127.0.0.1','{\"order_id\":\"1\",\"ship_code\":\"1231231231231\",\"ship_name\":\"\\u4e2d\\u901a\\u5feb\\u9012\",\"ship_id\":\"3\"}') [ RunTime:0.0006s ]
+
+[ 2016-08-24T14:10:46+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:12:59+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:13:30+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:17:28+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:17:29+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:17:30+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:17:31+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:17:38+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:17:39+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:17:41+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:17:46+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:18:08+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:18:11+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:18:23+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:35:20+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:35:22+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:35:26+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T14:35:33+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T15:08:28+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T15:09:39+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T15:27:29+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T15:28:20+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T15:28:23+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T15:41:27+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=receiver_name&search_word=%E7%88%B7%E7%88%B7&__hash__=35e6428e35e7c1ae1204596c7071adc4_a5a411750a8bbd4cba7f638c8d4f4430
+ERR: 1052:Column 'receiver_name' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE order_list.memo  = '' AND `receiver_name` = '爷爷' AND `supplier_id` = '1' LIMIT 1  
+
+[ 2016-08-24T15:49:14+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=order_sn&search_word=%E7%88%B7%E7%88%B7&__hash__=35e6428e35e7c1ae1204596c7071adc4_a5a411750a8bbd4cba7f638c8d4f4430
+ERR: 1054:Unknown column 'hub_orderorder_sn' in 'where clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE order_list.memo  = '' AND `hub_orderorder_sn` LIKE '%爷爷%' AND `supplier_id` = '1' LIMIT 1  
+
+[ 2016-08-24T15:49:23+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=order_sn&search_word=%E7%88%B7%E7%88%B7&__hash__=35e6428e35e7c1ae1204596c7071adc4_a5a411750a8bbd4cba7f638c8d4f4430
+ERR: 1052:Column 'supplier_id' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.order_sn LIKE '%爷爷%' AND `supplier_id` = '1' LIMIT 1  
+
+[ 2016-08-24T15:49:36+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=order_sn&search_word=%E7%88%B7%E7%88%B7&__hash__=35e6428e35e7c1ae1204596c7071adc4_a5a411750a8bbd4cba7f638c8d4f4430
+ERR: 1052:Column 'supplier_id' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.order_sn LIKE '%爷爷%' AND `supplier_id` = '1' LIMIT 1  
+
+[ 2016-08-24T15:50:02+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=order_sn&search_word=%E7%88%B7%E7%88%B7&__hash__=35e6428e35e7c1ae1204596c7071adc4_a5a411750a8bbd4cba7f638c8d4f4430
+ERR: 1054:Unknown column 'hub_order.supplier_id' in 'where clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.order_sn LIKE '%爷爷%' AND hub_order.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T15:50:38+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=order_sn&search_word=%E7%88%B7%E7%88%B7&__hash__=35e6428e35e7c1ae1204596c7071adc4_a5a411750a8bbd4cba7f638c8d4f4430
+ERR: 1054:Unknown column 'order_goods.supplier_id' in 'where clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.order_sn LIKE '%爷爷%' AND order_goods.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T15:50:41+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=order_sn&search_word=%E7%88%B7%E7%88%B7&__hash__=35e6428e35e7c1ae1204596c7071adc4_a5a411750a8bbd4cba7f638c8d4f4430
+ERR: 1054:Unknown column 'order_goods.supplier_id' in 'where clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.order_sn LIKE '%爷爷%' AND order_goods.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T15:50:41+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=order_sn&search_word=%E7%88%B7%E7%88%B7&__hash__=35e6428e35e7c1ae1204596c7071adc4_a5a411750a8bbd4cba7f638c8d4f4430
+ERR: 1054:Unknown column 'order_goods.supplier_id' in 'where clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.order_sn LIKE '%爷爷%' AND order_goods.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T15:50:41+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=order_sn&search_word=%E7%88%B7%E7%88%B7&__hash__=35e6428e35e7c1ae1204596c7071adc4_a5a411750a8bbd4cba7f638c8d4f4430
+ERR: 1054:Unknown column 'order_goods.supplier_id' in 'where clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.order_sn LIKE '%爷爷%' AND order_goods.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T15:51:02+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=order_sn&search_word=%E7%88%B7%E7%88%B7&__hash__=35e6428e35e7c1ae1204596c7071adc4_a5a411750a8bbd4cba7f638c8d4f4430
+ERR: 1052:Column 'supplier_id' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.order_sn LIKE '%爷爷%' AND `supplier_id` = '1' LIMIT 1  
+
+[ 2016-08-24T15:51:06+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=order_sn&search_word=%E7%88%B7%E7%88%B7&__hash__=35e6428e35e7c1ae1204596c7071adc4_a5a411750a8bbd4cba7f638c8d4f4430
+ERR: 1052:Column 'supplier_id' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.order_sn LIKE '%爷爷%' AND `supplier_id` = '1' LIMIT 1  
+
+[ 2016-08-24T15:51:06+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=order_sn&search_word=%E7%88%B7%E7%88%B7&__hash__=35e6428e35e7c1ae1204596c7071adc4_a5a411750a8bbd4cba7f638c8d4f4430
+ERR: 1052:Column 'supplier_id' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.order_sn LIKE '%爷爷%' AND `supplier_id` = '1' LIMIT 1  
+
+[ 2016-08-24T15:51:06+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=order_sn&search_word=%E7%88%B7%E7%88%B7&__hash__=35e6428e35e7c1ae1204596c7071adc4_a5a411750a8bbd4cba7f638c8d4f4430
+ERR: 1052:Column 'supplier_id' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE order_list.memo  = '' AND hub_order.order_sn LIKE '%爷爷%' AND `supplier_id` = '1' LIMIT 1  
+
+[ 2016-08-24T15:57:01+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T15:57:06+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T15:57:21+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T15:57:24+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T15:57:28+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T15:57:35+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T15:57:38+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=test1&remark=&shipping_id=ZTO&hub_type=2&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=&__hash__=251981e954bf87d555c6999c6d796393_f731d84f9cc025534039d0476205ce60
+ERR: 1052:Column 'hub_type' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE hub_order.depot_id = '5' AND hub_order.buyer_name = 'test1' AND `shipping_no` = 'ZTO' AND `hub_type` = '2' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T15:59:39+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=test1&remark=&shipping_id=ZTO&hub_type=2&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=&__hash__=251981e954bf87d555c6999c6d796393_f731d84f9cc025534039d0476205ce60
+ERR: 1052:Column 'hub_type' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE hub_order.depot_id = '5' AND hub_order.buyer_name = 'test1' AND `shipping_no` = 'ZTO' AND `hub_type` = '2' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T15:59:40+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=test1&remark=&shipping_id=ZTO&hub_type=2&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=&__hash__=251981e954bf87d555c6999c6d796393_f731d84f9cc025534039d0476205ce60
+ERR: 1052:Column 'hub_type' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE hub_order.depot_id = '5' AND hub_order.buyer_name = 'test1' AND `shipping_no` = 'ZTO' AND `hub_type` = '2' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T15:59:40+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=test1&remark=&shipping_id=ZTO&hub_type=2&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=&__hash__=251981e954bf87d555c6999c6d796393_f731d84f9cc025534039d0476205ce60
+ERR: 1052:Column 'hub_type' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE hub_order.depot_id = '5' AND hub_order.buyer_name = 'test1' AND `shipping_no` = 'ZTO' AND `hub_type` = '2' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T15:59:40+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=test1&remark=&shipping_id=ZTO&hub_type=2&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=&__hash__=251981e954bf87d555c6999c6d796393_f731d84f9cc025534039d0476205ce60
+ERR: 1052:Column 'hub_type' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE hub_order.depot_id = '5' AND hub_order.buyer_name = 'test1' AND `shipping_no` = 'ZTO' AND `hub_type` = '2' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T15:59:41+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=test1&remark=&shipping_id=ZTO&hub_type=2&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=&__hash__=251981e954bf87d555c6999c6d796393_f731d84f9cc025534039d0476205ce60
+ERR: 1052:Column 'hub_type' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE hub_order.depot_id = '5' AND hub_order.buyer_name = 'test1' AND `shipping_no` = 'ZTO' AND `hub_type` = '2' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T15:59:41+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=test1&remark=&shipping_id=ZTO&hub_type=2&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=&__hash__=251981e954bf87d555c6999c6d796393_f731d84f9cc025534039d0476205ce60
+ERR: 1052:Column 'hub_type' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE hub_order.depot_id = '5' AND hub_order.buyer_name = 'test1' AND `shipping_no` = 'ZTO' AND `hub_type` = '2' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T15:59:41+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=test1&remark=&shipping_id=ZTO&hub_type=2&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=&__hash__=251981e954bf87d555c6999c6d796393_f731d84f9cc025534039d0476205ce60
+ERR: 1052:Column 'hub_type' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE hub_order.depot_id = '5' AND hub_order.buyer_name = 'test1' AND `shipping_no` = 'ZTO' AND `hub_type` = '2' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T15:59:41+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=test1&remark=&shipping_id=ZTO&hub_type=2&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=&__hash__=251981e954bf87d555c6999c6d796393_f731d84f9cc025534039d0476205ce60
+ERR: 1052:Column 'hub_type' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE hub_order.depot_id = '5' AND hub_order.buyer_name = 'test1' AND `shipping_no` = 'ZTO' AND `hub_type` = '2' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T15:59:41+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=test1&remark=&shipping_id=ZTO&hub_type=2&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=&__hash__=251981e954bf87d555c6999c6d796393_f731d84f9cc025534039d0476205ce60
+ERR: 1052:Column 'hub_type' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE hub_order.depot_id = '5' AND hub_order.buyer_name = 'test1' AND `shipping_no` = 'ZTO' AND `hub_type` = '2' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T16:00:09+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:00:13+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:00:20+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:00:24+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:05:02+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:05:15+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:07:01+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=test1&remark=2&shipping_id=&hub_type=&time_type=con_time&startTime=2016-08-22&endTime=2016-08-25&shop_id=&hub_search=&__hash__=9644a0f4b810a77dc40c533b49901587_9cb680d2d0943d802fc12b9a00089b10
+ERR: 1052:Column 'con_time' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE hub_order.depot_id = '5' AND hub_order.buyer_name = 'test1' AND order_list.memo  = '' AND `con_time` BETWEEN 1471795200 AND 1472054400 AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T16:07:16+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:07:42+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:07:54+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:08:04+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:08:22+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:08:30+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=test1&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=1&hub_search=&__hash__=8a4907c17d96950e6338e99cf715046c_020c05273c45ccf7a9ce219b3781a919
+ERR: 1052:Column 'shop_id' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id  WHERE hub_order.depot_id = '5' AND hub_order.buyer_name = 'test1' AND order_list.memo  = '' AND `shop_id` = '1' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T16:08:54+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:09:02+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:09:13+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:15:10+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:22:21+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:22:29+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:22:30+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:22:33+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:32:58+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=receiver_name&search_word=%E5%B0%8F%E7%89%9B&__hash__=83256a5d5f9798e31dcbef639b081af0_dff821298dd3f6a655bcd94c9d3a82db
+ERR: 1054:Unknown column 'order_contact.receiver_name' in 'where clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id  WHERE hub_order.depot_id = '5' AND order_list.memo  = '' AND order_contact.receiver_name LIKE '%小牛%' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T16:34:02+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=receiver_name&search_word=%E5%B0%8F%E7%89%9B&__hash__=83256a5d5f9798e31dcbef639b081af0_dff821298dd3f6a655bcd94c9d3a82db
+ERR: 1054:Unknown column 'order_contact.receiver_name' in 'where clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id  WHERE hub_order.depot_id = '5' AND order_list.memo  = '' AND order_contact.receiver_name LIKE '%小牛%' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T16:34:10+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=receiver_name&search_word=+%E5%B0%8F%E7%89%9B&__hash__=83256a5d5f9798e31dcbef639b081af0_dff821298dd3f6a655bcd94c9d3a82db
+ERR: 1054:Unknown column 'order_contact.receiver_name' in 'where clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id  WHERE hub_order.depot_id = '5' AND order_list.memo  = '' AND order_contact.receiver_name LIKE '% 小牛%' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T16:34:30+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=receiver_name&search_word=%E5%B0%8F%E7%89%9B&__hash__=83256a5d5f9798e31dcbef639b081af0_dff821298dd3f6a655bcd94c9d3a82db
+ERR: 1054:Unknown column 'order_contact.receiver_name' in 'where clause'
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id  WHERE hub_order.depot_id = '5' AND order_list.memo  = '' AND order_contact.receiver_name LIKE '%小牛%' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T16:38:50+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=receiver_name&search_word=%E5%B0%8F%E7%89%9B&__hash__=83256a5d5f9798e31dcbef639b081af0_dff821298dd3f6a655bcd94c9d3a82db
+ERR: 1052:Column 'receiver_name' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id  WHERE hub_order.depot_id = '5' AND order_list.memo  = '' AND `receiver_name` LIKE '%小牛%' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T16:38:51+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=receiver_name&search_word=%E5%B0%8F%E7%89%9B&__hash__=83256a5d5f9798e31dcbef639b081af0_dff821298dd3f6a655bcd94c9d3a82db
+ERR: 1052:Column 'receiver_name' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id  WHERE hub_order.depot_id = '5' AND order_list.memo  = '' AND `receiver_name` LIKE '%小牛%' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T16:38:52+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=receiver_name&search_word=%E5%B0%8F%E7%89%9B&__hash__=83256a5d5f9798e31dcbef639b081af0_dff821298dd3f6a655bcd94c9d3a82db
+ERR: 1052:Column 'receiver_name' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id  WHERE hub_order.depot_id = '5' AND order_list.memo  = '' AND `receiver_name` LIKE '%小牛%' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T16:38:53+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=order_sn&search_word=1160824040858572302&__hash__=6309103472cb825309a091c479eb8ce6_d5527adaef8c2018c3bf25a997e87a98
+ERR: 1052:Column 'order_sn' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id  WHERE hub_order.depot_id = '5' AND order_list.memo  = '' AND `order_sn` LIKE '%1160824040858572302%' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T16:39:26+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=5&buyer_id=&remark=2&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=order_sn&search_word=1160824040858572302&__hash__=c49855026a66a4987b6277422a765698_e86d9f8eac51d27f74be4abb9e10a2e5
+ERR: 1052:Column 'order_sn' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id  WHERE hub_order.depot_id = '5' AND order_list.memo  = '' AND `order_sn` LIKE '%1160824040858572302%' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T16:39:43+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:39:51+08:00 ] 127.0.0.1 /Storage/storage/index.html?depot=&buyer_id=&remark=&shipping_id=&hub_type=&time_type=order_time&startTime=&endTime=&shop_id=&hub_search=order_sn&search_word=1160822030608851162&__hash__=b71c15d31cd32357c1dd01efc00fd201_5a8c9b838177c835b3afbba0aca4735e
+ERR: 1052:Column 'order_sn' in where clause is ambiguous
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id  WHERE `order_sn` LIKE '%1160822030608851162%' AND order_list.supplier_id = '1' LIMIT 1  
+
+[ 2016-08-24T16:40:02+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:40:03+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:40:04+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:40:31+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:40:38+08:00 ] 127.0.0.1 /Storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T16:47:08+08:00 ] 127.0.0.1 /Storage/storage/hubDistribution.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000623s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001040s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002410s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0020s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 68  ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 68 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 68 ) [ RunTime:0.0021s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0014s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','68','1','1472028428','127.0.0.1') [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0016s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:68','1472028428','127.0.0.1','{\"order_id\":[\"68\"]}') [ RunTime:0.0005s ]
+
+[ 2016-08-24T16:47:14+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001474s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001696s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004184s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0022s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0022s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0018s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =68 ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000076s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000165s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007596s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007677s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000530s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000717s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001396s ]
+
+[ 2016-08-24T16:47:26+08:00 ] 127.0.0.1 /Storage/storage/saveOneShip.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000723s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001238s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002544s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0023s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `hub_order` WHERE ( shipping_code='147258369' ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT `hub_type` FROM `hub_order` WHERE ( order_id =68 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0018s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE ( id =3 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: UPDATE `hub_order` SET `shipping_code`='147258369',`shipping_name`='中通快递',`ship_stats`='2',`shipping_no`='ZTO',`hub_type`='1' WHERE ( order_id =68 ) [ RunTime:0.0029s ]
+SQL: SHOW COLUMNS FROM `order_list` [ RunTime:0.0018s ]
+SQL: UPDATE `order_list` SET `shipping_code`='147258369',`shipping_id`='3',`shipping_name`='中通快递',`hub_type`='1' WHERE ( order_id = 68 ) [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0018s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`addtime`,`ip_address`) VALUES ('分配运单号后,更新到订单表','操作','1','68','1','1472028446','127.0.0.1') [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0016s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','aaaaaa','1','Storage','/Storage/Storage/saveOneShip.html','分配运单号成功','1472028446','127.0.0.1','{\"order_id\":\"68\",\"ship_code\":\"147258369\",\"ship_name\":\"\\u4e2d\\u901a\\u5feb\\u9012\",\"ship_id\":\"3\"}') [ RunTime:0.0007s ]
+
+[ 2016-08-24T17:27:58+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+
+[ 2016-08-24T17:52:45+08:00 ] 127.0.0.1 /storage/storage/9d56711fd9cef38db9c98c664b47af12
+ERR: 非法操作:9d56711fd9cef38db9c98c664b47af12
+

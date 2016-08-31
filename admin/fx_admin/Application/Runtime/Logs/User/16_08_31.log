@@ -1,0 +1,22 @@
+[ 2016-08-31T15:04:52+08:00 ] 127.0.0.1 /user/user/supUserDetail?userid=4
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001048s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002116s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004061s ]
+SQL: SHOW COLUMNS FROM `fx_supplier_user` [ RunTime:0.0489s ]
+SQL: SELECT `id`,`company_name`,`register_type`,`usernick`,`realname`,`idcard`,`email`,`mobile`,`qq`,`wangwang`,`applicant_idcard_img`,`legal_idcard_img`,`business_license`,`applicant_idcard_img_hand`,`receiver_account_type`,`open_bank_address`,`receiver_account_name`,`receiver_account` FROM `fx_supplier_user` WHERE ( id=4 ) LIMIT 1   [ RunTime:0.0484s ]
+
+[ 2016-08-31T15:04:55+08:00 ] 127.0.0.1 /user/user/changeStatus.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001293s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001897s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004064s ]
+SQL: SHOW COLUMNS FROM `fx_supplier_user` [ RunTime:0.0431s ]
+SQL: UPDATE `fx_supplier_user` SET `approve_status`='3',`approve_remark`='',`approve_time`='2016-08-31 15-04-54' WHERE `id` = 4 [ RunTime:0.0442s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0429s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php on line 71 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','超级管理员','2','User','/User/User/changeStatus.html','供应商资料审核，通过','1472627094','127.0.0.1','{\"stu\":\"3\",\"id\":\"4\",\"stutext\":\"\"}') [ RunTime:0.0439s ]
+

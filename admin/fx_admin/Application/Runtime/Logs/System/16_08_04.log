@@ -1,0 +1,36 @@
+[ 2016-08-04T19:11:40+08:00 ] 127.0.0.1 /system/PageManage/delService.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 27 行.
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 27 行.
+SQL: SHOW COLUMNS FROM `fx_admin_logs` [ RunTime:0.0020s ]
+SQL: INSERT INTO `fx_admin_logs` (`admin_user_id`,`detail`,`module`,`add_time`) VALUES ('1','/system/PageManage/delService.html','system','1470309100') [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `fx_customer_service` [ RunTime:0.0010s ]
+SQL: DELETE FROM `fx_customer_service` WHERE `id` = 4 [ RunTime:0.0000s ]
+
+[ 2016-08-04T19:11:48+08:00 ] 127.0.0.1 /system/PageManage/delService.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 27 行.
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 27 行.
+SQL: SHOW COLUMNS FROM `fx_admin_logs` [ RunTime:0.0020s ]
+SQL: INSERT INTO `fx_admin_logs` (`admin_user_id`,`detail`,`module`,`add_time`) VALUES ('1','/system/PageManage/delService.html','system','1470309108') [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `fx_customer_service` [ RunTime:0.0020s ]
+SQL: DELETE FROM `fx_customer_service` WHERE `id` = 1 [ RunTime:0.0000s ]
+
+[ 2016-08-04T19:15:49+08:00 ] 127.0.0.1 /system/PageManage/delService.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005000s ]
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 27 行.
+NOTIC: [8] Undefined index: system D:\wamp\www\www.cxf.com\DEV\source\admin\fx_admin\Application\Common\Controller\AuthController.class.php 第 27 行.
+SQL: SHOW COLUMNS FROM `fx_admin_logs` [ RunTime:0.0010s ]
+SQL: INSERT INTO `fx_admin_logs` (`admin_user_id`,`detail`,`module`,`add_time`) VALUES ('1','/system/PageManage/delService.html','system','1470309349') [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `fx_customer_service` [ RunTime:0.0020s ]
+SQL: DELETE FROM `fx_customer_service` WHERE `id` = 912 [ RunTime:0.0010s ]
+
