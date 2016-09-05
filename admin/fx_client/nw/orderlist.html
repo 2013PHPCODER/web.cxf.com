@@ -37,6 +37,9 @@
         -webkit-border-radius:0;
     }
     .PopDiv{display: none;}
+    .e-click{color: #29b1e9;} 
+    .oparet a{color: #29b1e9;}
+	.orderManageDiv .publicTabDiv{  max-height: 15.5rem;}
 </style>
 <body>
 <div class="main clearfix">
@@ -97,7 +100,7 @@
 	                            <p class="pay_a_price" data-bind="text:pay_amount"></p>
 	             <!--               <p>（含运费0.00）</p>-->
 	                        </td>
-	                        <td><span data-bind="text:other_shop"></span> :<span data-bind="text:other_order_sn"></span></td>
+	                        <td><span data-bind="text:other_shop == '' ? '' : other_shop + ' :'"></span><span data-bind="text:other_order_sn"></span></td>
 	                        <td data-bind="text:order_state >=3 ? (order_state >= 5 ? (order_state == 5 ? '已关闭' : '异常' ) : (order_state == 4 ? '已完成' : '已确认已发货') ):( order_state >= 1 ? (order_state == 2 ? '已确认待发货' : '已付款待确认' ) : '待付款' )">已发货</td>
 	                        <td class="oparet">
 	                        </td>
@@ -109,8 +112,8 @@
     </div>
 </div>  	
 <div id="p_footer"></div>
-    <div class="marks marksDetail">
-        <div class="PopDiv" id="saleAfter" style="width: 626px">
+    <div class="marks marksDetail" >
+        <div class="PopDiv" id="saleAfter" style="width: 626px;">
             <div class="PopHeader">
                 <img src="images/markicon01.png" alt="">
                 <span class="PopTitle">售后申请</span>
@@ -133,7 +136,7 @@
                         </tr>
                         <tr>
                             <td>单价：<span class="order_price">88.00</span> &nbsp;&nbsp;&nbsp; 数量：<span class="order_num">2</span>&nbsp;</td>
-                            <td>订单总额：<span class="all-price">888.00</span><span class="freight">（含运费：8.00</span>）</td>
+                            <td>订单总额：<span class="all-price">888.00</span><span class="freight"></span></td>
                         </tr>
                         <tr>
                             <td>售后理由：
@@ -201,7 +204,7 @@
 	        		<h2>收货人信息</h2>
 	        		<div class="pop-information clearfix">
 	        			<div class="info-box">
-	        				<p data-bind = "text:contact.contact_name + ',' + contact.tel + ',' + contact.city + '' + contact.province + ''+ contact.dist ">小强，1355555555，四川省 成都市 锦江区</p>
+	        				<p data-bind = "text:contact.contact_name + ',' + contact.tel + ','+ '' + contact.province + contact.city + ''+ contact.dist ">小强，1355555555，四川省 成都市 锦江区</p>
 							<p data-bind = "text:contact.contact_address">海椒市东一二三四五街巨人大厦四五六七八1号1栋楼</p>
 	        			</div>
 	        			<div class="popgoods-info">
@@ -228,10 +231,61 @@
 	        						</div>
 	        					</dd>
 	        				</dl>
-	      				
 	        			</div>
 	        		</div>
 	        	</div>
+	        	<div class="popbox-body popdeliver">
+	        		<h3>订单信息</h3>
+	        		<div class="pop-information detail clearfix">
+        				<div class="popbox-lf">
+		        			<p>订单号：<span data-bind="text:order.orderSn">已完成</span></p>
+		        			<p>下单时间：<span data-bind="text:order.add_time">已完成</span></p>
+		        			<p>确认时间：<span data-bind="text:order.con_time">已完成</span></p>
+		        		</div>
+		        		<div class="popbox-rf">
+		        			<p>第三方单号：<span data-bind="text:order.other_order_sn"></span></p>
+		        			<p>付款时间：<span class="order-num" data-bind="text:order.payment_time"></span></p>
+		        		</div>
+	        			<div class="popgoods-info">
+	      					<table>
+	      						<tr>
+	      							<th>主图</th>
+	      							<th>标题</th>
+	      							<th>SKU属性</th>
+	      							<th>单价</th>
+	      							<th>数量</th>
+	      							<th>小计</th>
+	      						</tr>
+	      						<tbody data-bind = "foreach:{data:goods,as:'auto'}">
+		      						<tr>
+		      							<td><img alt=""  data-bind="attr:{src:img_path}" /></td>
+		      							<td>
+		      								<p class="popgoods-info-title" data-bind="text:goods_name"></p>
+		      							</td>
+		      							<td>
+		      								<p><span data-bind="text:sku_str_zh"></span></p>
+		      							</td>
+		      							<td data-bind="text:distribution_price"></td>
+		      							<td data-bind="text:goods_num">1</td>
+		      							<td class="sm-money" data-bind="text:subtotal"></td>
+		      						</tr>
+	      						</tbody>
+	      					</table>
+	        			</div>
+	        		</div>
+	        	</div>
+	        	<div class="order-list-text clearfix">
+		        	<div class="order-list-text-lf">
+		        		<span>给卖家留言：</span>
+		        		<textarea data-bind="text:message" disabled></textarea>
+		        	</div>
+		        	<div class="order-list-text-rf">
+		        		<p>商品总数：<span data-bind="text:order.num_total">4</span>件</p>
+		        		<p>总商品总金额：¥<span data-bind="text:order.goods_amount">589.00</span></p>
+		        		<p>运费：¥<span data-bind="text:order.shipping_fee">8.00</span></p>
+		        		<p>应付金额：¥<span class="to-money" data-bind="text:order.pay_amount">597.00</span></p>
+		        	</div>
+		        </div>
 	        </div>
 	    </div>
 	</div> 	   
@@ -272,7 +326,7 @@
 			X.Post(requestUrl.sale,1,data,function(e){
 				if(e.header.stats==0){
 					X.notice(e.body.list.success,3)
-					$('#saleAfter').fadeOut();
+					$('#saleAfter,.marks').fadeOut();
 					
 				}else{
 					X.notice(e.header.msg,3)
@@ -346,6 +400,7 @@
 		X.bindModel(requestUrl.order_list,1,data,'body.list',['order_list'],function(){
 			$('.e-click').click(function(){			
 //				$('#orderDetail').fadeIn();
+                var orderSn = $(this).attr('order_sn');
 				ko.cleanNode(document.getElementById("order_Detail"));
 				X.bindModel(requestUrl.order_details,1,{'order_id':$(this).attr('order_id'),'order_sn':$(this).attr('order_sn'),'user_id':localStorage.getItem('user_id')},'body.list',['order_Detail'],function(){
 					$('#orderDetail .PopColse').on('click',function(){
@@ -380,6 +435,7 @@
 			    		   break;
 			    	}
                     x.order.order_state = a;
+                    x.order.orderSn = orderSn;
 			    	return x;
 			    });
 			});
@@ -390,6 +446,8 @@
 //			    window.location.href = 'pay_order.html';
 			});
 			$('.apply-after-sale').click(function(){
+				$('.sale-reason').find('option').eq(0).prop('selected', true)
+				deleteCookie('reason');
 				$('.marks').show();
 				$('#saleAfter').fadeIn();
 				$('#saleAfter .PopColse').click(function(){
@@ -397,14 +455,14 @@
 					$('.marks').hide();
 				})
 				var order=$(this).attr('order_id');
-				$('.pt_ord_h').html($(this).parents('tr').prev().children('td').eq(0).children('label').html());
-//				$('.thr_ord_h').html($(this).parents('tr').prev().children('td'))
-				$('.buyer_goods_no').html($(this).parents('tr').children('td').eq(0).children('p').html())
-				$('.order_sku').html($(this).parents('tr').children('td').eq(1).children('p').html())
-				$('.order_price').html($(this).parents('tr').children('td').eq(2).html())
-				$('.order_num').html($(this).parents('tr').children('td').eq(3).html())
+				$('.pt_ord_h').html($(this).parents('tr').prev().children('td').eq(1).children('label').html());
+				$('.thr_ord_h').html($(this).parents('tr').children('td').eq(6).children('span').eq(1).html())
+				$('.buyer_goods_no').html($(this).parents('tr').children('td').eq(1).children('p').html())
+				$('.order_sku').html($(this).parents('tr').children('td').eq(2).html())
+				$('.order_price').html($(this).parents('tr').children('td').eq(3).html())
+				$('.order_num').html($(this).parents('tr').children('td').eq(4).html())
 				$('.all-price').html($(this).parents('tr').children('td').eq(5).children('p').eq(0).html())
-				$('.freight').html($(this).parents('tr').children('td').eq(5).children('p').eq(1).html())
+//				$('.freight').html($(this).parents('tr').children('td').eq(5).children('p').eq(1).html())
 				$('.sale-reason').change(function(){
 					var after_sale_reason=$(this).find('option:selected').val();
 					localStorage.setItem('reason',after_sale_reason)
@@ -412,14 +470,16 @@
 				localStorage.setItem('order',order);
 			});		
 			$('.confirm-get').click(function(){
-				 X.Post(requestUrl.confirm_good,1,{'order_id':$(this).attr('order_id'),'order_sn':$(this).attr('order_sn')},function(e){
+				 X.Post(requestUrl.confirm_good,1,{'user_id':localStorage.getItem('user_id'),'user_name':localStorage.getItem('user_nickname'),'order_id':$(this).attr('order_id'),'order_sn':$(this).attr('order_sn')},function(e){
 				   if(e.header.stats == 0 ){
 	            	   	  X.notice(e.body.list,3);
+	            	   	  $('.marks').fadeOut()
 	            	   	  setTimeout(function(){
 	            	   	  	 window.location.href = 'orderlist.html?loc='+($('.sale-tab>a.select').index()+1);
 	            	   	  },1000)
             	   }else{
             	   	  X.notice(e.header.msg,3);
+            	   	  $('.marks').fadeOut();
             	   }
 				})		
 			});

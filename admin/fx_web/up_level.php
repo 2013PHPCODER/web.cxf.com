@@ -17,6 +17,7 @@
         <link rel="stylesheet" type="text/css" href="css/zengli.css" />
         <link rel="stylesheet" type="text/css" href="css/common.css"/>
         <link rel="stylesheet" type="text/css" href="css/goodsList.css"/>
+        <link rel="shortcut icon" href="images/64x64.ico" type="image/x-icon" />
         <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
         <script src="//cdn.bootcss.com/knockout/3.3.0/knockout-min.js"></script>
         <script src="js/pseudo.js" type="text/javascript" charset="utf-8"></script>
@@ -115,26 +116,34 @@
             });
             //提交订单
             $('#level_sub').click(function () {
+            	if (!dragyz) {
+		            X.notice('您需要先验证', 3);
+		            return false;
+		        }
             	var level2 = {
 	                'user_id': getCookieValue('user_id'),
 	                'type': 2,
 	                'virtual_goods_id': getCookieValue('virtual_goods_id')
-	            }
-                X.Post(requestUrl.level, 1, level2, function (result) {
-                	if(result.header.stats==0){
-                		var loca = result.body.list;
+	            };
+	            if(dragyz) {
+                    X.Post(requestUrl.level, 1, level2, function (result) {
+                        if(result.header.stats==0){
+                            var loca = result.body.list;
                             var buyOrder = {
                                 order: loca.order_id,
                                 orderSn: loca.order_num,
                                 pay_amount: loca.up_level_money,
                                 type:1
                             };
-                        sessionStorage.setItem('orderInfo', JSON.stringify(buyOrder));
-                        window.location.href = 'pay_order.php';   
-                	}else{
-                		X.notice(result.header.msg,3)
-                	}
-                })
+                            sessionStorage.setItem('orderInfo', JSON.stringify(buyOrder));
+                            window.location.href = 'pay_order.php';
+                        }else{
+                            X.notice(result.header.msg,3)
+                        }
+                    })
+                }else {
+                    X.notice("您需要先验证", 1);
+                }
             })
         })
     </script>

@@ -12,8 +12,10 @@
                     if (getCookieValue('user_nickname') != '' && getCookieValue('user_nickname') != null) {
                         $('.top-left').children('a').eq(0).html('您好，' + getCookieValue('user_nickname')).attr('href', '../vip_center.php');
                         $('.top-left').children('a').eq(1).html('退出').attr('href', '../login.php').on('click', function () {
-                            deleteCookie('user_nickname');
-                            deleteCookie('user_id');
+                            var cookie = document.cookie.split(';')
+                            for(var i in cookie){
+                                deleteCookie(cookie[i].split('=')[0].trim());
+                            }
                         });
                         X.Post(requestUrl.top, 1, {'to_client': 1, 'page': 1}, function (e) {
                             if (e.body.list.list.length > 0) {
@@ -24,6 +26,7 @@
 
                     } else {
                         $('.num-icon').hide();
+                        $(".i-suspend").show();
                     }
                 })
 
@@ -37,7 +40,11 @@
                 <a href="user_collectlist.php" target="_blank"><i class="my-icon1"></i><span>我的收藏夹</span></a>
                 <a href="vip_center.php" target="_blank"><i class="my-icon2"></i><span>管理台</span></a>
 <!--                <a href="about_client.php" target="_blank"><i class="my-icon4"></i><span>软件下载</span></a>-->
-                <a href="http://192.168.20.191:82/user/login/index.html" target="_blank"><i
+
+                <!-- 内网供应商登录-->
+                <!--<a href="http://192.168.20.191:82/user/login/index.html" target="_blank"><i-->
+                <!--线上供应商登录-->
+                <a href="http://supplier.mycxf.com" target="_blank"><i
                         class="my-supplier-icon"></i><span>供应商登陆</span></a>
             </div>
         </div>

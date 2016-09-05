@@ -25,6 +25,8 @@ class Fx_statementDao extends Dao {
         if (!empty($_trade_type)) {
             $_where_str .= ' AND trade_type=:trade_type';
             $_where_arr['trade_type'] = $_trade_type;
+        }  else {
+            $_where_str .= ' AND trade_type in (1,2,3,5)';
         }
         if (!empty($_trade_no)) {
             $_where_str .= ' AND trade_no=:trade_no';
@@ -37,14 +39,13 @@ class Fx_statementDao extends Dao {
             $_where_arr['start_time'] = $_tmp_start_time;
             $_where_arr['end_time'] = $_tmp_end_time;
         } else if (empty($_start_time) && !empty($_end_time)) {
-            $_tmp_start_time = strtotime($_end_time);
-            $_tmp_end_time = $_tmp_start_time + 86400;
+            $_tmp_end_time = strtotime($_end_time) + 86400;
             $_where_str .= ' AND (add_time BETWEEN :start_time AND :end_time)';
-            $_where_arr['start_time'] = $_tmp_start_time;
+            $_where_arr['start_time'] = 0;
             $_where_arr['end_time'] = $_tmp_end_time;
         } else if (!empty($_start_time) && empty($_end_time)) {
             $_tmp_start_time = strtotime($_start_time);
-            $_tmp_end_time = $_tmp_start_time + 86400;
+            $_tmp_end_time = time();
             $_where_str .= ' AND (add_time BETWEEN :start_time AND :end_time)';
             $_where_arr['start_time'] = $_tmp_start_time;
             $_where_arr['end_time'] = $_tmp_end_time;
@@ -56,29 +57,32 @@ class Fx_statementDao extends Dao {
                 . $this->table . ' WHERE user_id=:user_id AND user_name=:user_name AND user_type=:user_type ' . $_where_str;
         $_count = $this->query($_count_sql, $_where_arr, 'fetch_row');
         $_page_num = \Config('page_num');
-        $_tmp_page=($_page-1) * $_page_num;
+        $_tmp_page = ($_page - 1) * $_page_num;
         $_tmp_page = $_tmp_page . ',' . $_page_num;
         $_sql = 'SELECT add_time,trade_type,trade_no,out_money,in_money,now_balance,trade_account_type, trade_account,remark FROM '
                 . $this->table . ' WHERE user_id=:user_id AND user_name=:user_name AND user_type=:user_type ' . $_where_str . ' ORDER BY add_time DESC LIMIT ' . $_tmp_page;
         $_datas = $this->query($_sql, $_where_arr);
+//        print_r(\Sql::get());
+//        die;
         $_tmp_arr = '';
-        if(!empty($_datas)){
+        if (!empty($_datas)) {
             foreach ($_datas as $_key => $_value) {
+                $_datas[$_key]['trade_type_str'] = '';
                 switch ($_value['trade_type']) {
                     case 1:
-                        $_datas[$_key]['trade_type_str'] = '分销商提现';
+                        $_datas[$_key]['trade_type_str'] = '余额提现';
                         break;
                     case 2:
-                        $_datas[$_key]['trade_type_str'] = '分销商售后补款';
+                        $_datas[$_key]['trade_type_str'] = '余额补款';
                         break;
                     case 3:
-                        $_datas[$_key]['trade_type_str'] = '分销商售后退款';
+                        $_datas[$_key]['trade_type_str'] = '售后退款';
                         break;
                     case 4:
                         $_datas[$_key]['trade_type_str'] = '供货商完结订单';
                         break;
                     case 5:
-                        $_datas[$_key]['trade_type_str'] = '分销商下单';
+                        $_datas[$_key]['trade_type_str'] = '订单付款';
                         break;
                     case 6:
                         $_datas[$_key]['trade_type_str'] = '分销商充值';
@@ -89,14 +93,16 @@ class Fx_statementDao extends Dao {
                     default:
                         break;
                 }
-                $_datas[$_key]['add_time'] = date('Y-m-d H:i:s',$_value['add_time']);
+                $_datas[$_key]['add_time'] = date('Y-m-d H:i:s', $_value['add_time']);
             }
-            $_tmp_arr['pageIndex'] = $_page;
-            $_allPage = ceil($_count['count']/$_page_num);//总的分页条数
-            $_tmp_arr['rows'] = $_count['count'];
-            $_tmp_arr['allPage'] = $_allPage;
-            $_tmp_arr['list'] = $_datas;
+        } else {
+            $_datas = array();
         }
+        $_tmp_arr['pageIndex'] = $_page;
+        $_allPage = ceil($_count['count'] / $_page_num); //总的分页条数
+        $_tmp_arr['rows'] = $_count['count'];
+        $_tmp_arr['allPage'] = $_allPage;
+        $_tmp_arr['list'] = $_datas;
         return $_tmp_arr;
     }
 

@@ -1,0 +1,4 @@
+[ 2016-08-31T20:06:07+08:00 ] 127.0.0.1 /storage/storage/index.html
+ERR: 1146:Table 'fx_829.goods_sku_comb' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `hub_order` INNER JOIN hub_order_goods ON hub_order_goods.order_id = hub_order.order_id INNER JOIN goods_list ON goods_list.goods_id = hub_order_goods.goods_id INNER JOIN order_list ON order_list.order_id = hub_order_goods.order_id INNER JOIN order_contact ON order_contact.order_id = hub_order.order_id INNER JOIN order_goods ON order_list.order_id = order_goods.order_id INNER JOIN order_goods_sku ON order_goods_sku.order_id = order_list.order_id and order_goods.goods_id=order_goods_sku.goods_id INNER JOIN goods_sku_comb ON goods_sku_comb.id = order_goods_sku.sku_comb_id  LIMIT 1  
+

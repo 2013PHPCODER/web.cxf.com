@@ -157,7 +157,7 @@ class GoodsController extends Controller {
             'sku_prices' => $sku_props_array['sku_prices'],
             'sku_outer_ids' => $sku_props_array['sku_outer_ids'],
             'freight_payer' => $freight_payer,
-            'pic_path' => $goods_info['img_path'],
+            'pic_path' => $this->goods_dao->get_tb_img($goods_info['img_path'], $taobao_imgs),
             'desc' => $goods_info['desc'],
             'wireless_desc' => $goods_info['wireless_desc'],
             'approve_status' => 'instock' //默认上传到仓库中
@@ -193,7 +193,7 @@ class GoodsController extends Controller {
             }
         }
         //铺货完成记录对应记录
-        $this->goods_dao->add_uptaobao_log($user_id, $user_account, $goods_id, $goods_info['goods_name'], $item_price, 0, $tb_user_info['nick'], $err_msg);
+        $this->goods_dao->add_uptaobao_log($user_id, $user_account, $goods_id, $goods_info['goods_name'], $item_price, 1, $tb_user_info['nick'], $err_msg);
         //修改收藏记录表记录
         $this->goods_dao->update_collect_log($user_id, $goods_id);
         $this->response(array('sucess' => true, 'msg' => '铺货成功'));
@@ -215,13 +215,19 @@ class GoodsController extends Controller {
         );
         $taobao_result = \Taobao::curl_taobao_api('taobao.sellercats.list.get', $tb_user['access_token'], $params);
         if (!\Taobao::get_taobao_response($taobao_result, 'sellercats_list_get_response', $response)) myerror(\StatusCode::msgDBFail, '获取运费模板失败:' . $response->msg);
-        $seller_cats = (array) $response->seller_cats->seller_cat;
+        $seller_cats = array();
+        if (isset($response->seller_cats)) {
+            $seller_cats = (array) $response->seller_cats->seller_cat;
+        }
         $tparams = array(
             'fields' => 'template_id,template_name'
         );
         $tem_result = \Taobao::curl_taobao_api('taobao.delivery.templates.get', $tb_user['access_token'], $tparams);
         if (!\Taobao::get_taobao_response($tem_result, 'delivery_templates_get_response', $response)) myerror(\StatusCode::msgDBFail, '获取运费模板失败:' . $response->msg);
-        $delivery_templates = (array) $response->delivery_templates->delivery_template;
+        $delivery_templates = array();
+        if (isset($response->delivery_templates)) {
+            $delivery_templates = (array) $response->delivery_templates->delivery_template;
+        }
         $this->response(array('seller_cats' => $seller_cats, 'delivery_templates' => $delivery_templates));
     }
 

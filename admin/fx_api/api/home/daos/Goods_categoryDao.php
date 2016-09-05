@@ -13,10 +13,29 @@ class Goods_categoryDao extends Dao {
         return $this->query($_sql, $_where);
     }
 
-    public function getGoodsCategory($category_id) {    //根据类目获得商品cid
-        $sql = "select cid from goods_category where category_id=:category_id limit 1";
-        $param = ['category_id' => $category_id];
-        return $this->query($sql, $param, 'fetch_string');
+    public function getGoodsCategory($category_id, $level) {    //根据类目和等级获得商品cid， 
+        switch ($level) {
+            case '2':
+                $sql = '(select cid, level from goods_category where cid=:id and level=2) union ';
+                $sql.='(select cid, level from goods_category where parent_cid=:id and level=3 ) union ';
+                $sql.='(select c.cid, c.level from goods_category as a inner join goods_category as b on a.cid=b.parent_cid inner join goods_category as c on b.cid=c.parent_cid where a.cid=:id)';
+
+                $param=['id'=>$category_id];
+                break;
+            case '3':
+                $sql = "select cid from goods_category where parent_cid=:pid or (level=3 and cid=:cid)";
+                $param=['pid'=>$category_id, 'cid'=>$category_id];
+                break;
+            case '4':
+                return [$category_id];                          
+        }
+        $cids=$this->query($sql, $param);
+        if (!empty($cids)) {
+            foreach ($cids as $key => $value) {
+                $cids[$key]=$value['cid'];
+            }
+        }
+        return $cids;
     }
 
     public function get_index_category1($model) {    //根据类目获得商品cid
@@ -170,82 +189,70 @@ class Goods_categoryDao extends Dao {
         }
     }
 
+    function get_search_category() {
+        $sql = "select name,cid,level,category_id,parent_id,parent_cid,ico,big_ico from goods_category where has_goods=:has_goods and status <> :sta";
+        $where_arr = array("has_goods" => \category_has_goods::yes, "sta" => \category_status::is_not);
+        $arr = $this->query($sql, $where_arr); // $this->getList($model, array("name","category_id","cid","level"));
+        $parent_arr = array();
+        $middle_arr = array();
+
+        if (is_array($arr) && count($arr) > 0) {
+            foreach ($arr as $key => $value) {
+                if ($value["level"] == 1) {
+                    $parent_arr[] = $value;
+                } else {
+                    $middle_arr[] = $value;
+                }
+            }
+        }
+        static $result_arr = array();
+        foreach ($parent_arr as $key => $value) {
+            $child = array();
+            $result_arr = $this->deep_check_category($middle_arr, $value["cid"]);
+            if (count($result_arr) > 0 && count($result_arr[0]) > 0) {
+                foreach ($result_arr as $c_v) {
+                    array_push($child, $c_v);
+                }
+            }
+            if (count($result_arr) > 0) {
+                while (count($result_arr) > 0) {
+                    $pid = $result_arr[0]["cid"];
+                    $result_arr = $this->deep_check_category($middle_arr, $pid);
+
+                    if (count($result_arr) > 0 && count($result_arr[0]) > 0) {
+                        foreach ($result_arr as $c_v) {
+                            array_push($child, $c_v);
+                        }
+                    }
+                }
+            }
+
+            $value["child"] = $child;
+            $value["name_en"] = "sufficient stock";
+            $parent_arr[$key] = $value;
+        }
+
+        die(json_encode($parent_arr));
+    }
+
+    function deep_check_category($middle_arr, $id) {
+        $cc = array();
+        if (count($middle_arr) > 0) {
+            foreach ($middle_arr as $key => $value) {
+                if ($value["parent_cid"] == $id) {
+                    array_push($cc, $value);
+                }
+            }
+        }
+        return $cc;
+    }
+
     function get_category_by($arr, $child) {
         foreach ($arr as $key => $value) {
             if (isset($value) && array_key_exists("child", $value)) {
                 
             }
         }
-    }
-
-    function get_index_category_test_2() {
-        $sql = "select name,cid,level,category_id,parent_id,ico,big_ico from goods_category where status =:status";
-        $_where = array('status' => 1);
-        $arr = $this->query($sql, $_where); // $this->getList($model, array("name","category_id","cid","level"));
-        //$result = array("时尚服饰" => array(), "经典靴鞋" => array(), "服饰箱包" => array(), "美妆日化" => array(), "运动户外" => array(), "家居家电" => array(), "数码3C/其他" => array());
-
-        $result = array(array("name" => "时尚服饰", "small_ico" => "", "child" => array(array("女装", "男装", "童装")), array("name" => "经典鞋靴", "child" => array("男鞋", "女鞋", "童鞋"))),
-            array("name" => "服饰箱包", "small_ico" => "", "child" => array(array("服饰配件", "箱包")), array("name" => "美妆日化", "child" => array("彩妆/香水/美妆工具"))),
-            array("name" => "运动户外", "small_ico" => "", "child" => array(array("户外/登山/野营/旅行用品", "运动/瑜伽/健身/球迷用品", "体育/健身/运动装"))),
-            array("name" => "家居家电", "small_ico" => "", "child" => array(array("家居饰品", "居家日用", "生活电器"))),
-            array("name" => "数码3C/其他", "small_ico" => "", "child" => array(array("3C数码配件", "软件")))
-        );
-        if (!empty($arr) && count($arr) > 0) {
-            if (!empty($arr) && count($arr) > 0) {
-                foreach ($arr as $key => $value) {
-                    $n_arr = $this->check_category_test($value["name"], $result);
-                    if (!empty($n_arr) && count($n_arr) > 0) {
-                        $f_name = $n_arr[0];
-                        $s_name = $n_arr[1];
-                        foreach ($result as $pk => $a) {
-                            foreach ($a["child"][0] as $ckey => $cvalue) {
-                                if ($cvalue == $s_name) {
-                                    unset($result[$pk]["child"][$ckey]);
-                                    $result[$pk]["child"][] = array("title" => $s_name, "cid" => $value["cid"], "small_pic" => $value["ico"], "big_pic" => $value["big_ico"], "category_id" => $value["category_id"], "child" => $this->get_child_by_parentid($arr, $value["category_id"]));
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        return array($result);
-    }
-
-    function get_index_category() {
-        $sql = "select name,cid,level,category_id,parent_id,ico,big_ico from goods_category where status =:status";
-        $_where = array('status' => 1);
-        $arr = $this->query($sql, $_where); // $this->getList($model, array("name","category_id","cid","level"));
-        //$result = array("时尚服饰" => array(), "经典靴鞋" => array(), "服饰箱包" => array(), "美妆日化" => array(), "运动户外" => array(), "家居家电" => array(), "数码3C/其他" => array());
-
-        $result = array(array(array("name" => "时尚服饰", "child" => array("女装", "男装", "童装"))), array(array("name" => "经典鞋靴", "child" => array("男鞋", "女鞋", "童鞋"))),
-            array(array("name" => "服饰箱包", "child" => array("服饰配件", "箱包"))), array(array("name" => "美妆日化", "child" => array("彩妆/香水/美妆工具"))),
-            array(array("name" => "运动户外", "child" => array("户外/登山/野营/旅行用品", "运动/瑜伽/健身/球迷用品", "体育/健身/运动装"))),
-            array(array("name" => "家居家电", "child" => array("家居饰品", "居家日用", "生活电器"))),
-            array(array("name" => "数码3C/其他", "child" => array("3C数码配件", "软件")))
-        );
-        if (!empty($arr) && count($arr) > 0) {
-            if (!empty($arr) && count($arr) > 0) {
-                foreach ($arr as $key => $value) {
-                    $n_arr = $this->check_category($value["name"]);
-                    if (!empty($n_arr) && count($n_arr) > 0) {
-                        $f_name = $n_arr[0];
-                        $s_name = $n_arr[1];
-                        foreach ($result as $pk => $a) {
-                            foreach ($a[0]["child"] as $ckey => $cvalue) {
-                                if ($cvalue == $s_name) {
-                                    unset($result[$pk][0]["child"][$ckey]);
-                                    $result[$pk][0]["child"][][] = array("title" => $s_name, "cid" => $value["cid"], "small_pic" => $value["ico"], "big_pic" => $value["big_ico"], "category_id" => $value["category_id"], "child" => $this->get_child_by_parentid($arr, $value["category_id"]));
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        return $result;
     }
 
     function check_category($name) {

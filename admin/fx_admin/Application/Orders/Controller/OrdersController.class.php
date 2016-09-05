@@ -220,7 +220,7 @@ class OrdersController extends CommonController {
     public function orderDetail() {
         $_order_id = I('get.order_id/d');
         $fields = "order_list.order_id,order_list.order_sn,order_list.add_time,order_list.shop_id,order_list.buyer_name,order_list.qq,order_list.is_cus,"
-                . "order_list.memo,order_list.order_state,order_list.order_amount,order_list.shipping_fee,order_list.pay_amount,order_list.message_starts,shipping_code,"
+                . "order_list.memo,order_list.order_state,order_list.goods_amount,order_list.order_amount,order_list.shipping_fee,order_list.pay_amount,order_list.message_starts,shipping_code,"
                 . "shipping_id,shipping_name,hub_type,payment_time,send_hub_time";
         $datas = M('order_list')->field($fields)->where("order_id = $_order_id")->find();
         //如果有留言，查询留言
@@ -257,7 +257,7 @@ class OrdersController extends CommonController {
                 $vv['goods_price_total'] = bcmul($vv['distribution_price'], $vv['goods_num'], 2);
                 $vv['sku_str'] = M('goods_sku_comb')->where("id=" . $vv['sku_comb_id'])->getField('sku_str_zh');
             }
-            $datas['goods_num_total'] = bcadd($vv['goods_num'], $datas['goods_num_total'], 2);
+            $datas['goods_num_total'] = bcadd($vv['goods_num'], $datas['goods_num_total']);
             $datas['order_goods'][$kk] = $vv;
         }
         //订单的价格

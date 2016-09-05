@@ -21,7 +21,7 @@ class FxDistributeUserModel extends Model {
     public function getDisUserList($_where) {
         $_count = $this->where($_where)->count('id');
         $_page = getpage($_count);
-        $field = "id,addtime,email,usernick,mobile,qq,wangwang,source,leavel";
+        $field = "id,addtime,email,user_account,mobile,qq,wangwang,source,leavel";
         $arr = $this->field($field)
                 ->where($_where)
                 ->order('addtime desc')
@@ -47,7 +47,7 @@ class FxDistributeUserModel extends Model {
      * return Array
      */
     public function getDisUserDetail($_id) {
-        $field = "usernick,realname,idcard,email,mobile,qq,wangwang,source,acting_account";
+        $field = "user_account,realname,idcard,email,mobile,qq,wangwang,source,acting_account";
         $arr = $this->field($field)->where(array('id' => $_id))->find();
         if (1 == $arr['source']) {
             $arr['source'] = "星密码";

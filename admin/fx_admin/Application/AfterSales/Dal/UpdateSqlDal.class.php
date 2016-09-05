@@ -42,14 +42,14 @@ class UpdateSqlDal{
 
 		$conn->startTrans();			//开始事务
 		if ($para['is_finance']) {			//是否需要打财务表
-			$a=$conn->join('order_list as b on cus_order_list.order_id=b.order_id')->where($condition)->field('goods_amount as amount, b.buyer_id as user_id, b.order_id')->find();
+			$a=$conn->join('order_list as b on cus_order_list.order_id=b.order_id')->where($condition)->field('goods_amount as amount, b.buyer_id as user_id, b.order_id, b.order_sn')->find();
 			$user_id=$a['user_id'];
 			$order_id=$a['order_id'];
 			$amount=$a['amount'];
 			$user_info=M('fx_distribute_user')->where(['id'=>$user_id])->field('receiver_account_type, open_bank_address, receiver_account')->find();
 
 			$finance_data=[
-				'sourceid'=>$user_id, 'catch_type'=>3, 'source_id'=>$condition['id'],
+				'source_sn'=>$a['order_sn'], 'catch_type'=>3, 'source_id'=>$condition['id'],
 				'repay'=>$amount, 'status'=>1, 'addtime'=>time(), 'user_type'=>2, 
 				'receiver_account_type'=>$user_info['receiver_account_type'], 'bank_deposit'=>$user_info['open_bank_address'],
 				'receiver_name'=>$user_info['receiver_account']

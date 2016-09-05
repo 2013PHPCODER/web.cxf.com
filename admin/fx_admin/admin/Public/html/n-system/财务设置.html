@@ -134,10 +134,8 @@
 		var html = '<p>'+arr[0]+'：<label>'+arr[1]+'</label>&nbsp;&nbsp;&nbsp;收款人：<label>'+arr[2]+'</label></p>'
 		var oo = true;
 		for(var i=0;i<arr.length;i++){
-			console.log("1");
 			if(arr[i] == ''){oo=false}
 		}
-		console.log("2");
 		if(arr.length>=2 && oo){
 	     	$(html).insertBefore('.addMoney');
 		    $('.addMoney-p').hide();

@@ -26,7 +26,12 @@
           <td>{$list.sku}</td>
           <td>{$list.original_price}</td>
           <td>{$list.goods_num}</td>
-          <td>待配货</td>
+          <td><switch name="list.ship_stats" >
+                <case value='0'>待配货</case>
+                <case value='1'>待分配</case>
+                <case value='2'>待发货</case>
+                <case value='3'>已完成</case>
+                </switch></td>
           <td style="color: red"> {:xeq($list['is_cus'],1,'售后中')}</td>
       </tr>
       <tr>

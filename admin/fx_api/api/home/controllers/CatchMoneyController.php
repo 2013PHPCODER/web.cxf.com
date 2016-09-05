@@ -16,7 +16,15 @@ class CatchMoneyController extends Controller {
         if (empty($q->apply_money)) myerror(\StatusCode::msgCheckFail, '提现金额不能为空！');
         if (empty($q->user_account)) myerror(\StatusCode::msgCheckFail, '收款账户不能为空！');
         if (empty($q->user_name)) myerror(\StatusCode::msgCheckFail, '收款人不能为空！');
-
+        if (0 < $q->apply_money) myerror(\StatusCode::msgCheckFail, '提现金额必须大于0！');
+        $_distribute_user_obj = \Dao::Fx_distribute_user();
+        $user_info = $_distribute_user_obj->get_user_info($q->user_id, $q->user_name); //获取用户基本信息
+        if (!$user_info) {
+            myerror(\StatusCode::msgCheckFail, '获取用户信息失败！');
+        }
+        if ($q->apply_money <= $user_info['balance']) {
+            myerror(\StatusCode::msgCheckFail, '提现金额必须为0~' . $user_info['balance'] . '！');
+        }
         $data = new \stdClass();
         $data->apply_user_id = $q->user_id;
         $data->receiver_name = $q->user_name;
@@ -29,9 +37,10 @@ class CatchMoneyController extends Controller {
         if (!$result) {
             $this->response['sucess'] = 0;
             $this->response['msg'] = "申请失败！";
+        } else {
+            $this->response['sucess'] = 1;
+            $this->response['msg'] = "申请成功！";
         }
-        $this->response['sucess'] = 1;
-        $this->response['msg'] = "申请成功！";
         $this->response();
     }
 

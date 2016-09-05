@@ -52,7 +52,7 @@
                         <p class="p-english">Easy goods management</p>
                     </li>
                 </ul>
-                <a href="supplier_register.php">立即入驻</a>
+                <a href="supplier_register.php" id="settled">立即入驻</a>
             </div>
             <div class="spIn-box spIn-process">
                 <h3>
@@ -176,6 +176,13 @@
         include_once 'base/index_footer_blackdiv.php';
         include_once 'base/index_footer_kefu.php';
         ?>
-        
+<!--           <script>-->
+<!--               if (getCookieValue('user_nickname') != '' && getCookieValue('user_nickname') != null) {-->
+<!--                   $('#settled').click(function(){-->
+<!--                       X.notice('对不起，您已是分销商',3);-->
+<!--                       return false-->
+<!--                   })-->
+<!--               }-->
+<!--           </script>-->
     </body>
 </html>

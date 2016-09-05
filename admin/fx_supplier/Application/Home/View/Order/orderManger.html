@@ -410,7 +410,7 @@
                 cus_order_id.push($(this).data('id'));
                 layer.confirm('确定要拒绝客户售后申请？', {title: '提醒', btn: ['确认', '取消']}, function (index) {
                     $.post("{:U('order/cusCancelOrder')}", {cus_order_id: cus_order_id}, function (result) {
-                        console.log(result);
+//                        console.log(result);
                         if (result.status == 'ok') {
                             //layer.msg('操作成功',{time:1000});
                             layer.alert(result.content, {btn: ['确定']}, function () {
@@ -508,7 +508,7 @@
                                             'user': $('#user option:selected').val(),
                                         },
                                         function (result) {
-                                            console.log(result);
+//                                            console.log(result);
                                             if (result.status == 'ok') {
                                                 layer.alert('操作成功!', function () {
                                                     layer.close(index);
@@ -551,7 +551,7 @@
                 }
                 if ($('.choose:checked').serialize() || cus_order_val) {
                     $.post("{:U('order/getRefundAmount')}", {cus_order_id: cus_order_id}, function (result) {
-                        console.log(result);
+//                        console.log(result);
                         var str = "<label for='exampleInputName2'>退款金额:</label>";
                         str += "<div class='form-group'><input type='text' id='refund_amount' class='form-control input-xs' value='" + result.returnData.refund_amount + "'>";
                         str += "<span style='color: red;font-size: 10px'>退款金额不能大于" + result.returnData.pay_amount + "</span></div>";
@@ -585,7 +585,7 @@
                                 cus_order_id: cus_order_id,
                                 refund_amount: $('#refund_amount').val()
                             }, function (data) {
-                                console.log(data);
+//                                console.log(data);
                                 if (data.status) {
                                     layer.alert(data.message, {icon: 6}, function () {
                                         layer.close(index);
@@ -632,7 +632,7 @@
                                 }
                                 if (money > 100) {
                                     $('#tip_money').css('display', '');
-                                    console.log($('#tip_money'));
+//                                    console.log($('#tip_money'));
                                     return false;
                                 }
                                 $('#tip_money').css('display', 'none');

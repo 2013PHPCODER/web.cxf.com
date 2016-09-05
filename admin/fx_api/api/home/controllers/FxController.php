@@ -157,9 +157,31 @@ class FxController extends Controller{
 		$r? $this->response('注册成功'): myerror(\StatusCode::msgDBInsertFail, '注册失败');
 	}
 
+	public function checkBind(){
+		$q=$this->request;						//获得参数
+		// $q=new \stdclass();
+		// $q->user_id=1241;		
+
+		batch_isset($q,['user_id']);
+
+
+
+
+		$dao=\Dao::Fx_distribute_user();	
+		$is_bind=$dao->checkTaobaoBind($q->user_id);
+		$bind=$is_bind? 1: 0;
+		$this->response(['is_bind'=>$bind]);
+
+	}
+
+
+
+
 	public function create_user_account(){
 		return 'cxf_'.uniqid().mt_rand(0,1000);
 	}	
 
 	
+
+
 }

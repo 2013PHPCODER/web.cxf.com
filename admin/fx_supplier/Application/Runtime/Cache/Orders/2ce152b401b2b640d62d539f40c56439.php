@@ -27,7 +27,7 @@
                         <?php if(($datas["refund_status"]) > "0"): ?><!--退款状态：-->
                         <?php echo f_afterStatus($datas['refund_status'],'refund'); endif; ?>
                         <?php if(($datas["return_status"]) > "0"): ?><!--退款退货状态：-->
-                        <?php echo f_afterStatus($datas['return_status']); endif; endif; ?>	
+                        <?php echo f_afterStatus($datas['return_status'],'return'); endif; endif; ?>	
                     </h4>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                                 <div class="shipping_info">
                                     <table cellspacing="0" cellpadding="0">
                                         <tr>
-                                            <td rowspan="2" colspan="1" style="padding:0;"><img src="<?php echo img_url($order_goods['goods_img'],48,48);?>"></td>
+                                            <td rowspan="2" colspan="1" style="padding:0;"><img src="<?php echo ($order_goods["goods_img"]); ?>!upyun123/fwfh/48x48"></td>
                                             <td colspan="4" style="padding:0 10px;"><?php echo ($order_goods["goods_name"]); ?></td>
                                         </tr>
                                         <tr>
@@ -124,7 +124,7 @@
                                 <th>商品总价/元</th>
                             </tr>
                         <?php if(is_array($datas["order_goods"])): foreach($datas["order_goods"] as $key=>$order_goods): ?><tr>
-                                <td><img class="table_img" src="<?php echo ($order_goods["goods_img"]); ?>_40x40.jpg"></td>
+                                <td><img class="table_img" src="<?php echo ($order_goods["goods_img"]); ?>!upyun123/fwfh/40x40"></td>
                                 <td><?php echo ($order_goods["goods_name"]); ?></td>
                                 <td><?php echo ($order_goods["buyer_goods_no"]); ?> </td>
                                 <td><?php echo ($order_goods["sku_str"]); ?></td>
@@ -158,7 +158,7 @@
                                 <th>系统备注</th>
                             </tr>
                         <?php if(is_array($orderLog)): $i = 0; $__LIST__ = $orderLog;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$log): $mod = ($i % 2 );++$i;?><tr>
-                                <td><?php echo ($log["user_id"]); ?></td>
+                                <td><?php echo ($log["user_name"]); ?></td>
                                 <td><?php echo ($log["log_info"]); ?></td>
                                 <td><?= date("Y-m-d H:i",$log['addtime'])?></td>
                                 <td><?php echo ($log["handle_info"]); ?></td>

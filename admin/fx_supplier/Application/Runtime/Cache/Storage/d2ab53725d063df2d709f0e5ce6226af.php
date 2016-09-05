@@ -72,7 +72,7 @@
                     </tr>
                 <?php if(is_array($datas["list"])): $i = 0; $__LIST__ = $datas["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><tr>
                         <td><?php echo date('Y-m-d H:i',$list['log_time']);?></td>
-                        <td><?php echo ($list["user_id"]); ?></td>
+                        <td><?php echo ($list["user_account"]); ?></td>
                         <td><?php echo ($list["goods_no"]); ?></td>
                         <td><?php echo ($list["buyer_goods_no"]); ?></td>
                         <td><?php echo ($list["goods_name"]); ?></td>

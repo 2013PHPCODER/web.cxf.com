@@ -14,7 +14,7 @@ class ChangeStatusController extends Auth{
 
 
 
-		if ($post['is_send']) {			//确认发货
+		if ($post['is_send']) {			//确认发货,需要转退货流程
 			empty($post['shipping_id']) || empty($post['shipping_code']) || empty($post['shipping_name']) and $this->error('请填写物流信息');
 			$data['cus']=[
 				'return_status'=>\aftersale_back_good_status::wait_buyer_sendgoods,
@@ -45,7 +45,6 @@ class ChangeStatusController extends Auth{
 		$para=['data'=>$data, 'condition'=>$condition];
 
 		$r=R('updateSql/changeStatusWithOrder', [$para, $this->user_info['id']], 'Dal');
-		// return;
 		if ($r) {
 			$this->logs($id, $log);
 			$this->log($_log);
@@ -99,33 +98,21 @@ class ChangeStatusController extends Auth{
 		$type=$post['type'];
 		$action=(int) $post['action'];
 
-		// if ($type=='refund') {				//验证数据
-		// 	$this->verifyData($id, $reason, $status, 'wait_supplier_confirm');	
-		// }else{
-			$this->verifyData($id, $reason, $status, 'wait_supplier_approve', 'return');
-		// }
-					// dump($post);return;
+		$this->verifyData($id, $reason, $status, 'wait_supplier_approve', 'return');
 		$para=['condition'=>['id'=>$id, 'supplier_id'=>$this->user_info['id']] ];		
 		if ($action!=1) {									//不同意，进入仲裁		
 			!isset($post['reason_refuse']) || empty($post['reason_refuse'])  and $this->error('请填写拒绝售后的理由');
 			$reason_refuse=trim($post['reason_refuse']);
 			$reason_refuse_img=isset($post['reason_refuse_img'])? rtrim($post['reason_refuse_img'], '|'): null;
-			$post['type']=='return' && $para['data']=['return_status'=> \aftersale_back_good_status::wait_admin_kill, 'supplier_refuse_reason'=>$reason_refuse, 'supplier_refuse_img'=>$reason_refuse_img];//退货
-			// $post['type']=='refund' && $para['data']=['refund_status'=> \aftersale_back_money_status::wait_admin_kill, 'supplier_refuse_reason'=>$reason_refuse];//退款
+			$post['type']=='return' && $para['data']=['return_status'=> \aftersale_back_good_status::wait_admin_kill, 'supplier_refuse_reason'=>$reason_refuse, 'supplier_refuse_img'=>$reason_refuse_img];
 			$log='供应商拒绝，等待平台仲裁';
 			$_log='拒绝售后申请。售后编号：'.$id;
-		}else{																				//同意
-			// if ($type=='refund') {								//退款
-			// 	$para['data']['refund_status']=$this->isReplenishment($reason);			
-			// 	$log="供应商已同意，等待平台退款";
-			// 	$_log='同意售后申请，进入退款流程。售后编号：'.$id;
-			// }else{												//退货
-				$a=$this->isReplenishment($reason);						//根据退货理由返回相应状态码和是否写财务表
-				$para['data']['return_status']=$a['status'];
-				$para['is_finance']=$a['is_finance'];
-				$log='供应商已同意，等待补款或平台退款';
-				$_log='同意售后申请，进入退货流程。售后编号：'.$id;
-			// }	
+		}else{																				//同意						
+			$a=$this->isReplenishment($reason);						//根据退货理由返回相应状态码和是否写财务表
+			$para['data']['return_status']=$a['status'];
+			$para['is_finance']=$a['is_finance'];
+			$log='供应商已同意，等待补款或平台退款';
+			$_log='同意售后申请，进入退货流程。售后编号：'.$id;
 														
 		}
 
@@ -166,7 +153,7 @@ class ChangeStatusController extends Auth{
 			'source_id'=>$id,
 			'source_sn'=>$order['order_sn'],
 			'type'=>3,
-			'confirm_money'=>$this->getRefundFreight($order['order_id']),
+			'confirm_money'=>getRefundFreight($order['order_id']),
 			'trade_no'=>$pay['sn'],
 			'receiver_account'=>$pay['target_account'],
 			'pay_type'=>(int) $pay['type'],
@@ -195,13 +182,11 @@ class ChangeStatusController extends Auth{
 
 	public function getReplishmentInfo(){					//获得补款信息
 		if (IS_AJAX && IS_POST) {
-
 			$order_id=$_POST['id'];
 			//先检查是否可以查询信息
 			$check=M('cus_order_list')->where(['order_id'=>$order_id, 'supplier_id'=>$this->user_info['id']])->count();
-
 			if ($check) {
-				$this->ajaxReturn($this->getRefundFreight($order_id));
+				$this->ajaxReturn(getRefundFreight($order_id));
 			}
 
 			
@@ -281,17 +266,5 @@ class ChangeStatusController extends Auth{
 		R('addSql/afterLog', [$data], 'Dal');					//写入操作日志
 	}
 
-	private function getRefundFreight($order_id){				//获得补运费
-		$condition2=['a.order_id'=>$order_id];
-		$from_to=R('querySql/refundFreight', [$condition2], 'Dal');
-		$from=$from_to['from'];
-		$to=$from_to['to'];
 
-		$condition['from']=['like', "$from%"];
-		$condition['to']=['like', "$to%"];
-		$amount= M('fx_refund_template')->where($condition)->getField('fee');
-
-		$amount=isset($amount)? $amount: 0;			//默认0
-		return $amount;
-	}
 }

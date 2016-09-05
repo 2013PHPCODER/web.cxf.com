@@ -25,6 +25,14 @@
         <script src="js/pseudo.js" type="text/javascript" charset="utf-8"></script>
         <script src="plupload-2.1.2/js/plupload.full.min.js"></script>
     	<script src="js/MD5.js"></script>
+    	<style>
+    		.cont-box-body table td span.sku_clas {color: #999999;}
+    		.cont-box-body table td .sku_clas_b{font-size: 13px;}
+    		.cont-box-body table td p{color: #333333;}
+    		.popbox-lf p span, .popbox-rf p span {
+			    color: #333;
+			}
+    	</style>
     </head>
 </head>
 <body>
@@ -81,14 +89,14 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                        	<p data-bind="text:goods_name">韩版2016年夏季新款无袖连衣裙雪</p>
-                                        	<span data-bind="text:sku_str_zh"></span>
+                                        	<p data-bind="text:goods_name" class="sku_clas_b">韩版2016年夏季新款无袖连衣裙雪</p>
+                                        	<span data-bind="text:sku_str_zh" class="sku_clas"></span>
                                         </td>
                                         <td data-bind="text:buyer_goods_no">BNN*ASB*WG137*39</td>
                                         <td data-bind="text:distribution_price">888.00</td>
                                         <td data-bind="text:goods_num">1</td>
                                         <td><span class="pay_a_price" data-bind="text:pay_amount">888.00 <strong>（含运费0.00）</strong></span></td>
-                                        <td class="other_sn_l"><span data-bind="text:other_shop"></span> :<span data-bind="text:other_order_sn"></span></td>
+                                        <td class="other_sn_l"><span data-bind="text:other_shop == '' ? '' : other_shop + ' :'"></span> <span data-bind="text:other_order_sn"></span></td>
                                         <td data-bind="text:order_state >=3 ? (order_state >= 5 ? (order_state == 5 ? '已关闭' : '异常' ) : (order_state == 4 ? '已完成' : '已确认已发货') ):( order_state >= 1 ? (order_state == 2 ? '已确认待发货' : '已付款待确认' ) : '待付款' )">已发货</td>
                                         <td><p><a class="e-click" data-bind="attr:{'order_id':order_id,'order_sn':order_sn}">查看</a></p></td>
                                     </tr>
@@ -115,7 +123,7 @@
     </div>
     <?php include_once 'base/vip_footer.php'; ?>
 
-    <div class="marks" id="order_Detail" style="display: none">
+    <div class="marks" id="order_Detail" style="display: none;">
         <div class="PopDiv" style="width: 920px;min-width: 624px;margin: 200px auto 0;">
             <div class="PopHeader">
                 <span class="PopTitle"><i class="PopDetails"></i>订单详情</span>
@@ -166,6 +174,58 @@
                                      </div>
                                   </div>
                             </div>
+	                            <div class="popbox-body popdeliver">
+				                    <h3>订单信息</h3>
+				                    <div class="pop-information detail clearfix">
+				        				<div class="popbox-lf">
+						        			<p>订单号：<span data-bind="text:order.orderSn">已完成</span></p>
+						        			<p>下单时间：<span data-bind="text:order.add_time">已完成</span></p>
+						        			<p>确认时间：<span data-bind="text:order.con_time">已完成</span></p>
+						        		</div>
+						        		<div class="popbox-rf">
+						        			<p>第三方单号：<span data-bind="text:order.other_order_sn"></span></p>
+						        			<p>付款时间：<span class="order-num" data-bind="text:order.payment_time"></span></p>
+						        		</div>
+					        			<div class="popgoods-info">
+					      					<table>
+					      						<tr>
+					      							<th>主图</th>
+					      							<th>标题</th>
+					      							<th>SKU属性</th>
+					      							<th>单价</th>
+					      							<th>数量</th>
+					      							<th>小计</th>
+					      						</tr>
+					      						<tbody data-bind = "foreach:{data:goods,as:'auto'}">
+						      						<tr>
+						      							<td style="text-align: center;"><img style="display: inline-block;" alt=""  data-bind="attr:{src:img_path}" /></td>
+						      							<td>
+						      								<p class="popgoods-info-title" data-bind="text:goods_name"></p>
+						      							</td>
+						      							<td>
+						      								<p><span data-bind="text:sku_str_zh"></span></p>
+						      							</td>
+						      							<td data-bind="text:distribution_price"></td>
+						      							<td data-bind="text:goods_num">1</td>
+						      							<td class="sm-money" data-bind="text:subtotal"></td>
+						      						</tr>
+					      						</tbody>
+					      					</table>
+					        			</div>
+					        		</div>
+	                            </div>
+	                            <div class="order-list-text clearfix">
+						        	<div class="order-list-text-lf">
+						        		<span>给卖家留言：</span>
+						        		<textarea data-bind="text:message" disabled></textarea>
+						        	</div>
+						        	<div class="order-list-text-rf">
+						        		<p>商品总数：<span data-bind="text:order.num_total">4</span>件</p>
+						        		<p>总商品总金额：¥<span data-bind="text:order.goods_amount">589.00</span></p>
+						        		<p>运费：¥<span data-bind="text:order.shipping_fee">8.00</span></p>
+						        		<p>应付金额：¥<span class="to-money" data-bind="text:order.pay_amount">597.00</span></p>
+						        	</div>
+						        </div>
                             </div>
                      </div>
                   </div>	
@@ -190,12 +250,12 @@
         		<div class="pop-information clearfix">
         			<div class="information-lf">
         				<p class="buyer_goods_no">BNN*ASB*WG137*39</p>
-        				<p>单价：<span class="information-num order_price" >88.00</span>数量：<span class="order_num">1</span></p>
-        				<p>总计金额：<span class="order_price">98.00</span></p>
+        				<p>单价：<span class="information-num order_price" ></span>数量：<span class="order_num"></span></p>
+        				<p>总计金额：<span class="order_price" id="all-tatel"></span></p>
         			</div>
         			<div class="information-rf">
         				<p class="order_sku">SKU属性1/SKU属性2/SKU属性3</p>
-        				<p>订单总额：<span class="order_price">88.00</span></p>
+        				<p>订单总额：<span class="order_price" id="all-money">88.00</span></p>
         				<p class="information-mag">售后理由：
         					<select class="sale-reason">
                             	<option >---请选择---</option>
@@ -215,7 +275,7 @@
         				<a id="pinzheng_img">
         					
         				</a>
-        				<input type="button" class="btn btn-disabled" name="" id="pinzheng" value="提交" />
+        				<input type="button" class="btn btn-disabled" name="" id="pinzheng" value="提交" style="background-color: #f40;color: #fff; border: none"/>
         			</p>
         		</div>
         	</div>
@@ -233,6 +293,9 @@
 
 <script>
 	$(function () {
+		$('.PopColse').click(function(){
+			$('#order_Detail').fadeOut()
+		})
 		var oUrl = getUrlParam('loc');	
 		if( oUrl ==  ''){
 			pickDate(0);
@@ -311,6 +374,7 @@
 			X.bindModel(requestUrl.order_list, 1, data, 'body.list', ['order_list'], function () {
 				$('.e-click').click(function () {
 					$('#order_Detail').show();
+					var orderSn = $(this).attr('order_sn');
 					ko.cleanNode(document.getElementById("order_Detail"));
 					X.bindModel(requestUrl.order_details, 1, {'order_id': $(this).attr('order_id'), 'order_sn': $(this).attr('order_sn')}, 'body.list', ['order_Detail'], function () {
 							$('.PopColse').on('click', function () {
@@ -341,7 +405,8 @@
 				    		   a = '订单异常' 
 				    		   break;
 				    	}
-                        x.order.order_state = a
+                        x.order.order_state = a;
+                        x.order.orderSn = orderSn;
 				    	return x;
 				    });
 				})
@@ -351,6 +416,8 @@
 				    window.location.href = 'pay_order.php';
 				});
 				$('.apply-after-sale').click(function () {
+					$('.sale-reason').find('option').eq(0).prop('selected', true)
+					deleteCookie('reason');
 					$('#saleAfter').fadeIn();
 					$('#saleAfter>div').fadeIn();
 					$('.PopColse').click(function(){
@@ -360,10 +427,12 @@
 					$('.pt_ord_h').html($(this).parents('tr').prev().children('td').eq(0).children('label').html());
 					$('.thr_ord_h').html($(this).parents('tr').prev().attr('data-other'))
 					$('.buyer_goods_no').html($(this).parents('tr').children('td').eq(0).children('p').html())
-					$('.order_sku').html($(this).parents('tr').children('td').eq(1).children('p').html())
-					$('.order_price').html($(this).parents('tr').children('td').eq(2).html())
+					$('.order_sku').html($(this).parents('tr').children('td').eq(1).html())
+					$('.information-num').html($(this).parents('tr').children('td').eq(2).html())
+					$('#all-money').html($(this).parents('tr').children('td').eq(4).html())
+					$('#all-tatel').html($(this).parents('tr').children('td').eq(4).html())
 					$('.order_num').html($(this).parents('tr').children('td').eq(3).html())
-					$('.all-price').html($(this).parents('tr').children('td').eq(5).children('p').eq(0).html())
+					$('.all-price').html($(this).parents('tr').children('td').eq(4).children('span').html())
 					$('.freight').html($(this).parents('tr').children('td').eq(5).children('p').eq(1).html())
 					$('.sale-reason').change(function(){
 						var after_sale_reason=$(this).find('option:selected').val();
@@ -373,7 +442,7 @@
 					
 				});
 				$('.confirm-get').click(function () {
-			          X.Post(requestUrl.confirm_good,1,{'order_id':$(this).attr('order_id'),'order_sn':$(this).attr('order_sn')},function(e){
+			          X.Post(requestUrl.confirm_good,1,{'order_id':$(this).attr('order_id'),'user_id':getCookieValue('user_id'),'user_name':getCookieValue('user_nickname'),'order_sn':$(this).attr('order_sn')},function(e){
 						   if(e.header.stats == 0 ){
 			            	   	  X.notice(e.body.list,3)
 			            	   	  setTimeout(function(){			            	   	  	
@@ -398,7 +467,7 @@
 			    			'after_sale_remark':$('.information-words textarea').val(),
 			    			'img':idd1.file
 			    		}
-			    		console.log(data.after_sale_remark);
+//			    		console.log(data.after_sale_remark);
 						X.Post(requestUrl.sale,1,data,function(e){
 							if(e.header.stats==0){
 								X.notice(e.body.list.success,3)
@@ -410,7 +479,7 @@
 					})
 			
 	function order_s(e){
-		console.log(typeof e);
+//		console.log(typeof e);
 		switch (e){
 			case '0':
 			   return '待付款'

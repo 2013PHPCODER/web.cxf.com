@@ -15,6 +15,16 @@ class ApplyActingController extends Controller {
         $must = ['user_id'];
         batch_isset($request, $must);
         \Valid::has_number($distribute_id)->withError('用户id错误');
+        //判断如果等级为0不能申请代理
+        $distribute_user_model = \Model::fx_distribute_user($distribute_id);
+        $distribute_user_dao = \Dao::fx_distribute_user($distribute_user_model);
+        $userinfo=$distribute_user_dao->getList($distribute_user_model,['leavel']);
+        $user_leavel=$userinfo['list'][0]['leavel'];
+        if(0==$user_leavel){
+            $this->response['msg'] = "基础用户不能申请代理，请升级后再申请代理！";
+            $this->response();
+            die;
+        }
         $addtime = date('Y-m-d H:i:s', time());
         $acting_user_model = \Model::fx_acting_user('', '', $distribute_id);
         $acting_user_dao = \Dao::fx_acting_user();

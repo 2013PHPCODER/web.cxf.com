@@ -12,7 +12,6 @@
         <li>分销商管理</li>
         <li>分销商列表</li>
     </ol>
-    {$disUserDetail.usernick}
     <div class="box-body">
         <form class="form-inline" method="get" action="" id="form_search" onsubmit="return X.toSerchVaild(this)">
             <div class="row" >
@@ -89,7 +88,7 @@
                 <tr>
                     <th>开通时间</th>
                     <th>邮箱</th>
-                    <th>昵称</th>
+                    <th>账号</th>
                     <th>手机号</th>
                     <th>QQ</th>
                     <th>旺旺</th>
@@ -101,7 +100,7 @@
                 <tr>
                     <td>{$vo.addtime}</td>
                     <td>{$vo.email}</td>
-                    <td>{$vo.usernick}</td>
+                    <td>{$vo.user_account}</td>
                     <td>{$vo.mobile}</td>
                     <td>{$vo.qq}</td>
                     <td>{$vo.wangwang}</td>
@@ -109,8 +108,10 @@
                     <td>星密码</td>
                     <?php } elseif (2 == $vo['source']){ ?>
                     <td>创想范</td>
-                    <?php } else{?>
+                    <?php } elseif (3 == $vo['source']){ ?>
                     <td>代理商</td>
+                    <?php } else{ ?>
+                    <td>来源不明</td>
                     <?php } ?>
                     <td>{$vo.leavel}</td>                  
                     <td><a class="fqy_gysLook" onclick="open_detail('{$vo.id}')">查看</a></td>
@@ -155,8 +156,8 @@
                     <b>基本信息</b>
                     <table>
                         <tr>
-                            <td>昵称：</td> 
-                            <td class="fq-m-nc">{$disUserDetail.usernick}</td>
+                            <td>账号：</td> 
+                            <td class="fq-m-nc">{$disUserDetail.user_account}</td>
                         </tr>
                         <tr>
                             <td>真实姓名：</td>
@@ -180,7 +181,7 @@
                             <td>账号来源：</td>
                             <td class="fq-m-ret">{$disUserDetail.source}</td>
                             <td>代理商账号：</td>
-                            <td class="fq-m-dl">{$disUserDetail.agentaccount}</td>
+                            <td class="fq-m-dl">{$disUserDetail.acting_account}</td>
                         </tr>
                         <tr></tr>
                     </table>
@@ -227,7 +228,7 @@
         	console.log(result);
             var data = result,
                 q = $('.fqy_fxsPOP');
-          q.find('.fq-m-nc').html(data.usernick);
+          q.find('.fq-m-nc').html(data.user_account);
           q.find('.fq-m-name').html(data.realname)
           q.find('.fq-m-idcard').html(data.idcard);
           q.find('.fq-m-email').html(data.email)

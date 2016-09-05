@@ -944,10 +944,9 @@ var X = {
             }
             $('.moxie-shim').hide();
             $.post(idd2, {'up_path': JSON.stringify(idd1.file)}, function (e) {
-                if (e == undefined) {
+                if ( typeof e == 'string') {
                     var e = eval("(" + e + ")")
                 }
-//                console.log(e);
                 X.notice(e.msg, 3);
             })
         });

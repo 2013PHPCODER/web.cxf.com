@@ -142,7 +142,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align: center" ><img class="table_img" src="<?php echo ($list["img_path"]); ?>_60x60.jpg"></td>
+                    <td style="text-align: center" ><img class="table_img" src="<?php echo ($list["img_path"]); ?>!upyun123/fwfh/60x60"></td>
                     <td ><p> <?php echo ($list["goods_name"]); ?> </p>
                         <p>	<?php echo ($list["buyer_goods_no"]); ?>&nbsp;&nbsp;&nbsp;<?php echo ($list["sku"]); ?>&nbsp;&nbsp;</p>
                     </td>
@@ -268,7 +268,7 @@
                                     order_id.push($(this).data('id'));
                                     layer.confirm('订单取消后,将进入关闭状态,请确认', {title: '订单取消', btn: ['确认', '取消']}, function (index) {
                                         $.post("<?php echo U('Orders/Orders/cancelOrder');?>", {order_id: order_id}, function (result) {
-                                            console.log(result);
+//                                            console.log(result);
                                             if (result.status == 'ok') {
                                                 //layer.msg('操作成功,未成功确认'+result.total+"条",{time:1000});
                                                 layer.alert(result.content, {btn: ['确定']}, function () {
@@ -329,7 +329,7 @@
                                             data = $('.choose:checked').serialize();
                                             var urlPost = "<?php echo U('Orders/Orders/confirmOrder',I('get.'));?>";
                                             $.post(urlPost, data, function (result) {
-                                                console.log(result);
+//                                                console.log(result);
                                                 if (result.status == 'ok') {
                                                     //layer.msg('操作成功,未成功确认'+result.total+"条",{time:1000});
                                                     layer.alert('操作成功,未成功确认' + result.total + "条", {btn: ['确定']}, function () {
@@ -360,7 +360,7 @@
                                     order_id.push($(this).data('id'));
                                     layer.confirm('订单确认后,将进入发货状态,请确认', {title: '订单确认', btn: ['确认', '取消']}, function (index) {
                                         $.post("<?php echo U('Orders/Orders/confirmOrder');?>", {order_id: order_id}, function (result) {
-                                            console.log(result);
+//                                            console.log(result);
                                             if (result.status == 'ok') {
                                                 //layer.msg('操作成功,未成功确认'+result.total+"条",{time:1000});  
                                                 layer.alert(result.content, {btn: ['确定']}, function () {

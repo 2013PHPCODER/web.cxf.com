@@ -1,5 +1,21 @@
 <?php
+function getRefundFreight($order_id){               //获得补运费
+    $condition2=['a.order_id'=>$order_id];
+    $from_to=R('querySql/refundFreight', [$condition2], 'Dal');
+    $from=$from_to['from'];
+    $to=$from_to['to'];
+    $pattern=['/(省|市|区|壮族自治区|自治区|回族自治区|维吾尔自治区|维吾尔族自治区|特别行政区|行政区|)$/'];
+    $from=preg_replace($pattern, [''], $from);
+    $to=preg_replace($pattern, [''], $to);
 
+
+    $condition['from']=['like', "$from%"];
+    $condition['to']=['like', "$to%"];
+    $amount= M('fx_refund_template')->where($condition)->getField('fee');
+
+    $amount=$amount? $amount: 0;            //默认0
+    return $amount;
+}
 
 /**
  * 获得图片上传凭证

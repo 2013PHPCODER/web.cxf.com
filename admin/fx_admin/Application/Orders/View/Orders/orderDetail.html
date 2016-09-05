@@ -33,7 +33,7 @@
                         </gt>
                         <gt name="datas.return_status" value="0">
                         <!--退款退货状态：-->
-                        <?php echo f_afterStatus($datas['return_status']);?>
+                        <?php echo f_afterStatus($datas['return_status'],'return');?>
                         </gt>
                         </eq>	
                     </h4>
@@ -53,7 +53,7 @@
                                 <div class="shipping_info">
                                     <table cellspacing="0" cellpadding="0">
                                         <tr>
-                                            <td rowspan="2" colspan="1" style="padding:0;"><img src="{:img_url($order_goods['goods_img'],48,48)}"></td>
+                                            <td rowspan="2" colspan="1" style="padding:0;"><img src="{$order_goods.goods_img}!upyun123/fwfh/48x48"></td>
                                             <td colspan="4" style="padding:0 10px;">{$order_goods.goods_name}</td>
                                         </tr>
                                         <tr>
@@ -157,7 +157,7 @@
                             </tr>
                         <foreach name="datas.order_goods" item="order_goods">
                             <tr>
-                                <td><img class="table_img" src="{$order_goods.goods_img}_40x40.jpg"></td>
+                                <td><img class="table_img" src="{$order_goods.goods_img}!upyun123/fwfh/40x40"></td>
                                 <td>{$order_goods.goods_name}</td>
                                 <td>{$order_goods.buyer_goods_no} </td>
                                 <td>{$order_goods.sku_str}</td>
@@ -168,7 +168,7 @@
                         </foreach>
                         <tr>
                             <td colspan="9"><h4 class="order_info">商品总数：<strong>&nbsp;{$datas.goods_num_total}&nbsp;件</strong></h4>
-                                <h4 class="order_info">实收款：<strong>&nbsp;{$datas.order_amount} + {$datas.shipping_fee}(运费) = {$datas.pay_amount}&nbsp;元</strong></h4></td>
+                                <h4 class="order_info">实收款：<strong>&nbsp;{$datas.goods_amount} + {$datas.shipping_fee}(运费) = {$datas.pay_amount}&nbsp;元</strong></h4></td>
                         </tr>
                         </tbody>
                     </table>
@@ -193,7 +193,7 @@
                             </tr>
                         <volist name="orderLog" id="log">
                             <tr>
-                                <td>{$log.user_id}</td>
+                                <td>{$log.user_name}</td>
                                 <td>{$log.log_info}</td>
                                 <td><?= date("Y-m-d H:i",$log['addtime'])?></td>
                                 <td>{$log.handle_info}</td>

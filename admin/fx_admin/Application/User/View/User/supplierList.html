@@ -73,12 +73,12 @@
                     <select class="form-control input-xs" name="order_search">
                         <option value="">请选择</option>
                         <option value="1">邮箱</option>
-                        <option value="2">昵称</option>
+                        <option value="2">账号</option>
                         <option value="3">手机号</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" {:xeq(I('get.order_search'),'','disabled')} name="search_word" class="form-control input-xs" value="{:I('get.search_word')}"  placeholder="邮箱/昵称/手机号">
+                    <input type="text" {:xeq(I('get.order_search'),'','disabled')} name="search_word" class="form-control input-xs" value="{:I('get.search_word')}"  placeholder="邮箱/账号/手机号">
                 </div>
                 <div class="form-group">
                     <input type="submit"  class="btn btn-block btn-warning btn-xs" value="搜索">
@@ -97,7 +97,7 @@
                     <tr>
                         <th>申请时间</th>
                         <th>邮箱</th>
-                        <th>昵称</th>
+                        <th>账号</th>
                         <th>归属平台</th>
                         <th>主营类目</th>
                         <th>状态</th>
@@ -114,7 +114,7 @@
                     <tr>
                         <td>{$vo.addtime}</td>
                         <td>{$vo.email}</td>
-                        <td>{$vo.usernick}</td>
+                        <td>{$vo.user_account}</td>
                         <?php if (1 == $vo['platform']){ ?>
                         <td>星密码</td>
                         <?php } elseif (2 == $vo['platform']){ ?>
@@ -177,7 +177,7 @@
                     <tr>
                         <th>申请时间</th>
                         <th>邮箱</th>
-                        <th>昵称</th>
+                        <th>账号</th>
                         <th>归属平台</th>
                         <th>主营类目</th>
                         <th>状态</th>
@@ -194,7 +194,7 @@
                     <tr>
                         <td>{$vo.addtime}</td>
                         <td>{$vo.email}</td>
-                        <td>{$vo.usernick}</td>
+                        <td>{$vo.user_account}</td>
                         <?php if (1 == $vo['platform']){ ?>
                         <td>星密码</td>
                         <?php } elseif (2 == $vo['platform']){ ?>

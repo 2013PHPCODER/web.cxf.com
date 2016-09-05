@@ -78,7 +78,7 @@
                         </div>
                         <div class="form-group">
                             <label>手机号:</label>
-                            <input type="text" class="input-xs tel" id="phone">
+                            <input type="text" class="input-xs tel" id="phone" maxlength="11">
                         </div>
                         <div class="form-group">
                             <label>收货地址:</label>
@@ -214,7 +214,7 @@
         var addflag = false;
         $('.s-line-y').animate({'width': 256 + 'px'}, 600);
         var getGoodsInfo = JSON.parse(sessionStorage.getItem('goodsInfo'));
-        console.log(getGoodsInfo);
+//        console.log(getGoodsInfo);
         var goodsInfo = {
             user_id: sessionStorage.getItem('user_id'), //用户ID
             user_name: sessionStorage.getItem('user_name'), //用户名
@@ -429,6 +429,8 @@
                     goodsInfo.freight = res.body.list.freight;
                     goodsInfo.receiver_address = areaId;
                     $('#freight').text((res.body.list.freight).toFixed(2));
+                    var calcMoney = Number($('.m-tol-price').text()) + Number(res.body.list.freight);
+                    $('.m-tol-amount').text(calcMoney.toFixed(2));
                 }else {
                     X.notice(res.header.msg,3)
                 }

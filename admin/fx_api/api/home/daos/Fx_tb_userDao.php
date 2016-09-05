@@ -25,12 +25,18 @@ class Fx_tb_userDao extends Dao {
      * @param type $user_id
      */
     public function get_taobao_user_info($user_id, $shop_id) {
-        $sql = 'select nick,access_token from fx_tb_user where userid=:u_id and tb_user_id=:shop_id order by `default` desc limit 1';
-        $token = $this->query($sql, array('u_id' => $user_id, 'shop_id' => $shop_id));
-        if (empty($token[0])) {
+        $sql = 'select nick,access_token,addtime,expire_time,updatetime from fx_tb_user where userid=:u_id and tb_user_id=:shop_id order by `default` desc limit 1';
+        $token = $this->query($sql, array('u_id' => $user_id, 'shop_id' => $shop_id),'fetch_row');
+        if (empty($token)) {
             myerror(\StatusCode::msgFailStatus, '错误的用户信息！');
         }
-        return $token[0];
+        if (empty($token['access_token'])) {
+            myerror(\StatusCode::msgFailStatus, '店铺未授权，请授权！');
+        }
+        if ((strtotime($token['addtime']) + $token['expire_time'] / 1000) < time() && (strtotime($token['updatetime']) + $token['expire_time'] / 1000) < time()) {
+            myerror(\StatusCode::msgFailStatus, '店铺授权过期，请重新授权！');
+        }
+        return $token;
     }
 
     /**
@@ -41,7 +47,7 @@ class Fx_tb_userDao extends Dao {
      * @since 2016091301
      */
     public function getShopList($user_id) {
-        $sql_count = "select tb_user_id,nick,access_token from fx_tb_user "
+        $sql_count = "select tb_user_id,nick,access_token,expire_time,addtime from fx_tb_user "
                 . "where userid=:userid";
         $result = $this->query($sql_count, array("userid" => $user_id));
         return $result;

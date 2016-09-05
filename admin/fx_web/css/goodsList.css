@@ -39,12 +39,26 @@
     background: #ff7300;
     padding: 2px 0;
     cursor: pointer;
+    border-bottom: 1px solid #e7e7e7;
 }
 
 .goodsTypeName > div {
     position: relative;
     height: 100%;
-    background: url("../images/goodsList/goodsListLefticon.png") no-repeat
+}
+.goodsTypeName > div>b{
+	display: inline;
+	display: inline-block;
+	float: left;
+	width: 25px;
+	height: 25px;
+	margin-top: 5px;
+	margin-left: 8px;
+}
+.goodsTypeName > div>b>img{
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
 }
 
 .goodsTypeName > .ssvz {
@@ -64,22 +78,29 @@
 }
 
 .goodsTypeName > div > p {
-    margin-left: 34px
+    margin-left: 50px
 }
 
 .goodsTypeName .TypeName {
-    font-size: 18px;
-    color: #fff
+    font-size: 13px;
+    color: #fff;
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: "microsoft yahei";
+    width: 120px;
+    text-overflow: ellipsis;
 }
 
 .goodsTypeName .TypeNameEng {
-    font-size: 12px;
-    color: #fff
+    font-size: 10px;
+    color: #fff;
+    font-family: "microsoft yahei";
 }
 
 .goodsTypeName > div > i {
     position: absolute;
-    right: 30px;
+    right: 8px;
     top: 12px;
     display: inline-block;
     width: 20px;
@@ -127,8 +148,8 @@
     background: url("../images/goodsList/goodsListLefticon.png") -6px -58px no-repeat;
     text-decoration: none;
     color: #333333;
-    font-size: 16px;
-    font-family: "宋体"
+    font-size: 13px;
+    font-family: "microsoft yahei"
 }
 
 #goodsList > .sidebarRight > .rightTop {
@@ -196,12 +217,14 @@
     background: #e4393c;
     padding: 6px 10px;
     font-size: 12px;
-    color: #fff
+    color: #fff;
+    border: 1px solid #e4393c;
 }
 
 .sidebarRight > .orderBy > .leftOrderBy > .leftBy {
     float: left;
-    border: 1px solid #ccc
+    border: 1px solid #ccc;
+    font-family: "Microsoft yahei";
 }
 
 .sidebarRight > .orderBy .leftBy > .ordertext:last-child {
@@ -210,34 +233,39 @@
 
 .sidebarRight > .orderBy .leftBy > .ordertext {
     display: inline-block;
-    padding: 3.5px 8px;
+    padding: 0.5px 8px;
     font-size: 12px;
     border-color: #ccc;
     border-style: solid;
     border-width: 0 1px 0 0;
     background: #fff;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .sidebarRight > .orderBy .leftBy > .ordertext.cur {
     background: #eeeeee;
     color: #e4393c;
 }
-
+.sidebarRight > .orderBy .leftBy > .ordertext.cur:hover{
+	background: #D0D0D0;
+}
 .sidebarRight > .orderBy .leftBy > .ordertext > input {
     width: 65px
 }
 
 .sidebarRight > .orderBy .leftBy > .ordertext > input[type='button'] {
-    width: 50px;
+    width: 70px;
     margin-left: 10px;
     background: #ff7300;
     color: #fff;
     border: none;
     border-radius: 3px;
-    padding: 2px 0;
+    padding: 7px 0;
     cursor: pointer;
     outline: none
+}
+.sidebarRight > .orderBy .leftBy > .ordertext > input[type='button']:hover{
+	background: #F22D00;
 }
 
 .sidebarRight > .orderBy > .rightOrderBy {
@@ -250,7 +278,8 @@
     color: #fff;
     background: #ff7300;
     padding: 8px 10px;
-    cursor: pointer
+    cursor: pointer;
+    border:1px solid #ff7300;
 }
 
 .sidebarRight > .orderBy > .rightOrderBy > .rightBy {
@@ -269,9 +298,10 @@
 }
 
 .sidebarRight > .orderBy > .rightOrderBy > .rightBy > .escPH {
-    background: #fff;
+    background: #FF5E2D;
     display: inline-block;
     cursor: pointer;
+    color: #fff;
 }
 
 .sidebarRight > .orderBy > .rightOrderBy > .rightBy b {
@@ -295,7 +325,7 @@
     position: relative;
     float: left;
     width: 255px;
-    height: 356px;
+    height: 355px;
     margin: 10px 13px;
 }
 
@@ -379,9 +409,13 @@
 }
 
 .goodsListDiv ul li .goodsName a {
+    display: block;
     font-size: 13px;
     color: #333;
-    text-decoration: none
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .goodsListDiv ul li .goodsGrade {
@@ -402,9 +436,9 @@
     padding: 2px 5px
 }
 
-.goodsGrade .left > .goodsPriceGj {
-    color: #ff5c41;
-}
+/*.goodsGrade .left > .goodsPriceGj {*/
+    /*color: #ff5c41;*/
+/*}*/
 
 .goodsGrade .right {
     width: 55%;
@@ -433,13 +467,18 @@
     background: #ff6537;
     cursor: pointer
 }
+.goodsGrade .right > p .buy:hover{
+	background: #F22D00;
+}
 
 .goodsGrade .right > p .ljgm {
     background: #ffe5d1;
     border: 1px solid #f2cbb7;
 
 }
-
+.goodsGrade .right > p .ljgm:hover{
+	background: #ffd9bc;
+}
 .goodsGrade .right > p .buy > a {
     color: #fff;
 }
@@ -709,11 +748,17 @@
 
 #goodsCenter > ul li > .goodsListDiv > ul li .goodsImg {
     position: relative;
+    display: table;
+}
+#goodsCenter > ul li > .goodsListDiv > ul li .goodsImg a{
+	display: table-cell;
+	vertical-align: middle;
 }
 
 #goodsCenter > ul li > .goodsListDiv > ul li .goodsImg img {
     width: 100%;
-    height: 100%
+    max-height: 255px;
+    *+height: 255px;
 }
 
 #goodsCenter > ul li > .goodsListDiv > ul li .goodsBorder {
@@ -780,59 +825,59 @@
 }
 
 .foolrDiv > ul li .ssnz {
-    background-position: 23px 13px !important;
-}
-
-.foolrDiv > ul li .jpnz {
-    background-position: 23px -36px !important;
-}
-
-.foolrDiv > ul li .jpxb {
-    background-position: 23px -80px !important;
-}
-
-.foolrDiv > ul li .tztx {
-    background-position: 21px -127px !important;
-}
-
-.foolrDiv > ul li .fspj {
-    background-position: 20px -170px !important;
-}
-
-.foolrDiv > ul li .ssnx {
-    background-position: 20px -215px !important;
-}
-
-.foolrDiv > ul li .jpnx {
-    background-position: 15px -253px !important;
-}
-
-.foolrDiv > ul > .floorLeftActive .ssnz {
     background-position: -41px 13px !important;
 }
 
+.foolrDiv > ul li .jpnz {
+    background-position: -37px -45px !important;
+}
+
+.foolrDiv > ul li .jpxb {
+    background-position: -41px -95px !important;
+}
+
+.foolrDiv > ul li .tztx {
+    background-position: -38px -153px !important;
+}
+
+.foolrDiv > ul li .fspj {
+    background-position: -34px -210px !important;
+}
+
+.foolrDiv > ul li .ssnx {
+    background-position: -41px -265px !important;
+}
+
+.foolrDiv > ul li .jpnx {
+    background-position: -41px -320px !important;
+}
+
+.foolrDiv > ul > .floorLeftActive .ssnz {
+    background-position: 20px 13px !important;
+}
+
 .foolrDiv > ul > .floorLeftActive .jpnz {
-    background-position: -41px -36px !important;
+    background-position: 23px -45px !important;
 }
 
 .foolrDiv > ul > .floorLeftActive .jpxb {
-    background-position: -41px -80px !important;
+    background-position: 20px -95px !important;
 }
 
 .foolrDiv > ul > .floorLeftActive .tztx {
-    background-position: -43px -127px !important;
+    background-position: 22px -153px !important;
 }
 
 .foolrDiv > ul > .floorLeftActive .fspj {
-    background-position: -44px -170px !important;
+    background-position: 25px -210px !important;
 }
 
 .foolrDiv > ul > .floorLeftActive .ssnx {
-    background-position: -44px -215px !important;
+    background-position: 20px -265px !important;
 }
 
 .foolrDiv > ul > .floorLeftActive .jpnx {
-    background-position: -49px -253px !important;
+    background-position: 20px -320px !important;
 }
 
 /*选择注册类型*/
@@ -1014,7 +1059,7 @@
 }
 
 .register_content table .aginHq:hover {
-    background: #ff8b68;
+    background: #F22D00;
 }
 
 .register_content table .get_code {
@@ -1056,6 +1101,9 @@
     font-size: 18px;
     font-family: "微软雅黑";
     cursor: pointer
+}
+.register_content table td > input[type='button']:hover{
+	background: #f22d00;
 }
 
 .register_content > .fxs_gys_href {

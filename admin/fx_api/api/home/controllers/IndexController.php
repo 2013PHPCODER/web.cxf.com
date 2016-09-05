@@ -64,25 +64,25 @@ class IndexController extends Controller {
         $this->response(array('category' => $_category_datas, 'notice' => $_notice_datas, 'goods' => $_hot_goods));
     }
 
-    /* 淘宝回调地址 */
-
-    public function tb_callback() {
-        if (isset($_GET["code"])) {
-            $call_parmeter = $_GET["code"];
-            $_custom_uid = $_GET["state"];
-            if (!empty($call_parmeter) && strlen($call_parmeter) > 0 && !empty($_custom_uid)) {
-                $ybc = $this->curlPost("https://oauth.taobao.com/token", $call_parmeter, 40, FALSE);
-                $_tb_data_arr = json_decode($ybc, true);
-                if (empty($_tb_data_arr))
-                    myerror(\StatusCode::msgCheckFail, \TbUser::tb_user_data_fail);
-                if (!\DAO::Fx_tb_user()->user_data_operation($_tb_data_arr, $_custom_uid))
-                    myerror(\StatusCode::msgCheckFail, \TbUser::tb_user_data_save_fail);
-                $this->response(\TbUser::tb_user_data_save_success);
-            }
-        } else {
-            myerror(\StatusCode::msgCheckFail, \TbUser::tb_user_data_fail);
-        }
-    }
+//    /* 淘宝回调地址 */
+//
+//    public function tb_callback() {
+//        if (isset($_GET["code"])) {
+//            $call_parmeter = $_GET["code"];
+//            $_custom_uid = $_GET["state"];
+//            if (!empty($call_parmeter) && strlen($call_parmeter) > 0 && !empty($_custom_uid)) {
+//                $ybc = $this->curlPost("https://oauth.taobao.com/token", $call_parmeter, 40, FALSE);
+//                $_tb_data_arr = json_decode($ybc, true);
+//                if (empty($_tb_data_arr))
+//                    myerror(\StatusCode::msgCheckFail, \TbUser::tb_user_data_fail);
+//                if (!\DAO::Fx_tb_user()->user_data_operation($_tb_data_arr, $_custom_uid))
+//                    myerror(\StatusCode::msgCheckFail, \TbUser::tb_user_data_save_fail);
+//                $this->response(\TbUser::tb_user_data_save_success);
+//            }
+//        } else {
+//            myerror(\StatusCode::msgCheckFail, \TbUser::tb_user_data_fail);
+//        }
+//    }
 
     /* 首页新菜单接口 */
 
@@ -102,8 +102,6 @@ class IndexController extends Controller {
 //            array(array("name" => "数码3C/其他", "child" => array("3C数码配件", "软件")))
 //        );
 //        die(json_encode($j));
-        
-
         //类目数据
         $_goods_category_dao = \Dao::Goods_category();
         $model = \MODEL::Goods_category();
@@ -119,37 +117,45 @@ class IndexController extends Controller {
         die(json_encode($jobj));
     }
 
-    public function curlPost($url, $code, $timeout = 30, $CA = true) {
-        $data = array("client_id" => '23431728', "client_secret" => "dc6af151a34081f4689bd562066b47a5", "grant_type" => "authorization_code", "code" => $code, "redirect_uri" => "http://api.mycxf.com/callback");
-        //$arr = curlPost("https://oauth.taobao.com/token", $data, 40, FALSE);
-
-        $cacert = getcwd() . '/cacert.pem'; //CA根证书  
-        $SSL = substr($url, 0, 8) == "https://" ? true : false;
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout - 2);
-        if ($SSL && $CA) {
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);   // 只信任CA颁布的证书  
-            curl_setopt($ch, CURLOPT_CAINFO, $cacert); // CA根证书（用来验证的网站证书是否是CA颁布）  
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 检查证书中是否设置域名，并且是否与提供的主机名匹配  
-        } else if ($SSL && !$CA) {
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // 信任任何证书  
-            //curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 1); // 检查证书中是否设置域名  
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 检查证书中是否设置域名  
-        }
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:')); //避免data数据过长问题  
-        curl_setopt($ch, CURLOPT_POST, true);
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data)); //data with URLEncode  
-
-        $ret = curl_exec($ch);
-        //var_dump(curl_error($ch));  //查看报错信息  
-
-        curl_close($ch);
-        return $ret;
+    public function search_category() {
+        //类目数据
+        $_goods_category_dao = \Dao::Goods_category();
+        $model = \MODEL::Goods_category();
+        $model->status = 1;
+        $_list = $_goods_category_dao->get_search_category($model);
     }
+
+//    public function curlPost($url, $code, $timeout = 30, $CA = true) {
+//        $data = array("client_id" => '23431728', "client_secret" => "dc6af151a34081f4689bd562066b47a5", "grant_type" => "authorization_code", "code" => $code, "redirect_uri" => "http://api.mycxf.com/callback");
+//        //$arr = curlPost("https://oauth.taobao.com/token", $data, 40, FALSE);
+//
+//        $cacert = getcwd() . '/cacert.pem'; //CA根证书  
+//        $SSL = substr($url, 0, 8) == "https://" ? true : false;
+//
+//        $ch = curl_init();
+//        curl_setopt($ch, CURLOPT_URL, $url);
+//        curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+//        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout - 2);
+//        if ($SSL && $CA) {
+//            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);   // 只信任CA颁布的证书  
+//            curl_setopt($ch, CURLOPT_CAINFO, $cacert); // CA根证书（用来验证的网站证书是否是CA颁布）  
+//            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 检查证书中是否设置域名，并且是否与提供的主机名匹配  
+//        } else if ($SSL && !$CA) {
+//            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // 信任任何证书  
+//            //curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 1); // 检查证书中是否设置域名  
+//            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 检查证书中是否设置域名  
+//        }
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:')); //避免data数据过长问题  
+//        curl_setopt($ch, CURLOPT_POST, true);
+//        // curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+//        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data)); //data with URLEncode  
+//
+//        $ret = curl_exec($ch);
+//        //var_dump(curl_error($ch));  //查看报错信息  
+//
+//        curl_close($ch);
+//        return $ret;
+//    }
 
 }

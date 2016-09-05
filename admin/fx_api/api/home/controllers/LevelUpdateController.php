@@ -79,6 +79,9 @@ class LevelUpdateController extends Controller {
             $dao = \Dao::fx_virtual_order();
             $order_id = $dao->insert($model);
             if (is_numeric($order_id) && 0 !== $order_id) {
+                //生成订单日志
+                $log_list_dao = \Dao::log_list();
+                $logre = $log_list_dao->addLog($user_id, $order_id, $distribute_name);
                 $this->response['status'] = 1;
                 $this->response['msg'] = "订单提交成功！";
                 $this->response['order_id'] = $order_id;

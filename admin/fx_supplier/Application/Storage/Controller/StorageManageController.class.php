@@ -3,7 +3,6 @@
 namespace Storage\Controller;
 
 use Common\Controller\BasicController;
-use Think\Controller;
 
 class StorageManageController extends BasicController {
 
@@ -12,14 +11,15 @@ class StorageManageController extends BasicController {
             $this->exportStock();
             exit();
         }
+        $goods_category_model = new \Goods\Model\GoodsCategoryModel();
         $this->depot = depotList();
-        $this->goods_category = goodsCategoryList();
+        $this->goods_category = $goods_category_model->get_category_list($this->user_info['id']);
         $_goodsWhere = $this->goodsWhere();
         if (2 == I('get.group_id', 0)) {
             $_goodsWhere['goods_sku_comb.stock_num'] = array('exp', ' <=goods_sku_comb.stock_lock_num and goods_sku_comb.stock_lock_num >0 ');
         }
         $this->datas = $this->getStorage($_goodsWhere, I('get.sort') ? str_replace('~', ' ', I('get.sort')) : 'goods_list.goods_id asc');
-        $this->show();
+        $this->display('index');
     }
 
     /**
@@ -40,9 +40,8 @@ class StorageManageController extends BasicController {
      */
     public function getStorage($mWhere = '', $mOrder = '', $type = '') {
         $_join = 'goods_sku_comb ON goods_sku_comb.goods_id = goods_list.goods_id ';
-        $goods_list = M('goods_list')->join($_join)->where($mWhere)->group('goods_list.goods_id')->select();
-        $_count = count($goods_list);
-        $_page = getPage($_count);
+        $goods_count = M('goods_list')->join($_join)->where($mWhere)->group('goods_list.goods_id')->count();
+        $_page = getPage($goods_count);
         $_data['list'] = M('goods_list')->join($_join)->field('goods_list.goods_id,goods_list.goods_sale,goods_list.goods_name,goods_list.goods_no,goods_list.buyer_goods_no,goods_list.stock_num')->where($mWhere)->group('goods_list.goods_id')->order($mOrder)->limit($_page->firstRow . ',' . $_page->listRows)->select();
         $goods_id_list = '';
         foreach ($_data['list'] as $value) {
@@ -57,10 +56,9 @@ class StorageManageController extends BasicController {
                     $sku[] = $v;
                 }
             }
-            array_unique($sku);
             $_data['list'][$key]['sku_list'] = $sku;
         }
-        
+
 //        foreach ($_data['list'] as $k => $v) {
 //            $total = M('goods_sku_comb')->where('goods_id =' . $v['goods_id'])->group('goods_id')->sum('stock_num');
 //            $_data['list'][$k]['sku_str_zh'] = M('goods_sku_comb')->where('goods_id =' . $v['goods_id'])->order('id asc')->getField('sku_str_zh', true);
@@ -82,12 +80,14 @@ class StorageManageController extends BasicController {
     public function getLogCusList($mWhere = '', $mOrder = '') {
         $_join_goods_list = 'goods_list ON goods_list.goods_id = log_cus_list.goods_id';
         $_join_goods_sku_com = 'goods_sku_comb ON  goods_sku_comb.id = log_cus_list.sku_comb_id';
-        $_field = '*,log_cus_list.id as log_id,log_cus_list.addtime as log_time';
-        $_count = M('log_cus_list')->join($_join_goods_list)->join($_join_goods_sku_com)->where($mWhere)->order($mOrder)->count();
+        $_join = 'fx_supplier_user ON  fx_supplier_user.id = log_cus_list.user_id';
+        $_field = '*,log_cus_list.id as log_id,log_cus_list.addtime as log_time,fx_supplier_user.user_account';
+        $_count = M('log_cus_list')->join($_join_goods_list)->join($_join_goods_sku_com)->join($_join)->where($mWhere)->order($mOrder)->count();
         $_page = getPage($_count);
         $_log_list = M('log_cus_list');
         $_log_list->join($_join_goods_list);
         $_log_list->join($_join_goods_sku_com);
+        $_log_list->join($_join);
         $_data['list'] = $_log_list->where($mWhere)->order($mOrder)->field($_field)->limit($_page->firstRow . ',' . $_page->listRows)->select();
         $_data['sql'] = $_log_list->getLastSql();
         foreach ($_data['list'] as $n => $m) {

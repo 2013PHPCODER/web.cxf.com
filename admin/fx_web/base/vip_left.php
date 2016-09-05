@@ -26,51 +26,51 @@
 
 <div class="nav-sm current">
     <div class="nav-sm-li act">
-        <i><img src="images/capital/nav-sm-icon1.png" alt="" /></i><a href="vip_center.php">个人中心</a>
+       <a href="vip_center.php">个人中心</a>
     </div>
 </div>
 <div class="nav-sm">
     <div class="nav-sm-li act">
-        <i><img src="images/capital/nav-sm-icon1.png" alt="" /></i><a href="storeshoplist.php">商品管理</a>
+        <a href="storeshoplist.php">商品管理</a>
     </div>
 </div>
 <div class="nav-sm">
     <div class="nav-sm-li act">
-        <i><img src="images/capital/nav-sm-icon1.png" alt="" /></i><a href="orderlist.php">订单管理</a>
+        <a href="orderlist.php">订单管理</a>
     </div>
     <div class="nav-sm-li">
-        <i><img src="images/capital/nav-sm-icon2.png" alt="" /></i><a href="after_sale_list.php">售后管理</a>
+        <a href="after_sale_list.php">售后管理</a>
     </div>
 </div>
 <div class="nav-sm">
     <div class="nav-sm-li act">
-        <i><img src="images/capital/nav-sm-icon1.png" alt="" /></i><a href="user_collectlist.php">收藏夹</a>
+        <a href="user_collectlist.php">收藏夹</a>
     </div>
 </div>
 <div class="nav-sm">
     <div class="nav-sm-li act">
-        <i><img src="images/capital/nav-sm-icon1.png" alt="" /></i><a href="open_account_list.php">开户列表</a>
+        <a href="open_account_list.php">开户列表</a>
     </div>
     <div class="nav-sm-li">
-        <i><img src="images/capital/nav-sm-icon2.png" alt="" /></i><a href="open_new_account.php">开通新账户</a>
+        <a href="open_new_account.php">开通新账户</a>
     </div>
 </div>
 
 <div class="nav-sm">
     <div class="nav-sm-li act">
-        <i><img src="images/capital/nav-sm-icon1.png" alt="" /></i><a href="statementlist.php">资金明细</a>
+        <a href="statementlist.php">资金明细</a>
     </div>
 </div>
 <div class="nav-sm">
     <div class="nav-sm-li act">
-        <i><img src="images/capital/nav-sm-icon1.png" alt="" /></i><a href="account_info.php">帐号设置</a>
+        <a href="account_info.php">帐号设置</a>
     </div>
     <div class="nav-sm-li">
-        <i><img src="images/capital/nav-sm-icon2.png" alt="" /></i><a href="updata_loginpwd.php">修改密码</a>
+        <a href="updata_loginpwd.php">修改密码</a>
     </div>
-    <div class="nav-sm-li">
-        <i><img src="images/capital/nav-sm-icon3.png" alt="" /></i><a href="update_paypwd.php">修改支付密码</a>
-    </div>
+<!--    <div class="nav-sm-li">-->
+<!--        <i><img src="images/capital/nav-sm-icon3.png" alt="" /></i><a href="update_paypwd.php">修改支付密码</a>-->
+<!--    </div>-->
     <!--<div class="nav-sm-li">
         <i><img src="images/capital/nav-sm-icon3.png" alt="" /></i><a href="account_info.php">修改手机邮箱</a>
     </div>-->

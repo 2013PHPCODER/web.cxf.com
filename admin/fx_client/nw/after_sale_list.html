@@ -13,6 +13,9 @@
         <script src="js/public.js"></script>
         <style>
         	.PopDiv{display: none;} 
+        	.e-click{color: #29b1e9;} 
+        	.oparete a{color: #29b1e9;}
+        	.orderManageDiv .publicTabDiv{  max-height: 15.5rem;overflow-y: auto;}
         </style>
     </head>
     <body>
@@ -25,15 +28,17 @@
                         <ul>
                             <li><a class="select" href="javascript:pickDate(1);">待确定</a></li>
 		                    <li><a href="javascript:pickDate(2);">待退货</a></li>
+		                    <li><a href="javascript:pickDate(10);">待处理</a></li>
 		                    <li><a href="javascript:pickDate(3);">待退款</a></li>
 		                    <li><a href="javascript:pickDate(4);">已完成</a></li>
 		                    <li><a href="javascript:pickDate(5);">已拒绝</a></li>
 		                    <li><a href="javascript:pickDate(6);">待仲裁</a></li>
                         </ul>
-                        <div class="odMSearch">
-                            <span>关键字：</span><input type="text" placeholder="标题、商家编码、收件人、手机号"><button>搜索</button>
-                        </div>
+                        <!--<div class="odMSearch">
+                            <span>关键字：</span><input type="text" placeholder="标题、商家编码、收件人、手机号"><button id="serchKey">搜索</button>
+                        </div>-->
                     </div>
+                    <div class="publicTabDiv goodDebar">
                     <table class="odMTabSty orderDetail" id="after_sale">
                     	<thead>
 	                        <tr>
@@ -72,7 +77,7 @@
 	                            <td data-bind="text:goods[0].price"></td>
 	                            <td data-bind="text:goods[0].goods_num"></td>
 	                            <td>
-	                                <p data-bind="text:refund_amount"></p>
+	                                <p data-bind="text:order_amount"></p>
 	                                <!--<p>(含运费0.00)</p>-->
 	                            </td>
 	                            <td data-bind="text:refund_amount"></td>
@@ -85,12 +90,13 @@
 	                                <p data-bind="text:freight_code">13500251231</p>
 	                            </td>
 	                            <td data-bind="text:status">已发货</td>
-	                            <td>
+	                            <td class="oparete">
 	                                <p class="goodsSj e-click" data-bind="attr:{'data-id':cus_id}">查看</p>
 	                            </td>
 	                        </tr>
                         </tbody>
-                    </table>
+                    </table>                       	
+                    </div>
                 </div>
             </div>
         </div>
@@ -140,7 +146,7 @@
                             <p>退款时间：<span data-bind = "text:refund_money_time">2016-7-28 14:36:12</span></p>
                         </div>
                         <div class="information-rf">
-                            <p data-bind = "text:goods.length>0?goods[0].sku[0].sku_str_zh:''"></p>
+                            <p data-bind = "text:goods.length>0?(goods[0].sku.length>0 ? goods[0].sku[0].sku_str_zh : ''):''"></p>
                             <p >订单总额：<span data-bind = "text:refund_amount">88.00</span></p>
                             <p class="information-mag">售后理由：<span data-bind = "text:refund_reason">质量问题</span></p>
                             <!--<p>运费补贴：<span></span></p>-->
@@ -154,7 +160,7 @@
                             <span data-bind="foreach:{data:imgs,as:'auto'}">
                         		 <a href="">
 	                                <img src="" alt="" data-bind="attr:{src:auto}"/>
-	                                <i class="remove-img">-</i>
+	                                <!--<i class="remove-img">-</i>-->
 	                           </a>
                         	</span>
                         </p>
@@ -203,7 +209,7 @@
 				$.extend(data,{'return_status':after_good_status.wait_admin_confirm})
 				break;
 			case 2:
-			    var html = '<p><a class="delivery" data-bind="attr:{'+"'data-id'"+':cus_id}">取消售后</a></p>';
+			    var html = '<p><a class="delivery" data-bind="attr:{'+"'data-id'"+':cus_id}">退货</a></p>';
 			    $(html).insertBefore($('.e-click'));
 				$.extend(data,{'return_status':after_good_status.wait_buyer_sendgoods})
 				break;
@@ -219,12 +225,16 @@
 			case 6:
 				$.extend(data,{'return_status':after_good_status.wait_admin_kill})
 				break;	
+			case 10:
+                $.extend(data,{'return_status':after_good_status.wait_admin_kill,'wait':1,})
+                break;		
 		} 
 		X.bindModel(requestUrl.after_sale_list,1,data,'body.list',['after_sale'],function(){
 			$('.e-click').click(function(){
 				$('.marks').show();
+				ko.cleanNode(document.getElementById("sale_Detail"));							
+				$('#sale_Detail').html(oHtmlD);
 				$('.after-detail').show();
-				ko.cleanNode(document.getElementById("sale_Detail"));
 				X.bindModel(requestUrl.after_sale_detail,1,{'user_id':localStorage.getItem('user_id'),'cus_id':$(this).attr('data-id')},'body.list',['sale_Detail'],function(){
 
 				});
@@ -235,7 +245,7 @@
 				   if(e.header.stats == 0 ){
             	   	  X.notice(e.body.list,3)
             	   	  setTimeout(function(){
-            	   	  	 window.location.href = 'after_sale_list.php?loc='+($('.sale-tab>a.select').index()+1); 
+            	   	  	 window.location.href = 'after_sale_list.html?loc='+($('.sale-tab>a.select').index()+1); 
             	   	  },1000)
             	   }else{
             	   	 X.notice(e.header.msg,3)
@@ -251,6 +261,7 @@
 		})
 	}   
 	$('.go-delivery button').on('click',function(){
+        var reg = /^\w*$/;
     	var data = {
 		        'cus_id':oCus_id,
             	'user_id':localStorage.getItem('user_id'),
@@ -264,12 +275,15 @@
        }else if(data.freight_no == ''){
           X.notice('请填写快递单号',3);
           return false;
+       }else if(!reg.test(data.freight_no)){
+           X.notice('快递单号由数字/字母组成',3);
+           return false;
        }
        X.Post(requestUrl.after_sale_operate,1,data,function(e){
     	   if(e.header.stats == 0 ){
     	   	  X.notice('退货成功',3)
     	   	  setTimeout(function(){
-    	   	  	  window.location.href = 'after_sale_list.php?loc='+($('.sale-tab>a.select').index()+1); 
+    	   	  	  window.location.href = 'after_sale_list.html?loc='+($('.sale-tab>a.select').index()+1); 
     	   	  },1000)
     	   }else{
     	   	 X.notice(e.header.msg,3)

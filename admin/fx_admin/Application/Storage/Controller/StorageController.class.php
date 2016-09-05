@@ -66,100 +66,6 @@ class StorageController extends AuthController{
         $this->goods_category = $this->goodsCategoryList();
         $this->show();
     }
-
-    /**
-     * [searchWhere 组合条件查询]
-     * @return Array [数组]
-     */
-//    public function searchWhere(){
-//        //订单状态
-//        //待确认
-//        if(2 == I('get.group_id')){
-//            $_where['order_state'] = 1;
-//        }
-//        //待发货	
-//        if(3 == I('get.group_id')){
-//            $_where['order_state'] = 2;
-//        }
-//
-//        //已发货
-//        if(4 == I('get.group_id')){
-//            $_where['order_state'] = 3;
-//        }
-//        //已完成
-//        if(5 == I('get.group_id')){
-//            $_where['order_state'] = 4;
-//        }
-//        //待付款
-//        if(6 == I('get.group_id')){
-//            $_where['order_state'] = 0;
-//        }
-//        //异常订单
-//        if(7 == I('get.group_id')){
-//            $_where['order_state'] = 6;
-//        }
-//        //已关闭
-//        if(8 == I('get.group_id')){
-//            $_where['order_state'] = 5;
-//        }
-//
-//        //查询条件
-//        //仓库名称
-//        if(I('get.depot')){
-//            $_where['order_goods.depot_id'] = I('get.depot');
-//        }
-////        //商品类目
-////        if(I('get.goods_category')){
-////            $_where['goods_list.category_parent'] = I('get.goods_category',0);
-////        }
-//        //分销商名称
-//        if(I('get.buyer_name')){
-//            $_where['order_list.buyer_name'] = I('get.buyer_name');
-//        }
-//        //是否备注
-//        if(I('get.remark')){
-//            $_where['memo'] = I('get.remark') == 1 ? array('EXP'," <> ''") : array('exp'," = ''");
-//        }
-//        //物流公司
-//        if(I('get.shipping_id')){
-//            $_where['shipping_id'] = I('get.shipping_id');
-//        }
-//        //面单类型
-//        if(I('get.hub_type')){
-//            $_where['hub_type'] = I('get.hub_type',0);
-//        }
-//        //订单时间
-//        if(I('get.time_type') and ( I('get.startTime') or I('get.endTime') )){
-//            $_startTime = I('get.startTime',0) ? strtotime(I('get.startTime')) : 1;
-//            $_endTime = I('get.endTime',0) ? strtotime(I('get.endTime')) : time();
-//            $_where[I('get.time_type')] = array('BETWEEN',array($_startTime,$_endTime));
-//        }
-//        //平台来源
-//        if(I('get.shop_id')){
-//            $_where['shop_id'] = I('get.shop_id',1);
-//        }
-//        //关键字
-//        if(I('get.order_search') and I('get.search_word')){
-//            if(strtolower(I('get.order_search')) == 'goods_name'){
-//                $_where['goods_list.goods_name'] = array('LIKE','%' . I('get.search_word') . '%');
-//            }elseif(strtolower(I('get.order_search')) == 'buyer_goods_no'){
-//                $_where['goods_list.buyer_goods_no'] = array('LIKE','%' . I('get.search_word') . '%');
-//            }elseif(strtolower(I('get.order_search')) == 'goods_no'){
-//                $_where['order_goods.goods_no'] = I('get.search_word');
-//            }else{
-//                $_where[I('get.order_search')] = I('get.search_word');
-//            }
-//        }
-//        //不显示已关闭订单
-//        if(2 == I('get.is_close')){
-//            $_where['order_state'] = array('neq','5');
-//        }
-//        //排除已售后订单
-//        if(2 == I('get.is_cus')){
-//            $_where['is_cus'] = array('neq','1');
-//        }
-//        return $_where;
-//    }
     /*
      * [searchWhere 发货管理组合搜索条件]
      * @return Array [数组]
@@ -1130,11 +1036,6 @@ class StorageController extends AuthController{
             $order_list->join('order_goods ON order_list.order_id = order_goods.order_id');
             $order_list->join('order_goods_sku ON order_goods_sku.order_id = order_list.order_id and order_goods.goods_id=order_goods_sku.goods_id');
             $order_list->join('goods_sku_comb ON goods_sku_comb.id = order_goods_sku.sku_comb_id');
-            $_field = 'order_list.order_id,order_list.order_sn,order_goods.goods_name,'
-                    . 'hub_order.buyer_goods_no,hub_order.con_time,hub_order.id as hub_id,'
-                    . 'order_list.memo,contact_name,contact_address,order_goods.img_path,hub_order.ship_stats,'
-                    . 'tel,province,city,dist,order_goods.distribution_price,cost_price'
-                    . ',order_goods.price,order_list.shipping_fee,order_amount,is_cus,goods_sku_comb.sku_str_zh as sku';
             $_count = $order_list->where($mWhere)->count();
             $_page = getPage($_count);
             
@@ -1149,7 +1050,7 @@ class StorageController extends AuthController{
                     . 'hub_order.buyer_goods_no,hub_order.con_time,hub_order.id as hub_id,'
                     . 'order_list.memo,contact_name,contact_address,order_goods.img_path,hub_order.ship_stats,'
                     . 'tel,province,city,dist,order_goods.distribution_price,cost_price'
-                    . ',order_goods.price,order_list.shipping_fee,order_amount,is_cus,goods_sku_comb.sku_str_zh as sku';
+                    . ',order_goods.price,order_list.shipping_fee,order_amount,is_cus,goods_sku_comb.sku_str_zh as sku,pay_amount,distribution_price';
             $_data['list'] = $order_list->where($mWhere)->order($mOrder)->limit($_page->firstRow . ',' . $_page->listRows)->field($_field)->select();
             $_data['page'] = $_page->show();
         }

@@ -20,7 +20,23 @@ class Fx_supplier_userDao extends Dao {
     public function checkExist($checkEmail){
         $sql='select count(*) from '. $this->table. ' where email=:email';
         $param=['email'=>$checkEmail];
-        $r=$this->query($sql, $param, 'fetch_string');  
-        return  $r;
+        $r1=$this->query($sql, $param, 'fetch_string');  
+
+        $sql='select count(*) from fx_distribute_user where email=:email';
+        $r2=$this->query($sql, $param, 'fetch_string');          
+
+
+        return  $r1 || $r2;
+    }
+    public function checkExistMobile($mobile){
+        $sql='select count(*) from '. $this->table. ' where mobile=:mobile';
+        $param=['mobile'=>$mobile];
+        $r1=$this->query($sql, $param, 'fetch_string');  
+
+        $sql='select count(*) from fx_distribute_user where mobile=:mobile';
+        $r2=$this->query($sql, $param, 'fetch_string');          
+
+
+        return  $r1 || $r2;        
     }
 }

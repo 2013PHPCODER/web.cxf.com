@@ -47,6 +47,7 @@ class CommonController extends \Common\Controller\BasicController {
      */
     public function addLog($mData) {
         $mData['user_id'] = $this->user_info['id'];
+        $mData['user_name'] = $this->user_info['user_account'];
         $mData['addtime'] = time();
         $mData['ip_address'] = get_client_ip();
         M('log_list')->add($mData);

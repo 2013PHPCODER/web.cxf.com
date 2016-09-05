@@ -219,7 +219,9 @@ var X = {
     },
     bindModel: function (url, type, data, pos, arr, callback, callback1) {
     	for(var i in arr){
-			$('#'+arr[i]).hide();
+            if(!$('#'+arr[i]).hasClass('marks')){
+                $('#'+arr[i]).hide();
+            }
 		}
         var self = {};
         if (typeof pos == "function") {
@@ -246,6 +248,19 @@ var X = {
             }
         }
         $.post(url, JSON.stringify(self.data), function (data) {
+        	if(arr[0] == 'category'){          //特殊接口这里要定义
+        	}else{
+        		if( data.header.stats != 0 ){
+	        		for(var i in arr){
+	        		    if(!$('#'+arr[i]).hasClass('marks')){
+                            $('#'+arr[i]).show();
+                            $('#'+arr[i]).html('');
+                        }
+					}
+	        		X.notice('没找到数据哦',3);
+	        		return false
+	        	}
+        	}
             var x;
             if (pos != undefined)
             {
@@ -257,7 +272,8 @@ var X = {
                 if (self.pos != '') {
                     for (i in self.pos) {
                         if (self.pos != undefined  && self.pos.length > 0) {
-                            x = x[self.pos[i]];
+                        	if( x[self.pos[i]] != null )
+                               x = x[self.pos[i]];
                         }
                     }
                 }
@@ -278,7 +294,9 @@ var X = {
                 ko.applyBindings(self, document.getElementById(arr[i]));
             }
             for(var i in arr){
-				$('#'+arr[i]).show();
+                if(!$('#'+arr[i]).hasClass('marks')){
+                    $('#'+arr[i]).show();
+                }
 			}
             if (self.callback) {
                 self.callback()
@@ -622,7 +640,7 @@ var X = {
         div.style.cssText += 'position:fixed;z-index: 9999; top: 20%;left: 50%;opacity:0;filter: alpha(opacity:0);padding: 20px 25px;border:2px solid #fb2653; border-radius: 5px;background: #fff; color: #fb2653;font-size: 20px';
         document.body.appendChild(div);
         div.style.cssText += 'margin-left: -' + $(div).width() * 0.5 + 'px';
-        $(div).stop().animate({'opacity': 1, 'filter': 'alpha(opacity:1)'}, 600)
+        $(div).stop().animate({'opacity': 1, 'filter': 'alpha(opacity:1)'}, 600);
         setTimeout(function () {
             $(div).fadeOut(600);
             setTimeout(function () {

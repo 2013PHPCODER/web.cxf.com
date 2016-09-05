@@ -129,7 +129,8 @@ class BaseDao {
      */
 
     final public function begin_trans() {
-        return $this->db->beginTrans();
+        $a=$this->db->beginTrans();
+        return $a;
     }
 
     /*
@@ -146,7 +147,8 @@ class BaseDao {
      */
 
     final public function commit() {
-        return $this->db->commit();
+        $a=$this->db->commit();
+        return $a;
     }
 
     final public function excute($sql, $parmeters) {
@@ -188,7 +190,7 @@ class BaseDao {
     final public function endTrans(){                 //事务结束标记
         foreach ($GLOBALS['_trans_']['result'] as $key => &$v) {
 
-            if (!$v['return']) {            //事务不通过                      
+            if (!$v['return']) {            //事务不通过                   
                 $this->_terminateTrans();
                 $log=db_error_message($v['model'], $v['type'], 1, 0);  
                 myerror(StatusCode::msgDBFail, $log);  

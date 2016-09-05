@@ -24,6 +24,7 @@ Route::home([
     '/confirm_good' => 'Order.confirm_good', //确认收货
     '/goods_center' => 'Goods.goods_center', //货源中心
     '/goods_center_two' => 'Goods.goods_center_two', //获取货源中心二级分类十个随机商品
+    '/search_category'=>'Index.search_category',
     /*     * ******三水******* */
 
     /*     * *林澜叶*** */
@@ -32,16 +33,17 @@ Route::home([
     '/fx_regist' => 'Fx.regist',
     '/gh_regist' => 'Gh.regist', //供货商注册
     '/gh_auth' => 'Gh.identify',
-    '/search' => 'Search.index',
+    '/search' => 'Search.index',                            //商品搜索筛选排序类目等
     '/after_sale_list' => 'Aftersale.index',
     '/after_sale_detail' => 'Aftersale.detail',
     '/apply_after_sale' => 'Aftersale.add',
     '/after_sale_operate' => 'Aftersale.changeStatus', //售后操作
-    '/get_freight' => 'Freight.compute',
-    '/get_img_token' => 'Other.img',
-    '/get_verify_code' => 'Other.sendVerify',
+    '/get_freight' => 'Freight.compute',               //运费计算
+    '/get_img_token' => 'Other.img',                    //获得上传图片凭证
+    '/get_verify_code' => 'Other.sendVerify',           //发送验证码，通用
     '/fx_regist_check' => 'Fx.checkRegiste', //注册检查
     '/gh_regist_check' => 'Gh.checkRegiste', //注册检查
+    '/check_is_bindtaobao'=>'Fx.checkBind',     //分销商是否绑定淘宝
     /*     * *林澜叶*** */
 
 

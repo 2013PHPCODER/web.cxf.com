@@ -112,17 +112,17 @@ class MysqlDriver extends DbDriver {
         foreach ($arr_model as $key => &$value) {
             $value = get_object_vars($value);
             $t_name = $value["table"];
-            unset($arr_model[$key]["table"]);
-            unset($arr_model[$key][$arr_model[$key]['_cxf_num_id']]);
-            unset($arr_model[$key]['_cxf_num_id']);
+            unset($value["table"]);
+            unset($value[$value['_cxf_num_id']]);
+            unset($value['_cxf_num_id']);
+            $arr[]=$value;
         }
         $sql.= $t_name;
-
+        unset($arr_model);
         $colum = '(';
         $vallist = '';
-        $arr = $arr_model;
-        unset($arr_model);
         if (!empty($arr) && is_array($arr)) {
+
             foreach ($arr[0] as $cky => $cval) {
                 $colum .= $cky . ',';
             }
@@ -130,6 +130,7 @@ class MysqlDriver extends DbDriver {
                 $colum = substr($colum, 0, strlen($colum) - 1) . ")";
             }
             $i = 0;
+
             foreach ($arr as $key => $value) {
                 $i++;
                 $vallist.="(";
@@ -143,6 +144,7 @@ class MysqlDriver extends DbDriver {
                     }
                 }
             }
+            
             if (!empty($vallist) && strlen($vallist) > 0) {
                 $vallist = substr($vallist, 0, strlen($vallist) - 1);
             }
@@ -154,10 +156,13 @@ class MysqlDriver extends DbDriver {
                 if (!empty($val) && is_array($val)) {
                     foreach ($val as $ckey => $cval) {
                         $stmt->bindValue(":$ckey$i", $cval);
+                        $arr[$key][$ckey.$i]=$cval;
+                        unset($arr[$key][$ckey]);
                     }
                 }
             }
         }
+
         $this->exec($stmt, $arr);
         return $stmt->rowCount();
     }

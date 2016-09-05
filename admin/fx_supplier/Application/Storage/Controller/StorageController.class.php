@@ -6,21 +6,22 @@ class StorageController extends BasicController {
      * [elist 修改仓库信息]
      */
     public function elist() {
-        $_sid = I('get.id');
+        $_sid = I('id');
         $_uid = $this->user_info['id'];
         $_fx_storage_list_model = D('fx_storage_list');
         if (IS_POST) {
-            if ($_fx_storage_list_model->create()) {
-                if ($_fx_storage_list_model->where(array('id' => $_sid, 'supplier_user_id' => $_uid))->save() === FALSE) {
-                    $this->error(L('UPDATE_FAILURE'));
-                } else {
+            if ($_fx_storage_list_model->create($_POST,2)) {
+                if ($_fx_storage_list_model->where(array('id' => $_sid, 'supplier_user_id' => $_uid))->save() !== FALSE) {
                     $this->success(L('UPDATE_SUCCESS'), U('slist'));
+                } else {
+                    $this->error(L('UPDATE_FAILURE'));
                 }
             } else {
                 $this->error($_fx_storage_list_model->getError());
             }
         } else {
-            $this->list = $_fx_storage_list_model->field('sname,province,city,area,address,mobile,functionary,freight')->where(array('id' => $_sid, 'supplier_user_id' => $_uid))->find();
+            $this->list = $_fx_storage_list_model->field('id,sname,province,city,area,address,mobile,functionary,freight')
+                    ->where(array('id' => $_sid, 'supplier_user_id' => $_uid))->find();
             if (empty($this->list)) {
                 $this->error(L('_PARAM_FAILURE_'), U('slist'));
             } else {
@@ -77,15 +78,28 @@ class StorageController extends BasicController {
         $this->datas = $_fx_storage_list_model->where($_where)->field('id,sname,functionary,mobile,freight,address')
                         ->limit($_page->firstRow . ',' . $_page->listRows)->order('id DESC')->select();
         $this->freight_template = M('fx_freight_template')->where(array('supplier_user_id' => $_uid))->field('freight_template_id,name')->select();
+        $this->taobao_user_nick = M('taobao_authorize')->where(array('user_id'=>  $this->user_info['id']))
+                ->field('id,taobao_user_nick')->select();
+        $this->status = empty($this->taobao_user_nick) ? 0:1;
         $this->display();
     }
 
     /**
-     * 添加仓库
+     * 添加仓库---需淘宝授权绑定
+     * @author San Shui <sanshui@mycxf.com>
+     * @since 201609021446
+     * @return boolean
      */
     public function addStorage() {
         if (IS_POST) {
             $_fx_storage_list_model = D('fx_storage_list');
+            $_ship_code = I('post.shipCode',0);
+            if(1 == $_ship_code){
+                $_authorize = I('post.authorize',0);;
+                if(0 == $_authorize){
+                    $this->error('请选择授权账号');
+                }
+            }
             if ($_fx_storage_list_model->create()) {
                 $_fx_storage_list_model->supplier_user_id = $this->user_info['id'];
                 if ($_fx_storage_list_model->add()) {
@@ -228,7 +242,6 @@ class StorageController extends BasicController {
         } else {
             $hub_order_id = I('post.order_id');
         }
-
         foreach ($hub_order_id as $k => $v) {
             $order_list = M('hub_order');
             $order_states = $order_list->where('order_id =' . $v)->getField('ship_stats');
@@ -240,11 +253,9 @@ class StorageController extends BasicController {
                 $_data['list'][$m]['goods_no'] = M('goods_list')->where('goods_id =' . $n['goods_id'])->getField('goods_no');
                 $_data['list'][$m]['is_cus'] = M('order_list')->where("order_id={$n['order_id']}")->getField('is_cus');
                 $sku_comb_id = M('hub_order_goods')->where("order_id = {$n['order_id']} and goods_id={$n['goods_id']}")->getField('sku_comb_id');
-                //$_data['list'][$m]['original_price'] = M('goods_price')->where("comb_id={$sku_comb_id} and shop_id = {$n['shop_id']}")->getField("original_price");
             }
         }
         $this->datas = $_data['list'];
-        //var_dump($_data['list']);
         layout(false);
         $str = $this->fetch(T('Storage/distribution'));
         echo $str;
@@ -632,11 +643,11 @@ class StorageController extends BasicController {
             $order_list->join('order_goods ON order_list.order_id = order_goods.order_id');
             $order_list->join('order_goods_sku ON order_goods_sku.order_id = order_list.order_id and order_goods.goods_id=order_goods_sku.goods_id');
             $order_list->join('goods_sku_comb ON goods_sku_comb.id = order_goods_sku.sku_comb_id');
-            $_field = 'order_list.order_id,order_list.order_sn,order_goods.goods_name,'
-                    . 'hub_order.buyer_goods_no,hub_order.con_time,hub_order.id as hub_id,'
-                    . 'order_list.memo,contact_name,contact_address,order_goods.img_path,hub_order.ship_stats,'
-                    . 'tel,province,city,dist,order_goods.distribution_price,cost_price'
-                    . ',order_goods.price,order_list.shipping_fee,order_amount,is_cus,goods_sku_comb.sku_str_zh as sku';
+//            $_field = 'order_list.order_id,order_list.order_sn,order_goods.goods_name,'
+//                    . 'hub_order.buyer_goods_no,hub_order.con_time,hub_order.id as hub_id,'
+//                    . 'order_list.memo,contact_name,contact_address,order_goods.img_path,hub_order.ship_stats,'
+//                    . 'tel,province,city,dist,order_goods.distribution_price,cost_price,shipping_code,shipping_name'
+//                    . ',order_goods.price,order_list.shipping_fee,order_amount,is_cus,goods_sku_comb.sku_str_zh as sku';
             $_count = $order_list->where($mWhere)->count();
             $_page = getPage($_count);
             
@@ -650,11 +661,12 @@ class StorageController extends BasicController {
             $_field = 'order_list.order_id,order_list.order_sn,order_goods.goods_name,'
                     . 'hub_order.buyer_goods_no,hub_order.con_time,hub_order.id as hub_id,'
                     . 'order_list.memo,contact_name,contact_address,order_goods.img_path,hub_order.ship_stats,'
-                    . 'tel,province,city,dist,order_goods.distribution_price,cost_price'
+                    . 'tel,province,city,dist,order_goods.distribution_price,cost_price,order_list.shipping_code,order_list.shipping_name'
                     . ',order_goods.price,order_list.shipping_fee,order_amount,is_cus,goods_sku_comb.sku_str_zh as sku';
             $_data['list'] = $order_list->where($mWhere)->order($mOrder)->limit($_page->firstRow . ',' . $_page->listRows)->field($_field)->select();
             $_data['page'] = $_page->show();
         }
+        //print_
         return $_data;
     }
 
@@ -751,27 +763,16 @@ class StorageController extends BasicController {
         if (!is_array($_order) || (0 == I('post.ship_id', 0))) {
             $this->aReturn(0, '参数错误');
         }        
+        $_waybill_apply_new_info = $this->assignedExpressNumber($_order[0]);
+        if(!empty($_waybill_apply_new_info->msg)){
+            $this->aReturn(0, '获取电子面单失败.'.$_waybill_apply_new_info->msg, array('data' => ''));
+        }
+        $_shipping_code = $this->updateShipCode($_waybill_apply_new_info[0], $_order[0], I('post.ship_id'));
         $_result = array();
-        $_error = 0;
-        foreach ($_order as $key => $value) {
-            $_waybill_apply_new_info = $this->assignedExpressNumber($value);
-            if (!$_waybill_apply_new_info) {
-                $_error++;
-                continue;
-            }
-            $_shipping_code = $this->updateShipCode($_waybill_apply_new_info[0], $value, I('post.ship_id'));
-            $_row['shipping_code'] = $_shipping_code;
-            $_row['status'] = 'ok';
-            $_row['order_id'] = $value;
-            if (false == $_shipping_code) {
-                $_row['status'] = 'error';
-            }
-            $_result[] = $_row;
-        }
-        
-        if (0 < $_error) {
-            $this->aReturn(0, '运单号分配失败', array('data' => $_result));
-        }
+        $_row['shipping_code'] = $_shipping_code;
+        $_row['status'] = 'ok';
+        $_row['order_id'] = $_order[0];
+        $_result[] = $_row;
         $this->aReturn(1, 'ok', array('data' => $_result));
     }
     /**
@@ -794,8 +795,10 @@ class StorageController extends BasicController {
         if (0 == intval($mOrderId)) {
             return false;
         }
-
         if (0 == intval($mShipId)) {
+            return false;
+        }
+        if (empty($mWaybillApplyNewInfo)) {
             return false;
         }
         $_ship = $this->getShipInf($mShipId);
@@ -840,14 +843,20 @@ class StorageController extends BasicController {
 
     /**
      * getWaybillAddress  构建淘宝api网点发货地址对像
-     * @return Object   
+     * @param type $mOrderId    订单id
+     * @return Object \WaybillAddress
      */
-    public function getSendAddress() {
+    public function getSendAddress($mOrderId) {
+        $depot_id = M('order_goods')->where(" order_id = $mOrderId ")->getField('depot_id');
+        if (!$depot_id) return false;
+        $system_depot = M('fx_storage_list')->where(array('id'=>$depot_id))->find();
+        if (!$system_depot) return false;
         $shipping_address = new \WaybillAddress;
-        $shipping_address->area = "天河区 ";
-        $shipping_address->province = "广东省";
-        $shipping_address->address_detail = "广园东路时代新世界南塔2806";
-        $shipping_address->city = "广州市";
+        $shipping_address->area = $system_depot['area']; //"天河区 ";
+        $shipping_address->province = $system_depot['province']; //"广东省";
+        $shipping_address->address_detail = $system_depot['address']; //"广园东路时代新世界南塔2806";
+        $shipping_address->city = $system_depot['city']; //"广州市";
+        $shipping_address->authorize = $system_depot['authorize']; //授权;
         return $shipping_address;
     }
 
@@ -902,10 +911,10 @@ class StorageController extends BasicController {
 
     public function assignedExpressNumber($mOrderId) {
         $_express_info = $this->getApiCode($mOrderId);
-        $_waybill_apply_new_info = json_decode(json_encode($_express_info->waybill_apply_new_cols->waybill_apply_new_info), true);
-        if (!$_waybill_apply_new_info) {
-            return false;
+        if(!empty($_express_info->msg)){
+            return $_express_info;
         }
+        $_waybill_apply_new_info = json_decode(json_encode($_express_info->waybill_apply_new_cols->waybill_apply_new_info), true);
         return $_waybill_apply_new_info;
     }
     /**
@@ -933,10 +942,15 @@ class StorageController extends BasicController {
         $waybill_apply_new_request = new \WaybillApplyNewRequest;
         $waybill_apply_new_request->cp_code = M('system_shipping')->where(' id =' . I('post.ship_id'))->getField('shipping_code');
         // $waybill_apply_new_request->cp_code = 'ZTO';
-        $waybill_apply_new_request->shipping_address = $this->getSendAddress();
+        $_obj = $this->getSendAddress($mOrderId);
+        $_authorize = $_obj->authorize;
+        unset($_obj->authorize);
+        //获取对应access_token
+        $_access_token = M('taobao_authorize')->where(array('id'=>$_authorize))->getField('access_token');
+        $waybill_apply_new_request->shipping_address = $this->getSendAddress($mOrderId);
         $waybill_apply_new_request->trade_order_info_cols = $this->getTradeOrderInfo($mOrderId);
         $req->setWaybillApplyNewRequest(json_encode($waybill_apply_new_request));
-        return $c->execute($req, session('sessionKey'));
+        return $c->execute($req, $_access_token);
         //return $c->execute($req);
     }
 
@@ -1514,6 +1528,7 @@ class StorageController extends BasicController {
      */
     public function addLog($mData) {
         $mData['user_id'] = $this->user_info['id'];
+        $mData['user_name'] = $this->user_info['user_account'];
         $mData['addtime'] = time();
         $mData['ip_address'] = get_client_ip();
         M('log_list')->add($mData);

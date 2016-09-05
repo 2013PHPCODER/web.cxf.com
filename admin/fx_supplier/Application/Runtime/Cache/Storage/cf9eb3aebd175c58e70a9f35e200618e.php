@@ -3,8 +3,8 @@
         <div class="box-header with-border">
             <div class="box-title">
                 <ul class="choose_ul">
-                    <li><a class="<?php echo xeq(I('get.group_id',1),1,'btn btn-warning btn-xs');?>" href="<?php echo U('storageManage/index',array('group_id' => 1 ));?>" >所有商品</a></li>
-                    <li><a class="<?php echo xeq(I('get.group_id'),2,'btn btn-warning btn-xs');?>" href="<?php echo U('storageManage/index',array('group_id' => 2 ));?>">预警商品</a></li>
+                    <li><a class="<?php echo xeq(I('get.group_id',1),1,'btn btn-warning btn-xs');?>" href="<?php echo U('storage/storageManage/index',array('group_id' => 1 ));?>" >所有商品</a></li>
+                    <li><a class="<?php echo xeq(I('get.group_id'),2,'btn btn-warning btn-xs');?>" href="<?php echo U('storage/storageManage/index',array('group_id' => 2 ));?>">预警商品</a></li>
                 </ul>
             </div>
             <div class="box-tools pull-left"> </div>
@@ -12,7 +12,7 @@
         <!-- /.box-header -->
         <div class="box-body">
             <div class="row" >
-                <form class="form-inline" method="get" action="<?php echo U('storage/storageManage/index',$mp);?>" id="searchForm">
+                <form class="form-inline" method="get" action="<?php echo U('storage/storageManage/index',array('group_id'=>I('get.group_id')));?>" id="searchForm">
                     <div class="form-group">
                         <label for="exampleInputName2">仓库名称:</label>
                         <select class="form-control input-xs" name="depot">
@@ -118,7 +118,7 @@
                     <td><?php if(is_array($vo["sku_list"])): foreach($vo["sku_list"] as $key=>$item): ?><P> <?php echo ($item["sku_str_zh"]); ?></P><?php endforeach; endif; ?></td>
                     <td>
                         <?php foreach($vo['sku_list'] as $key =>$value){ ?>
-                        
+
                         <?php if($value['stock_num'] <= $value['stock_lock_num'] && $value['stock_lock_num'] > 0 ){ ?>
                         <!-- <p style="color: red;"><?php echo ($vo['stock_num'][$i]); ?></p> -->
                         <input type="text" style="color: red;" data-skuval="<?php echo ($value['stock_num']); ?>" data-skuid="<?php echo ($value["id"]); ?>"  class="form-control input-xs edit_input" name="" value="<?php echo ($value['stock_num']); ?>">

@@ -19,7 +19,7 @@ class FxSupplierUserModel extends Model {
     public function getSupplierList($_where) {
         $_count = $this->where($_where)->count();
         $_page = getpage($_count);
-        $field = 'id,addtime,email,usernick,account_status,address,approve_time,mobile,qq,wangwang,leavel,approve_status,approve_remark,platform';
+        $field = 'id,addtime,email,user_account,account_status,address,approve_time,mobile,qq,wangwang,leavel,approve_status,approve_remark,platform';
         $arr = $this->field($field)
                 ->where($_where)
                 ->order('id desc')
@@ -36,7 +36,7 @@ class FxSupplierUserModel extends Model {
      * return Array
      */
     public function getSupplierDetail($_id) {
-        $field = "id,company_name,register_type,usernick,realname,idcard,email,mobile,qq,wangwang,applicant_idcard_img,legal_idcard_img,business_license,applicant_idcard_img_hand,receiver_account_type,open_bank_address,receiver_account_name,receiver_account";
+        $field = "id,company_name,register_type,user_account,realname,idcard,email,mobile,qq,wangwang,applicant_idcard_img,legal_idcard_img,business_license,applicant_idcard_img_hand,receiver_account_type,open_bank_address,receiver_account_name,receiver_account";
         $arr = $this->field($field)->where('id=' . $_id)->find();
 //        if(1==$arr['receiver_account_type']){
 //           $arr['receiver_account_type']='支付宝';   

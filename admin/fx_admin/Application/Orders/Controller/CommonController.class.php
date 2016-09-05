@@ -47,6 +47,7 @@ class CommonController extends \Common\Controller\AuthController {
      */
     public function addLog($mData) {
         $mData['user_id'] = $_SESSION['user']['id'];
+        $mData['user_name'] = session('user.name');
         $mData['addtime'] = time();
         $mData['ip_address'] = get_client_ip();
         M('log_list')->add($mData);

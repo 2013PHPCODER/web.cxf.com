@@ -453,9 +453,9 @@
                     <td ><p> <?php echo ($list["goods_name"]); ?> </p>
                         <p> <?php echo ($list["buyer_goods_no"]); ?>&nbsp;&nbsp;<?php echo ($list["sku"]); ?></p>
                 </td>
-                <td><?php echo ($list["price"]); ?></td>
+                <td><?php echo ($list["distribution_price"]); ?></td>
                 <td><p><?php echo ($list["goods_num"]); ?></p></td>
-                <td><p><?php echo ($list["cost_price"]); ?></p>
+                <td><p><?php echo ($list["pay_amount"]); ?></p>
                     <p>含运费:<?php echo ($list["shipping_fee"]); ?></p></td>
                 <td>
                     <p>
@@ -470,7 +470,7 @@
                 <?php case "3": ?>已完成<?php break; endswitch;?>
                 </p></td>
                 <td><p> <a href="<?php echo U('orders/orders/orderDetail',array('order_id'=>$list['order_id']));?>" target="_blank">详情</a></p>
-                    <p>
+                    <!--p>
                         <?php if(($list["is_cus"]) != "1"): switch($list["ship_stats"]): case "0": ?><a class="one_distribution" data-id="<?php echo ($list["order_id"]); ?>" style="cursor: pointer;">配货</a>
                     &nbsp;
                     <a style="cursor: pointer;" data-id=<?php echo ($list["order_id"]); ?> class="excep">异常</a><?php break;?>
@@ -479,7 +479,7 @@
                 <?php case "2": ?><a class="send_goods" data-id=<?php echo ($list["hub_id"]); ?> style="cursor: pointer;">发货</a>
                     &nbsp; <a style="cursor: pointer;" data-id=<?php echo ($list["order_id"]); ?> class="excep" >异常</a><?php break;?>
                 <?php case "3": ?><a href="https://www.baidu.com/s?wd=<?php echo ($list["shipping_code"]); echo ($list["shipping_name"]); ?> "style="cursor: pointer;" target="_blank">查看物流</a><?php break; endswitch; endif; ?>
-                </p></td>
+                </p--></td>
                 </tr><?php endforeach; endif; else: echo "" ;endif; ?>
             </tbody>
         </table>
@@ -530,13 +530,13 @@
                     </p></td>
                     <td><p> <a href="<?php echo U('orders/orders/orderDetail',array('order_id'=>$list['order_id']));?>" target="_blank">详情</a></p>
                         <p>	
-                            <?php if(($list["is_cus"]) != "1"): switch($list["ship_stats"]): case "0": ?><!--<a class="one_distribution" data-id="<?php echo ($list["order_id"]); ?>" style="cursor: pointer;">配货</a>
-                        &nbsp; -->
+                            <?php if(($list["is_cus"]) != "1"): switch($list["ship_stats"]): case "0": ?><<a class="one_distribution" data-id="<?php echo ($list["order_id"]); ?>" style="cursor: pointer;">配货</a>
+                        &nbsp; >
                         <a style="cursor: pointer;" data-id=<?php echo ($list["order_id"]); ?> class="excep">异常</a><?php break;?>
-                    <?php case "1": ?><!--<a class="assign" data-id=<?php echo ($list["order_id"]); ?> style="cursor: pointer;">分配</a>&nbsp;-->
+                    <?php case "1": ?><a class="assign" data-id=<?php echo ($list["order_id"]); ?> style="cursor: pointer;">分配</a>&nbsp;>
                         <a style="cursor: pointer;" data-id=<?php echo ($list["order_id"]); ?> class="excep" >异常</a><?php break;?>
                     <?php case "2": if( 1 == getPower('shipments_'.I('get.group_id',1)) ) { ?>
-<!--                        <a class="send_goods" data-id=<?php echo ($list["hub_id"]); ?> style="cursor: pointer;">发货</a>-->
+                        <a class="send_goods" data-id=<?php echo ($list["hub_id"]); ?> style="cursor: pointer;">发货</a>
                         <?php } ?>
                         &nbsp; <a style="cursor: pointer;" data-id=<?php echo ($list["order_id"]); ?> class="excep" >异常</a><?php break;?>
                     <?php case "3": ?><a href="https://www.baidu.com/s?wd=<?php echo ($list["shipping_code"]); echo ($list["shipping_name"]); ?> "style="cursor: pointer;" target="_blank">查看物流</a><?php break; endswitch; endif; ?>

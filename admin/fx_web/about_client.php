@@ -35,7 +35,7 @@
             <div class="g-applyAgent clearfix">
                 <a href="javascript:;" class="">软件下载</a>
                 <a href="javascript:;" 	>软件介绍</a>
-                <a href="javascript:;" class="e-applyAgent">申请代理</a>
+                <a href="javascript:;" class="e-applyAgent">开通代理</a>
             </div>
             <div class="Ag-banner">
                 <p class="p-title">创想范开店管家</p>
@@ -77,7 +77,7 @@
                     </div>
                     <p class="p-agreed"><input type="checkbox" name="check" style="width: 20px"> 已阅读，并同意代理协议</p>
                     <div class="PopFooter Ag-PopFooter">
-                        <button id="apply-agent">申请代理</button>
+                        <button id="apply-agent">开通代理</button>
                     </div>
                 </div>
             </div>  

@@ -15,67 +15,127 @@
     <script src="js/message.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/public.js"></script>
     <style>
-        .pub-nav > li> a {
-			  /*border-left: 5px solid #484848;*/
-			  width: 100%;
-		}
-        .public-left .pub-nav .pub-nav-sm>li{
-        	text-align: center;
+        .pub-nav > li > a {
+            /*border-left: 5px solid #484848;*/
+            width: 100%;
         }
-    	.public-left .pub-nav a{
-    		text-indent: 0;
-    	}
-    	.pub-nav > li.select span {
-		    margin-left: 30.2%;
+
+        .public-left .pub-nav .pub-nav-sm > li {
+            text-align: center;
+        }
+
+        .public-left .pub-nav a {
+            text-indent: 0;
+        }
+
+        .pub-nav > li.select span {
+            margin-left: 3.2%;
+        }
+
+        .public-left .pub-nav > li:first-child a {
+            text-indent: 0;
+        }
+
+        .public-left .pub-nav-sm > li a:hover {
+            color: #fff;
+            background: #ff6537;
+        }
+
+        .public-left .pub-nav-sm > li.act-nav a {
+            color: #fff;
+            background: #ff6537;
+        }
+
+        .public-left .pub-nav a {
+            text-indent: 0;
+        }
+
+        .public-left .pub-nav > li > a {
+        }
+
+        .scrollbar::-webkit-scrollbar-thumb {
+            background-color: #d0d0d0;
+            height: 50px;
+            outline-offset: -2px;
+            outline: 2px solid #484848;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            border: 2px solid #fff;
+        }
+
+        .scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: #bcbcbc;
+            height: 50px;
+            -webkit-border-radius: 4px;
+        }
+
+        .scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .scrollbar::-webkit-scrollbar-track-piece {
+            background-color: #484848;
+            -webkit-border-radius: 0;
+        }
+
+        .scrollbar1::-webkit-scrollbar-thumb {
+            outline: 2px solid #fff;
+        }
+
+        .scrollbar1::-webkit-scrollbar-track-piece {
+            background-color: #fff;
+            -webkit-border-radius: 0;
+        }
+
+        .search {
+            float: right;
+            vertical-align: middle;
+            margin-top: 4px;
+            margin-right: 20px;
+            position: relative;
+            top: -6px;
+        }
+
+        .search > input {
+            outline: none;
+            resize: none;
+        }
+
+        .search .inp-search {
+            width: 209px;
+            height: 33px;
+            padding-left: 5px;
+            border: 1px solid #dddddd;
+            font-size: 14px;
+            color: #aaaaaa;
+        }
+
+        .search .btn-search {
+            width: 49px;
+            cursor: pointer;
+            border: none;
+            height: 32px;
+            color: #fff;
+            font-size: 12px;
+            border-radius: 3px;
+            margin-left: -2px;
+            background: #ff6537;
+        }
+        .goods_detail .s-collect>a {margin: 0 45px 0 80px;}
+        /*.goodsListDiv ul li > .goodsImg img{height: auto;}*/
+        .pub-nav > li span {margin-left: 5.7%;}
+        .goodsListDiv ul li > .goodsImg>a{
+			display: block;
+			height: 212px;
+			overflow: hidden;
 		}
-    	.public-left .pub-nav>li:first-child a{
-    		text-indent: 0;
-    	} 
-    	.public-left .pub-nav-sm>li a:hover{
-    		color: #fff;
-    		background: #ff6537;
-    	}
-    	.public-left .pub-nav-sm>li.act-nav a{
-    		color: #fff;
-    		background: #ff6537;
-    	}
-    	.public-left .pub-nav a{
-    		text-indent: 0;
-    	}
-    	.public-left .pub-nav>li>a{}
-    	.scrollbar::-webkit-scrollbar-thumb{
-		    background-color: #d0d0d0;
-		    height:50px;
-		    outline-offset:-2px;
-		    outline:2px solid #484848;
-		    -webkit-border-radius:10px;
-		    border-radius:10px;
-		    border: 2px solid #fff;
+		.goodsListDiv ul li > .goodsImg {
+			  height: 212px;
 		}
-		.scrollbar::-webkit-scrollbar-thumb:hover{
-		    background-color: #bcbcbc;
-		    height:50px;
-		    -webkit-border-radius:4px;
+		.goodsListDiv ul li > .goodsImg img {
+			  height: auto;
 		}
-		.scrollbar::-webkit-scrollbar{
-		    width:8px;
-		    height:8px;
-		}
-		.scrollbar::-webkit-scrollbar-track-piece{
-		    background-color:#484848;
-		    -webkit-border-radius:0;
-		}
-		.scrollbar1::-webkit-scrollbar-thumb{
-		    outline:2px solid #fff;
-		}
-		.scrollbar1::-webkit-scrollbar-track-piece{
-		    background-color:#fff;
-		    -webkit-border-radius:0;
-		}
-		.search{float: right;vertical-align: middle;margin-top: 4px;margin-right: 20px;}
-		.search>input{outline: none;resize: none;}
-		.search .inp-search{width: 209px;height: 24px;padding-left: 5px; border: 1px solid #dddddd;font-size: 14px;color: #aaaaaa;}
-		.search .btn-search{width: 49px;cursor: pointer; border: none; height: 24px;color: #fff;font-size: 12px; border-radius: 3px;margin-left: -2px;background: #ff6537;}
     </style>
 </head>
 <style>
@@ -85,70 +145,72 @@
 <body>
 <div class="main clearfix">
     <div id="p_left1">
-    	<div class="public-left">
-		    <p class="pub-logo"></p>
-		    <ul  id="category" class="pub-nav center scrollbar" data-bind = "foreach:{data:category,as:'auto'}">
-		        <li>
-		        	<a href="javascript:;"><span data-bind = "text:title">全部商品</span></a>
-		        	<ul class="pub-nav-sm" data-bind = "foreach:{data:child,as:'auto'}">
-		        		<li><a data-bind = "text:name,attr:{'cate_id':category_id}">全部商品</a></li>
-		        	</ul>
-		        </li>
-		    </ul>
-		</div>
-		<script>
-			!function () {
-		        var url = window.location.pathname.split('.')[0].split('/');
-		        url = url[url.length-1];
-		        var n;
-		        switch (url) {
-		            case '' :
-		                n = 0;
-		                break;
-		            case '' :
-		                n = 1;
-		                break;
-		            case '' :
-		                n = 2;
-		                break;
-		            case '' :
-		                n = 3;
-		                break;
-		            case '' :
-		                n = 4;
-		                break;
-		            case '' :
-		                n = 5;
-		                break;
-		            case '' :
-		                n = 6;
-		                break;    
-		        }
-		        $('.pub-nav>li').eq(n).addClass('select').siblings().removeClass('select');
-		    }();		    
-		    
-//		    类目
-           $(function(){
-           	  X.bindModel(requestUrl.cateGoods,0, {}, '', ['category'], function () {
-           	  	$('.pub-nav>li:first-child').addClass('select')
-           	  	$('.pub-nav>li>a').click(function(){
-			    	if($(this).children('span').hasClass('aali')){
-			    		$(this).children('span').removeClass('aali');
-			    		$(this).children('span').css('background','url(images/p_navs.png) left center no-repeat');
-			    	}else{
-			    		$(this).children('span').addClass('aali');		
-			    		$(this).children('span').css('background','url(images/client-icon.png) no-repeat left center');
-			    	}  	
-			    	$(this).parent().children('.pub-nav-sm').slideToggle();
-			    	$(this).parent().addClass('select').siblings().removeClass('select');
-			    })
-           	  	$('.pub-nav-sm a').click(function(){
-           	  		search({'category_id':$(this).attr('cate_id')})
-           	  	})
-           	  	$('.pub-nav .pub-nav-sm>li').click(function(){
-			    	$('.pub-nav .pub-nav-sm>li').removeClass('act-nav');
-			    	$(this).addClass('act-nav');
-			    })
+        <div class="public-left" >
+            <p class="pub-logo"></p>
+            <div id="category">
+                <ul class="pub-nav center scrollbar" data-bind="foreach:{data:category,as:'auto'}">
+                    <li>
+                        <a href="javascript:;"><span data-bind="text:name">全部商品</span></a>
+                        <ul class="pub-nav-sm" data-bind="foreach:{data:child,as:'auto'}">
+                            <li><a data-bind="text:name,attr:{'cate_id':cid,level:level}">全部商品</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            !function () {
+                var url = window.location.pathname.split('.')[0].split('/');
+                url = url[url.length - 1];
+                var n;
+                switch (url) {
+                    case '' :
+                        n = 0;
+                        break;
+                    case '' :
+                        n = 1;
+                        break;
+                    case '' :
+                        n = 2;
+                        break;
+                    case '' :
+                        n = 3;
+                        break;
+                    case '' :
+                        n = 4;
+                        break;
+                    case '' :
+                        n = 5;
+                        break;
+                    case '' :
+                        n = 6;
+                        break;
+                }
+                $('.pub-nav>li').eq(n).addClass('select').siblings().removeClass('select');
+            }();
+
+            //		    类目
+            $(function () {
+                X.bindModel(requestUrl.cateGoods, 0, {}, '', ['category'], function () {
+                    $('.pub-nav>li:first-child').addClass('select')
+                    $('.pub-nav>li>a').click(function () {
+                        if ($(this).children('span').hasClass('aali')) {
+                            $(this).children('span').removeClass('aali');
+                            $(this).children('span').css('background', 'url(images/p_navs.png) left center no-repeat');
+                        } else {
+                            $(this).children('span').addClass('aali');
+                            $(this).children('span').css('background', 'url(images/client-icon.png) no-repeat left center');
+                        }
+                        $(this).parent().children('.pub-nav-sm').slideToggle();
+                        $(this).parent().addClass('select').siblings().removeClass('select');
+                    })
+                    $('.pub-nav-sm a').click(function () {
+                        search({'category_id': $(this).attr('cate_id'),'level': $(this).attr('level')})
+                    })
+                    $('.pub-nav .pub-nav-sm>li').click(function () {
+                        $('.pub-nav .pub-nav-sm>li').removeClass('act-nav');
+                        $(this).addClass('act-nav');
+                    })
 //         	  	$('.pub-nav').scroll(function(){
 ////         	  		var oThis = $('.pub-nav>li.select').index();
 //                  var oHeight = $('.pub-nav>li').height()
@@ -172,65 +234,66 @@
 ////	         	  		}
 //                  })                		
 //         	  	})
-           	  },function(e){
-           	  	 var data = {'category':[]};
-           	  	 for(var i in e){
-           	  	 	for(var j in e[i].child){
-           	  	 		data.category.push(e[i].child[j]);
-           	  	 	}
-           	  	 } 
-    		     return  data;
-           	  })
-           })
-		</script>
+                }, function (e) {
+                    var data = {'category': e};
+//                  for (var i in e) {
+//                      for (var j in e[i].child) {
+//                          data.category.push(e[i].child[j]);
+//                      }
+//                  }
+                    return data;
+                })
+            })
+        </script>
 
     </div>
     <div class="wraper">
-       <div id="p_top"></div>
+        <div id="p_top"></div>
         <div class="sidebarRight">
             <div class="orderBy">
-            <div class="leftOrderBy">
-                <span class="orderAction">排序方式</span>
-                <div class="leftBy">
-                    <span class="ordertext e-default cur">默认</span>
-                    <span class="ordertext e-sales">销量&darr;</span>
-                    <span class="ordertext noBorder"><label class="e-price">价格：</label><input type="text" class="min_price" placeholder="￥最低价"> - <input type="text" class="max_price" placeholder="￥最高价"><input type="button" class="e-priceArea" value="确定"></span>
+                <div class="leftOrderBy">
+                    <span class="orderAction">排序方式</span>
+                    <div class="leftBy">
+                        <span class="ordertext e-default cur">默认</span>
+                        <span class="ordertext e-sales">销量&darr;</span>
+                        <span class="ordertext noBorder"><label class="e-price">价格：</label><input type="text" class="min_price" placeholder="￥最低价" style="height: 25px;"> - <input type="text" class="max_price" placeholder="￥最高价" style="height: 25px;"><input type="button" class="e-priceArea" value="确定"></span>
+                    </div>
+                </div>
+                <div class="rightOrderBy">
+                    <span class="startPH" style="display: none">开始铺货</span>
+                    <div class="rightBy">
+                        <span class="escPH">进入批量铺货</span>
+                        <span>已选：<b id="Phnum">0</b> 件商品</span>
+                    </div>
+                    <div class="search">
+                        <input type="text" class="inp-search" name="searchText" id="searchText" value=""
+                               placeholder="请输入想要搜索的关键词"/>
+                        <input type="button" class="btn-search" id="" value="搜索"/>
+                    </div>
                 </div>
             </div>
-            <div class="rightOrderBy">
-                <span class="startPH">开始铺货</span>
-                <div class="rightBy">
-                    <span class="escPH">进入批量铺货</span>
-                    <span>已选：<b id="Phnum">0</b> 件商品</span>
-                </div>
-                <div class="search">
-            		<input type="text" class="inp-search" name="searchText" id="searchText" value="" placeholder="请输入想要搜索的关键词" /><input type="button" class="btn-search" id="" value="搜索" />
-            	</div>
-            </div>
-        </div>
             <div class="goodsListDiv scrollbar scrollbar1" id="search">
-                <ul data-bind = "foreach:{data:item,as:'auto'}" id="goodsList" class="clearfix">
+                <ul data-bind="foreach:{data:item,as:'auto'}" id="goodsList" class="clearfix">
                     <li class="" data-bind="attr:{goodID:goods_id,goods_name:goods_name,buyer_goods_no:buyer_goods_no}">
                         <div class="goodsImg">
                             <a>
-                                <img data-bind="attr:{src:img_path,alt:goods_name,title:goods_name}"  class="gooddetail" src="">
+                                <img data-bind="attr:{src:img_path,alt:goods_name,title:goods_name}" class="gooddetail" src="">
                             </a>
                             <p>
                                 <span class="leftSC">已收藏：<label data-bind="text:collect_count"></label></span>
                                 <!--<span class="goodsSC">收藏</span>-->
-
                             </p>
                         </div>
                         <div class="goodsBorder">
-                            <p class="goodsName"><a data-bind="text:goods_name,attr:{title:goods_name}"></a></p>
+                            <p class="goodsName"><a data-bind="html:goods_name,attr:{title:goods_name}"></a></p>
                             <div class="goodsGrade">
                                 <div class="left">
-                                    <p>基础版：<label data-bind="text:basic_price"></label></p>
-                                    <p>中级版：<label data-bind="text:middle_price"></label></p>
-                                    <p class="goodsPriceGj">高级版：<label data-bind="text:senior_price"></label></p>
+                                    <p class="userSign" data-level="1">初级版：<label data-bind="text:basic_price"></label></p>
+                                    <p class="userSign" data-level="2">中级版：<label data-bind="text:middle_price"></label></p>
+                                    <p class="userSign" data-level="3">高级版：<label data-bind="text:senior_price"></label></p>
                                 </div>
                                 <div class="right">
-                                    <p class="delPrice">原价：<label data-bind="text:price"></label></p>
+                                    <p class="delPrice">零售价：<label data-bind="text:distribution_price"></label></p>
                                     <p>
                                         <!--<span class="joinSheet">加入进货单</span>-->
                                         <span class="rightPH buy">一键铺货</span>
@@ -240,7 +303,7 @@
                             </div>
                         </div>
                         <div class="NoActive"></div>
-                    </li>                                            
+                    </li>
                 </ul>
                 <div class="loadMore">......加载中</div>
             </div>
@@ -253,116 +316,127 @@
 </body>
 <script type="text/javascript" src="js/Add.js"></script>
 <script type="text/javascript">
-    var liHeight = $('#search>ul>li').eq(0).height()*0.7;
-    $('#search').scroll(function(){
-    	if( $('#search>ul>li').eq($('#search>ul>li').size()-1).offset().top <= $(window).height()*0.95-liHeight ){
-    		if(truetrue){
-    			kzfy();
-    		}
-    	};
+    var liHeight = $('#search>ul>li').eq(0).height() * 0.7;
+    $('#search').scroll(function () {
+        if ($('#search>ul>li').eq($('#search>ul>li').size() - 1).offset().top <= $(window).height() * 0.95 - liHeight) {
+            if (truetrue) {
+                kzfy();
+            }
+        }
     });
-
     var pageData = {},   //翻页记录 当前传入data
         pageNum = 2,         //当前页码
         truetrue = false;
+    //  绑定数据
+    $(function () {
+        search({
+            'category_id': getUrlParam('cate_id') == '' ? '' : getUrlParam('cate_id'),
+            'keyword': getUrlParam('keyword') == '' ? '' : getUrlParam('keyword')
+        });
+        //   搜索
+        $('.btn-search').on('click', function () {
+            var data = searchCondition();
+			if( $('#searchText').val() == '' ){
+				data.keyword = ''
+			} 
+			search(data) 
+        });
 
-//  绑定数据
-    $(function(){
-	    search({'category_id':getUrlParam('cate_id') == '' ? '': getUrlParam('cate_id'),'keyword':getUrlParam('keyword') == '' ? '' : getUrlParam('keyword')});
-   //   搜索
-	    $('.btn-search').on('click',function(){
-    	     search(searchCondition());      			    		
-    	});
-	
-		//	    默认
-		   
-	     $('.e-default').on('click',function(){
-	     	 $(this).addClass('cur').siblings().removeClass('cur');
-	     	 var data = searchCondition();
-	     	 if(oUpTime == 0){
-	     	 	oSales = 0;
-	     	 	oUpTime =1;
-	     	 	oPrice =0;
-	     	 	$.extend(data,{'sort_key':1,'sort_type':1});
-	     	 }else{
-	     	 	oUpTime = 0;
-	     	 	$.extend(data,{'sort_key':1,'sort_type':0});
-	     	 }
-	     	 search(data);
-	     });
-	//	    销量
-	     $('.e-sales').on('click',function(){
-	     	 $(this).addClass('cur').siblings().removeClass('cur');
-	     	 var data = searchCondition();
-	     	 if(oSales == 0){	     	 	
-	     	 	oSales = 1;
-	     	 	oUpTime =0;
-	     	 	oPrice =0;
-	     	 	$(this).html('销量↑');
-	     	 	$.extend(data,{'sort_key':2,'sort_type':1});
-	     	 }else{
-	     	 	oSales = 0;
-	     	 	$(this).html('销量↓');
-	     	 	$.extend(data,{'sort_key':2,'sort_type':0});
-	     	 }
-	     	 search(data);
-	     });
-	//	    价格
-	     $('.e-price').on('click',function(){
-	     	 $(this).parent().addClass('cur').siblings().removeClass('cur');
-	     	 var data = searchCondition();
-	     	 if(oPrice == 0){	     	 	
-	     	 	oPrice = 1;
-	     	 	oUpTime =0;
-	     	 	oSales =0;
-	     	 	$.extend(data,{'sort_key':3,'sort_type':1});
-	     	 }else{
-	     	 	oPrice = 0;
-	     	 	$.extend(data,{'sort_key':3,'sort_type':0});
-	     	 }
-	     	 search(data);
-	     });
-	     $('.e-priceArea').on('click',function(){
-	     	var oIndex = $('.ordertext.cur').index(),
-        	    data = searchCondition();
-        	switch(oIndex){
-        		case  0 :
-        		   if(oUpTime = 0){
-        		   	  $.extend(data, {'sort_key': 1, 'sort_type': 0});
-        		   }else{
-        		   	  $.extend(data, {'sort_key': 1, 'sort_type': 1});
-        		   }
-        		   break;
-        		case  1 :
-        		   if(oSales = 0){
-        		   	  $.extend(data, {'sort_key': 2, 'sort_type': 0});
-        		   }else{
-        		   	  $.extend(data, {'sort_key': 2, 'sort_type': 1});
-        		   }
-        		   break;
-        		case  2 :
-        		   if(oPrice = 0){
-        		   	  $.extend(data, {'sort_key': 3, 'sort_type': 0});
-        		   }else{
-        		   	  $.extend(data, {'sort_key': 3, 'sort_type': 1});
-        		   }
-        		   break;   
-        	}
+        $(window).keydown(function(e){
+            var  isFocus=$(".inp-search").is(":focus");
+            if(isFocus&& e.keyCode == 13){
+                search(searchCondition());
+                $(".inp-search").blur();
+            }
+        });
+
+        //	    默认
+
+        $('.e-default').on('click', function () {
+            $(this).addClass('cur').siblings().removeClass('cur');
+            var data = searchCondition();
+            if (oUpTime == 0) {
+                oSales = 0;
+                oUpTime = 1;
+                oPrice = 0;
+                $.extend(data, {'sort_key': 1, 'sort_type': 1});
+            } else {
+                oUpTime = 0;
+                $.extend(data, {'sort_key': 1, 'sort_type': 0});
+            }
+            search(data);
+        });
+        //	    销量
+        $('.e-sales').on('click', function () {
+            $(this).addClass('cur').siblings().removeClass('cur');
+            var data = searchCondition();
+            if (oSales == 0) {
+                oSales = 1;
+                oUpTime = 0;
+                oPrice = 0;
+                $(this).html('销量↑');
+                $.extend(data, {'sort_key': 2, 'sort_type': 1});
+            } else {
+                oSales = 0;
+                $(this).html('销量↓');
+                $.extend(data, {'sort_key': 2, 'sort_type': 0});
+            }
+            search(data);
+        });
+        //	    价格
+        $('.e-price').on('click', function () {
+            $(this).parent().addClass('cur').siblings().removeClass('cur');
+            var data = searchCondition();
+            if (oPrice == 0) {
+                oPrice = 1;
+                oUpTime = 0;
+                oSales = 0;
+                $.extend(data, {'sort_key': 3, 'sort_type': 1});
+            } else {
+                oPrice = 0;
+                $.extend(data, {'sort_key': 3, 'sort_type': 0});
+            }
+            search(data);
+        });
+        $('.e-priceArea').on('click', function () {
+            var oIndex = $('.ordertext.cur').index(),
+                    data = searchCondition();
+            switch (oIndex) {
+                case  0 :
+                    if (oUpTime = 0) {
+                        $.extend(data, {'sort_key': 1, 'sort_type': 0});
+                    } else {
+                        $.extend(data, {'sort_key': 1, 'sort_type': 1});
+                    }
+                    break;
+                case  1 :
+                    if (oSales = 0) {
+                        $.extend(data, {'sort_key': 2, 'sort_type': 0});
+                    } else {
+                        $.extend(data, {'sort_key': 2, 'sort_type': 1});
+                    }
+                    break;
+                case  2 :
+                    if (oPrice = 0) {
+                        $.extend(data, {'sort_key': 3, 'sort_type': 0});
+                    } else {
+                        $.extend(data, {'sort_key': 3, 'sort_type': 1});
+                    }
+                    break;
+            }
             search(data)
-	     });
-
-        var clickNum=0;
-        $('.marks .PopColse').on('click',function(){
+        });
+        var clickNum = 0;
+        $('.marks .PopColse').on('click', function () {
             clickNum++;
-            if(clickNum>=3){
+            if (clickNum >= 3) {
                 window.location.reload();
-            }else {
+            } else {
                 $(this).parent().parent().hide();
                 var oo = true;
                 $(this).parent().parent().parent().find('.PopDiv').each(function () {
                     if ($(this).css('display') == 'block') {
                         oo = false;
-                        console.log($(this));
                     }
                 });
                 if (oo) {
@@ -370,181 +444,207 @@
                 }
             }
         })
-	});
-	var oHtml = $('#goodsList').html();
+    });
+    var oHtml = $('#goodsList').html();
     var goodsID;
-    function search(x){      
-    	truetrue =false;
-    	var data = {};
-    	if(x && (x.category_id != '' || x.min_price != '' || x.max_price != '' || x.sort_type != '' || x.sort_key != '' || x.keyword != '')){
-    		data = x
-    	}
+    function search(x) {
+        truetrue = false;
+        var data = {};
+        if (x && (x.category_id != '' || x.min_price != '' || x.max_price != '' || x.sort_type != '' || x.sort_key != '' || x.keyword != '')) {
+            data = x
+        }
         if (data.max_price != undefined && data.min_price != undefined && (data.min_price > data.max_price)) {
-            X.notice('价格区间有误！',2);
+            X.notice('价格区间有误！', 2);
             return false
         }
-        ko.cleanNode(document.getElementById("goodsList"));  
-        $('#goodsList').html(oHtml);  
+        ko.cleanNode(document.getElementById("goodsList"));
+        $('#goodsList').html(oHtml);
         $('.loadMore').show();
         $('.loadMore').html('......拼命加载ing');
         pageData = data;
         pageNum = 2;
-	    X.bindModel(requestUrl.goodlist,0,data,'body.list',['goodsList'],function(){
-	    	truetrue = true;
-	    	nonePage =false;
-	    	//判断搜索内容是否为空
-	    	if($('#goodsList>li').size() <= 0 ){
-            	$('.loadMore').html('未找到你要的商品哟 ^。^ ');
-            }else{
-            	$('.loadMore').hide();
+        X.bindModel(requestUrl.goodlist, 0, data, 'body.list', ['goodsList'], function () {
+            truetrue = true;
+            nonePage = false;
+            //判断搜索内容是否为空
+            if ($('#goodsList>li').size() <= 0) {
+                $('.loadMore').html('未找到你要的商品哟 ^。^ ');
+            } else {
+                $('.loadMore').hide();
             }
-			goodsDetails();
-			oneGoodsPh();
-			statrPH();
+            goodsDetails();
+            oneGoodsPh();
+            statrPH();
+            goodsIgn();
         });
     }
     var oSales = 0;   //销量
     var oUpTime = 0;   //上架时间
     var oPrice = 0;   //价格
-    function searchCondition(){
-    	var data = {};
-    	var reg = /^[\d]+$/g;
-    	var reg1 = /^[\d]+$/g;
-    	if(getUrlParam('cate_id') != ''){
-    		data.category_id = getUrlParam('cate_id');
-    	}
-    	if($('.min_price').val() != '' && reg.test($('.min_price').val())){
-    		data.min_price = $('.min_price').val();    		
-    	}					  	
-    	if($('.max_price').val() != '' && reg1.test($('.max_price').val())){
-    		data.max_price = $('.max_price').val();						    		
-    	}
-    	if(getUrlParam('keyword') != ''){
-    		data.keyword = getUrlParam('keyword');						    		
-    	}
-    	if($('#searchText').val() != '' ){
-        	data.keyword = $('#searchText').val()
+    function searchCondition() {
+        var data = {};
+        var reg = /^[\d]+$/g;
+        var reg1 = /^[\d]+$/g;
+        if (getUrlParam('cate_id') != '') {
+            data.category_id = getUrlParam('cate_id');
         }
-    	return data;
+        if ($('.min_price').val() != '' && reg.test($('.min_price').val())) {
+            data.min_price = $('.min_price').val();
+        }
+        if ($('.max_price').val() != '' && reg1.test($('.max_price').val())) {
+            data.max_price = $('.max_price').val();
+            data.min_price = data.min_price || 0;
+        }
+        if (getUrlParam('keyword') != '') {
+            data.keyword = getUrlParam('keyword');
+        }
+        if ($('#searchText').val() != '') {
+            data.keyword = $('#searchText').val()
+        }
+        return data;
     }
     var nonePage = false;
-    function kzfy(){
+    function kzfy() {
         truetrue = false;
         pageData.page = pageNum;
-        if(nonePage){return false;}
+        if (nonePage) {
+            return false;
+        }
         $('.loadMore').html('正在加载中 ^。^ ');
         $('.loadMore').show();
-        X.Post(requestUrl.goodlist,0,pageData,function(e){
-         	var x = e.body.list.item;
-         	if( e.body.list.item.length <=0){
-         		$('.loadMore').html('真没有啦 ^。^ ');
-         		$('.loadMore').show();
-         		nonePage = true;
-         		return false;
-         	}
-         	pageNum++;
-         	var oHtml ='';
-         	for(var i in x){
-			    oHtml += ' <li goodID="'+x[i].goods_id+'" goods_name="'+x[i].goods_name+'"  buyer_goods_no="'+x[i].buyer_goods_no+'"> '
-			          +  '<div class="goodsImg"><a>'
-			          +  '<img src="'+x[i].img_path+'" alt="'+x[i].goods_name+'" title="'+x[i].goods_name+'"  class="gooddetail" ></a><p>'
-			          +  '<span class="leftSC">已收藏：<label>'+x[i].collect_count+'</label></span></p></div>'        
-			          +  '<div class="goodsBorder"><p class="goodsName"><a title="'+x[i].goods_name+'">'+x[i].goods_name+'</a></p>'
-			          +  '<div class="goodsGrade"><div class="left">'
-			          +  '<p>基础版：<label>'+x[i].basic_price+'</label></p>'                
-			          +  '<p>中级版：<label>'+x[i].middle_price+'</label></p>' 
-			          +  '<p class="goodsPriceGj">高级版：<label>'+x[i].senior_price+'</label></p></div><div class="right">' 
-			          +  '<p class="delPrice">原价：<label>'+x[i].price+'</label></p>'                  
-			          +  '<p><span class="rightPH buy">一键铺货</span> <span class="buy ljgm"><a class="gooddetail">立即购买</a></span></p>'
-			          +  '</div></div></div><div class="NoActive"></div></li>'                     			              		
-         	}     
-         	$('#search>ul').append(oHtml);        	         
-         	truetrue = true;
+        X.Post(requestUrl.goodlist, 0, pageData, function (e) {
+            var x = e.body.list.item;
+            if (e.body.list.item.length <= 0) {
+                $('.loadMore').html('真没有啦 ^。^ ');
+                $('.loadMore').show();
+                nonePage = true;
+                return false;
+            }
+            pageNum++;
+            var oHtml = '';
+            for (var i in x) {
+                oHtml += ' <li goodID="' + x[i].goods_id + '" goods_name="' + x[i].goods_name.replace(/<.+">/, "").replace(/<\/[a-zA-Z]+>/, "") + '"  buyer_goods_no="' + x[i].buyer_goods_no + '"> '
+                        + '<div class="goodsImg"><a>'
+                        + '<img src="' + x[i].img_path + '" alt="' + x[i].goods_name.replace(/<.+">/, "").replace(/<\/[a-zA-Z]+>/, "") + '" title="' + x[i].goods_name.replace(/<.+">/, "").replace(/<\/[a-zA-Z]+>/, "") + '"  class="gooddetail" ></a><p>'
+                        + '<span class="leftSC">已收藏：<label>' + x[i].collect_count + '</label></span></p></div>'
+                        + '<div class="goodsBorder"><p class="goodsName"><a title="' + x[i].goods_name.replace(/<.+">/, "").replace(/<\/[a-zA-Z]+>/, "") + '">' + x[i].goods_name + '</a></p>'
+                        + '<div class="goodsGrade"><div class="left">'
+                        + '<p class="userSign" data-level="1">基础版：<label>' + x[i].basic_price + '</label></p>'
+                        + '<p class="userSign" data-level="2">中级版：<label>' + x[i].middle_price + '</label></p>'
+                        + '<p class="userSign" data-level="3">高级版：<label>' + x[i].senior_price + '</label></p></div><div class="right">'
+                        + '<p class="delPrice">零售价：<label>' + x[i].distribution_price + '</label></p>'
+                        + '<p><span class="rightPH buy">一键铺货</span> <span class="buy ljgm"><a class="gooddetail">立即购买</a></span></p>'
+                        + '</div></div></div><div class="NoActive"></div></li>'
+            }
+            $('#search>ul').append(oHtml);
+            truetrue = true;
             $('.loadMore').hide();
-			goodsDetails();
-			oneGoodsPh();
-			statrPH();
-			if(!flag){
-				$('.NoActive,.YesActive').show();
-			}
+            goodsDetails();
+            oneGoodsPh();
+            statrPH();
+            goodsIgn();
+            if (!flag) {
+                $('.NoActive,.YesActive').show();
+            }
         });
     }
 
-	//批量铺货
-	var flag = true;
-	var PhNum = 0;
-	$('.escPH').click(function(){
-		if(flag){
-			$(this).text('退出批量铺货');
-			$('.NoActive,.YesActive').show();
-			flag = false;
-		}else{
-			$(this).text('进入批量铺货');
-			$('.NoActive,.YesActive').hide();
-			flag = true;
-		}
-	});
-	$('.goodsListDiv').on('click','li',function(){
-		if(!flag){
-			var sign = $(this).hasClass('sign');
-			if(!sign){
-				PhNum++;
-				$(this).addClass('sign');
-				$(this).find('.NoActive').removeClass('NoActive').addClass('YesActive');
-			}else{
-				PhNum--;
-				$(this).removeClass('sign');
-				$(this).find('.YesActive').removeClass('YesActive').addClass('NoActive');
+    //批量铺货
+    var flag = true;
+    var PhNum = 0;
+    $('.escPH').click(function () {
+        if (flag) {
+            $(this).text('退出批量铺货');
+            $('.NoActive, .YesActive, .startPH').show();
+//            $(".startPH").hide();
+            flag = false;
+        } else {
+            $(this).text('进入批量铺货');
+            $('.NoActive, .YesActive, .startPH').hide();
+//            $(".startPH").show();
+            flag = true;
+            PhNum = 0;
+            $('#Phnum').text(PhNum);
+            $('#goodsList li').removeClass('sign').find('.YesActive').removeClass('YesActive').addClass('NoActive');
+        }
+    });
+    $('.goodsListDiv').on('click', 'li', function () {
+        if (!flag) {
+            var sign = $(this).hasClass('sign');
+            if (!sign) {
+                PhNum++;
+                $(this).addClass('sign');
+                $(this).find('.NoActive').removeClass('NoActive').addClass('YesActive');
+            } else {
+                PhNum--;
+                $(this).removeClass('sign');
+                $(this).find('.YesActive').removeClass('YesActive').addClass('NoActive');
 
-			}
-			$('#Phnum').text(PhNum);
-		}
-	});
-	var DetailViewModel = {
-		goodsArr:[]
-	};
-	function oneGoodsPh(){
-		//单个商品铺货
-		$('.rightPH').click(function(){
-			DetailViewModel.goodsArr.length=0;
-			DetailViewModel.goodsArr.push({goodsID:$(this).parents('li').attr('goodid'),goods_name:$(this).parents('li').attr('goods_name'),buyer_goods_no:$(this).parents('li').attr('buyer_goods_no')});
-			yijinPH(DetailViewModel);
-		});
-	}
-	function goodsDetails(){
-		$('#goodsList li').on('click','.gooddetail',function(){
-			$('.marks').show();
-			$('.marks .goods_detail').show();
-			$('.marksPHGoods').hide();
-			goodsID = $(this).parents('li').attr('goodid');
-			var data = {
-				'goods_id':goodsID,    //商品ID
-				'user_id':localStorage.getItem('user_id'),  //用户ID
-				'platform':1                    //平台号
-			};
-			goodDetail(data);
-		});
-	}
-
-	function statrPH(flag){
-		$('.startPH').click(function(){
-			if(!flag){
-				if($('#goodsList .sign').length>0){
-					CheckUserLogin();
-					DetailViewModel.goodsArr.length=0;
-					$('#goodsList li').each(function(){
-						if($(this).hasClass('sign')){
-							DetailViewModel.goodsArr.push({goodsID:$(this).attr('goodid'),goods_name:$(this).attr('goods_name'),buyer_goods_no:$(this).parents('li').attr('buyer_goods_no')});
-						}
-					});
-					yijinPH(DetailViewModel);
-				}else {
-					X.notice('请选择商品',3)
-				}
-			}else {
-				X.notice('请先进入批量铺货',3)
-			}
-		});
-	}
+            }
+            $('#Phnum').text(PhNum);
+        }
+    });
+    var DetailViewModel = {
+        goodsArr: []
+    };
+    function oneGoodsPh() {
+        //单个商品铺货
+        $('.rightPH').click(function () {
+            var reg = new RegExp("<[^<]*>", "gi");
+            DetailViewModel.goodsArr.length = 0;
+            DetailViewModel.goodsArr.push({
+                goodsID: $(this).parents('li').attr('goodid'),
+                goods_name: $(this).parents('li').attr('goods_name').replace(reg, ""),
+                buyer_goods_no: $(this).parents('li').attr('buyer_goods_no')
+            });
+            yijinPH(DetailViewModel);
+        });
+    }
+    function goodsDetails() {
+        $('#goodsList li').on('click', '.gooddetail', function () {
+            $('.marks').show();
+            $('.marks .goods_detail').show();
+            $('.marksPHGoods').hide();
+            goodsID = $(this).parents('li').attr('goodid');
+            var data = {
+                'goods_id': goodsID,    //商品ID
+                'user_id': localStorage.getItem('user_id'),  //用户ID
+                'platform': 1                    //平台号
+            };
+            goodDetail(data);
+        });
+    }
+    function statrPH(flag) {
+        $('.startPH').bind('click').click(function () {
+            if (!flag) {
+                if ($('#goodsList .sign').length > 0) {
+                    CheckUserLogin();
+                    DetailViewModel.goodsArr.length = 0;
+                    $('#goodsList li').each(function () {
+                        if ($(this).hasClass('sign')) {
+                            DetailViewModel.goodsArr.push({
+                                goodsID: $(this).attr('goodid'),
+                                goods_name: $(this).attr('goods_name'),
+                                buyer_goods_no: $(this).parents('li').attr('buyer_goods_no')
+                            });
+                        }
+                    });
+                    yijinPH(DetailViewModel);
+                } else {
+                    X.notice('请选择商品', 3)
+                }
+            } else {
+                X.notice('请先进入批量铺货', 3)
+            }
+        });
+    }
+    //价格高亮
+    function goodsIgn(){
+        $('#goodsList li .userSign').each(function(){
+            if($(this).attr('data-level') == localStorage.getItem('user_level')){
+                $(this).css('color','red');
+            }
+        })
+    }
 </script>
 </html>

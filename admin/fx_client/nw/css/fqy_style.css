@@ -64,7 +64,7 @@
 .contentFooter>div>span>.colorGreen{color: #21d078}
 .contentFooter>div>span>.colorRed{color: #ff0200}
 .contentFooter>div>button{height: 0.7rem;border: 1px solid #bbbbbb;padding: 0 0.4rem;border-radius: 5px;background: #fff;margin-right: 13px;font-size: 0.35rem;font-family: "微软雅黑";cursor: pointer;outline: none}
-.contentFooter>div>.publicHbtn{background: #ff6537!important;color: #fff!important;border: 1px solid #ff6537!important}
+.contentFooter>div>.publicHbtn{background: #F22D00;color: #fff;}
 
 /*开通账户弹窗*/
 .publicTextClore{color: #ff6537}
@@ -118,7 +118,7 @@
 .sidebarRight > .orderBy > .leftOrderBy > .orderAction {
     float: left;
     background: #e4393c;
-    padding: 6px 10px;
+    padding: 9px 10px;
     font-size: 0.3rem;
     color: #fff
 }
@@ -144,8 +144,8 @@
 
 .sidebarRight > .orderBy .leftBy > .ordertext {
     display: inline-block;
-    padding: 3.5px 8px;
-    font-size: 0.3rem;
+    padding: 0.5px 8px;
+    font-size: 0.35rem;
     border-color: #ccc;
     border-style: solid;
     border-width: 0 1px 0 0;
@@ -162,13 +162,13 @@
 }
 
 .sidebarRight > .orderBy .leftBy > .ordertext > input[type='button'] {
-    width: 50px;
+    width: 70px;
     margin-left: 10px;
     background: #ff7300;
     color: #fff;
     border: none;
     border-radius: 3px;
-    padding: 2px 0;
+    padding: 7px 0;
     cursor: pointer;
     outline: none
 }
@@ -202,9 +202,10 @@
 }
 
 .sidebarRight > .orderBy > .rightOrderBy > .rightBy > .escPH {
-    background: #fff;
+    background: #FF5E2D;
     display: inline-block;
     cursor: pointer;
+    color: #fff;
 }
 
 .sidebarRight > .orderBy > .rightOrderBy > .rightBy b {
@@ -459,6 +460,7 @@
 .cont-box-text{line-height: 40px; padding-left: 50px;height: 40px;margin: 20px 0;font-family: "microsoft yahei";font-size: 14px;}
 .cont-box-text span{display: inline;display: inline-block;width: 100px;text-align: right;}
 .cont-box-text strong{display: inline;display: inline-block;padding-left: 20px;margin-right: 40px;}
+#up_user_level {text-align: left;}
 .state{font-style: normal;color: #2abf1d;margin-right: 37px;}
 .amend{color: #ff6537;}
 .bg-color{background: #f8f8f8;}
@@ -466,7 +468,7 @@
 
 
 /*申请提现*/
-.PopBody{font-family: "microsoft yahei";font-size: 14px;color: #666666;}
+.PopBody{font-family: "microsoft yahei";font-size: 14px;color: #666666;border-bottom: 1px solid #fff}
 .PopBody>p{margin: 0 auto;line-height: 40px;}
 .PopBody>p>span{width: 150px;text-align: right;display: inline;display: inline-block;}
 .PopBody>p>strong{margin-right: 30px;}

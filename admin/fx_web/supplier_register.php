@@ -25,6 +25,11 @@
         <script src="js/pseudo.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/plus.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+	    	if (getCookieValue('user_nickname') != '' && getCookieValue('user_nickname') != null) {
+	    		window.location.href = 'index.php'
+	    	}
+	    </script>
     </head>
 </head>
 <body style="background: #fff">
@@ -49,8 +54,8 @@
                             <td></td>
                         </tr>-->
                         <tr>
-                            <td>电子邮箱：</td>
-                            <td colspan="2"><input type="text" name="email" placeholder="" id="f_email"></td>
+                            <td>手机号：</td>
+                            <td colspan="2"><input type="text" name="mobile" placeholder="" id="f_email"></td>
                             <td></td>
                         </tr>
                         <tr>
@@ -117,9 +122,9 @@
     $('#drag').drag();
     $('.register').click(function () {
         var data = $('#gysRrgister').serializeJson();
-        var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
-        if (!myreg.test(data.email)) {
-            X.notice('请输入有效的E_mail！', 3);
+        var myreg = /^1[3-9][0-9]{9}$/;
+        if (!myreg.test(data.mobile)) {
+            X.notice('手机号输入有误！', 3);
             $('input[name = "email"]').focus();
             return false;
         }
@@ -158,12 +163,12 @@
         $('#send_auth_code').click(function () {
             	var data = {
             	   'to':$('#f_email').val(),
-            	   'type':'email',
+            	   'type':'mobile',
             	   'target':'gh_registe'
             	}
-            	var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+            	var myreg = /^1[3-9][0-9]{9}$/;
                 if (!myreg.test(data.to)) {
-                    X.notice('请输入有效的E_mail！', 3);
+                    X.notice('请输入有效的手机号！', 3);
                     $('#f_email').focus();
                     return false;
                 }	
@@ -192,12 +197,12 @@
 	        if($(this).val() == ''){
 	    		return false;
     	    }
-        	var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+        	var myreg = /^1[3-9][0-9]{9}$/;
             if (!myreg.test($(this).val())) {
-                X.notice('请输入有效的E_mail！', 3);
+                X.notice('手机号格式有误！', 3);
                 return false;
             }	
-        	X.Post(requestUrl.gh_regist_check,0,{'email':$(this).val()},function(e){
+        	X.Post(requestUrl.gh_regist_check,0,{'mobile':$(this).val()},function(e){
     		    if(e.header.stats == 0) {			   					  					   
 	                X.notice(e.body.list, 3)
                 }else {

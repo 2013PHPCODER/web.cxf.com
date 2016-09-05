@@ -43,7 +43,7 @@
                                 <!--<p><i class="money"></i><strong>支付宝：<span  data-bind="text:receiver_account == null ? '未绑定': receiver_account" ></span></strong></p>-->
                             </div>
                             <div class="shop" id="shop_survey_totol">
-                                <h2>绑定店铺<span>数量：<b data-bind = "text:shop.shop_list.length"></b>/3</span><a onclick="openTB()">绑定</a></h2>
+                                <h2>绑定店铺<span>数量：<b data-bind = "text:shop.shop_list.length"></b>/5</span><a onclick="openTB()">绑定</a></h2>
                                 <div data-bind="foreach:{data:shop.shop_list,as:'auto'}">
                                     <p><i class="shop-name"></i><strong><span data-bind="text:nick "></span></strong></p>
                                 </div>                               
@@ -101,14 +101,14 @@
 <script type="text/javascript">
     $('.capital-nav li').click(function () {
         $(this).addClass('active').siblings().removeClass('active')
-    })
+    });
     $('.nav-sm-li').click(function () {
         $(this).addClass('act').siblings().removeClass('act');
-    })
+    });
     $(function () {
         X.bindModel(requestUrl.get_user, 1, {'user_id': getCookieValue('user_id')}, 'body.list', ['get_user'], function () {
 
-        })
+        });
         X.bindModel(requestUrl.shop_survey, 1, {'user_id': getCookieValue('user_id')}, 'body.list', ['shop_survey', 'shop_survey_totol'], function () {
 
         })

@@ -35,13 +35,21 @@
         <!--body-->
         <div class="sor-wrapper">
         	<div class="fc9e24fc9e24" style="position: relative;">
-        		<img src="images/qwe.png"/>
+        		<img src="http://maihoho.b0.upaiyun.com//top/4877366769770032923.jpg"/>
         		<a id="download" href="http://maihoho.b0.upaiyun.com//top/4897208356537409423.exe"></a>
         	</div>
-        	<div class="sor-goods"></div>
-        	<div class="sor-shop"></div>
-            <div class="sor-last"></div>
-        	<div class="sor-yb"></div>
+        	<div class="sor-goods">
+                <img src="images/qwr.png" alt="">
+            </div>
+        	<div class="sor-shop">
+                <img src="images/qwt.png" alt="">
+            </div>
+            <div class="sor-last">
+                <img src="images/qwy.png" alt="">
+            </div>
+        	<div class="sor-yb">
+                <img src="images/qwu.png" alt="">
+            </div>
         	</div>
         </div>
         <!--footer-->

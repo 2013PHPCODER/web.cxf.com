@@ -64,10 +64,10 @@
         background:#f7f7f7;
         overflow-y: auto;
         overflow-x: hidden;
-        height: 100%;
+        position:absolute;
+        height: 92%;
         top:48px;
         bottom:60px;
-        position:absolute;
         z-index:99;
         _height:100%;
         _border-top:48px solid #eee;
@@ -105,7 +105,7 @@
                         $('.top-left').children('a').eq(2).find('.num-icon').addClass("show").html(e.body.list.list.length);
                     }
                 },function(x){
-                    console.log(x);
+//                    console.log(x);
                     var e = x, newDate = new Date();
                     for(var i in x.list){
                         newDate.setTime(x.list[i].addtime * 1000);
@@ -117,6 +117,5 @@
             }else{
             	$('.num-icon').hide();
             }                       
-     })          
-     
+     });
 </script>

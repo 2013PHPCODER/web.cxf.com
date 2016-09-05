@@ -14,21 +14,24 @@
         <script src="js/public.js"></script>
         <script src="js/plus.js"></script>  
         <style>
-           .goodsListDiv .goodsListUl li{
-             	height: 375px;
-           }          
-	       .goodsListDiv .goodsListUl li > .goodsBorder{
-	       	  height: 120px;
-	       }
-        	.goodsListDiv ul li .goodsName {
-			    height: 42px;
-			}
+           /*.goodsListDiv .goodsListUl li{*/
+             	/*height: 375px;*/
+           /*}          */
+	       /*.goodsListDiv .goodsListUl li > .goodsBorder{*/
+	       	  /*height: 120px;*/
+	       /*}*/
+        	/*.goodsListDiv ul li .goodsName {*/
+			    /*height: 42px;*/
+			/*}*/
 			.goodsTypeName .TypeName {
 			    height: 24px;
-			    width: 132px;
+			    width: 129px;
 			    overflow: hidden;
 			}
 			.sidebarLeft .sidebarMax>ul{display: block;}
+			.sidebarRight > .orderBy > .leftOrderBy > .orderAction {
+				padding: 8px 10px;
+			}
         </style>
     </head>
     <body>
@@ -42,15 +45,16 @@
         	<div class="sidebarLeft" id="searchCatage">
 	            <div class="sidebarMax" data-bind="foreach:{data:category,as:'auto'}">
 	                <div class="goodsTypeName noMargin">
-	                    <div data-bind="style:{background:'url('+ico+') no-repeat'}">
-	                        <p class="TypeName" data-bind="text:name,attr:{'category_id':category_id}">时尚女装</p>
+	                    <div  >
+	                    	<b><img src=""data-bind = "attr:{'src':ico}"/></b>
+	                        <p class="TypeName" data-bind="text:name,attr:{'category_id':cid}">时尚女装</p>
 	                        <p class="TypeNameEng" data-bind="text:name_en">fashion womenswear</p>
 	                        <i></i>
 	                    </div>
 	                </div>
 	                <ul data-bind="foreach:{data:child,as:'auto'}">
 	                    <li>
-	                        <a data-bind="text:name,attr:{category_id:category_id}">T恤</a>
+	                        <a data-bind="text:name,attr:{category_id:cid,level:level}">T恤</a>
 	                    </li>
 	                </ul>	                
 	            </div>
@@ -78,7 +82,7 @@
                         </div>
                     </div>
                     <div class="rightOrderBy">
-                        <span class="startPH">开始铺货</span>
+                        <span class="startPH" style="display: none">开始铺货</span>
                         <div class="rightBy">
                             <span class="escPH">进入批量铺货</span>
                             <span>已选：<b id="Phnum">0</b> 件商品</span>
@@ -91,21 +95,20 @@
                         <li data-bind="attr:{id:goods_id,name:goods_name,code:buyer_goods_no}">
                             <div class="goodsImg">
                                 <a data-bind="attr:{href:'/good_detail.php?goodsID='+goods_id}" target="_blank">
-                                    <img data-bind="attr:{src:img_path}" style="width: 100%;height: 100%">
+                                    <img data-bind="attr:{src:img_path}" style="width: 100%">
                                 </a>
                                 <p>
                                     <span class="leftSC">已收藏：<label data-bind="text:collect_count"></label></span>
 <!--                                    <span class="goodsSC addKeep">收藏</span>-->
-
                                 </p>
                             </div>
                             <div class="goodsBorder">
-                                <p class="goodsName"><a data-bind="text:goods_name,attr:{href:'/good_detail.php?goodsID='+goods_id}" target="_blank"></a></p>
+                                <p class="goodsName"><a data-bind="html:goods_name,attr:{href:'/good_detail.php?goodsID='+goods_id}" target="_blank"></a></p>
                                 <div class="goodsGrade">
                                     <div class="left">
-                                        <p class="basic_price">初级版：<label data-bind="text:basic_price"></label> 元</p>
-                                        <p class="middle_price">中级版：<label data-bind="text:middle_price"></label> 元</p>
-                                        <p class="high_price">高级版：<label data-bind="text:senior_price"></label> 元</p>
+                                        <p class="basic_price userSign" data-level="1">初级版：<label data-bind="text:basic_price"></label></p>
+                                        <p class="middle_price userSign" data-level="2">中级版：<label data-bind="text:middle_price"></label></p>
+                                        <p class="high_price userSign" data-level="3">高级版：<label data-bind="text:senior_price"></label></p>
                                     </div>
                                     <div class="right">
                                         <p class="delPrice">零售价：<label data-bind="text:distribution_price"></label></p>
@@ -149,7 +152,7 @@
                     });
                     $('.slider-box ul li:first').remove().clone(true).appendTo('.slider-box ul')
                 })
-            };
+            }
             function rollSliderrr() {
                 $('.slider-box ul').animate({
                     marginLeft: '0px'
@@ -165,13 +168,13 @@
                 clearInterval(startRollSlider);
             }, function () {
                 startRollSlider = setInterval(rollSliderlf, 5000);
-            })
+            });
             $('.prev').click(function () {
                 clearInterval(startRollSlider);
                 rollSliderlf();
                 //				continue setInterval(rollSliderlf,5000);
                 return false
-            })
+            });
             $('.next').click(function () {
                 clearInterval(startRollSlider);
                 rollSliderrr();
@@ -194,20 +197,7 @@
 //                $(this).addClass('menuActive')
 //            }).end().find('i').css({'transform': 'rotate(0deg)'});
 //        });
-        //批量铺货开关
-        var flag = true;
-        var PhNum = 0;
-        $('.escPH').click(function () {
-            if (flag) {
-                $(this).text('退出批量铺货');
-                $('.NoActive,.YesActive').show();
-                flag = false;
-            } else {
-                $(this).text('进入批量铺货');
-                $('.NoActive,.YesActive').hide();
-                flag = true;
-            }
-        });
+
         var DetailViewModel = {
             goodsArr:[]
         };
@@ -235,8 +225,9 @@
                 $('.sidebarMax>ul a').click(function(){
                 	var oIndex = $('.ordertext.cur').index(),
                 	    data = {
-                	    	'category_id':$(this).attr('category_id')
-                	    }
+                	    	'category_id':$(this).attr('category_id'),
+                	    	'level':$(this).attr('level')
+                	    };
 	            	switch(oIndex){
 	            		case  0 :
 	            		   if(oUpTime = 0){
@@ -268,48 +259,20 @@
                 return  x;
             });
             
-            
-
-            //批量铺货效果
-            $('.goodsListDiv').on('click', 'li', function () {
-                if (!flag) {
-                    var sign = $(this).hasClass('sign');
-                    if (!sign) {
-                        PhNum++;
-                        $(this).addClass('sign');
-                        $(this).find('.NoActive').removeClass('NoActive').addClass('YesActive');
-                    } else {
-                        PhNum--;
-                        $(this).removeClass('sign');
-                        $(this).find('.YesActive').removeClass('YesActive').addClass('NoActive');
-                    }
-                    $('#Phnum').text(PhNum);
-                }
-            });
-            //批量铺货
-            $('.startPH').click(function(){
-
-                if(flag){
-                    X.notice('请先进入批量铺货',3);
-                }else {
-                    if(PhNum<=0){
-                        X.notice('请选择商品',3);
-                    }else {
-                        DetailViewModel.goodsArr=[];
-                        $('.goodsListDiv li').each(function(){
-                            if($(this).hasClass('sign')){
-                                DetailViewModel.goodsArr.push({goodsID:$(this).attr('id'),goods_name:$(this).attr('name'),buyer_goods_no:$(this).attr('code')});
-                            }
-                        });
-                        yijinPH(DetailViewModel);
-                    }
-                }
-            })
-            
-            search({'category_id': getUrlParam('cate_id') == '' ? '' : getUrlParam('cate_id'), 'keyword': getUrlParam('keyword') == '' ? '' : getUrlParam('keyword')});
-            if (getUrlParam('keyword') != '' ) {
-                $('#searchText').val(getUrlParam('keyword'));
+//          初始
+            var startData = {}
+            if(getUrlParam('cate_id') != '' ){
+            	startData.category_id = getUrlParam('cate_id')
             }
+            if(getUrlParam('level') != '' ){
+            	startData.level = getUrlParam('level')
+            }
+            if (getUrlParam('keyword') != '' ) {
+            	var h = decodeURIComponent(getUrlParam('keyword'))
+                $('#searchText').val(h);
+                startData.keyword = h;
+            }
+            search(startData);
             //	    默认
             $('.e-default').on('click', function () {
             	$(this).addClass('cur').siblings().removeClass('cur');
@@ -406,6 +369,8 @@
             X.bindModel(requestUrl.goodlist, 0, data, 'body.list', ['search'], function () {
                 truetrue = true;
                 nonePage =false;
+                allPH();
+                pHFun();
                 //添加收藏
                 $('.addKeep').click(function(){
                     var _this = $(this);
@@ -415,8 +380,10 @@
                 });
                 //单个商品铺货
                 $('.rightPH').click(function(){
+                    var reg = new RegExp("<[^<]*>", "gi");
+//                    alert($(this).parents('li').attr('name').replace(reg, ""));
                     DetailViewModel.goodsArr.length=0;
-                    DetailViewModel.goodsArr.push({goodsID:$(this).parents('li').attr('id'),goods_name:$(this).parents('li').attr('name'),buyer_goods_no:$(this).parents('li').attr('code')});
+                    DetailViewModel.goodsArr.push({goodsID:$(this).parents('li').attr('id'),goods_name:$(this).parents('li').attr('name').replace(reg, ""),buyer_goods_no:$(this).parents('li').attr('code')});
                     yijinPH(DetailViewModel);
                 });
                 //判断搜索内容是否为空
@@ -425,22 +392,8 @@
                 }else{
                 	$('.loadMore').hide();
                 }
-                var level = getCookieValue("user_level"), levelStr = "";
-                switch (level) {
-                    case "0":
-                        $(".basic_price").addClass("goodsPriceGj");
-                        break;
-                    case "1":
-                        $(".basic_price").addClass("goodsPriceGj");
-                        break;
-                    case "2":
-                        $(".middle_price").addClass("goodsPriceGj");
-                        break;
-                    case "3":
-                        $(".high_price").addClass("goodsPriceGj");
-                        break;
-                }
-                //滚动事件
+                //价格高亮
+                goodsIgn();
             });
         }
         var oSales = 0;   //销量
@@ -458,29 +411,28 @@
             }
             if ($('.max_price').val() != '' && reg1.test($('.max_price').val())) {
                 data.max_price = $('.max_price').val();
+                data.min_price = data.min_price || 0;
             }
             if (getUrlParam('keyword') != '' ) {
-                data.keyword = getUrlParam('keyword');
+                data.keyword = decodeURIComponent(getUrlParam('keyword'));
             }
             if($('#searchText').val() != '' ){
             	data.keyword = $('#searchText').val();
             }
             return data;
         }
-        
-         $(document).scroll(function(){
-             if($(document).scrollTop()>($(document).height()-100-$(window).height())){
-                 if(truetrue){
+        $(document).scroll(function(){
+             var liHeight = $('#search>ul>li').eq(0).height() * 0.6;
+             if ($('#search>ul>li').eq($('#search>ul>li').size() - 1).offset().top <=  $(window).scrollTop() + $(window).height() - liHeight ) {
+                 if (truetrue) {
                      kzfy();
                  }
              }
 	    });
-	
 	    var pageData = {},   //翻页记录 当前传入data
 	        pageNum = 2,         //当前页码
 	        truetrue = false,
             nonePage = false;
-	   
 	    function kzfy(){
 	//  	pageNum  pageData
 	        truetrue = false;
@@ -499,32 +451,115 @@
 	         	pageNum++;
 	         	var oHtml ='';
 	         	for(var i in x){
-				    oHtml += ' <li id="'+x[i].goods_id+'" name="'+x[i].goods_name+'"  code="'+x[i].buyer_goods_no+'"> '
+				    oHtml += ' <li id="'+x[i].goods_id+'" name="'+ x[i].goods_name.replace(/<.+">/, "").replace(/<\/[a-zA-Z]+>/, "") +'"  code="'+x[i].buyer_goods_no+'"> '
 				          +  '<div class="goodsImg">'
                           +  '<a href="good_detail.php?goodsID='+x[i].goods_id+'">'
-				          +  '<img src="'+x[i].img_path+'" style="width: 100%;height: 100%" alt="'+x[i].goods_name+'" title="'+x[i].goods_name+'" ></a><p>'
+				          +  '<img src="'+x[i].img_path+'" style="width: 100%;height: 100%" alt="'+x[i].goods_name.replace(/<.+">/, "").replace(/<\/[a-zA-Z]+>/, "")+'" title="'+x[i].goods_name.replace(/<.+">/, "").replace(/<\/[a-zA-Z]+>/, "")+'" ></a><p>'
 				          +  '<span class="leftSC">已收藏：<label>'+x[i].collect_count+'</label></span></p></div>'
 
-				          +  '<div class="goodsBorder"><p class="goodsName"><a href="good_detail.php?goodsID='+x[i].goods_id+'" title="'+x[i].goods_name+'">'+x[i].goods_name+'</a></p>'
+				          +  '<div class="goodsBorder"><p class="goodsName"><a href="good_detail.php?goodsID='+x[i].goods_id+'" title="'+x[i].goods_name.replace(/<.+">/, "").replace(/<\/[a-zA-Z]+>/, "")+'">'+x[i].goods_name+'</a></p>'
 				          +  '<div class="goodsGrade"><div class="left">'
-				          +  '<p class="basic_price">基础版：<label>'+x[i].basic_price+'</label>元</p>'
-				          +  '<p class="middle_price">中级版：<label>'+x[i].middle_price+'</label>元</p>'
-				          +  '<p class="high_price">高级版：<label>'+x[i].senior_price+'</label>元</p></div><div class="right">'
+				          +  '<p class="basic_price userSign" data-level="1">初级版：<label>'+x[i].basic_price+'</label>元</p>'
+				          +  '<p class="middle_price userSign" data-level="2">中级版：<label>'+x[i].middle_price+'</label>元</p>'
+				          +  '<p class="high_price userSign" data-level="3">高级版：<label>'+x[i].senior_price+'</label>元</p></div><div class="right">'
 				          +  '<p class="delPrice">零售价：<label>'+x[i].distribution_price+'</label></p>'
-				          +  '<p><span class="rightPH buy">一键铺货</span><span class="buy ljgm"><a href="good_detail.php?goodsID='+x[i].goods_id+'">立即购买</ahre></span></p>'
-				          +  '</div></div></div><div class="NoActive"></div></li>'                     			              		
-	         	}     
-	         	$('#search>ul').append(oHtml);        	         
+				          +  '<p><span class="rightPH buy">一键铺货</span> <span class="buy ljgm"><a href="good_detail.php?goodsID='+x[i].goods_id+'">立即购买</ahre></span></p>'
+				          +  '</div></div></div><div class="NoActive"></div></li>'   
+		                         			              		
+	         	} 
+	         	
+	         	$('#search>ul').append(oHtml); 
+	         	       	         
 	         	truetrue = true;
 	            $('.loadMore').hide();
+
+                //单个商品铺货
+                $('.rightPH').click(function(){
+                    DetailViewModel.goodsArr.length=0;
+                    DetailViewModel.goodsArr.push({goodsID:$(this).parents('li').attr('id'),goods_name:$(this).parents('li').attr('name'),buyer_goods_no:$(this).parents('li').attr('code')});
+                    yijinPH(DetailViewModel);
+                });
+                if(!flag){
+                    $('.NoActive,.YesActive, .startPH').show();
+                    allPH();
+                    pHFun();
+                }
+                //价格高亮
+                goodsIgn();
 	        })       
 	    }
-  $('.classify-box').hide()
-  $('.sidebarMax').on('click','.goodsTypeName',function(){
-//	$(this).next('ul').slideToggle(function(){$(this).removeClass('menuActive')}).end().find('i').css({'transform': 'rotate(-90deg)'})
-    $(this).prevAll('.goodsTypeName').next('ul').slideUp(function(){$(this).removeClass('menuActive')}).end().find('i').css({'transform': 'rotate(-90deg)'});
-    $(this).nextAll('.goodsTypeName').next('ul').slideUp(function(){$(this).removeClass('menuActive')}).end().find('i').css({'transform': 'rotate(-90deg)'});
-    $(this).next('ul').slideDown(function(){$(this).addClass('menuActive')}).end().find('i').css({'transform': 'rotate(0deg)'});
-  })
+        $('.classify-box').hide();
+        $('.sidebarMax').on('click','.goodsTypeName',function(){
+	        if($(this).next('ul').css('display') == 'block'){
+	        	$(this).find('i').css({'transform': 'rotate(0deg)'})
+	        }else{
+	        	$(this).find('i').css({'transform': 'rotate(-90deg)'})
+	        }
+          	$(this).next('ul').slideToggle(function(){$(this).removeClass('menuActive')});
+//      $(this).prevAll('.goodsTypeName').next('ul').slideUp(function(){$(this).removeClass('menuActive')}).end().find('i').css({'transform': 'rotate(-90deg)'});
+//      $(this).nextAll('.goodsTypeName').next('ul').slideUp(function(){$(this).removeClass('menuActive')}).end().find('i').css({'transform': 'rotate(-90deg)'});
+//      $(this).next('ul').slideDown(function(){$(this).addClass('menuActive')}).end().find('i').css({'transform': 'rotate(0deg)'});
+        });
+        //批量铺货开关
+        var flag = true;
+        var PhNum = 0;
+        $('.escPH').click(function () {
+            if (flag) {
+                $(this).text('退出批量铺货');
+                $('.NoActive,.YesActive, .startPH').show();
+                flag = false;
+            } else {
+                $(this).text('进入批量铺货');
+                $('.NoActive,.YesActive, .startPH').hide();
+                flag = true;
+            }
+        });
+        //批量铺货效果
+        function allPH(){
+            $('.goodsListDiv').unbind('click').on('click', 'li', function () {
+                if (!flag) {
+                    var sign = $(this).hasClass('sign');
+                    if (!sign) {
+                        PhNum++;
+                        $(this).addClass('sign');
+                        $(this).find('.NoActive').removeClass('NoActive').addClass('YesActive');
+                    } else {
+                        PhNum--;
+                        $(this).removeClass('sign');
+                        $(this).find('.YesActive').removeClass('YesActive').addClass('NoActive');
+                    }
+                    $('#Phnum').text(PhNum);
+                }
+            });
+        }
+        //批量铺货
+        function pHFun(){
+            $('.startPH').click(function(){
+                if(flag){
+                    X.notice('请先进入批量铺货',3);
+                }else {
+                    if(PhNum<=0){
+                        X.notice('请选择商品',3);
+                    }else {
+                        DetailViewModel.goodsArr=[];
+                        $('.goodsListDiv li').each(function(){
+                            if($(this).hasClass('sign')){
+                                DetailViewModel.goodsArr.push({goodsID:$(this).attr('id'),goods_name:$(this).attr('name'),buyer_goods_no:$(this).attr('code')});
+                            }
+                        });
+                        yijinPH(DetailViewModel);
+                    }
+                }
+            });
+        }
+
+        //价格高亮
+        function goodsIgn(){
+            $('.goodsListUl li .userSign').each(function(){
+                if($(this).attr('data-level') == getCookieValue('user_level')){
+                    $(this).css('color','red');
+                }
+            })
+        }
     </script>
 </html>

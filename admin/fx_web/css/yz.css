@@ -184,7 +184,8 @@ input{outline: none;}
 .login-f input[name='userName']{ background: url(../images/mainPage/loginUserPic.png) no-repeat 10px center;}
 .login-f input[name='userPassword']{background: url(../images/mainPage/loginPassPic.png) no-repeat 10px center;}
 .login-f .loginBtn>input{background: #ff6537;color: #fff;border: none;border-radius: 5px;width: 100%;padding: 10px 0;font-size: 16px;font-weight: bold;cursor: pointer}
-
+.login-f .loginBtn>input:hover{background:#f22d00;}
+.login-f .loginBtn>input:active{background:#f22d00;}
 
 
 

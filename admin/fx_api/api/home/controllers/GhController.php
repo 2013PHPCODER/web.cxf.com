@@ -6,15 +6,15 @@ class GhController extends Controller{
 	public function checkRegiste(){				//查重
 		$q=$this->request;						//获得参数
 		// $q=new \stdclass();
-		// $q->email='12121@qq.com';
+		// $q->mobile='13899898989';
 
-		batch_isset($q, ['email']);
+		batch_isset($q, ['mobile']);
 		$dao=\Dao::Fx_supplier_user();
 
-		\Valid::is_email($q->email)->withError('邮箱格式不对');	
+		\Valid::is_mobile($q->mobile)->withError('手机格式不对');	
 
-		$exist=$dao->checkExist($q->email);
-		$exist && myerror(\StatusCode::msgExistEmail, '邮箱已存在');
+		$exist=$dao->checkExistMobile($q->mobile);
+		$exist && myerror(\StatusCode::msgExistMobile, '手机已存在');
 
 		$this->response('可以注册');
 
@@ -28,24 +28,24 @@ class GhController extends Controller{
 		// $q->mobile='13582554224';
 		// $q->password='123';
 		// $q->password2='123';
-		batch_isset($q, ['email', 'password', 'password2', 'code']);
-		checkVerifyCode('gh_registe', $q->email, $q->code);
+		batch_isset($q, ['mobile', 'password', 'password2', 'code']);
+		checkVerifyCode('gh_registe', $q->mobile, $q->code);
 
 
 		\Valid::is_equality($q->password, $q->password2)->withError('两次输入密码不正确');
-		\Valid::is_email($q->email)->withError('邮箱格式不对');
+		\Valid::is_mobile($q->mobile)->withError('手机格式不对');
 
 
 		$model=\Model::Fx_supplier_user();
-		$model->email=$q->email;
+		$model->mobile=$q->mobile;
 		$model->userpwd=encodePwd($q->password);
 		$model->user_account=create_user_account();
 		$model->addtime=date('Y-m-d H:i:s', time());
 
 		$dao=\Dao::Fx_supplier_user();
-		$exist=$dao->checkExist($model->email);
+		$exist=$dao->checkExistMobile($model->mobile);
 	
-		$exist && myerror(\StatusCode::msgExistEmail, '邮箱已存在');
+		$exist && myerror(\StatusCode::msgExistMobile, '手机号已存在');
 		
 		$r=$dao->insert($model);				//写库
 		$r? $this->response(['user_id'=>$r, 'msg'=>'注册成功']): myerror(\StatusCode::msgDBInsertFail, '注册失败');
@@ -69,11 +69,11 @@ class GhController extends Controller{
 		// $q->receiver_account_name='lly';	
 		// $q->qq='1009792';	
 		// $q->wangwang='asdho@ho.com';	
-		// $q->mobile='13979999991';
+		// $q->email='asdho@ho.com';
 
 		$must=['user_id', 'manager_category', 'apply_name', 'apply_idcard',
 			'apply_idcard_img', 'apply_idcard_img_hand', 'receiver_money_type', 'receiver_account',
-			'receiver_account_name', 'qq', 'wangwang', 'mobile',
+			'receiver_account_name', 'qq', 'wangwang', 'email',
 		];
 		batch_isset($q, $must);
 		$q->apply_type=(isset($q->apply_type) && $q->apply_type)? 1: 0;
@@ -81,7 +81,7 @@ class GhController extends Controller{
 
 		\Valid::has_valueInArray($q->apply_idcard_img)->withError('没有身份证照片');
 		\Valid::has_valueInArray($q->apply_idcard_img_hand)->withError('没有手持身份证照片');
-		\Valid::is_mobile($q->mobile)->withError('手机号码格式不对');
+		\Valid::is_email($q->email)->withError('邮箱格式不对');
 
 		if ($q->receiver_money_type==2) {
 			// $q->bank_address='某某地址';
@@ -102,6 +102,10 @@ class GhController extends Controller{
 		}
 		/*校验*/
 		
+		$dao=\Dao::Fx_supplier_user();
+		$exist=$dao->checkExist($q->email);	
+
+		$exist && myerror(\StatusCode::msgExistEmail, '邮箱已存在，请更换邮箱');
 
 
 		/*赋值*/
@@ -120,7 +124,7 @@ class GhController extends Controller{
 
 		$model->wangwang=$q->wangwang;
 		$model->qq=$q->qq;
-		$model->mobile=$q->mobile;
+		$model->email=$q->email;
 		$model->lastupdatetime=date('Y-m-d H:i:s', time());
 		$model->applicant_idcard_img=implode('|', $q->apply_idcard_img);
 		$model->receiver_account_type=$q->receiver_money_type;
@@ -135,7 +139,7 @@ class GhController extends Controller{
 		}
 
 		/*赋值*/
-		$dao=\Dao::Fx_supplier_user();
+		
 		$r=$dao->update($model);
 		$r? $this->response('资质提交成功'): myerror(\StatusCode::msgDBUpdateFail, '执资提交失败');
 

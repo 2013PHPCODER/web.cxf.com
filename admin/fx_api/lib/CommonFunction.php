@@ -94,19 +94,15 @@ function send_verify_code($_field, $_field_data) {
     switch ($_field) {
         case 'email':
             $_re = $_distribute_user_dao->get_verify_code($_field, $_field_data);
-            if (!$_re)
-                myerror(StatusCode::msgCheckFail, DistributeUser::distribute_send_often);
+            if (!$_re) myerror(StatusCode::msgCheckFail, DistributeUser::distribute_send_often);
             $_str = '您的验证码是' . $_re . '，请于10分钟内完成验证。</br>创想范';
-            if (!sendEmail($_field_data, $_str, \Config::verify('email.default')))
-                myerror(StatusCode::msgCheckFail, DistributeUser::distribute_send_verify_code_fail);
+            if (!sendEmail($_field_data, $_str, \Config::verify('email.default'))) myerror(StatusCode::msgCheckFail, DistributeUser::distribute_send_verify_code_fail);
             return true;
             break;
         case 'mobile':
             $re = $_distribute_user_dao->get_verify_code($_field, $_field_data);
-            if (!$re)
-                myerror(StatusCode::msgCheckFail, DistributeUser::distribute_send_often);
-            if (!sendSms($_field_data, $re))
-                myerror(StatusCode::msgCheckFail, DistributeUser::distribute_send_verify_code_fail);
+            if (!$re) myerror(StatusCode::msgCheckFail, DistributeUser::distribute_send_often);
+            if (!sendSms($_field_data, $re)) myerror(StatusCode::msgCheckFail, DistributeUser::distribute_send_verify_code_fail);
             return true;
             break;
         default:
@@ -557,10 +553,8 @@ function is_equality($q1, $q2) {
 
 function is_bankCard($subject) {    //判断是否为银行卡号
     $pattern = '/^[1-9]\d{15,18}/';
-    if (preg_match($pattern, $subject))
-        return true;
-    else
-        return false;
+    if (preg_match($pattern, $subject)) return true;
+    else return false;
 }
 
 function is_email($str) {            //判断是否为email
@@ -727,8 +721,7 @@ function object_array($array) {
 /* * 将stdclass转换为实体类* */
 
 function recast($className, stdClass &$object) {
-    if (!class_exists($className))
-        throw new InvalidArgumentException(sprintf('Inexistant class %s.', $className));
+    if (!class_exists($className)) throw new InvalidArgumentException(sprintf('Inexistant class %s.', $className));
 
     $new = new $className();
 
@@ -1238,10 +1231,8 @@ function get_property_val($array, $key) {
  * @return bool 是否相等（true or false）
  */
 function str_equals($str1, $str2, $case = false) {
-    if ($case)
-        return strcasecmp($str1, $str2) === 0;
-    else
-        return strcmp($str1, $str2) === 0;
+    if ($case) return strcasecmp($str1, $str2) === 0;
+    else return strcmp($str1, $str2) === 0;
 }
 
 /**
@@ -1270,8 +1261,7 @@ function get_distribution_price($level, $price) {
     }
     $return = array();
     foreach ($price_level_s as $val) {
-        if ($val['level'] == $level)
-            return bcmul($price, (1 + $val['price']), 2);
+        if ($val['level'] == $level) return bcmul($price, (1 + $val['price']), 2);
     }
     myerror(\StatusCode::msgCheckFail, '价格计算失败！');
 }
@@ -1292,8 +1282,7 @@ function milliseconds() {
  */
 function write_log($catagory, $text, $level = 'info') {
     $folder_path = $_SERVER["DOCUMENT_ROOT"] . "/../logs/$catagory";
-    if (!is_dir($folder_path))
-        mkdir($folder_path, 0777, true);
+    if (!is_dir($folder_path)) mkdir($folder_path, 0777, true);
     $date = date('Y-m-d');
     $file_path = "$folder_path/$date.log";
     $log_text = sprintf("[%s.%s][$level]%s\n", date('Y-m-d H:i:s'), milliseconds(), $text);
@@ -1315,4 +1304,34 @@ function goodsPicture($mGoodsPicture) {
     } else {
         return false;
     }
+}
+
+/**
+ * 获取客户端IP地址
+ * @param integer $type 返回类型 0 返回IP地址 1 返回IPV4地址数字
+ * @param boolean $adv 是否进行高级模式获取（有可能被伪装） 
+ * @return mixed
+ */
+function get_client_ip($type = 0, $adv = false) {
+    $type = $type ? 1 : 0;
+    static $ip = NULL;
+    if ($ip !== NULL) return $ip[$type];
+    if ($adv) {
+        if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $arr = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+            $pos = array_search('unknown', $arr);
+            if (false !== $pos) unset($arr[$pos]);
+            $ip = trim($arr[0]);
+        }elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (isset($_SERVER['REMOTE_ADDR'])) {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+    } elseif (isset($_SERVER['REMOTE_ADDR'])) {
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
+    // IP地址合法验证
+    $long = sprintf("%u", ip2long($ip));
+    $ip = $long ? array($ip, $long) : array('0.0.0.0', 0);
+    return $ip[$type];
 }

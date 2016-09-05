@@ -1,6 +1,162 @@
 <?php
+/*
+关键字替换，关键字高亮 
+by 林澜叶  linlanye@sina.cn 2016/08/31 16:00
+
+用法：
+    $keyword=['关键词1',  '关键词2'..];
+    $a=new LinMatch($keyword);
+    $a->strictModel();      //严格模式，匹配区分大小写,默认不区分
+    $a->strictModel('off');     //关闭严格模式
+    高亮
+    $before='<font style="color:red">';
+    $after='</font>';
+    $result=$a->highlight($str, $before, $after);
+    替换
+    $mask='*';
+    $result=$a->mask($str, $mask);
+*/
+class LinMatch
+{
+    private  $strict=false;
+    private  $keyword=[];
 
 
+    public function __construct($keyword){
+        if (!is_array($keyword) && !empty($keyword)) {
+            $this->keyword=[$keyword];
+        }else{
+            $this->keyword=$keyword;
+        }
+    }
+
+
+    public function strictModel($switch='on'){
+        if ($switch == 'off') {
+             $this->strict=false;
+        }else{
+            $this->strict=true;
+        }
+    }
+
+    public function highlight($str, $before='', $after=''){     //对关键字进行高亮
+        $len=strlen($str);
+        $arr=$this->createSign($str, $len);
+
+        if ($arr === null ) {
+            return $str;
+        }
+
+        $return_str='';
+        for ($i=0; $i < $len; $i++) { 
+            if ($arr[$i] > 0) {                     //如果有匹配占位符号,则用关键词加替换符替代
+                $current=$arr[$i];                  //当前的匹配记号
+                while ( $current==$arr[$i]) {           //跳过当前匹配
+                    $i++;
+                    if ($i === $len) {              //注意最后一位可能溢出
+                        break;
+                    }
+                }
+                $return_str.=$before. $this->keyword[$current-1]. $after;                   //高亮处理
+                $i--;                                   //此处必须减1，因为i已经调到下一位了
+            }else{
+                $return_str.=$str[$i];
+            }   
+        }       
+        reset($this->keyword);              //复原keyword指针
+        return $return_str;
+    }
+
+
+    public function mask($str, $mask=''){
+        $len=strlen($str);
+        $arr=$this->createSign($str, $len);
+
+        if ($arr === null ) {
+            return $str;
+        }
+
+        $return_str='';
+        for ($i=0; $i < $len; $i++) { 
+            if ($arr[$i] > 0) {                     //如果有匹配占位符号,则用关键词加替换符替代
+                $current=$arr[$i];                  //当前的匹配记号
+                while ( $current==$arr[$i]) {           //跳过当前匹配
+                    $i++;
+                    if ($i === $len) {              //注意最后一位可能溢出
+                        break;
+                    }               
+                }
+                $return_str.=$mask;                 //高亮处理
+                $i--;                                   //此处必须减1，因为i已经调到下一位了
+            }else{
+                $return_str.=$str[$i];
+            }   
+
+        }           
+        reset($this->keyword);              //复原keyword指针
+        return $return_str;
+    }
+
+    private function createSign(&$str, $len){                //创建标记数组
+
+        if (empty($this->keyword)) {                // 关键字为空直接返回null
+            return null;
+        }
+        //1初始化标记数组
+        $len=strlen($str);
+        $arr=[];
+        for ($i=0; $i < $len; $i++) { 
+            $arr[$i]=0;
+        }
+        //2对关键词进行匹配,生成匹配数组
+        $n=count($this->keyword);                           //n为关键字数量
+
+        for ($y=0; $y < $n; $y++) { 
+            $key=(string) current($this->keyword);
+            next($this->keyword);
+            $len_key=strlen($key);                      //当前关键字的长度
+            $j=0;                                       //已匹配到的关键字中的位置
+
+
+            for ($i=0; $i <$len ; $i++) { 
+
+                if ($arr[$i] !== 0) {               //遇上已被标记的位则跳到下一位
+                    continue;
+                }
+                $j=$j >= $len_key? 0: $j;               //如果j大于关键字长度，说明已经匹配完一次，j复原，
+                
+                // var_dump($key);
+                // echo "$str[$i]和$key[$j]";
+                // echo '<br>';
+                if ($this->compare($str[$i], $key[$j]) ) {              //当前位匹配到,不区分大小写
+                    $arr[$i]=$y+1;                              //匹配上的标记,和当前的关键字所在关键字数组的位置有关
+                    $j++;
+
+                    continue;
+                }else{                  //当前位未匹配                    
+                    if ($j < $len_key) {                    //已经匹配到的只是部分，所以清除标记,回滚到0
+                        for ($k=$i-$j; $k <$i ; $k++) {     
+                            $arr[$k]=0;                 
+                        }
+                        $j=0;               //j需从0开始
+                    }
+                }
+            }
+        }
+
+        return $arr;
+    }
+
+    private function compare($str1, $str2){
+        if ($this->strict) {            //严格模式
+            return $str1 === $str2 ? true: false;
+        }else{
+            return strcasecmp($str1, $str2) === 0 ? true : false;
+        }
+    }
+
+
+}
 
 
 
@@ -44,7 +200,9 @@ class Sphinx{
             }
             $ids=rtrim($ids, ',');          //去掉最右逗号
         }
-        return ['total'=>$this->result['total'], 'ids'=>$ids];
+        $words=!empty($this->result['words'])? array_keys($this->result['words']): '';
+
+        return ['total'=>$this->result['total'], 'ids'=>$ids, 'words'=>$words];
     }
 
     private function sort(){
@@ -52,7 +210,7 @@ class Sphinx{
     }
 
     private function page($page){
-        $per_page=\Config('page_num');                      //设置分页
+        $per_page=Config('page_num');                      //设置分页
         $current_item=($page-1)*$per_page;
         $this->instance->SetLimits($current_item, $per_page);
 

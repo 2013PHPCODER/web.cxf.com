@@ -12,19 +12,22 @@
         <script src="js/message.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/laydate.js" type="text/javascript" charset="utf-8"></script>
     </head>
+    <style>
+        .orderManageDiv .publicTabDiv{max-height: 16rem;overflow-y: auto;}
+    </style>
     <body>
         <div class="main clearfix">
             <div id="p_left"></div>
             <div class="wraper">
                 <div id="p_top"></div>
-                <div class="orderManageDiv" style="height: 17rem;overflow-y: scroll;">
+                <div class="orderManageDiv">
                     <div class="odMHeader">
                         <ul>
                             <li>选择交易类型：<select id="seleM"> 
                             	<option value="">——请选择——</option>
                                 <option value="5">订单付款</option>
                                 <option value="3">售后退款</option>
-                                <option value="2">售后补款</option>
+                                <!--<option value="2">售后补款</option>-->
                                 <option value="1">余额提现</option>
                             </select></li>
                             <li>选择时间：<input type="text" name="startTime" class="startTime" id="startTime"> 至 <input type="text" name="endTime" class="endTime" id="endTime"></li>
@@ -33,7 +36,7 @@
                             <!--<button>搜索</button>-->
                         </div>
                     </div>
-
+                    <div class="publicTabDiv goodDebar">
                     <table class="odMTabSty">
                         <tr class="orderTabHeader">
                             <th>时间</th>
@@ -51,13 +54,14 @@
                             <td data-bind = "text:trade_type_str">售后退款</td>
                             <td data-bind = "text:trade_no">123456789456</td>
                             <td data-bind = "text:in_money">+280.00</td>
-                            <td data-bind = "text:remark">支付宝</td>
+                            <td data-bind = "text:trade_account_type">支付宝</td>
                             <td data-bind = "text:trade_account">退款至账户</td>
                             <td data-bind = "text:now_balance">278.00</td>
-                            <td data-bind = "text:trade_account_type">售后订单退全款</td>
+                            <td data-bind = "text:remark">售后订单退全款</td>
                         </tr>
                         </tbody>
                     </table>
+                        </div>
                 </div>
             </div>
         </div>
@@ -87,50 +91,98 @@
         laydate(start);
         laydate(end);
         var oHtml =$('#states').html();
-        function ZJsearch(){
-        	var data = {
-		        'user_id': localStorage.getItem('user_id'),
-		        'user_name': localStorage.getItem('user_account'),
-                'page':1
-	        }
-            if ($('#startTime').val() != '') {
-                data.start_time = $('#startTime').val();
-            }
-            if ($('#endTime').val() != '') {
-                data.end_time = $('#endTime').val();
-            }
-            if ($('#seleM').find('option:selected').index() != 0 ) {
-                data.trade_type = $('#seleM').find('option:selected').val()
-            }
+//        function ZJsearch(){
+//        	var data = {
+//		        'user_id': localStorage.getItem('user_id'),
+//		        'user_name': localStorage.getItem('user_account'),
+//                'trade_type':$('#seleM option:selected').val(),
+//                'page':1
+//	        };
+//            if ($('#startTime').val() != '') {
+//                data.start_time = $('#startTime').val();
+//            }
+//            if ($('#endTime').val() != '') {
+//                data.end_time = $('#endTime').val();
+//            }
+//            if ($('#seleM').find('option:selected').index() != 0 ) {
+//                data.trade_type = $('#seleM').find('option:selected').val()
+//            }
+//            ko.cleanNode(document.getElementById("states"));
+//            $('#states').html(oHtml);
+//            X.bindModel(requestUrl.stats,1,data,'body.list',['states'],function(){
+//
+//            })
+//        }
+//        ZJsearch();
+
+        var statsData = {};
+        function getStatement() {
             ko.cleanNode(document.getElementById("states"));
             $('#states').html(oHtml);
-            X.bindModel(requestUrl.stats,1,data,'body.list',['states'],function(){
-		  
-            })           
+            statsData = {
+                'user_id':localStorage.getItem('user_id'),
+                'user_name':localStorage.getItem('user_account'),
+                'trade_type':$('#seleM option:selected').val(),
+                'start_time': $('#startTime').val(),
+                'end_time': $('#endTime').val(),
+                'page': 1
+            };
+            X.bindModel(requestUrl.stats,1,statsData,'body.list',['states'],function(){
+
+            })
         }
-        ZJsearch();
+        getStatement();
         $('#seleM').change(function(){
-        	ko.cleanNode(document.getElementById("states"));
-        	$('#states').html(oHtml);
-        	var  statsData={
-        		'user_id':localStorage.getItem('user_id'),
-        		'user_name':localStorage.getItem('user_account'),
-        		'trade_type':$('#seleM option:selected').val(),
-        		'page':1
-        	}
-        	X.bindModel(requestUrl.stats,1,statsData,'body.list',['states'],function(){
-		  		
-            })  
-        })
-        $('#startTime').blur(function(){
+//            if ($('#startTime').val() != '') {
+//                data.start_time = $('#startTime').val();
+//            }
+//            if ($('#endTime').val() != '') {
+//                data.end_time = $('#endTime').val();
+//            }
+//            if ($('#seleM').find('option:selected').index() != 0 ) {
+//                data.trade_type = $('#seleM').find('option:selected').val()
+//            }
+            getStatement();
+        });
+        $('#startTime, #endTime').blur(function(){
     		setTimeout(function(){
-    			ZJsearch();
-    		},150)      
-        })
-        $('#endTime').blur(function(){
-        	setTimeout(function(){
-    			ZJsearch();
-    		},150)  
-        })
+                getStatement();
+    		},150)
+        });
+//        $('#endTime').blur(function(){
+//        	setTimeout(function(){
+//                ZJsearch();
+//    		},150)
+//        });
+        var truetrue = true, pageNum = 2, tar = $('.publicTabDiv.goodDebar');
+
+        tar.scroll(function () {
+            if ($("#states").height() - tar.scrollTop() <= tar.height()) {
+                statsData.page = pageNum;
+                if (truetrue) {
+                    X.Post(requestUrl.stats, 1, statsData, function(_d){
+                        var data = _d.body.list.list, html = '';
+                        if(data.length > 0) {
+                            $.each(data, function (i ,d) {
+                                html += '<tr><td>'+ d.add_time +'</td> ' +
+                                        '<td>'+ d.trade_type_str +'</td> ' +
+                                        '<td>'+ d.trade_no +'</td>' +
+                                        '<td>'+ d.in_money +'</td> ' +
+                                        '<td>'+ d.trade_account_type +'</td> ' +
+                                        '<td>'+ d.trade_account +'</td> ' +
+                                        '<td>'+ d.now_balance +'</td> ' +
+                                        '<td>'+ d.remark +'</td> ' +
+                                        '</tr>';
+                            });
+                            $('#states').append(html);
+                            pageNum += 1;
+                        }else {
+                            X.notice('没有更多数据了', 2);
+                        }
+                    });
+                }
+            }
+        });
+
     </script>
 </html>

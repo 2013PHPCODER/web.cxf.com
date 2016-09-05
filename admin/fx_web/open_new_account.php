@@ -42,10 +42,10 @@
                                     <select name="" data-bind = "foreach:list,as:'auto'">
                                         <option data-bind = "text:name,attr:{id:id,value:price,'data-id':agent_price}"></option>
                                     </select>
-                                    <span class="price">版本价格:<i class="ac_price">200.00元</i></span>
+                                    <span class="price">原价:<i class="ac_price">200.00元</i></span>
                                 </div>
                                 <div class="cont-box-text">
-                                    <span>开通费：</span>
+                                    <span>开通价：</span>
                                     <strong class="open-price"><b class="ac_price" id="op_price">200.00元</b></strong>
                                 </div>
                                 <div class="cont-box-text">
@@ -118,6 +118,10 @@ $('#drag').drag()
 	
         //提交订单
     $('#vri_sub').click(function () {
+    	if (!dragyz) {
+            X.notice('您需要先验证', 3);
+            return false;
+        }
     	var level2 = {
             'user_id':getCookieValue('user_id'),
 			'virtual_goods_id':$('.cont-box-text option:selected').attr('id'),

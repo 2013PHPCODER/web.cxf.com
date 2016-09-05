@@ -5,7 +5,7 @@
         <li>收支明细</li>
     </ol>
     <div class="box-body fqy_jsgl fqy_txgl">
-        <p><b>账户余额：{:session('user_info.balance')}</b></p>
+        <p><b>账户余额：{$balance}</b></p>
 
         <div class="row">
             <form class="form-inline" method="get" action="{:U(ACTION_NAME, I('get.'))}" id="searchForm">

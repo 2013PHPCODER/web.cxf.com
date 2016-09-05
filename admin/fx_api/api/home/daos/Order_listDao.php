@@ -71,8 +71,8 @@ class Order_listDao extends Dao {
         }
 
         //留言
-        $_order_message_sql = 'SELECT user_type,addtime,message FROM order_message WHERE order_id=:order_id AND to_user_type=:to_user_type';
-        $_order_message_datas = $this->query($_order_message_sql, array('order_id' => $_order_id, 'to_user_type' => \Order::order_detail_orderto_user_type));
+        $_order_message_sql = 'SELECT message FROM order_message WHERE order_id=:order_id AND to_user_type=:to_user_type';
+        $_order_message_datas = $this->query($_order_message_sql, array('order_id' => $_order_id, 'to_user_type' => \Order::order_detail_orderto_user_type), 'fetch_row');
 
         //售后单号
         if (0 < $_order_list_datas['is_cus']) {
@@ -80,8 +80,10 @@ class Order_listDao extends Dao {
             $_cus_order_list_arr = $this->query($_cus_order_list_sql, array('order_id' => $_order_id), 'fetch_row');
             $_order_list_datas['cus_id'] = $_cus_order_list_arr['id'];
         }
-
-        return array('order' => $_order_list_datas, 'contact' => $_order_contact_datas, 'goods' => $_order_goods_datas, 'message' => $_order_message_datas);
+        $_order_list_datas['add_time'] = 100 < $_order_list_datas['add_time'] ? date('Y-m-d H:i:s', $_order_list_datas['add_time']) : '';
+        $_order_list_datas['payment_time'] = 100 < $_order_list_datas['payment_time'] ? date('Y-m-d H:i:s', $_order_list_datas['payment_time']) : '';
+        $_order_list_datas['con_time'] = 100 < $_order_list_datas['con_time'] ? date('Y-m-d H:i:s', $_order_list_datas['con_time']) : '';
+        return array('order' => $_order_list_datas, 'contact' => $_order_contact_datas, 'goods' => $_order_goods_datas, 'message' => $_order_message_datas['message']);
     }
 
     /**
@@ -121,6 +123,7 @@ class Order_listDao extends Dao {
      */
     public function add_order($q, $order_data, $order_contact_data, $order_goods_data, $_order_goods_sku_data, $order_message_data) {
         $_goods_list_obj = \Dao::Goods_list();
+
         try {
             $this->begin_trans();
             $_goods_list_obj->change_goods_stock($q->goods_id, $q->goods_sku_id, $q->goods_count);
@@ -131,12 +134,37 @@ class Order_listDao extends Dao {
             if (count($order_message_data) > 0) {
                 $this->insert_order_message($order_id, $order_message_data, 'order_message');
             }
+            $this->insert_log_list('订单生成', '订单生成，状态待付款', $q->user_id, $q->user_name, 1, $order_id);
             $this->commit();
             return $order_id;
         } catch (\Exception $ex) {
             $this->roll_back();
             myerror(\StatusCode::msgDBUpdateFail, $ex->getMessage());
         }
+    }
+
+    /**
+     * 插入订单日志记录
+     * @param type $log_info    系统备注
+     * @param type $handle_info     操作说明
+     * @param type $user_id 用户ID
+     * @param type $user_name   操作人用户名
+     * @param type $cid 分类ID：
+     * @param type $pid 被记录对像的ＩＤ
+     * @return type
+     * @author Ximeng <ximeng@xingmima.com>
+     * @since 2016091301
+     */
+    public function insert_log_list($log_info, $handle_info, $user_id, $user_name, $cid, $pid) {
+        $data['log_info'] = $log_info;
+        $data['handle_info'] = $handle_info;
+        $data['user_id'] = $user_id;
+        $data['user_name'] = $user_name;
+        $data['cid'] = $cid;
+        $data['pid'] = $pid;
+        $data['addtime'] = time();
+        $data['ip_address'] = get_client_ip();
+        return $this->insert_data($data, 'log_list');
     }
 
     /**
@@ -231,7 +259,7 @@ class Order_listDao extends Dao {
      * @since 2016091301
      */
     public function get_order_info($order_id, $fields = '*') {
-        $sql = 'select '.$fields.' from order_list where order_id=:order_id';
+        $sql = 'select ' . $fields . ' from order_list where order_id=:order_id';
         $result = $this->query($sql, array('order_id' => $order_id));
         return $result[0];
     }
@@ -245,7 +273,7 @@ class Order_listDao extends Dao {
      * @author San Shui <sanshui@mycxf.com>
      * @since 201608121504
      */
-    public function confirm_good($_order_id, $_order_sn) {
+    public function confirm_good($_user_id,$_user_name,$_order_id, $_order_sn) {
         $_order_state = \Order::order_confirm_state;
         $_state_sql = 'SELECT COUNT(*) AS count FROM order_list WHERE (`order_id`=:order_id) AND (order_sn=:order_sn) AND (order_state=:order_state)';
         $_count_arr = $this->query($_state_sql, array('order_id' => $_order_id, 'order_sn' => $_order_sn, 'order_state' => $_order_state), 'fetch_row');
@@ -258,20 +286,27 @@ class Order_listDao extends Dao {
         if (0 >= $_row) {
             return false;
         }
+        //确认收货日志
+        $this->insert_log_list('订单收货', '订单已收货，订单状态“已完成”', $_user_id, $_user_name, 1, $_order_id);
         return true;
     }
 
     /**
      * 订单付款
+     * @param type $q
      * @param type $_data
      * @return boolean
+     * @author Ximeng <ximeng@xingmima.com>
+     * @since 2016091301
      */
-    public function order_pay($_data) {
+    public function order_pay($q, $_data, $fx_statement_data) {
         $_sql = 'UPDATE `order_list` SET `is_pay`=1 WHERE (`order_id`=:order_id)';
         try {
             $this->begin_trans();
+//            $this->insert_data($fx_statement_data, 'fx_statement');
             $this->insert_data($_data, 'confirm_success_trade');
             $this->excute($_sql, array('order_id' => $_data['source_id']));
+            $this->insert_log_list('客户付款', '客户已付款，等待到账确认', $q->user_id, $q->user_name, 1, $_data['source_id']);
             $this->commit();
             return true;
         } catch (\Exception $ex) {

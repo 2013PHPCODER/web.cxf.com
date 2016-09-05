@@ -1,7 +1,11 @@
 <?php
+
 namespace Finance\Controller;
+
 use Common\Controller\BasicController;
+
 class FinanceController extends BasicController {
+
     /**
      * 收款账户
      */
@@ -12,9 +16,9 @@ class FinanceController extends BasicController {
                         ->field('receiver_account,pay_pwd,mobile,balance,open_bank_address,'
                                 . 'receiver_account_name,receiver_account,receiver_account_type')->find();
         $_where['supplier_id'] = $this->user_info['id'];
-        $_where['order_state'] = array('IN','1,2,3');
+        $_where['order_state'] = array('IN', '1,2,3');
         $_balance = M('order_list')->where($_where)->sum('cost_price');
-        $this->balance = empty($_balance) ?0: $_balance;
+        $this->balance = empty($_balance) ? 0 : $_balance;
         $this->show();
     }
 
@@ -252,8 +256,8 @@ class FinanceController extends BasicController {
         $_where['user_type'] = 1;
         $catch_money_model = M('fx_catch_money');
         $_count = $catch_money_model
-                ->table('fx_catch_money as `cm`')
-                ->join('inner join order_list as `ol` on cm.source_id=ol.order_id')->where($_where)->count();
+                        ->table('fx_catch_money as `cm`')
+                        ->join('inner join order_list as `ol` on cm.source_id=ol.order_id')->where($_where)->count();
         $_page = getPage($_count);
         $_data['list'] = $catch_money_model
                 ->table('fx_catch_money as `cm`')
@@ -288,6 +292,7 @@ class FinanceController extends BasicController {
         if (0 < $_trade_type) {
             $_where['trade_type'] = $_trade_type;
         }
+        $_where['user_id'] = $this->user_info['id'];
         //时间范围
         $_get_start_time = strtotime(I('get.startTime'));
         $_get_end_time = strtotime(I('get.endTime'));
@@ -298,6 +303,7 @@ class FinanceController extends BasicController {
         } else if (empty($_get_start_time) && !empty($_get_end_time)) {
             $_where['add_time'] = array('LT', $_get_end_time);
         }
+        $_where['user_id'] = $this->user_info['id'];
         $_fx_statement_model = M('fx_statement');
         $this->balance = M('fx_supplier_user')->where(array('id' => $this->user_info['id']))->getField('balance');
         $this->in_money = $_fx_statement_model->where(array('user_id' => $this->user_info['id']))->sum('in_money');
@@ -307,6 +313,8 @@ class FinanceController extends BasicController {
         $this->pager = $_page->show();
         $this->datas = $_fx_statement_model->where($_where)->field('id,trade_no,add_time,trade_type,in_money,out_money,now_balance')
                         ->limit($_page->firstRow . ',' . $_page->listRows)->select();
+        $_balance = M('order_list')->where($_where)->sum('cost_price');
+        $this->balance = empty($_balance) ? 0 : $_balance;
         $this->show();
     }
 

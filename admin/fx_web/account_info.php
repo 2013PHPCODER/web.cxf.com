@@ -17,6 +17,7 @@
         <title>创想范分销平台--账户设置</title>
         <link rel="stylesheet" type="text/css" href="css/zengli.css" />
         <link rel="stylesheet" type="text/css" href="css/common.css"/>
+        <link rel="shortcut icon" href="images/64x64.ico" type="image/x-icon" />
         <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
         <script src="//cdn.bootcss.com/knockout/3.3.0/knockout-min.js"></script>
         <script src="js/pseudo.js" type="text/javascript" charset="utf-8"></script>
@@ -80,7 +81,7 @@
             </div>
         </div>
         <!--验证弹窗-->
-        <div class="marks" id="email_account">
+        <div class="marks" id="email_account" style="display: none;">
             <div class="PopDiv Security_yz" >
                 <div class="PopHeader">
                     <img src="images/markicon01.png" alt="">
@@ -89,7 +90,7 @@
                 </div>
                 <div class="PopBody">
                     <div class="mark-secVerify">
-                        <p class="m-mobile"><input type="radio" name="m_secVer" data-id='mobile'  data-bind = "attr:{value:list.mobile}">手机验证<span data-bind = "text:list.mobile"></span></p>
+                        <p class="m-mobile">手机号<span data-bind = "text:list.mobile"></span></p>
                     </div>	    
                     <div class="sec-code">填写验证码：<input type="text" class="s-code" id="old_code"><span class="s-send"  id="old_up">发送验证码</span></div>
                 </div>
@@ -106,21 +107,24 @@
 $(function(){
 	var user_info = {
         'user_id': getCookieValue('user_id')
-    }
-    X.bindModel(requestUrl.userinfo, 1, user_info, 'body', ['user_ifo','email_account'], function () {});
+   };
+    X.bindModel(requestUrl.userinfo, 1, user_info, 'body', ['user_ifo'], function () {});
+    $('');
   	$('.PopColse').click(function(){
   		$('.marks').fadeOut()
-  	})
-  	//修改手机
+  	});
+  	$('.marks').css('display','none');
+});
+//修改手机
   	$('#click_tel').click(function(){
-  		$('#email_account').fadeIn()
-  		$('#email_account>div').fadeIn()
+  		X.bindModel(requestUrl.userinfo, 1, {'user_id':getCookieValue('user_id')}, 'body', ['email_account'], function () {});
+  		$('#email_account').fadeIn();
+  		$('#email_account>div').fadeIn();
     		$('#old_up').click(function(){
-    			alert(111)
     			X.Post(requestUrl.mobile,1,{'field_data':getCookieValue('mobile'),'field':'mobile'},function(e){
-    				addCookie('target',e.body.list.target)
+    				addCookie('target',e.body.list.target);
     				if(e.header.stats==0){
-    					X.notice(e.body.list.msg,3)
+    					X.notice(e.body.list.msg,3);
     					var n = 59;	
 						var timer=setInterval(function(){
 							if(n>=0){
@@ -128,6 +132,7 @@ $(function(){
 								n--;
 							}else{			
 								clearInterval(timer);
+                                $('#old_up').html('发送验证码');
 							}
 					   },1000);	
     				}else{
@@ -135,19 +140,25 @@ $(function(){
     				}
     			})
     			
-    		})
+    		});
     		//点击下一步
     		$('#next').click(function(){
-				X.Post(requestUrl.up_mobile,1,{'user_id':getCookieValue('user_id'),'field':'mobile','field_data':getCookieValue('mobile'),'code':$('#old_code').val(),'target':getCookieValue('target')},function(e){
-					if(e.header.stats==0){
-						$('#email_account').fadeOut()
-						$('#account_tel').fadeIn()
-					}else{
-						$('#email_account').fadeIn()
-						$('#account_tel').fadeOut()
-						X.notice(e.header.msg,3)
-					}
-				})
+    		    if(!$(".s-code").val()) {
+                    X.notice("请输入验证码",3)
+                }else {
+                    X.Post(requestUrl.up_mobile,1,{'user_id':getCookieValue('user_id'),'field':'mobile','field_data':getCookieValue('mobile'),'code':$('#old_code').val(),'target':getCookieValue('target')},function(e){
+                        if(e.header.stats==0){
+                            $('#email_account').fadeOut();
+                            $('#account_tel').fadeIn()
+                        }else{
+                            $('#email_account').fadeIn();
+                            $('#account_tel').fadeOut();
+                            X.notice(e.header.msg,3)
+                        }
+                    })
+                }
+
+
 			})
 			//验证新手机获取验证码
 			$('#new_up').click(function(){
@@ -183,5 +194,4 @@ $(function(){
 			})
 		})
 	})
-})
 </script>

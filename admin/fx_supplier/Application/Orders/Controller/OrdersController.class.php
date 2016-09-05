@@ -267,7 +267,7 @@ class OrdersController extends CommonController {
                 $vv['sku_str'] = M('goods_sku_comb')->where("id=" . $vv['sku_comb_id'])->getField('sku_str_zh');
             }
             $order_amount = bcadd($order_amount, $vv['goods_price_total'], 2);
-            $datas['goods_num_total'] = bcadd($vv['goods_num'], $datas['goods_num_total'], 2);
+            $datas['goods_num_total'] = bcadd($vv['goods_num'], $datas['goods_num_total']);
             $datas['order_goods'][$kk] = $vv;
         }
         //订单的价格

@@ -34,22 +34,23 @@ class OrderController extends Controller {
         $page = isset($q->page) ? $q->page : 1;
         $per_page = isset($q->per_page) ? $q->per_page : 20;
         $sort = "o_l.order_id desc";
-        $fields = "o_l.order_id,o_l.order_sn,o_l.add_time,o_l.pay_amount,o_l.shipping_fee,o_l.other_shop,o_l.other_order_sn,o_l.order_state,o_l.is_cus,"
+        $fields = "o_l.order_id,o_l.order_sn,o_l.add_time,o_l.pay_amount,o_l.shipping_fee,o_l.other_shop,o_l.other_order_sn,o_l.order_state,o_l.shipping_fee,o_l.is_cus,"
                 . "o_g.goods_name,o_g.buyer_goods_no,o_g.distribution_price,o_g.goods_num,o_g.goods_id,goods_sku_comb.sku_str_zh";
         $dao = \Dao::Order_list();
         $result = $dao->getOrderList($fields, $condition, $param, $sort, ($page - 1) * $per_page, $per_page);
-        $order_id_cus = array();
-        if (0 < count($result['item'])) {
-            $order_id_arr = array_column($result['item'], 'order_id');
-            $cus_dao = \Dao::Cus_order_list();
-            $order_id_cus = $cus_dao->get_cus_order_ids($order_id_arr);
-        }
-        array_walk($result['item'], function (&$v) use($q, $order_id_cus) {
+//        $order_id_cus = array();
+//        if (0 < count($result['item'])) {
+//            $order_id_arr = array_column($result['item'], 'order_id');
+//            $cus_dao = \Dao::Cus_order_list();
+//            $order_id_cus = $cus_dao->get_cus_order_ids($order_id_arr);
+//        }
+        array_walk($result['item'], function (&$v) use($q) {
             if (isset($q->order_state) && 1 == $q->order_state) {
                 $v['order_state'] = 1;
             }
+            $v['pay_amount'] = $v['pay_amount'] . "（含运费{$v['shipping_fee']}）";
             $v['add_time'] = date("Y-m-d H:i:s", $v['add_time']);
-            $v['is_cus'] = isset($order_id_cus[$v['order_id']]) ? 1 : 0;
+//            $v['is_cus'] = isset($order_id_cus[$v['order_id']]) ? 1 : 0;
         });
         $this->response['page'] = $page;
         $this->response['per_page'] = $per_page;
@@ -260,10 +261,13 @@ class OrderController extends Controller {
         $_return_data['goods_name'] = $goods_info['goods_name'];
         $_return_data['img_path'] = $goods_info['img_path'];
         $user_info = $_fx_distribute_user_dao->get_user_info($q->user_id, $q->user_name);
-        $_return_data['price'] = $goods_info['distribution_price'];
+        if (!$user_info) {
+            myerror(\StatusCode::msgCheckFail, '获取用户信息失败！');
+        }
         if (0 == $user_info['leavel']) {
             myerror(\StatusCode::msgCheckFail, '请升级后再来购买！');
         }
+        $_return_data['price'] = $goods_info['distribution_price'];
         $_return_data['distribution_price'] = get_distribution_price($user_info['leavel'], $goods_info['distribution_price']);
         $_return_data['select_num'] = $q->select_num;
         $_return_data['stock_num'] = $goods_sku_info['stock_num'];
@@ -280,11 +284,13 @@ class OrderController extends Controller {
      */
     public function confirm_good() {
         //echo json_encode(array('order_id'=>1,'order_sn'=>"1160719035332928408"));exit;
-        //{"order_id":1,"order_sn":"1160719035332928408"}
+        //{"user_id":1,"user_name":'12312312',"order_id":1,"order_sn":"1160719035332928408"}
+        if (empty($this->request->user_name)) myerror(\StatusCode::msgCheckFail, \Order::order_user_name_null);
+        if (empty($this->request->user_id)) myerror(\StatusCode::msgCheckFail, \Order::order_user_id_not_null);
         if (empty($this->request->order_id)) myerror(\StatusCode::msgCheckFail, \Order::order_id_not_null);
         if (empty($this->request->order_sn)) myerror(\StatusCode::msgCheckFail, \Order::order_detail_order_sn);
-
-        if (!\Dao::Order_list()->confirm_good($this->request->order_id, $this->request->order_sn)) myerror(\StatusCode::msgCheckFail, \Order::order_confirm_fail);
+        if (!\Dao::Order_list()->confirm_good($this->request->user_id,  $this->request->user_name,$this->request->order_id, $this->request->order_sn)) 
+                myerror(\StatusCode::msgCheckFail, \Order::order_confirm_fail);
         $this->response(\Order::order_confirm_success);
     }
 
@@ -325,7 +331,11 @@ class OrderController extends Controller {
         $_data['pay_type'] = $q->pay_type;
         $_data['add_time'] = time();
         $_data['pay_time'] = time();
-        $id = $_order_list_dao->order_pay($_data);
+        $_fx_distribute_user_dao = \Dao::Fx_distribute_user();
+        $user_info = $_fx_distribute_user_dao->get_user_info($q->user_id, $q->user_name);
+        if (!$user_info) myerror(\StatusCode::msgCheckFail, '获取用户信息失败！');
+        $fx_statement_data = $this->create_fx_statement($q, $order_info['pay_amount'], $user_info['balance']);
+        $id = $_order_list_dao->order_pay($q, $_data, $fx_statement_data);
         $this->response['success'] = 0;
         $this->response['message'] = '付款失败！';
         if ($id) {
@@ -334,6 +344,29 @@ class OrderController extends Controller {
             $this->response['message'] = '付款成功！';
         }
         $this->response();
+    }
+
+    /**
+     * 生成fx_statement
+     * @param type $q
+     * @return array
+     * @author Ximeng <ximeng@xingmima.com>
+     * @since 2016091301
+     */
+    private function create_fx_statement($q, $out_money, $now_balance) {
+        $_fx_statement_data['user_type'] = 2;
+        $_fx_statement_data['user_id'] = $q->user_id;
+        $_fx_statement_data['user_name'] = $q->user_name;
+        $_fx_statement_data['trade_type'] = 5;
+        $_fx_statement_data['in_money'] = 0;
+        $_fx_statement_data['out_money'] = $out_money;
+        $_fx_statement_data['now_balance'] = $now_balance;
+        $_fx_statement_data['trade_account'] = $q->pay_account;
+        $_fx_statement_data['trade_account_type'] = $q->pay_type;
+        $_fx_statement_data['trade_no'] = $q->trade_no;
+        $_fx_statement_data['add_time'] = time();
+        $_fx_statement_data['remark'] = '分销商下单';
+        return $_fx_statement_data;
     }
 
     /**

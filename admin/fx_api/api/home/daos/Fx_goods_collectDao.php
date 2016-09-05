@@ -49,9 +49,9 @@ class Fx_goods_collectDao extends Dao {
         //  当前页所在起始位置
         $start = ($page - 1) * $pagesize;
         if (!empty($is_up_taobao)) {
-            $sql = 'SELECT ' . $field . ' FROM fx_goods_collect a INNER JOIN goods_list g ON a.goods_id=g.goods_id WHERE `a`.user_id=:uid AND `a`.is_up_taobao=:tb LIMIT ' . $start . ',' . $pagesize;
+            $sql = 'SELECT ' . $field . ' FROM fx_goods_collect a INNER JOIN goods_list g ON a.goods_id=g.goods_id WHERE `a`.user_id=:uid AND `a`.is_up_taobao=:tb ORDER BY id DESC LIMIT ' . $start . ',' . $pagesize;
         } else {
-            $sql = 'SELECT ' . $field . ' FROM fx_goods_collect a INNER JOIN goods_list g ON a.goods_id=g.goods_id WHERE `a`.user_id=:uid LIMIT ' . $start . ',' . $pagesize;
+            $sql = 'SELECT ' . $field . ' FROM fx_goods_collect a INNER JOIN goods_list g ON a.goods_id=g.goods_id WHERE `a`.user_id=:uid ORDER BY id DESC LIMIT ' . $start . ',' . $pagesize;
         }
         $list = $this->query($sql, $arr);
         if (empty($list)) {
@@ -91,7 +91,6 @@ class Fx_goods_collectDao extends Dao {
      * @return int
      */
     public function delCollect($user_id, $goods_id) {
-//        var_dump($goods_id);die;
         if (is_array($goods_id)) {
             $gids = implode(',', $goods_id);
             $sql = "delete from fx_goods_collect where user_id= :user_id and goods_id in ({$gids})";
@@ -100,10 +99,7 @@ class Fx_goods_collectDao extends Dao {
             $sql = 'delete from fx_goods_collect where user_id= :user_id and goods_id= :goods_id';
             $arr = array('user_id' => $user_id, 'goods_id' => $goods_id);
         }
-
         $result = $this->excute($sql, $arr);
-//        var_dump($result);die;
-//        var_dump(\Sql::get());
         //减去商品列表中该收藏商品次数
         if (is_numeric($result) && 0 !== $result) {
             $this->changeCollectCount($goods_id, -1);
@@ -117,11 +113,11 @@ class Fx_goods_collectDao extends Dao {
      * @return int
      */
     public function getMainImg($img) {
-        $sql = 'SELECT tb_path FROM goods_img_path WHERE md5_path=:img';
+        $sql = 'SELECT upyun_path FROM goods_img_path WHERE md5_path=:img';
         $arr = array('img' => $img);
         $pathArr = $this->query($sql, $arr);
         if(empty($pathArr)) return false;
-        return $pathArr[0]['tb_path'];
+        return $pathArr[0]['upyun_path'];
     }
 
     public function check_collect($user_id, $goods_id) {

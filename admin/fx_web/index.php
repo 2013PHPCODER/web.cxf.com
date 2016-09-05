@@ -24,7 +24,24 @@
         <script src="js/public.js"></script>
         <script src="js/plus.js"></script>
     </head>
-
+	<style type="text/css">
+		.g-grand{padding-bottom: 43px;}
+		.i-adver-bottom{margin-top: 0;}
+		.g-grand-box{margin-top: 35px;}
+		/*.nav-secend{margin-left: 212px;}*/
+		#category{position: relative;}
+		.classify-box{height: 456px;}
+        .lauyot-content ul {
+            height: 138px;
+            overflow: auto;
+        }
+        .m-adver {
+            margin-top: 5px;
+        }
+        .menu-tab-box > h2 {
+            padding-bottom: 5px;
+        }
+	</style>
     <body>
         <!--header-->
         <div class="header">
@@ -56,14 +73,9 @@
                         <li>
                             <a href=""><img src="http://maihoho.b0.upaiyun.com//top/5113020158404319213.png" alt=""/></a>
                             <p><i></i>创想范9月重磅来袭</p>
-                        </li>
-                        <li>
-                            <a href=""><img src="http://maihoho.b0.upaiyun.com//top/4813107223975253505.png" alt=""/></a>
-                            <p><i></i>创想范9月重磅来袭</p>
-                        </li>
+                        </li>  
                         <div class="i-banner-circle">
                             <a href="javascript:;" class="active"></a>
-                            <a href="javascript:;"></a>
                             <a href="javascript:;"></a>
                             <a href="javascript:;"></a>
                             <a href="javascript:;"></a>
@@ -178,17 +190,18 @@
                     <a href=""><img src="images/index/i-adver-bottom.png" alt=""/></a>
                 </div>
             </div>
-            <div class="slider-bottom">
-                <div class="slider-box" id="rxgoods">
-                    <ul class="clearfix" data-bind = "foreach:{data:goods,as:'auto'}">
-                        <li><a data-bind = "attr:{href:'/good_detail.php?goodsID='+goods_id}" target="_self"><img data-bind = "attr:{src:img_path}" alt="" /></a></li>
-                    </ul>
-                    <span class="prev"></span>
-                    <span class="next"></span>
-                </div>
-            </div>
+            <div class="wrapper-slider">
+            	<div class="slider-bottom">
+	                <div class="slider-box" id="rxgoods">
+	                    <ul class="clearfix" data-bind = "foreach:{data:goods,as:'auto'}">
+	                        <li><a data-bind = "attr:{href:'/good_detail.php?goodsID='+goods_id}" target="_self"><img data-bind = "attr:{src:img_path}" alt="" /></a></li>
+	                    </ul>
+	                    <span class="prev"></span>
+	                    <span class="next"></span>
+	                </div>
+	            </div>
+            </div>            
         </div>
-
 
         <!--footer-->
         <?php
@@ -229,6 +242,7 @@
 <script>
     $(function () {
     	X.bindModel(requestUrl.category, 0, {}, '', ['category'], function () {
+    		$('#category').show()
     		$('.e-tab').find('.classify-body').hover(function () {
                 var _index = $(this).index();
                 $('.tab-box .menu-tab').eq(_index).addClass('current').siblings().removeClass('current');
@@ -240,9 +254,9 @@
             }, function () {
                 $(".menu-tab").removeClass('current');
             })
-    	},function(e){
-    		var x= {'category':e} 
-    		return  x
+    	},function(x){
+    		var x= {'category':x}; 
+    		return x;
     	}) 	   	
         X.bindModel(requestUrl.index, 0, {'to_client': 1}, 'body.list', ['notice', 'rxgoods', 'bigCategory'], function () {                	
             function rollSliderlf() {

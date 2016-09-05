@@ -25,7 +25,7 @@
         <ul class="clearfix">
             <li class="classify" id="category">
                 <a href="javascript:;"><i></i>所有商品分类</a>
-                <div class="classify-box e-tab" data-bind = "foreach:{data:category,as:'auto'}">
+                <div class="classify-box e-tab" data-bind = "foreach:{data:category,as:'auto'}" >
                     <div class="classify-body clearfix">
                         <div class="classify-icon">
                             <img data-bind = "attr:{src:small_ico}" src="" alt="" />
@@ -33,7 +33,7 @@
                         <div class="classify-name">
                             <p><a target="_self" data-bind = "text:name"></a></p>
                             <p data-bind = "foreach:{data:child,as:'auto'}">
-                                <a target="_blank" data-bind = "text:title,attr:{href:'goodlist.php?cate_id='+category_id}"></a>
+                                <a target="_blank" data-bind = "text:title,attr:{href:'goodlist.php?cate_id='+cid}"></a>
                                 <!--<a data-bind = "text:child.length>2?child[2].name:'',attr:{href:child.length>2 ? '/goods_center.php?cate_id='+child[2].cid : ''}" href="">新品</a>-->
                             </p>
                         </div>
@@ -47,7 +47,7 @@
                     	<div class="menu-tab-box">
                     		<h2 data-bind = "text:title,attr:{href:'goodlist.php?cate_id='+category_id">男上装</h2>
                     		<div class="tab-box-chilren" data-bind = "foreach:{data:child,as:'auto'}">
-                    		    <span><a target="_self" data-bind = "text:name,attr:{href:'goodlist.php?cate_id='+category_id}">T恤</a></span>
+                    		    <span><a target="_self" data-bind = "text:name,attr:{href:'goodlist.php?cate_id='+cid}">T恤</a></span>
                     		</div>
                     		
                     	</div>
@@ -55,7 +55,7 @@
                                                  
                 </div>
             </li>
-            <li class="active">
+            <li class="active nav-secend">
                 <a href="../index.php"><span>首页</span><span>HOME</span></a>
             </li>
             <li >
@@ -71,7 +71,7 @@
                 <a href="../sortware_agent.php"><span>软件介绍与下载</span><span>NEWS CENTER</span></a>
             </li>
             <li class="nav-news">
-                <a href="../supplier_comein.php">
+                <a href="../supplier_comein.php" >
                     <i></i>
                     <span>供应商入驻</span>
                     <div class="news-icon"></div>
@@ -82,14 +82,12 @@
 </div>
 
 
-
-
 <div class="marks PH"  style="display: none">
     <div class="PopDiv">
         <div class="PopHeader">
             <img src="images/PopIco/tips.png" alt="">
             <span class="PopTitle">铺货</span>
-            <div class="PopColse" onclick="$('.PH').hide()"></div>
+            <div class="PopColse" onclick="colsePh()"></div>
         </div>
         <div class="PopBody">
             <div class="Phcontent">
@@ -117,12 +115,14 @@
                         <tr>
                             <td>快递选项：</td>
                             <td><label><input type="radio" name="PhMailType" value="0" checked>包邮</label></td>
-                            <td style="text-align: right">商品分类：<select id="goodsType"><option>213123</option></select></td>
+                            <td style="text-align: right">
+                                淘宝自定义分类：<select id="goodsType"><option>--请选择--</option></select>
+                            </td>
                         </tr>
                         <tr>
                             <td></td>
                             <td colspan="2">
-                                <label><input type="radio" name="PhMailType" value="1">买家承担运费</label>运费统一设置为：<input type="text" placeholder="" id="freight_fee"> 元
+                                <label><input type="radio" name="PhMailType" value="1">买家承担运费</label>运费统一设置为：<input type="text" placeholder="运费金额" id="freight_fee" > 元
                                 <span>买家承担运费的范围为0.001~999.00</span>
                             </td>
                             <td></td>
@@ -146,14 +146,17 @@
     </div>
 </div>
 <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/json2/20150503/json2.min.js"></script>
 <script src="//cdn.bootcss.com/knockout/3.3.0/knockout-min.js"></script>
 <script src="js/plus.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/public.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
        
         (function($){
-        	var url = window.location.pathname.split('.')[0].split('/');
-            url = url[url.length-1];
+            var url = window.location.href;
+                url=url.substring(url.lastIndexOf('/') + 1);
+                url =url.substring(0,url.indexOf('.'));
+
         	var n ;
         	switch (url) {
         		case 'index' :
@@ -172,166 +175,226 @@
         	        n=5;
         		    break;    
         	}
-        	console.log(n);
+//        	console.log(n);
         	$('.nav-box>ul>li').eq(n).addClass('active').siblings().removeClass('active');
         })(jQuery);
+        
+//        if (getCookieValue('user_nickname') != '' && getCookieValue('user_nickname') != null) {
+//			$('.nav-box .nav-news>a').click(function(){
+//				X.notice('对不起，您已是分销商',3)
+//				return false
+//			})
+//	    }
+        
         $(function(){
         	$('.btn-search').on('click',function(){
-        		var url = window.location.pathname.split('/')[1];
-        		if(url == 'goodlist.php'){
-        			search(searchCondition())      			
+        		var url = window.location.href;
+                url=url.substring(url.lastIndexOf('/') + 1);
+                url =url.substring(0,url.indexOf('.'));
+        		if(url == 'goodlist'){       			
+        			var data = searchCondition();
+        			if( $('#searchText').val() == '' ){
+        				data.keyword = ''
+        			} 
+        			search(data)    			
         		}else{
         			var val =  $('#searchText').val();
-        		    window.location.href = 'goodlist.php?keyword='+val;
+        		    window.location.href = 'goodlist.php?keyword='+encodeURIComponent(val);
         		}       		
-        	})
-        })
+        	});
+        });
+
+        $(window).keydown(function(e){
+            var  isFocus=$(".inp-search").is(":focus");
+            if(isFocus&& e.keyCode == 13){
+                $('.btn-search').click();
+                $(".inp-search").blur();
+            }
+        });
 </script>
 <!--//一键铺货-->
 <script type="text/javascript">
     var PHGood = $('#PHGoods').html();
     function yijinPH(DetailViewModel){
-        if(unescape(getCookieValue('taobao_bind'))=="[]" || getCookieValue('taobao_bind')==""){
-            X.notice('您还未绑定店铺',3);
-            setTimeout(function(){openTB();},1500);
-        }else {
-        $('.PH').show();
-        $('#PHGoods').html(PHGood);
-        var ii = 609/ parseInt($(DetailViewModel.goodsArr).length);
-        ko.cleanNode(document.getElementById("PHGoods"));
-        $('#PHGoods').html(PHGood);
-        //绑定数据
-        ko.applyBindings(DetailViewModel, document.getElementById('PHGoods'));
-        $('.PHNum').text($(DetailViewModel.goodsArr).length);
+        CheckUserLogin();
+        var userID = getCookieValue('user_id');
         var ids = [];
-        $(DetailViewModel.goodsArr).each(function(){
-            ids.push(this.goodsID);
-        });
+        X.Post(requestUrl.check_is_bindtaobao, 1,{user_id:userID}, function (res) {
+            if(res.header.stats==0){
+                if(res.body.list.is_bind==0){
+                    X.notice('您尚未绑定淘宝店铺',3);
+                }else {
+                    $('.PH').show();
+                    $('#PHGoods').html(PHGood);
+                    var ii = 609/ parseInt($(DetailViewModel.goodsArr).length);
+                    ko.cleanNode(document.getElementById("PHGoods"));
+                    $('#PHGoods').html(PHGood);
+                    //绑定数据
+                    ko.applyBindings(DetailViewModel, document.getElementById('PHGoods'));
 
-        //获取用户店铺列表
-        var userid = getCookieValue('user_id');
-        X.Post(requestUrl.band_shop, 1, {user_id: userid}, function (res) {
-            if (res.header.stats == 0) {
-                var str = '';
-                $(res.body.list).each(function (key, val) {
-                    str += '<option value="" tb_user_id=' + this.tb_user_id + '>' + this.nick + '</option>'
-                });
-                $('#shopList').html(str);
-                var tb_user_id = $('#shopList option:selected').attr('tb_user_id');
-                shopType(tb_user_id);
-            } else {
-                X.notice('获取用户店铺信息失败', 3)
-            }
-        });
+                    $('.Phcontent select,.Phcontent input,.startPH2').attr('disabled','disabled');
 
-        $('#shopList').change(function () {
-            var tb_user_id = $('#shopList option:selected').attr('tb_user_id');
-            shopType(tb_user_id);
-        });
-
-        //获取店铺的类目和运费模板
-        function shopType(tb_user_id) {
-            var templateData = {
-                user_id: userid,
-                shop_id: tb_user_id
-            };
-            X.Post(requestUrl.tb_template, 1, templateData, function (res) {
-                if (res.header.stats == 0) {
-                    var catStr = '', templateStr = '';
-                    //店铺商品分类
-                    var cats = res.body.list.seller_cats;
-                    var templates = res.body.list.delivery_templates;
-                    $(cats).each(function () {
-                        catStr += '<option value="' + this.cid + '">' + this.name + '</option>'
+                    $('.PHNum').text($(DetailViewModel.goodsArr).length);
+                    $(DetailViewModel.goodsArr).each(function(){
+                        ids.push(this.goodsID);
                     });
-                    $('#goodsType').html(catStr);
-                    //店铺运费模板
-                    $(templates).each(function () {
-                        templateStr += '<option value="' + this.template_id + '">' + this.name + '</option>'
+
+                    //获取用户店铺列表
+                    var userid = getCookieValue('user_id');
+                    X.Post(requestUrl.band_shop, 1, {user_id: userid}, function (res) {
+                        if (res.header.stats == 0) {
+                            var str = '';
+                            $(res.body.list).each(function (key, val) {
+                                str += '<option value="" tb_user_id=' + this.tb_user_id + '>' + this.nick + '</option>'
+                            });
+                            $('#shopList').html(str);
+                            var tb_user_id = $('#shopList option:selected').attr('tb_user_id');
+                            shopType(tb_user_id);
+                        } else {
+                            X.notice('获取用户店铺信息失败', 3)
+                        }
                     });
-                    $('#shopTemplate').html(templateStr);
-                } else {
-                    $('#goodsType').html('<option value="">--请选择--</option>');
-                    $('#shopTemplate').html('<option value="">--请选择--</option>');
-                    X.notice('获取用户运费模板失败', 3);
-                }
-            });
-        }
 
-        //快递选项
-        var freightType = 0;
-        $('.Phsele table input[type=radio]').click(function () {
-            freightType = $(this).attr('value');
-        });
+                    $('#shopList').change(function () {
+                        var tb_user_id = $('#shopList option:selected').attr('tb_user_id');
+                        shopType(tb_user_id);
+                    });
 
-        //一键铺货
-        $('.startPH2').click(function () {
-            allPhFun(ids);
-        });
-
-        function allPhFun(goodsID) {
-            var PHdata = {
-                goods_id: goodsID, //商品ID
-                user_id: userid, //用户ID
-                cid: '', //商品分类ID
-                tb_user_id: $('#shopList option:selected').attr('tb_user_id'), //淘宝用户ID
-                freight_type: freightType, //邮费方式
-                freight_fee: '', //自填邮费
-                template_id: '', //淘宝运费模板ID
-                platform: 1          //平台
-            };
-            if (freightType == 1) {
-                var freightText = $('#freight_fee').val();
-                if (freightText == '') {
-                    X.notice('请填写运费金额', 3);
-                } else if (isNaN(freightText)) {
-                    X.notice('运费金额必须为数字', 3);
-                    $('#freight_fee').val('');
-                } else if (freightText < 0) {
-                    X.notice('运费金额不能小于0', 3);
-                    $('#freight_fee').val('');
-                } else {
-                    PHdata.freight_fee = parseFloat(freightText).toFixed(2);
-                    PH();
-                }
-            } else if (freightType == 2) {
-                var templateid = $('#shopTemplate option:selected').attr('value');
-                if (templateid == undefined || templateid == '') {
-                    X.notice('请选择运费模板', 3);
-                } else {
-                    PHdata.template_id = parseInt(templateid);
-                    PH();
-                }
-            } else {
-                PH();
-            }
-
-            //一键铺货请求
-            function PH() {
-                var goodsType = $('#goodsType option:selected').attr('value');
-                var nowNum = 0;
-                if (goodsType == undefined || goodsType == '') {
-                    X.notice('请选择商品分类', 3);
-                } else {
-                    PHdata.cid = goodsType;
-                    $(PHdata.goods_id).each(function (key, item) {
-                        PHdata.goods_id = item;
-                        X.Post(requestUrl.item_add_taobao, 1, PHdata, function (res) {
+                    //获取店铺的类目和运费模板
+                    function shopType(tb_user_id) {
+                        var templateData = {
+                            user_id: userid,
+                            shop_id: tb_user_id
+                        };
+                        X.Post(requestUrl.tb_template, 1, templateData, function (res) {
                             if (res.header.stats == 0) {
-                                if(res.body.list.sucess == true){
-                                    nowNum ++;
-                                    $('.goodsID'+item+'>.PHstatus').text('铺货完成').css('color','#1def12');
-                                    $('.nowNum').text(nowNum);
-                                    $('.PhJD p').animate({'width': ii*nowNum + 'px'}, 1000);
+                                var catStr = '', templateStr = '';
+                                //店铺商品分类
+                                var cats = res.body.list.seller_cats;
+                                if(cats.length<=0){
+                                    catStr = "<option value=''>--请选择--</option>";
                                 }
+                                var templates = res.body.list.delivery_templates;
+                                $(cats).each(function () {
+                                    catStr += '<option value="' + this.cid + '">' + this.name + '</option>'
+                                });
+                                $('#goodsType').html(catStr);
+                                //店铺运费模板
+                                $(templates).each(function () {
+                                    templateStr += '<option value="' + this.template_id + '">' + this.name + '</option>'
+                                });
+                                $('#shopTemplate').html(templateStr);
+
+                                $('.Phcontent select,.Phcontent input,.startPH2').removeAttr('disabled','disabled');
                             } else {
-                                X.notice(res.header.msg, 3);
+                                $('#goodsType').html('<option value="">--请选择--</option>');
+                                $('#shopTemplate').html('<option value="">--请选择--</option>');
+                                X.notice('获取用户运费模板失败', 3);
                             }
-                        })
+                        });
+                    }
+
+                    //快递选项
+                    var freightType = 0;
+                    $('.Phsele table input[type=radio]').click(function () {
+                        freightType = $(this).attr('value');
                     });
+
+                    //一键铺货
+                    $('.startPH2').unbind('click').click(function () {
+                        allPhFun(ids);
+                    });
+
+                    function allPhFun(goodsID) {
+                        var PHdata = {
+                            goods_id: goodsID, //商品ID
+                            user_id: userid, //用户ID
+                            cid: '', //商品分类ID
+                            tb_user_id: $('#shopList option:selected').attr('tb_user_id'), //淘宝用户ID
+                            freight_type: freightType, //邮费方式
+                            freight_fee: '', //自填邮费
+                            template_id: '', //淘宝运费模板ID
+                            platform: 1          //平台
+                        };
+                        if (freightType == 1) {
+                            var freightText = $('#freight_fee').val();
+                            if (freightText == '') {
+                                X.notice('请填写运费金额', 3);
+                            } else if (isNaN(freightText)) {
+                                X.notice('运费金额必须为数字', 3);
+                                $('#freight_fee').val('');
+                            } else if (freightText < 0) {
+                                X.notice('运费金额不能小于0', 3);
+                                $('#freight_fee').val('');
+                            } else {
+                                PHdata.freight_fee = parseFloat(freightText).toFixed(2);
+                                PH();
+                            }
+                        } else if (freightType == 2) {
+                            var templateid = $('#shopTemplate option:selected').attr('value');
+                            if (templateid == undefined || templateid == '') {
+                                X.notice('请选择运费模板', 3);
+                            } else {
+                                PHdata.template_id = parseInt(templateid);
+                                PH();
+                            }
+                        } else {
+                            PH();
+                        }
+
+                        //一键铺货请求
+                        function PH() {
+                            var goodsType = $('#goodsType option:selected').attr('value');
+                            var nowNum = 0;
+//                            if (goodsType == undefined || goodsType == '') {
+//                                X.notice('请选择商品分类', 3);
+//                            } else {
+                                $('.Phcontent select,.Phcontent input,.startPH2').attr('disabled','disabled');
+                                $('.startPH2').text('铺货中...').css('background','#ccc');
+                                PHdata.cid = goodsType;
+                                var len = $(PHdata.goods_id).length;
+                                $(PHdata.goods_id).each(function (key, item) {
+                                    PHdata.goods_id = item;
+                                    X.Post(requestUrl.item_add_taobao, 1, PHdata, function (res) {
+                                        if (res.header.stats == 0) {
+
+                                            if(res.body.list.sucess == true){
+                                                nowNum ++;
+                                                $('.goodsID'+item+'>.PHstatus').text('铺货完成').css('color','#1def12');
+                                                $('.nowNum').text(nowNum);
+                                                $('.PhJD p').animate({'width': ii*nowNum + 'px'}, 200);
+                                                if(nowNum==len){
+                                                    $('.startPH2').text('铺货完成').removeAttr('disabled','disabled').css('background', '#ff6537').removeClass('startPH2').addClass('endPH');
+                                                    X.notice('铺货完成',3);
+                                                    $('.endPH').unbind('click').click(function(){
+                                                        colsePh();
+                                                    })
+                                                }
+                                            }
+                                        } else {
+                                            $('.Phcontent select,.Phcontent input,.startPH2').removeAttr('disabled','disabled');
+                                            $('.startPH2').text('开始铺货').css('background','#ff6537');
+                                            X.notice(res.header.msg, 3);
+                                        }
+                                    })
+                                });
+//                            }
+                        }
+                    }
+
                 }
             }
-        }
-        }
+        });
+    }
+
+    function colsePh(){
+        $('.Phcontent select,.Phcontent input,.startPH2').removeAttr('disabled','disabled');
+        $('.endPH').removeClass('endPH').addClass('startPH2');
+        $('.PhJD p').css('width','15px');
+        $('.startPH2').text('开始铺货');
+        $('.nowNum').text(0);
+        $('.marks,.PH').hide();
+
+//        $('.PH').hide();$('.startPH2').removeAttr('disabled','disabled');$('.startPH2').text('开始铺货');$('.PhJD p').css('width','17px');$('.nowNum').text(0);
     }
 </script>

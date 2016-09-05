@@ -15,6 +15,12 @@
             }
             #kefu{min-height: 100px;display: block;}
             a{color: #333333;}
+
+            .center-PopBody {
+                padding: 0 15px;
+                padding-bottom: 20px;
+                min-height: 200px;
+            }
         </style>
     </head>
     <body>
@@ -32,19 +38,19 @@
                         <div class="PopBody" id="kefu" style="display: block;margin: 0 auto;">
                             <table>
                                 <tr>
-                                	<td>值班时间</td><td>周一至周日    9：00-23：00</td>
+                                	<td>值班时间:</td><td>周一至周日    9：00-23：00</td>
                                 </tr>
                                 <tbody data-bind = "foreach:{data:qq_list,as:'auto'}">
-                                <tr><td data-bind = "text:type"></td><td><a data-bind = "text:qq"></a></td></tr>
+                                <tr>
+                                	<td data-bind = "text:type +'QQ :'"></td><td><i style="display: inline;display: inline-block;width: 27px;height: 33px;background: url(images/main/qq.png) no-repeat bottom;margin-bottom: -3px;"></i> <a data-bind = "text:qq"></a></td>
+                                </tr>
                                 </tbody>
-                                                             <!--<tr><td>售前QQ：</td><td data-bind = "text:qq_list[0].qq">40068549854</td></tr>
-                                <tr><td>售后QQ：</td><td data-bind = "text:qq_list[2].qq">40068549854</td></tr>
-                                <tr><td>企业QQ：</td><td>40068549854</td></tr>
+                                <tr><td>企业QQ：</td><td><i style="display: inline;display: inline-block;width: 27px;height: 33px;background: url(images/main/qq.png) no-repeat bottom;margin-bottom: -3px;"></i> <a>40068549854</a></td></tr>
                                 <tr><td>官方旺旺：</td><td>创想范电子商务</td></tr>
                                 <tr><td>售前电话：</td><td>13578854684</td></tr>
                                 <tr><td>技术中心：</td><td>13578854684</td></tr>
                                 <tr><td>官方网址：</td><td><a target="_blank" href="http://www.mycxf.com"></a>www.mycxf.com</td></tr>
-                                <tr></tr>-->
+                                <tr></tr>
                             </table>
                         </div>
                     </div>  

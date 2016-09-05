@@ -28,7 +28,7 @@ class PaymentController extends AuthController {
         $this->catch_money_status = C('catch_money_status');
         $this->pay_account_type = C('pay_account_type');
         foreach ($list as &$value) {
-            $value['addtime'] = $value['addtime']?date("Y-m-d h:i:s", $value['addtime']):'';
+            $value['addtime'] = $value['addtime'] ? date("Y-m-d h:i:s", $value['addtime']) : '';
             $value['deal_time'] = 0 < $value['deal_time'] ? date("Y-m-d h:i:s", $value['deal_time']) : '';
             $value['catch_type'] = 0 < $value['catch_type'] ? $this->catch_money_type[$value['catch_type']] : '';
             $value['receiver_account_type'] = 0 < $value['receiver_account_type'] ? $this->receiver_platform[$value['receiver_account_type']] : '';
@@ -159,16 +159,16 @@ class PaymentController extends AuthController {
             return false;
         }
         $_fx_st_data = [];
-        $_fx_st_data['user_type'] = $_catch_money['catch_type'];
+        $_fx_st_data['user_type'] = $_catch_money['user_type'];
         $_fx_st_data['user_id'] = $_catch_money['apply_user_id'];
-        $_fx_st_data['receiver_name'] = $_catch_money['catch_type'];
+        $_fx_st_data['receiver_name'] = $_catch_money['receiver_name'];
         $_fx_st_data['in_money'] = $_catch_money['repay'];
 
         $_user_table = 1 == $_catch_money['user_type'] ? 'fx_supplier_user' : 'fx_distribute_user';
         $_user_info = M($_user_table)->field('balance,user_account as username')->where("id={$_catch_money['apply_user_id']}")->find();
         $_now_balance = $_user_info['balance'] - $_catch_money['repay'];
         $_fx_st_data['now_balance'] = 1 == $_catch_money['catch_type'] ? $_now_balance : 0; //排除余额数据（只有申请提现才会有余额概念）
-        if (1 == $_catch_money['user_type'] && $_now_balance < 0) {
+        if (1 == $_catch_money['catch_type'] && $_now_balance < 0) {
             return false; //余额小于0，扣款失败
         }
         $_fx_st_data['user_name'] = $_user_info['username'];
@@ -176,8 +176,14 @@ class PaymentController extends AuthController {
         $_fx_st_data['trade_account_type'] = $_data['pay_account_type'];
         $_fx_st_data['trade_no'] = $_data['trade_no'];
         $_fx_st_data['add_time'] = time();
+        $_fx_as_log = array();
         //事务执行前组织数据(售后)
         if (3 == $_catch_money['catch_type']) {
+            $_fx_as_log['cus_id'] = $_catch_money['source_id'];
+            $_fx_as_log['user_name'] = session('user.name');
+            $_fx_as_log['action'] = '平台确认已打款';
+            $_fx_as_log['add_time'] = time();
+            $_fx_as_log['remark'] = '平台确认已打款';
             $_cus_order = M('cus_order_list')->where("id = {$_catch_money['source_id']}")->field("order_id,cus_type")->find();
             $_order_id = $_cus_order['order_id']; //订单id
             if (1 == $_cus_order['cus_type']) {//退款退货
@@ -213,6 +219,8 @@ class PaymentController extends AuthController {
                 if (false === $result2) throw new \Exception("单据状态修改失败！");
                 $result3 = M('order_list')->where("order_id = {$_order_id}")->save(array('order_state' => 5));
                 if (false === $result3) throw new \Exception("单据状态修改失败！");
+                $result_3_1 = M('fx_aftersales_log')->add($_fx_as_log);
+                if (false === $result_3_1) throw new \Exception("售后操作日志写入失败！");
             }
             $result4 = M("fx_statement")->add($_fx_st_data);
             if (false === $result4) throw new \Exception("单据信息修改失败！");

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创想范货源管家更新提示</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fqy_style.css">
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/public.js"></script>
+    <script src="js/plus.js"></script>
+</head>
+<body>
+    <div class="PopDiv" id="updata" style="width: 100%;top: 0;left: 0;transform: translate(0,0)">
+        <div class="PopHeader">
+            <img style="top: 11px;" src="images/tips.png" alt="">
+            <span class="PopTitle">创想范货源管家更新提示</span>
+            <div class="PopColse" onclick="colse()"></div>
+        </div>
+        <div class="PopBody">
+            <div class="Phcontent">
+                <dl>
+                    <dt>检测到新版本v1.0.1，更新内容如下：</dt>
+                    <dd>1、钢铁是怎么样练成的</dd>
+                    <dd>2、里约奥运会刚进入第二天，我们就目睹了第一出有关兴奋剂的戏码</dd>
+                    <dd>3、从采用算法辅助设计的钉鞋，到超声波缝合起来的泳衣，再到采用非对称设计的场</dd>
+                    <dd>4、当今的优秀运动员非常倚重这些技术，没有它们，就不指望拿到奖牌。大多数奥运</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="PopFooter">
+            <button class="OKBtn" id="OKBtn">确定</button>
+        </div>
+    </div>
+</body>
+<script>
+
+    var gui = require('nw.gui');
+    var win = gui.Window.get();
+    var shell = gui.Shell;
+    var app = gui.App;
+    function colse(){
+        win.hide();
+        win.close(true);
+    }
+    $('#OKBtn').click(function(){
+        win.hide();
+        win.close(true);
+        shell.openItem('update.exe');
+    });
+
+</script>
+</html>

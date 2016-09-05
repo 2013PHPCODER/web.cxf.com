@@ -33,7 +33,7 @@
                         </gt>
                         <gt name="datas.return_status" value="0">
                         <!--退款退货状态：-->
-                        <?php echo f_afterStatus($datas['return_status']);?>
+                        <?php echo f_afterStatus($datas['return_status'],'return');?>
                         </gt>
                         </eq>	
                     </h4>
@@ -53,7 +53,7 @@
                                 <div class="shipping_info">
                                     <table cellspacing="0" cellpadding="0">
                                         <tr>
-                                            <td rowspan="2" colspan="1" style="padding:0;"><img src="{:img_url($order_goods['goods_img'],48,48)}"></td>
+                                            <td rowspan="2" colspan="1" style="padding:0;"><img src="{$order_goods.goods_img}!upyun123/fwfh/48x48"></td>
                                             <td colspan="4" style="padding:0 10px;">{$order_goods.goods_name}</td>
                                         </tr>
                                         <tr>
@@ -147,7 +147,7 @@
                             </tr>
                         <foreach name="datas.order_goods" item="order_goods">
                             <tr>
-                                <td><img class="table_img" src="{$order_goods.goods_img}_40x40.jpg"></td>
+                                <td><img class="table_img" src="{$order_goods.goods_img}!upyun123/fwfh/40x40"></td>
                                 <td>{$order_goods.goods_name}</td>
                                 <td>{$order_goods.buyer_goods_no} </td>
                                 <td>{$order_goods.sku_str}</td>
@@ -183,7 +183,7 @@
                             </tr>
                         <volist name="orderLog" id="log">
                             <tr>
-                                <td>{$log.user_id}</td>
+                                <td>{$log.user_name}</td>
                                 <td>{$log.log_info}</td>
                                 <td><?= date("Y-m-d H:i",$log['addtime'])?></td>
                                 <td>{$log.handle_info}</td>

@@ -3,6 +3,19 @@
 namespace Org\Util;
 
 /**
+ * 字符串截取函数
+ * @param string $str 原始字符串
+ * @param string $start_str 起始字符串
+ * @param string $end_str 结束字符串
+ * @return 截取后的字符串
+ */
+function cut_str($str, $start_str = '', $end_str = '') {
+    $start_str_index = strpos($str, $start_str, 0);
+    $end_str_index = strpos($str, $end_str, $start_str_index);
+    return substr($str, $start_str_index + strlen($start_str), $end_str_index - ($start_str_index + strlen($start_str)));
+}
+
+/**
  * 淘宝API
  *
  * @author 燕十三
@@ -10,11 +23,16 @@ namespace Org\Util;
  */
 class Taobao {
 
-    const TAOBAO_APP_KEY = '23431529';
-    const TAOBAO_APP_SECRET = 'dc6af151a34081f4689bd562066b47a5';
+//    const TAOBAO_APP_KEY = '23431529';
+//    const TAOBAO_APP_SECRET = 'dc6af151a34081f4689bd562066b47a5';
+//    const TABAO_API_URL = 'http://gw.api.taobao.com/router/rest';
+//    const TABAO_SYS_ACCESS_TOKEN = '6200a02738ZZ1c10d0b2d0f58499acef1fa7d29d32a536e591689975'; //默认系统access_token
+   
+    const TAOBAO_APP_KEY = '23302533';
+    const TAOBAO_APP_SECRET = '6fb577c1926aeaee4a022087006283ae';
     const TABAO_API_URL = 'http://gw.api.taobao.com/router/rest';
-    const TABAO_SYS_ACCESS_TOKEN = '6200a02738ZZ1c10d0b2d0f58499acef1fa7d29d32a536e591689975'; //默认系统access_token
-
+    const TABAO_SYS_ACCESS_TOKEN = '6200a096bb27d93begi58d8fe57852fb952be529bda1738591689975'; //默认系统access_token
+    
     static function get_sign($method, $access_token, $params) {
         $to_sign = self::TOP_SECRET_KEY . $method;
         if (isset($access_token)) $to_sign.=$access_token;

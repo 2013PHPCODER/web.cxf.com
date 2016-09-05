@@ -87,6 +87,18 @@ class account_status{
     const yes=2; //正常
     const notperfect=3; //未开通,不完善
 }
+/*类目是否有商品*/
+class category_has_goods{
+    const no= 0; //没有商品
+    const yes =1; //有商品
+}
+/*类目状态*/
+class category_status{
+    const is_dispose=0; //新建
+    const is_yes=1; //正常
+    const is_not=2; //禁用
+}
+
 
 /*
  * 订单状态
@@ -212,7 +224,7 @@ class goods{
     const stock_num=0;  //'总库存',
     const rand_num=10;  //随机8条热销商品,
     const category_two_level=4;  //取4条2级分类
-    const goods_count_limit=30;  //取4条2级分类
+    const goods_count_limit=20;  //取4条2级分类
     const goods_data_nnot='商品数据为空';  //取4条2级分类
 }
 /*
@@ -271,11 +283,13 @@ class Article{
 }
 
 class Order {
+    const order_user_name_null = "用户名为空";
     const order_id_not_null = "订单ID错误";
+    const order_user_id_not_null = "用户ID为空";
     const order_detail_error = "订单返回错误";
     const order_detail_order_sn="订单编号错误";
     const order_detail_order_goods="订单物流信息错误";
-    const order_detail_orderto_user_type=3;//分销商类型
+    const order_detail_orderto_user_type=2;//分销商类型
     const order_message_to_admin=2;//分销商类型
     const order_confirm_fail='收货失败';//分销商类型
     const order_confirm_success='收货成功';//分销商类型
@@ -663,17 +677,16 @@ class Sql {                          //收集sql信息
     }
 
     public static function set($sql, $filds) {
-
         foreach ($filds as $k => $v) {
             if (is_array($v)) {
                 foreach ($v as $k2 => $v2) {
                     $k2 = ":$k2";
-                    $v2 = "`$v2`";
+                    $v2 = "'$v2'";
                     $sql = str_ireplace($k2, $v2, $sql);
                 }
             } else {
                 $k = ":$k";
-                $v = "`$v`";
+                $v = "'$v'";
                 $sql = str_ireplace($k, $v, $sql);
             }
         }

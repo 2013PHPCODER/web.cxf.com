@@ -20,8 +20,9 @@
 </div>
 <script>
 	!function () {
-        var url = window.location.pathname.split('.')[0].split('/');
-        url = url[url.length-1];
+        var url = window.location.href;
+            url=url.substring(url.lastIndexOf('/') + 1);
+            url =url.substring(0,url.indexOf('.'));
         var n;
         switch (url) {
             case '' :

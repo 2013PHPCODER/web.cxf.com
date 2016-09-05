@@ -40,6 +40,7 @@ class ConfirmSuccessTradeModel extends Model {
         switch ($record['type']) {
             case 1:
                 $order_model = new OrderListModel();
+                $log_model = new LogListModel();
                 $this->startTrans();
                 $suc = $this->where(array('id' => $id, 'status' => 0))
                         ->save(array('status' => 1, 'confirm_user_id' => session('user.id'), 'confirm_time' => time()));
@@ -48,8 +49,10 @@ class ConfirmSuccessTradeModel extends Model {
                 $state_add = $statement_model->add($statement_data);
                 //修改订单表状态
                 $order_change = $order_model->where(array('order_id' => $record['source_id'], 'order_state' => 0))->save(array('order_state' => 1, 'payment_time' => time()));
-                if (!$suc || !$state_add || !$order_change) {
+                $add_log = $log_model->add(array('log_info' => '订单已收款', 'handle_info' => '订单收款成功,待发货', 'user_id' => session('user.id'), 'user_name' => session('user.name'), 'cid' => 1, 'pid' => $record['source_id'], 'ip_address' => getIP(), 'addtime' => time()));
+                if (!$suc || !$state_add || !$order_change || !$add_log) {
                     $this->rollback();
+                    write_log('订单确认收款失败，订单信息：'.  json_encode($record));
                     $return['message'] = '记录修改失败！';
                 } else {
                     $this->commit();
@@ -88,6 +91,7 @@ class ConfirmSuccessTradeModel extends Model {
                 $cus_model = new CusOrderListModel();
                 $distribubte_model = new FxDistributeUserModel();
                 $catch_money_model = new FxCatchMoneyModel();
+                $aftersales_log = new FxAftersalesLogModel();
                 $cus_info = $cus_model->table('cus_order_list as c')->field('c.cus_type,c.have_replenished,c.refund_status,c.return_status,o.pay_amount')
                                 ->join('inner join order_list as o  on c.order_id=o.order_id')
                                 ->where(array('id' => $record['source_id']))->find();
@@ -104,6 +108,8 @@ class ConfirmSuccessTradeModel extends Model {
                 $state_add = $statement_model->add($statement_data);
                 //修改状态
                 $rechange = $cus_model->where(array('id' => $record['source_id'], 'supplier_id' => $record['user_id']))->save(array('return_status' => 5));
+                //添加售后处理日志
+                $aftersales_add = $aftersales_log->add(array('cus_id' => $record['source_id'], 'user_name' => session('user.name'), 'action' => '售后补款收款成功', 'add_time' => time(), 'remark' => '收款成功'));
                 //写入记录到带打款表
                 $add_catch = $catch_money_model->add(array(
                     'apply_user_id' => $record['user_id'],
@@ -118,7 +124,7 @@ class ConfirmSuccessTradeModel extends Model {
                     'receiver_account' => $record['pay_account'],
                     'user_type' => $record['user_type'],
                 ));
-                if (!$suc || !$state_add || !$rechange || !$add_catch) {
+                if (!$suc || !$state_add || !$rechange || !$add_catch || !$aftersales_add) {
                     $this->rollback();
                     $return['message'] = '记录修改失败！';
                 } else {
@@ -132,6 +138,7 @@ class ConfirmSuccessTradeModel extends Model {
             case 4:
                 $virtual_order_model = new FxVirtualOrderModel();
                 $distribubte_model = new FxDistributeUserModel();
+                $log_model = new LogListModel();
                 $sql = 'SELECT id,`status`,distribute_user_id,target_grade,order_type,log_id from fx_virtual_order  WHERE id=' . $record['source_id'];
                 $info = D()->query($sql);
                 if (empty($info[0])) {
@@ -153,6 +160,7 @@ class ConfirmSuccessTradeModel extends Model {
                             . ', fdu.account_status=2 WHERE fvo.`status`=1  and fvo.id=' . $virtual_order_info['id'] . ' AND fdu.id=' . $virtual_order_info['distribute_user_id'];
                 }
                 $this->startTrans();
+                $add_log = $log_model->add(array('log_info' => '虚拟订单已收款', 'handle_info' => '虚拟订单收款成功,已完成', 'user_id' => session('user.id'), 'user_name' => session('user.name'), 'cid' => 5, 'pid' => $record['source_id'], 'ip_address' => getIP(), 'addtime' => time()));
                 $suc = $this->where(array('id' => $id, 'status' => 0))
                         ->save(array('status' => 1, 'confirm_user_id' => session('user.id'), 'confirm_time' => time()));
                 //增加流水表数据
@@ -162,7 +170,7 @@ class ConfirmSuccessTradeModel extends Model {
                 $order_change = $virtual_order_model->where(array('id' => $record['source_id']))->save(array('status' => 1, 'payment_time' => time()));
                 //修改用户等级
                 $user_change = $this->execute($update_sql);
-                if (!$suc || !$state_add || !$order_change || !$user_change) {
+                if (!$suc || !$state_add || !$order_change || !$user_change || !$add_log) {
                     $this->rollback();
                     $return['message'] = '记录修改失败！';
                     write_log('收款成功，操作前收款失败，数据：' . json_encode($record));

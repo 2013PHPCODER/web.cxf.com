@@ -16,6 +16,7 @@
     <title>创想范分销平台--开通账户列表</title>
     <link rel="stylesheet" type="text/css" href="css/common.css"/>
     <link rel="stylesheet" type="text/css" href="css/zengli.css"/>
+    <link rel="shortcut icon" href="images/64x64.ico" type="image/x-icon" />
     <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/knockout/3.3.0/knockout-min.js"></script>
     <script src="js/pseudo.js" type="text/javascript" charset="utf-8"></script>
@@ -67,7 +68,8 @@
                                 <td data-bind="text:price">200.00</td>
                                 <td data-bind="text:agent_price">50.00</td>
                                 <td data-bind="text:ratio">150.00</td>
-                                <td data-bind = "text:mark">售后订单退全款</td>
+<!--                                <td data-bind = "text:mark">售后订单退全款</td>-->
+                                <td data-bind = "text:mark"></td>
                             </tr>
                             </tbody>
                         </table>

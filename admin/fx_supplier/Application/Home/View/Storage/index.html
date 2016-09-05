@@ -445,7 +445,7 @@
             dataPost.order = order;
             var urlPost = "{:U('storage/getAllShipCode',I('get.'))}";
             $.post(urlPost, dataPost, function (result) {
-                console.log(result);
+//                console.log(result);
                 if (result.status == 0) {
                     layer.tips(result.message, '#btn_assign', {
                         tips: [2, '#3595CC'],
@@ -510,7 +510,7 @@
                         btn: ['打印', '取消'], area: ['1000px', '600px']},
                             function () {
                                 $.post("{:U('storage/resultDistribution')}", $('.print_table').serialize(), function (status) {
-                                    console.log(status);
+//                                    console.log(status);
                                     var newstr = $('.layui-layer-content').html();
                                     var newOpenWindow = window.open(window.location.href);
                                     newOpenWindow.onload = function () {
@@ -644,7 +644,7 @@
                         var urlPost = "{:U('storage/canceShipCode',I('get.'))}";
                         $.post(urlPost, data, function (result) {
                             var result = JSON.parse(result);
-                            console.log(result);
+//                            console.log(result);
                             var success = 0;
                             var fail = 0;
                             var cus_num = 0;
@@ -749,7 +749,7 @@
                         } else {
                             var postUrl = "{:U('Storage/printSingle')}";
                             $.post(postUrl, postData, function (data, textStatus, xhr) {
-                                console.log(data);
+//                                console.log(data);
                                 if (1 == data.status) {
                                     printShip(data.returnData);
                                 }

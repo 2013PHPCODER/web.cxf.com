@@ -1,9 +1,13 @@
 <?php
+
 /* * *
  * 财务-资金
  */
+
 namespace api\home;
+
 class FinanceController extends Controller {
+
     /**
      * 资金明细
      * @param int $_trade_type 交易 类型
@@ -28,9 +32,7 @@ class FinanceController extends Controller {
         if (!isset($this->request->end_time)) $this->request->end_time = ''; //可选
         if (!isset($this->request->trade_no)) $this->request->trade_no = ''; //可选
 
-        $_datas = \Dao::fx_statement()->statement_list(
-                $this->request->user_id, $this->request->user_name, $this->request->trade_type, $this->request->start_time, $this->request->end_time, $this->request->trade_no, $this->request->page);
-        if (empty($_datas)) myerror(\StatusCode::msgCheckFail, \Finance::fiance_datas_fail);
+        $_datas = \Dao::fx_statement()->statement_list($this->request->user_id, $this->request->user_name, $this->request->trade_type, $this->request->start_time, $this->request->end_time, $this->request->trade_no, $this->request->page);
         $this->response($_datas);
     }
 

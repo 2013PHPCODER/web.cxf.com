@@ -106,7 +106,6 @@ class UserController extends CommonController {
                 $arr['applicant_idcard_img_hand'][$i] = $hand_arr;
             }
         }
-
         $this->ajaxReturn($arr);
     }
 

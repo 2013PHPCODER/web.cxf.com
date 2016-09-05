@@ -1,0 +1,1240 @@
+[ 2016-09-05T13:28:00+08:00 ] 127.0.0.1 /Storage/storage/hubDistribution.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000890s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001723s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003395s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0527s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0475s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 135 ) LIMIT 1   [ RunTime:0.0469s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 135 ) [ RunTime:0.0514s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0467s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`user_name`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','135','14','cxf_57ca6dd8dcd62305','1473053280','127.0.0.1') [ RunTime:0.0494s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0475s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('14','cxf_57ca6dd8dcd62305','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:135','1473053280','127.0.0.1','{\"order_id\":[\"135\"]}') [ RunTime:0.0498s ]
+
+[ 2016-09-05T13:28:10+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000909s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001792s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010023s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0522s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0481s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0488s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0472s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000074s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000165s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.044875s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.044999s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000605s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000794s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001538s ]
+
+[ 2016-09-05T13:33:16+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000835s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001406s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003050s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0429s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '14' LIMIT 1   [ RunTime:0.0404s ]
+
+[ 2016-09-05T13:33:17+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000785s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001526s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002954s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0483s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0481s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0469s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0468s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0513s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0475s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0490s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0477s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0490s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0483s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0490s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 135  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0473s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0497s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0484s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0506s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0471s ]
+NOTIC: [8] Trying to get property of non-object D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Storage\Controller\StorageController.class.php 第 767 行.
+
+[ 2016-09-05T13:33:46+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001065s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001691s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003966s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0528s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0469s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0524s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0467s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0529s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0471s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0484s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0467s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0518s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0471s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0483s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 135  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0477s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0519s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0473s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0503s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0471s ]
+NOTIC: [8] Trying to get property of non-object D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Storage\Controller\StorageController.class.php 第 768 行.
+
+[ 2016-09-05T13:33:46+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001087s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001686s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003981s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0457s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '14' LIMIT 1   [ RunTime:0.0445s ]
+
+[ 2016-09-05T13:42:45+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000617s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001911s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003102s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0435s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '14' LIMIT 1   [ RunTime:0.0423s ]
+
+[ 2016-09-05T13:42:46+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000853s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001710s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003227s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0479s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0484s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0489s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0494s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0468s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0475s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0474s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0485s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0486s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0572s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0491s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 135  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0487s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0484s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0473s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0467s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0473s ]
+NOTIC: [8] Trying to get property of non-object D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Storage\Controller\StorageController.class.php 第 768 行.
+
+[ 2016-09-05T13:43:16+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000650s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001980s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003302s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0504s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '14' LIMIT 1   [ RunTime:0.0478s ]
+
+[ 2016-09-05T13:43:17+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000685s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001947s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003532s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0488s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0475s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0488s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0467s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0489s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0481s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0489s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0467s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0486s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0463s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0488s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 135  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0465s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0489s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0492s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0476s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0508s ]
+
+[ 2016-09-05T13:44:03+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000646s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001379s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002619s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0488s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '14' LIMIT 1   [ RunTime:0.0473s ]
+
+[ 2016-09-05T13:44:04+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000579s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001225s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002530s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0474s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0420s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0487s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0466s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0448s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0474s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0435s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0449s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0419s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0466s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0452s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 135  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0457s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0443s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0473s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0428s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0459s ]
+
+[ 2016-09-05T13:44:20+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000764s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001719s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003453s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0480s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0472s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0504s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0481s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0529s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0486s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0521s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0480s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0473s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0481s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0487s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 135  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0472s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0515s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0482s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0503s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0476s ]
+
+[ 2016-09-05T13:44:20+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000909s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001774s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003757s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0502s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '14' LIMIT 1   [ RunTime:0.0492s ]
+
+[ 2016-09-05T13:44:56+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000853s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002373s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004144s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0437s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '14' LIMIT 1   [ RunTime:0.0419s ]
+
+[ 2016-09-05T13:44:57+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000907s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002930s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004509s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0514s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0468s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0491s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0469s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0494s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0475s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0486s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0482s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0478s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0474s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0509s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 135  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0471s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0485s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0524s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0474s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0469s ]
+
+[ 2016-09-05T13:45:32+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000676s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001162s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002776s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0520s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0524s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0485s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0468s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000226s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000495s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.026532s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026830s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002261s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.003057s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005754s ]
+
+[ 2016-09-05T13:45:35+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000726s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002052s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003439s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0511s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '14' LIMIT 1   [ RunTime:0.0465s ]
+
+[ 2016-09-05T13:45:36+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000606s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001404s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003222s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0498s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0468s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0494s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0474s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0482s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0466s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0508s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0473s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0487s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0470s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0506s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 135  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0475s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0478s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0470s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0492s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0478s ]
+
+[ 2016-09-05T13:46:53+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000811s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001292s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002922s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0445s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '14' LIMIT 1   [ RunTime:0.0431s ]
+
+[ 2016-09-05T13:46:54+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000591s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001317s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002660s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0429s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0400s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0417s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0411s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0420s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0421s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0431s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0425s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0408s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0447s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0438s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 135  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0422s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0472s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0479s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0429s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0435s ]
+
+[ 2016-09-05T13:47:06+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000740s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001640s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003097s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0498s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '14' LIMIT 1   [ RunTime:0.0467s ]
+
+[ 2016-09-05T13:47:07+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000835s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001688s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003261s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0488s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0480s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0489s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0562s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0495s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0469s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0481s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0499s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0481s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0481s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0486s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 135  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0474s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0493s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0477s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0479s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0488s ]
+
+[ 2016-09-05T13:47:18+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000872s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001750s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003631s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0477s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '14' LIMIT 1   [ RunTime:0.0455s ]
+
+[ 2016-09-05T13:47:19+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000794s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001689s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003340s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0509s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0459s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0471s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0462s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0475s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0482s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0472s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0445s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0458s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0456s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0465s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 135  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0494s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0500s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0472s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0465s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0471s ]
+
+[ 2016-09-05T13:47:33+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000625s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001535s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002795s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0453s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '14' LIMIT 1   [ RunTime:0.0414s ]
+
+[ 2016-09-05T13:47:34+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000755s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001322s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002711s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0483s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0453s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0480s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0464s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0506s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0475s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0525s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0459s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0470s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0471s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0477s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 135  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0461s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0527s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0459s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0461s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0464s ]
+
+[ 2016-09-05T13:48:15+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000798s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001624s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003146s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0489s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '14' LIMIT 1   [ RunTime:0.0477s ]
+
+[ 2016-09-05T13:48:17+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000829s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001799s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003490s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0487s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0458s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0500s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0471s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0487s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0466s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0504s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0474s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 135  ) LIMIT 1   [ RunTime:0.0512s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0478s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0516s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 135  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0476s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0508s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0504s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0522s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0475s ]
+SQL: SELECT * FROM `system_shipping` WHERE ( id=3 ) LIMIT 1   [ RunTime:0.0475s ]
+SQL: UPDATE `hub_order` SET `shipping_code`='410859026647',`shipping_name`='中通快递',`shipping_no`='ZTO',`hub_type`='2',`ship_stats`='2',`shipping_info`='a:6:{s:12:\"print_config\";s:156:\"c2lnbmVlY2Q1NWExMmIzYTVjYzgyMWI0N2ZmNmQyMTYwNzk4JnsiS0VGX05BTUUiOiJhbGlfd2F5YmlsbF93YXliaWxsX2NvZGUiLCJLRUZfVkFMVUUiOiI0MTA4NTkwMjY2NDciLCJ2ZXJzaW9uIjoxfQ==\";s:20:\"shipping_branch_code\";s:5:\"30206\";s:20:\"shipping_branch_name\";s:12:\"荔湾和平\";s:13:\"short_address\";s:6:\"唐山\";s:16:\"trade_order_info\";a:10:{s:17:\"consignee_address\";a:4:{s:14:\"address_detail\";s:34:\"2016时尚休闲商务男表手表\";s:4:\"area\";s:9:\"路南区\";s:4:\"city\";s:9:\"唐山市\";s:8:\"province\";s:9:\"河北省\";}s:14:\"consignee_name\";s:34:\"2016时尚休闲商务男表手表\";s:15:\"consignee_phone\";s:11:\"13000000000\";s:19:\"order_channels_type\";s:2:\"TB\";s:10:\"package_id\";s:2:\"-1\";s:13:\"package_items\";a:1:{s:12:\"package_item\";a:1:{i:0;a:2:{s:5:\"count\";i:1;s:9:\"item_name\";s:6:\"衣服\";}}}s:12:\"real_user_id\";d:2899430086;s:16:\"trade_order_list\";a:1:{s:6:\"string\";a:1:{i:0;s:19:\"1160905102024268035\";}}s:6:\"volume\";i:0;s:6:\"weight\";i:0;}s:12:\"waybill_code\";s:12:\"410859026647\";}' WHERE ( order_id=135 ) [ RunTime:0.0513s ]
+SQL: SHOW COLUMNS FROM `order_list` [ RunTime:0.0492s ]
+SQL: UPDATE `order_list` SET `shipping_code`='410859026647',`shipping_id`='3',`shipping_name`='中通快递',`hub_type`='2',`shipping_info`='a:6:{s:12:\"print_config\";s:156:\"c2lnbmVlY2Q1NWExMmIzYTVjYzgyMWI0N2ZmNmQyMTYwNzk4JnsiS0VGX05BTUUiOiJhbGlfd2F5YmlsbF93YXliaWxsX2NvZGUiLCJLRUZfVkFMVUUiOiI0MTA4NTkwMjY2NDciLCJ2ZXJzaW9uIjoxfQ==\";s:20:\"shipping_branch_code\";s:5:\"30206\";s:20:\"shipping_branch_name\";s:12:\"荔湾和平\";s:13:\"short_address\";s:6:\"唐山\";s:16:\"trade_order_info\";a:10:{s:17:\"consignee_address\";a:4:{s:14:\"address_detail\";s:34:\"2016时尚休闲商务男表手表\";s:4:\"area\";s:9:\"路南区\";s:4:\"city\";s:9:\"唐山市\";s:8:\"province\";s:9:\"河北省\";}s:14:\"consignee_name\";s:34:\"2016时尚休闲商务男表手表\";s:15:\"consignee_phone\";s:11:\"13000000000\";s:19:\"order_channels_type\";s:2:\"TB\";s:10:\"package_id\";s:2:\"-1\";s:13:\"package_items\";a:1:{s:12:\"package_item\";a:1:{i:0;a:2:{s:5:\"count\";i:1;s:9:\"item_name\";s:6:\"衣服\";}}}s:12:\"real_user_id\";d:2899430086;s:16:\"trade_order_list\";a:1:{s:6:\"string\";a:1:{i:0;s:19:\"1160905102024268035\";}}s:6:\"volume\";i:0;s:6:\"weight\";i:0;}s:12:\"waybill_code\";s:12:\"410859026647\";}' WHERE ( order_id=135 ) [ RunTime:0.0494s ]
+
+[ 2016-09-05T13:49:54+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000820s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001563s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003078s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0432s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0443s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0469s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =135 ) LIMIT 1   [ RunTime:0.0424s ]
+
+[ 2016-09-05T13:56:21+08:00 ] 127.0.0.1 /Storage/storage/hubDistribution.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000567s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001214s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002342s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0566s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 146  ) LIMIT 1   [ RunTime:0.0428s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 146 ) LIMIT 1   [ RunTime:0.0475s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 146 ) [ RunTime:0.0480s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0444s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`user_name`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','146','1','cxf_57c648a374b4c446','1473054981','127.0.0.1') [ RunTime:0.0435s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0451s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('1','cxf_57c648a374b4c446','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:146','1473054981','127.0.0.1','{\"order_id\":[\"146\"]}') [ RunTime:0.0452s ]
+
+[ 2016-09-05T13:56:38+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000736s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001815s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003272s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0479s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0485s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0504s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =146 ) LIMIT 1   [ RunTime:0.0480s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000204s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000415s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019822s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020045s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001120s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.002005s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003453s ]
+
+[ 2016-09-05T13:56:44+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000777s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001421s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003415s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0468s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '1' LIMIT 1   [ RunTime:0.0426s ]
+
+[ 2016-09-05T13:56:45+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000908s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001703s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003296s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0460s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0454s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0473s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 146  ) LIMIT 1   [ RunTime:0.0478s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0475s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0487s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0479s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0501s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 146  ) LIMIT 1   [ RunTime:0.0466s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0470s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0499s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 146  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0473s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0515s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =146 ) LIMIT 1   [ RunTime:0.0475s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0488s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =146 ) LIMIT 1   [ RunTime:0.0470s ]
+NOTIC: [8] Undefined property: stdClass::$waybill_apply_new_cols D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Storage\Controller\StorageController.class.php 第 918 行.
+NOTIC: [8] Trying to get property of non-object D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Storage\Controller\StorageController.class.php 第 918 行.
+
+[ 2016-09-05T13:57:21+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000705s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001054s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002520s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0506s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0478s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0511s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =146 ) LIMIT 1   [ RunTime:0.0475s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000211s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009843s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009970s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000560s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000925s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001609s ]
+
+[ 2016-09-05T13:57:27+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000611s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001226s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002458s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0484s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '1' LIMIT 1   [ RunTime:0.0468s ]
+
+[ 2016-09-05T13:57:29+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001559s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002054s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004963s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0494s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0431s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0471s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 146  ) LIMIT 1   [ RunTime:0.0419s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0439s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0439s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0441s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0472s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 146  ) LIMIT 1   [ RunTime:0.0419s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0440s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0439s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 146  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0430s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0441s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =146 ) LIMIT 1   [ RunTime:0.0469s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0445s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =146 ) LIMIT 1   [ RunTime:0.0432s ]
+NOTIC: [8] Undefined property: stdClass::$waybill_apply_new_cols D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Storage\Controller\StorageController.class.php 第 918 行.
+NOTIC: [8] Trying to get property of non-object D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Storage\Controller\StorageController.class.php 第 918 行.
+
+[ 2016-09-05T14:04:57+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000923s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001421s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003159s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0521s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0465s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0481s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =146 ) LIMIT 1   [ RunTime:0.0466s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000093s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000201s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010509s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010629s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000851s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001067s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002091s ]
+
+[ 2016-09-05T14:05:06+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000659s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001560s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002911s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0495s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '1' LIMIT 1   [ RunTime:0.0475s ]
+
+[ 2016-09-05T14:05:07+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001522s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002537s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005079s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0451s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0411s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0428s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 146  ) LIMIT 1   [ RunTime:0.0455s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0429s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0444s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0431s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0440s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 146  ) LIMIT 1   [ RunTime:0.0416s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 3 LIMIT 1   [ RunTime:0.0461s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0471s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 146  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0425s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0437s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =146 ) LIMIT 1   [ RunTime:0.0429s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0415s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =146 ) LIMIT 1   [ RunTime:0.0435s ]
+NOTIC: [8] Undefined property: stdClass::$waybill_apply_new_cols D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Storage\Controller\StorageController.class.php 第 918 行.
+NOTIC: [8] Trying to get property of non-object D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Storage\Controller\StorageController.class.php 第 918 行.
+
+[ 2016-09-05T14:05:44+08:00 ] 127.0.0.1 /Storage/storage/hubDistribution.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000513s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001074s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002110s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0461s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 147  ) LIMIT 1   [ RunTime:0.0508s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 147 ) LIMIT 1   [ RunTime:0.0463s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 147 ) [ RunTime:0.0486s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0466s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`user_name`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','147','14','cxf_57ca6dd8dcd62305','1473055543','127.0.0.1') [ RunTime:0.0515s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0506s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('14','cxf_57ca6dd8dcd62305','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:147','1473055543','127.0.0.1','{\"order_id\":[\"147\"]}') [ RunTime:0.0521s ]
+
+[ 2016-09-05T14:05:51+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001010s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001717s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003712s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0434s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0431s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0445s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =147 ) LIMIT 1   [ RunTime:0.0417s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000074s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000159s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008642s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008758s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000781s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000993s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001983s ]
+
+[ 2016-09-05T14:05:55+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000865s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001783s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003469s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0502s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '14' LIMIT 1   [ RunTime:0.0472s ]
+
+[ 2016-09-05T14:05:57+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000749s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001451s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002877s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0487s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0467s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0467s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 147  ) LIMIT 1   [ RunTime:0.0467s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0512s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0452s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0493s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0459s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 147  ) LIMIT 1   [ RunTime:0.0471s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0467s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0482s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 147  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0473s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0481s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =147 ) LIMIT 1   [ RunTime:0.0486s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0479s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =147 ) LIMIT 1   [ RunTime:0.0490s ]
+SQL: SELECT * FROM `system_shipping` WHERE ( id=3 ) LIMIT 1   [ RunTime:0.0491s ]
+SQL: UPDATE `hub_order` SET `shipping_code`='410863559190',`shipping_name`='中通快递',`shipping_no`='ZTO',`hub_type`='2',`ship_stats`='2',`shipping_info`='a:6:{s:12:\"print_config\";s:156:\"c2lnbjVmNjI0YjU1OWNkYThiNThmNjljMjQ2Yzk3MDljNDMwJnsiS0VGX05BTUUiOiJhbGlfd2F5YmlsbF93YXliaWxsX2NvZGUiLCJLRUZfVkFMVUUiOiI0MTA4NjM1NTkxOTAiLCJ2ZXJzaW9uIjoxfQ==\";s:20:\"shipping_branch_code\";s:5:\"30206\";s:20:\"shipping_branch_name\";s:12:\"荔湾和平\";s:13:\"short_address\";s:6:\"北京\";s:16:\"trade_order_info\";a:10:{s:17:\"consignee_address\";a:4:{s:14:\"address_detail\";s:1:\"4\";s:4:\"area\";s:9:\"东城区\";s:4:\"city\";s:9:\"市辖区\";s:8:\"province\";s:9:\"北京市\";}s:14:\"consignee_name\";s:1:\"4\";s:15:\"consignee_phone\";s:11:\"13150322379\";s:19:\"order_channels_type\";s:2:\"TB\";s:10:\"package_id\";s:2:\"-1\";s:13:\"package_items\";a:1:{s:12:\"package_item\";a:1:{i:0;a:2:{s:5:\"count\";i:1;s:9:\"item_name\";s:6:\"衣服\";}}}s:12:\"real_user_id\";d:2899430086;s:16:\"trade_order_list\";a:1:{s:6:\"string\";a:1:{i:0;s:19:\"1160905020411599273\";}}s:6:\"volume\";i:0;s:6:\"weight\";i:0;}s:12:\"waybill_code\";s:12:\"410863559190\";}' WHERE ( order_id=147 ) [ RunTime:0.0488s ]
+SQL: SHOW COLUMNS FROM `order_list` [ RunTime:0.0500s ]
+SQL: UPDATE `order_list` SET `shipping_code`='410863559190',`shipping_id`='3',`shipping_name`='中通快递',`hub_type`='2',`shipping_info`='a:6:{s:12:\"print_config\";s:156:\"c2lnbjVmNjI0YjU1OWNkYThiNThmNjljMjQ2Yzk3MDljNDMwJnsiS0VGX05BTUUiOiJhbGlfd2F5YmlsbF93YXliaWxsX2NvZGUiLCJLRUZfVkFMVUUiOiI0MTA4NjM1NTkxOTAiLCJ2ZXJzaW9uIjoxfQ==\";s:20:\"shipping_branch_code\";s:5:\"30206\";s:20:\"shipping_branch_name\";s:12:\"荔湾和平\";s:13:\"short_address\";s:6:\"北京\";s:16:\"trade_order_info\";a:10:{s:17:\"consignee_address\";a:4:{s:14:\"address_detail\";s:1:\"4\";s:4:\"area\";s:9:\"东城区\";s:4:\"city\";s:9:\"市辖区\";s:8:\"province\";s:9:\"北京市\";}s:14:\"consignee_name\";s:1:\"4\";s:15:\"consignee_phone\";s:11:\"13150322379\";s:19:\"order_channels_type\";s:2:\"TB\";s:10:\"package_id\";s:2:\"-1\";s:13:\"package_items\";a:1:{s:12:\"package_item\";a:1:{i:0;a:2:{s:5:\"count\";i:1;s:9:\"item_name\";s:6:\"衣服\";}}}s:12:\"real_user_id\";d:2899430086;s:16:\"trade_order_list\";a:1:{s:6:\"string\";a:1:{i:0;s:19:\"1160905020411599273\";}}s:6:\"volume\";i:0;s:6:\"weight\";i:0;}s:12:\"waybill_code\";s:12:\"410863559190\";}' WHERE ( order_id=147 ) [ RunTime:0.0485s ]
+
+[ 2016-09-05T14:06:25+08:00 ] 127.0.0.1 /Storage/storage/hubDistribution.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000530s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001127s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002206s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0453s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE (  order_id = 148  ) LIMIT 1   [ RunTime:0.0414s ]
+SQL: SELECT `is_print` FROM `hub_order` WHERE ( order_id = 148 ) LIMIT 1   [ RunTime:0.0428s ]
+SQL: UPDATE `hub_order` SET `ship_stats`='1' WHERE ( order_id = 148 ) [ RunTime:0.0578s ]
+SQL: SHOW COLUMNS FROM `log_list` [ RunTime:0.0671s ]
+SQL: INSERT INTO `log_list` (`log_info`,`handle_info`,`cid`,`pid`,`user_id`,`user_name`,`addtime`,`ip_address`) VALUES ('配货','订单配货成功，进入待分配','1','148','14','cxf_57ca6dd8dcd62305','1473055585','127.0.0.1') [ RunTime:0.0564s ]
+SQL: SHOW COLUMNS FROM `fx_operate_logs` [ RunTime:0.0459s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Common\Controller\BasicController.class.php on line 66 and defined D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\ThinkPHP\Common\functions.php 第 339 行.
+SQL: INSERT INTO `fx_operate_logs` (`user_id`,`user_name`,`user_type`,`module`,`url`,`detail`,`add_time`,`ip`,`request`) VALUES ('14','cxf_57ca6dd8dcd62305','1','Storage','/Storage/Storage/hubDistribution.html','订单配货成功，进入待分配,order_id:148','1473055585','127.0.0.1','{\"order_id\":[\"148\"]}') [ RunTime:0.0489s ]
+
+[ 2016-09-05T14:06:35+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000527s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001111s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002195s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0491s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0472s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0470s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =148 ) LIMIT 1   [ RunTime:0.0470s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000081s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000170s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008596s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008682s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000702s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.002213s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003059s ]
+
+[ 2016-09-05T14:07:18+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000538s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001351s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002494s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0441s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '14' LIMIT 1   [ RunTime:0.0425s ]
+
+[ 2016-09-05T14:07:19+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000957s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002081s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003868s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0500s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0473s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0490s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 148  ) LIMIT 1   [ RunTime:0.0471s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0477s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0471s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0508s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0474s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 148  ) LIMIT 1   [ RunTime:0.0493s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0475s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0496s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 148  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0474s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0484s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =148 ) LIMIT 1   [ RunTime:0.0503s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0483s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =148 ) LIMIT 1   [ RunTime:0.0456s ]
+
+[ 2016-09-05T14:07:37+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000524s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001153s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002255s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0489s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0477s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0475s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =148 ) LIMIT 1   [ RunTime:0.0464s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000110s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000196s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010588s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010773s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001048s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001263s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002583s ]
+
+[ 2016-09-05T14:07:40+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000667s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001736s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003061s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0451s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '14' LIMIT 1   [ RunTime:0.0420s ]
+
+[ 2016-09-05T14:07:42+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000704s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001580s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003134s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0473s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0466s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0484s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 148  ) LIMIT 1   [ RunTime:0.0467s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0497s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0468s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0480s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0466s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 148  ) LIMIT 1   [ RunTime:0.0469s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0468s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0485s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 148  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0470s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0503s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =148 ) LIMIT 1   [ RunTime:0.0459s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0474s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =148 ) LIMIT 1   [ RunTime:0.0465s ]
+
+[ 2016-09-05T14:08:33+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000595s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001332s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002495s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0480s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0469s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0477s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =148 ) LIMIT 1   [ RunTime:0.0460s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000073s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000157s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010106s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010215s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000852s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001454s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002515s ]
+
+[ 2016-09-05T14:08:37+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000770s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001939s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003803s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0459s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '14' LIMIT 1   [ RunTime:0.0409s ]
+
+[ 2016-09-05T14:08:38+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000649s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001207s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002757s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0417s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0420s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0429s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 148  ) LIMIT 1   [ RunTime:0.0424s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0446s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0422s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0413s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0421s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 148  ) LIMIT 1   [ RunTime:0.0407s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0426s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0454s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 148  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0409s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0429s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =148 ) LIMIT 1   [ RunTime:0.0405s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0425s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =148 ) LIMIT 1   [ RunTime:0.0459s ]
+
+[ 2016-09-05T14:32:37+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000756s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001956s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003515s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0493s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0485s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0504s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0450s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000074s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000162s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010064s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010163s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000728s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000878s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001745s ]
+
+[ 2016-09-05T14:32:41+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000880s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001808s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003616s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0460s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '1' LIMIT 1   [ RunTime:0.0498s ]
+
+[ 2016-09-05T14:32:42+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000996s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002040s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004033s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0507s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0489s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0538s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0487s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0490s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0558s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0520s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 4 LIMIT 1   [ RunTime:0.0487s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0503s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0494s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0497s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 155  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0486s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0551s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0574s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0507s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0531s ]
+NOTIC: [8] Undefined property: stdClass::$waybill_apply_new_cols D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Storage\Controller\StorageController.class.php 第 917 行.
+NOTIC: [8] Trying to get property of non-object D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Storage\Controller\StorageController.class.php 第 917 行.
+
+[ 2016-09-05T14:33:50+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000718s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001464s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002876s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0516s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '1' LIMIT 1   [ RunTime:0.0513s ]
+
+[ 2016-09-05T14:33:52+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000708s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001432s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002818s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0502s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0500s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0499s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0537s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0524s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0523s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0575s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 4 LIMIT 1   [ RunTime:0.0497s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0495s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0486s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0472s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 155  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0511s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0510s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0509s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0481s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0476s ]
+NOTIC: [8] Undefined property: stdClass::$waybill_apply_new_cols D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Storage\Controller\StorageController.class.php 第 918 行.
+NOTIC: [8] Trying to get property of non-object D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Storage\Controller\StorageController.class.php 第 918 行.
+
+[ 2016-09-05T14:34:37+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001319s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001905s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004164s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0442s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0421s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0442s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0479s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0434s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0475s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0436s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 4 LIMIT 1   [ RunTime:0.0479s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0449s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0456s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0469s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 155  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0430s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0457s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0429s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0440s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0418s ]
+
+[ 2016-09-05T14:34:37+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001036s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001674s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003504s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0500s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '1' LIMIT 1   [ RunTime:0.0473s ]
+
+[ 2016-09-05T14:36:18+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000639s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001244s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002500s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0441s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '1' LIMIT 1   [ RunTime:0.0429s ]
+
+[ 2016-09-05T14:36:19+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000748s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001402s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002776s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0518s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0472s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0499s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0499s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0482s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0477s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0478s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 4 LIMIT 1   [ RunTime:0.0471s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0470s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0496s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0521s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 155  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0497s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0507s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0486s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0483s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0509s ]
+NOTIC: [8] Undefined property: stdClass::$sub_msg D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Storage\Controller\StorageController.class.php 第 768 行.
+
+[ 2016-09-05T14:38:48+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000807s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001689s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003189s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0442s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '1' LIMIT 1   [ RunTime:0.0440s ]
+
+[ 2016-09-05T14:38:49+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001051s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001512s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003209s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0495s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0480s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0510s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0497s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0524s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0486s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0499s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 4 LIMIT 1   [ RunTime:0.0488s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0481s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0492s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0490s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 155  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0480s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0549s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0519s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0490s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0476s ]
+NOTIC: [8] Undefined property: stdClass::$sub_msg D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Storage\Controller\StorageController.class.php 第 768 行.
+
+[ 2016-09-05T14:42:02+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000796s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001596s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003136s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0455s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0425s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0508s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0423s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0434s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0470s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0421s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 4 LIMIT 1   [ RunTime:0.0427s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0415s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0425s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0476s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 155  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0412s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0424s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0450s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0431s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0493s ]
+
+[ 2016-09-05T14:42:02+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000933s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001553s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003302s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0490s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '1' LIMIT 1   [ RunTime:0.0493s ]
+
+[ 2016-09-05T14:42:09+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000602s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001154s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002331s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0511s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0479s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0495s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0472s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0487s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0499s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0483s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 4 LIMIT 1   [ RunTime:0.0491s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0471s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0477s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0538s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 155  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0472s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0491s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0508s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0493s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0477s ]
+
+[ 2016-09-05T14:42:09+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000670s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001265s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002576s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0445s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '1' LIMIT 1   [ RunTime:0.0433s ]
+
+[ 2016-09-05T14:42:24+08:00 ] 127.0.0.1 /Storage/Storage/assginship.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000708s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001132s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002552s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0456s ]
+SQL: SELECT * FROM `system_shipping` ORDER BY sort asc  [ RunTime:0.0448s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0440s ]
+SQL: SELECT `ship_stats` FROM `hub_order` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0422s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000072s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000162s ]
+NOTIC: [8] Undefined variable: hub_id D:\wamp\www\www.cxf.com\DEV\source\admin\fx_supplier\Application\Runtime\Cache\Storage\c062f25da840eeda0638c2e9dc32fd70.php 第 30 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009842s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010005s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000649s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.001064s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001898s ]
+
+[ 2016-09-05T14:42:27+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000795s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001497s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003201s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0452s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '1' LIMIT 1   [ RunTime:0.0417s ]
+
+[ 2016-09-05T14:42:28+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000941s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002093s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003938s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0459s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0434s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0445s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0442s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0433s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0443s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0424s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 4 LIMIT 1   [ RunTime:0.0464s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0451s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0455s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0459s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 155  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0428s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0447s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0433s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0414s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0451s ]
+
+[ 2016-09-05T14:42:33+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000799s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001564s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003480s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0522s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '1' LIMIT 1   [ RunTime:0.0460s ]
+
+[ 2016-09-05T14:42:34+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000761s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001693s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003174s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0514s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0479s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0537s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0488s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0485s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0512s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0482s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 4 LIMIT 1   [ RunTime:0.0520s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 155  ) LIMIT 1   [ RunTime:0.0484s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0499s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0514s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 155  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0490s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0498s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0527s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0489s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =155 ) LIMIT 1   [ RunTime:0.0481s ]
+
+[ 2016-09-05T15:25:07+08:00 ] 127.0.0.1 /Storage/Storage/getShipCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000870s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001577s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003134s ]
+SQL: SHOW COLUMNS FROM `system_shipping` [ RunTime:0.0491s ]
+SQL: SELECT `shipping_code` FROM `system_shipping` WHERE (  id =3 ) LIMIT 1   [ RunTime:0.0474s ]
+SQL: SHOW COLUMNS FROM `order_goods` [ RunTime:0.0501s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 148  ) LIMIT 1   [ RunTime:0.0484s ]
+SQL: SHOW COLUMNS FROM `fx_storage_list` [ RunTime:0.0494s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0492s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0482s ]
+SQL: SELECT `access_token` FROM `taobao_authorize` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0545s ]
+SQL: SELECT `depot_id` FROM `order_goods` WHERE (  order_id = 148  ) LIMIT 1   [ RunTime:0.0510s ]
+SQL: SELECT * FROM `fx_storage_list` WHERE `id` = 16 LIMIT 1   [ RunTime:0.0489s ]
+SQL: SHOW COLUMNS FROM `order_contact` [ RunTime:0.0510s ]
+SQL: SELECT * FROM `order_contact` WHERE (  order_id = 148  ) ORDER BY id desc LIMIT 1   [ RunTime:0.0487s ]
+SQL: SHOW COLUMNS FROM `hub_order` [ RunTime:0.0488s ]
+SQL: SELECT `order_sn` FROM `hub_order` WHERE ( order_id =148 ) LIMIT 1   [ RunTime:0.0492s ]
+SQL: SHOW COLUMNS FROM `hub_order_goods` [ RunTime:0.0488s ]
+SQL: SELECT SUM(goods_num) AS tp_sum FROM `hub_order_goods` WHERE ( order_id =148 ) LIMIT 1   [ RunTime:0.0474s ]
+SQL: SELECT * FROM `system_shipping` WHERE ( id=3 ) LIMIT 1   [ RunTime:0.0481s ]
+SQL: UPDATE `hub_order` SET `shipping_code`='410873913896',`shipping_name`='中通快递',`shipping_no`='ZTO',`hub_type`='2',`ship_stats`='2',`shipping_info`='a:6:{s:12:\"print_config\";s:156:\"c2lnbmJlZjlhZDYwYzEyZDJlNDU2YzIyMjU2ZDA0N2Q4YjU0JnsiS0VGX05BTUUiOiJhbGlfd2F5YmlsbF93YXliaWxsX2NvZGUiLCJLRUZfVkFMVUUiOiI0MTA4NzM5MTM4OTYiLCJ2ZXJzaW9uIjoxfQ==\";s:20:\"shipping_branch_code\";s:5:\"30206\";s:20:\"shipping_branch_name\";s:12:\"荔湾和平\";s:13:\"short_address\";s:6:\"北京\";s:16:\"trade_order_info\";a:10:{s:17:\"consignee_address\";a:4:{s:14:\"address_detail\";s:1:\"5\";s:4:\"area\";s:9:\"东城区\";s:4:\"city\";s:9:\"市辖区\";s:8:\"province\";s:9:\"北京市\";}s:14:\"consignee_name\";s:1:\"5\";s:15:\"consignee_phone\";s:11:\"13150322379\";s:19:\"order_channels_type\";s:2:\"TB\";s:10:\"package_id\";s:2:\"-1\";s:13:\"package_items\";a:1:{s:12:\"package_item\";a:1:{i:0;a:2:{s:5:\"count\";i:1;s:9:\"item_name\";s:6:\"衣服\";}}}s:12:\"real_user_id\";d:2899430086;s:16:\"trade_order_list\";a:1:{s:6:\"string\";a:1:{i:0;s:19:\"1160905020530569720\";}}s:6:\"volume\";i:0;s:6:\"weight\";i:0;}s:12:\"waybill_code\";s:12:\"410873913896\";}' WHERE ( order_id=148 ) [ RunTime:0.0499s ]
+SQL: SHOW COLUMNS FROM `order_list` [ RunTime:0.0495s ]
+SQL: UPDATE `order_list` SET `shipping_code`='410873913896',`shipping_id`='3',`shipping_name`='中通快递',`hub_type`='2',`shipping_info`='a:6:{s:12:\"print_config\";s:156:\"c2lnbmJlZjlhZDYwYzEyZDJlNDU2YzIyMjU2ZDA0N2Q4YjU0JnsiS0VGX05BTUUiOiJhbGlfd2F5YmlsbF93YXliaWxsX2NvZGUiLCJLRUZfVkFMVUUiOiI0MTA4NzM5MTM4OTYiLCJ2ZXJzaW9uIjoxfQ==\";s:20:\"shipping_branch_code\";s:5:\"30206\";s:20:\"shipping_branch_name\";s:12:\"荔湾和平\";s:13:\"short_address\";s:6:\"北京\";s:16:\"trade_order_info\";a:10:{s:17:\"consignee_address\";a:4:{s:14:\"address_detail\";s:1:\"5\";s:4:\"area\";s:9:\"东城区\";s:4:\"city\";s:9:\"市辖区\";s:8:\"province\";s:9:\"北京市\";}s:14:\"consignee_name\";s:1:\"5\";s:15:\"consignee_phone\";s:11:\"13150322379\";s:19:\"order_channels_type\";s:2:\"TB\";s:10:\"package_id\";s:2:\"-1\";s:13:\"package_items\";a:1:{s:12:\"package_item\";a:1:{i:0;a:2:{s:5:\"count\";i:1;s:9:\"item_name\";s:6:\"衣服\";}}}s:12:\"real_user_id\";d:2899430086;s:16:\"trade_order_list\";a:1:{s:6:\"string\";a:1:{i:0;s:19:\"1160905020530569720\";}}s:6:\"volume\";i:0;s:6:\"weight\";i:0;}s:12:\"waybill_code\";s:12:\"410873913896\";}' WHERE ( order_id=148 ) [ RunTime:0.0501s ]
+
+[ 2016-09-05T15:25:08+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001259s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.002654s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004688s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0477s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '1' LIMIT 1   [ RunTime:0.0446s ]
+

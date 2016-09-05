@@ -94,9 +94,9 @@
                         <li data-cate="goods">
                             <a class="active" href="<?php echo U('goods/goods/index');?>"> <i class="fa fa-fw  fa-circle-o"></i> 商品列表</a>
                         </li>
-                        <li data-cate="goods">
+<!--                        <li data-cate="goods">
                             <a class="" href="<?php echo U('goods/goods/goodsRelease');?>"> <i class="fa fa-fw  fa-circle-o"></i> 发布管理</a>
-                        </li>
+                        </li>-->
                         <li data-cate="orders" >
                             <a class="" href="<?php echo U('orders/orders/index');?>"> <i class="fa fa-fw  fa-circle-o"></i> 订单列表</a>
                         </li>
@@ -178,6 +178,110 @@
                     </ul>
                 </section>
             </aside>
+
+    <script>
+        showMenu();
+        showAuth(<?php echo json_encode(session('auth_show'));?>);
+        var target = "<?php echo U(); ?>";
+        target=target.toUpperCase();
+        if (target.indexOf('SYSTEM/INDEX')>=0) {
+            $('.user-menu').addClass('active');
+        };
+
+
+
+        function showAuth(auth){
+            if (auth.all==='all') {                 //超级用户显示所有
+                $('.e-show-auth-main li').show();
+                return;
+            };
+            var target = "<?php echo U(); ?>";
+            target=target.toUpperCase();
+            var current_cate;
+
+            $('.e-show-auth-main a').each(function(){
+                var url=$(this).attr('href').toUpperCase();
+                if (target.indexOf(url)>=0) {
+                    current_cate=$(this).parent('li').data('cate');
+                };
+                for (var i = 0; i < auth.length; i++) {
+                    if (url.indexOf(auth[i])>=0) {
+                        $(this).parent('li').show();
+                        $(this).parent('li').data('show', 1); 
+                    };
+                };
+            })
+
+            $('.e-show-auth-sub a').each(function(){
+                var url=$(this).attr('href').toUpperCase();
+                for (var i = 0; i < auth.length; i++) {
+                    if (url.indexOf(auth[i])>=0) {                                  //拥有权限
+                        var cate=$(this).parent('li').data('cate');                 //获得分类
+                        $(this).parent('li').data('show', 1);                       //标记                            
+                        var main=$('.e-show-auth-main [data-cate="'+cate+'"]');         
+                        if (main.length>0 && main.data('show') !=1) {           //子菜单对应主菜单，如果没有显示
+                           main.find('a').attr('href',$(this).attr('href'));
+                           main.show();
+                        };              
+                    };
+                if (target.indexOf(url)>=0) {
+                    current_cate=$(this).parent('li').data('cate');
+                };                    
+                };
+            })
+            var sub=$('.e-show-auth-sub [data-cate="'+current_cate+'"]'); 
+            sub.hide();
+            sub.each(function(){
+                if ($(this).data('show')) {
+                    $(this).show();
+                }
+            })
+        }
+
+        function showMenu() {
+            var target = "<?php echo U(); ?>";
+            target = target.toUpperCase();
+
+            var selected = _show(target);                     //二级菜单选中标记
+
+            if (!selected) {                //三级菜单选择    
+                var refUrl = $.cookie('__refUrl');
+                var tmp = refUrl.split('/');
+                var _target = tmp[1] + '/' + tmp[2];
+                if (target.indexOf(_target) > 0) {
+                    _show(refUrl);
+                }
+                ;
+            }
+
+            function _show(target) {
+                var r = 0;                                //选中标记
+                $('.e-show-auth-sub a').removeClass('active');     //顶级菜单显示
+                $('.e-show-auth-sub a').each(function () {
+                    var tmp = $(this).attr('href');
+                    tmp = tmp.toUpperCase();
+                    if (tmp == target) {
+                        $(this).addClass('active');                 //二级菜单显示
+                        var cate = $(this).parent().data('cate');
+                        $('.e-show-auth-sub').find("[data-cate='" + cate + "']").show();
+                        $('.e-show-auth-main').find('[data-cate="' + cate + '"]').addClass('active');      //顶级菜单显示                            
+                        r = 1;
+                        return;
+                    }
+                });
+                if (r) {                                                    //二级菜单选中，记录refurl  
+                    $.cookie('__refUrl', target, {expires: 30, path: '/'});
+                }
+                ;
+                return r;
+            }
+        }
+
+
+    </script>
+
+
+            
             <section class="content">
                 
     <link rel="stylesheet" type="text/css" href="/Public/css/bootstrap-datetimepicker.min.css">
@@ -235,7 +339,8 @@
                             <label for="exampleInputName2">选择来源:</label>
                             <select class="form-control input-xs" name="shop_id">
                                 <option value="">全部</option>
-                                <?php if(is_array($shop)): $i = 0; $__LIST__ = $shop;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$shop): $mod = ($i % 2 );++$i;?><option <?php echo xeq(I('get.shop_id'),$shop['shop_id'],'selected');?> value="<?php echo ($shop["shop_id"]); ?>"><?php echo ($shop["shop_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                <option value="1">创想范</option>
+                                <option value="2">星密码</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -339,8 +444,7 @@
                                     <?= date('Y-m-d H:i',$list['add_time']) ?>
                                 </li>
                                 <li>
-                                    <?php if(($list["shop_id"]) == "1"): ?>来源:星密码<?php endif; ?>
-                                    <?php if(($list["shop_id"]) == "2"): ?>来源:创想范<?php endif; ?>
+                                    来源:<?php echo $shop_ids[$list['shop_id']];?>
                                 </li>
                                 <li style="width:16%;" >分销商:<?php echo ($list["buyer_name"]); ?></li>
                                 <li style="width:10%;">QQ:<?php echo ($list["qq"]); ?></li>
@@ -361,7 +465,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-align: center" ><img class="table_img" src="<?php echo ($list["img_path"]); ?>_60x60.jpg"></td>
+                        <td style="text-align: center" ><img class="table_img" src="<?php echo ($list["img_path"]); ?>!upyun123/fwfh/60x60"></td>
                         <td ><p> <?php echo ($list["goods_name"]); ?> </p>
                             <p>	<?php echo ($list["buyer_goods_no"]); ?>&nbsp;&nbsp;&nbsp;<?php echo ($list["sku"]); ?>&nbsp;&nbsp;</p>
                         </td>
@@ -370,7 +474,7 @@
                         <td><p><?php echo ($list["order_amount"]); ?></p>
                             <p>含运费:<?php echo ($list["shipping_fee"]); ?></p></td>
                         <td><p>收件人:
-                                <?php echo ($list["concat_address"]["contact_name"]); ?>,<?php echo ($list["concat_address"]["tel"]); ?>&nbsp;,<?php echo ($list["concat_address"]["province"]); echo ($list["concat_address"]["city"]); echo ($list["concat_address"]["dist"]); echo ($list["concat_address"]["contact_address"]); ?>
+                                <?php echo ($list["contact_name"]); ?>,<?php echo ($list["tel"]); ?>&nbsp;,<?php echo ($list["province"]); echo ($list["city"]); echo ($list["dist"]); echo ($list["contact_address"]); ?>
 
                             </p></td>
                         <td><p>
@@ -781,114 +885,15 @@
 
 
 
-    <script>
-        showMenu();
-        showAuth(<?php echo json_encode(session('auth_show'));?>);
-        var target = "<?php echo U(); ?>";
-        target=target.toUpperCase();
-        if (target.indexOf('SYSTEM/INDEX')>=0) {
-            $('.user-menu').addClass('active');
-        };
 
-
-
-        function showAuth(auth){
-            if (auth.all==='all') {                 //超级用户显示所有
-                $('.e-show-auth-main li').show();
-                return;
-            };
-            var target = "<?php echo U(); ?>";
-            target=target.toUpperCase();
-            var current_cate;
-
-            $('.e-show-auth-main a').each(function(){
-                var url=$(this).attr('href').toUpperCase();
-                if (target.indexOf(url)>=0) {
-                    current_cate=$(this).parent('li').data('cate');
-                };
-                for (var i = 0; i < auth.length; i++) {
-                    if (url.indexOf(auth[i])>=0) {
-                        $(this).parent('li').show();
-                        $(this).parent('li').data('show', 1); 
-                    };
-                };
-            })
-
-            $('.e-show-auth-sub a').each(function(){
-                var url=$(this).attr('href').toUpperCase();
-                for (var i = 0; i < auth.length; i++) {
-                    if (url.indexOf(auth[i])>=0) {                                  //拥有权限
-                        var cate=$(this).parent('li').data('cate');                 //获得分类
-                        $(this).parent('li').data('show', 1);                       //标记                            
-                        var main=$('.e-show-auth-main [data-cate="'+cate+'"]');         
-                        if (main.length>0 && main.data('show') !=1) {           //子菜单对应主菜单，如果没有显示
-                           main.find('a').attr('href',$(this).attr('href'));
-                           main.show();
-                        };              
-                    };
-                if (target.indexOf(url)>=0) {
-                    current_cate=$(this).parent('li').data('cate');
-                };                    
-                };
-            })
-            var sub=$('.e-show-auth-sub [data-cate="'+current_cate+'"]'); 
-            sub.hide();
-            sub.each(function(){
-                if ($(this).data('show')) {
-                    $(this).show();
-                }
-            })
-        }
-
-        function showMenu() {
-            var target = "<?php echo U(); ?>";
-            target = target.toUpperCase();
-
-            var selected = _show(target);                     //二级菜单选中标记
-
-            if (!selected) {                //三级菜单选择    
-                var refUrl = $.cookie('__refUrl');
-                var tmp = refUrl.split('/');
-                var _target = tmp[1] + '/' + tmp[2];
-                if (target.indexOf(_target) > 0) {
-                    _show(refUrl);
-                }
-                ;
-            }
-
-            function _show(target) {
-                var r = 0;                                //选中标记
-                $('.e-show-auth-sub a').removeClass('active');     //顶级菜单显示
-                $('.e-show-auth-sub a').each(function () {
-                    var tmp = $(this).attr('href');
-                    tmp = tmp.toUpperCase();
-                    if (tmp == target) {
-                        $(this).addClass('active');                 //二级菜单显示
-                        var cate = $(this).parent().data('cate');
-                        $('.e-show-auth-sub').find("[data-cate='" + cate + "']").show();
-                        $('.e-show-auth-main').find('[data-cate="' + cate + '"]').addClass('active');      //顶级菜单显示                            
-                        r = 1;
-                        return;
-                    }
-                });
-                if (r) {                                                    //二级菜单选中，记录refurl  
-                    $.cookie('__refUrl', target, {expires: 30, path: '/'});
-                }
-                ;
-                return r;
-            }
-        }
-
-
-    </script>
 
 
     <!--wrapper end-->
     <script src="/Public/js/bootstrap.min.js"></script>
     <script src="/Public/js/app.min.js"></script>
     <script type="text/javascript" src="/Public/js/moment.js"></script>
-    <script src="/Public/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="/Public/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<!--     // <script src="/Public/js/bootstrap-datetimepicker.min.js"></script>
+    // <script src="/Public/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script> -->
     <script type="text/javascript" src="/Public/js/custom.js"></script>
     <script type="text/javascript" src="/Public/js/layer.js"></script>    
 </html>

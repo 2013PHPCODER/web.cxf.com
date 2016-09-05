@@ -22,6 +22,8 @@
         <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
         <style>
             .nav .nav-box .classify-box{display: none;}
+            .v-pt-btn a{border-radius: 5px;}
+            .v-pt-btn a:hover{background: #02D672;}
         </style>
     </head>
 
@@ -248,7 +250,7 @@
 
 				<div class="v-pt-btn">
 					<p>是时候，将复杂的工作变得简单了</p>
-					<a href="JavaScript:;" id='applyAgent'>申请代理</a>
+					<a href="JavaScript:;" id='applyAgent'>开通代理</a>
 				</div>
 		</div>
 		
@@ -272,7 +274,7 @@
                     </div>
                     <p class="p-agreed"><input type="checkbox" name="check" style="width: 20px"> 已阅读，并同意代理协议</p>
                     <div class="PopFooter Ag-PopFooter">
-                        <button id="apply-agent">申请代理</button>
+                        <button id="apply-agent">开通代理</button>
                     </div>
                 </div>
             </div>  

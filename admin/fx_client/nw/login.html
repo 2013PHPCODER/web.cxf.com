@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>货源管家-登录</title>
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/fqy_style.css">
-    <script src="js/jquery-1.9.1.min.js"></script>
-    <script src="js/knockout-3.3.0.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/plus.js"></script>
-    <script src="js/message.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/public.js"></script>
-    <style>
-        * {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -o-user-select: none;
-            user-select: none;
-        }
-    </style>
-</head>
-<body onkeydown="keyLogin(event);">
-    <div class="loginDiv">
-        <div class="loginHeader">
-        	<div class="app-drag"></div>
-            <h1>创想范货源管家</h1>
-            <i><img src="images/login.png"/></i>
-            <p>
-                <span id="Winmin" onclick="min()">&minus;</span>
-                <span id="Winclose" onclick="closes()">╳</span>
-            </p>
-        </div>
-        <div class="loginbody">
-            <!--<form >-->
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>货源管家-登录</title>
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="css/fqy_style.css">
+        <script src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/knockout-3.3.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/plus.js"></script>
+        <script src="js/message.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/public.js"></script>
+        <style>
+            * {
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -o-user-select: none;
+                user-select: none;
+            }
+        </style>
+    </head>
+    <body onkeydown="keyLogin(event);">
+        <div class="loginDiv">
+            <div class="loginHeader">
+                <div class="app-drag"></div>
+                <h1>创想范货源管家</h1>
+                <i><img src="images/login.png"/></i>
+                <p>
+                    <span id="Winmin" onclick="min()">&minus;</span>
+                    <span id="Winclose" onclick="closes()">╳</span>
+                </p>
+            </div>
+            <div class="loginbody">
+                <!--<form >-->
                 <table>
                     <tr>
                         <td>用户名</td>
@@ -39,12 +39,12 @@
                         <td><a class="loginHelp" href="javascript:open_url(webServerUrl+'/distribute_user_register.php');">注册账户</a></td>
                     </tr>
                     <tr>
-                        <td>密 &nbsp; 码</td>
+                        <td>密 &nbsp; 码：</td>
                         <td><input type="password" class="userPassword" name="userPassword" placeholder="请输入密码"></td>
                         <!--<td><a class="loginHelp" href="">忘记密码？</a></td>-->
                     </tr>
                     <tr>
-                        <td>验 &nbsp; 证</td>
+                        <td>验 &nbsp; 证：</td>
                         <td><div id="drag"></div></td>
                         <td></td>
                     </tr>
@@ -64,145 +64,149 @@
                         <td></td>
                     </tr>
                 </table>
-            <!--</form>-->
-        </div>
-    </div>
-
-    <div class="PopDiv" id="updata" style="width: 799px;display: none">
-        <div class="PopHeader">
-            <img style="top: 11px;" src="../images/tips.png" alt="">
-            <span class="PopTitle">创想范货源管家更新提示</span>
-            <div class="PopColse"></div>
-        </div>
-        <div class="PopBody">
-            <div class="Phcontent">
-                <dl>
-                    <dt>检测到新版本v1.0.1，更新内容如下：</dt>
-                    <dd>1、钢铁是怎么样练成的</dd>
-                    <dd>2、里约奥运会刚进入第二天，我们就目睹了第一出有关兴奋剂的戏码</dd>
-                    <dd>3、从采用算法辅助设计的钉鞋，到超声波缝合起来的泳衣，再到采用非对称设计的场</dd>
-                    <dd>4、当今的优秀运动员非常倚重这些技术，没有它们，就不指望拿到奖牌。大多数奥运</dd>
-                </dl>
-
+                <!--</form>-->
             </div>
         </div>
-        <div class="PopFooter">
-            <button class="OKBtn" id="OKBtn">确定</button>
-        </div>
-    </div>
-</body>
-<script>
-    var gui = require('nw.gui');
-    var win = gui.Window.get();
-    var shell = gui.Shell;
-    var app = gui.App;
+    </body>
+    <script>
+        var gui = require('nw.gui');
+        var win = gui.Window.get();
+        var shell = gui.Shell;
+        var app = gui.App;
 
-   $('#drag').drag();
-//登录
+        $('#drag').drag();
+        //登录
 
-    $('.loginBtn>button').on('click',function(){
-        var rememberAccount = $('#rememberAccount').is(':checked');
-        var rememberPassword = $('#rememberPassword').is(':checked');
-        var oData = {
-        	'user_account':$('input[name = userName]').val(),
-        	'password':$('input[name = userPassword]').val()
-        };
-        if(oData.username == ''){
-        	X.notice('请输入用户名',3)
-        }else if(oData.password == ''){
-        	X.notice('请输入密码',3)
-        }else if(!dragyz){
-        	X.notice('您尚未验证',3)
-        }else{
-        	X.Post(requestUrl.login,0,oData,function(e){
-        		if(e.header.stats == 0){
-                    win.hide();
-                   gui.Window.open('index.html', {
-                        title: '创想范货源管家',
-                        position: 'center',
-                        width: 1360,
-                        height: 820,
-                        "min-width": 1100,
-                        "min-height": 700,
-                        focus: true,
-                        icon: "web/public/icon.png",
-                        resizable: false,
-                        show_in_taskbar: true,
-                        fullscreen: false,
-                        frame: false,
-                        toolbar: false
-                    }).on("document-start", function () {
-                        localStorage.clear();
-//                        app.clearCache();
-                        for(var i in e.body.list){
-                        	if(typeof e.body.list[i] == 'object'){
-                        	    localStorage.setItem(i, JSON.stringify(e.body.list[i]));
-                        	}else{
-                        		localStorage.setItem(i, e.body.list[i]);
-                        	}                         
-                        }
-                        if(rememberPassword){
-                            localStorage.setItem('PassSing', oData.password);
-                        }else {
-                            localStorage.removeItem('PassSing');
-                        }
-                        localStorage.setItem('rememberSing', rememberAccount);
-                        localStorage.setItem('PasswordSing', rememberPassword);
-                        window.reloadIgnoringCache();
-                        win.close(true);
-                    });
-        		}else{
-        			X.notice(e.header.msg,3);
-        		}
-            })
+        $('.loginBtn>button').on('click', function () {
+            $('.loginBtn>button').attr('disabled', '');
+            var rememberAccount = $('#rememberAccount').is(':checked');
+            var rememberPassword = $('#rememberPassword').is(':checked');
+            var oData = {
+                'user_account': $('input[name = userName]').val(),
+                'password': $('input[name = userPassword]').val()
+            };
+            if (oData.username == '') {
+                X.notice('请输入用户名', 3)
+            } else if (oData.password == '') {
+                X.notice('请输入密码', 3)
+            } else if (!dragyz) {
+                X.notice('您尚未验证', 3)
+            } else {
+                X.Post(requestUrl.login, 0, oData, function (e) {
+                    var rememberAccount = $('#rememberAccount').is(':checked');
+                    var rememberPassword = $('#rememberPassword').is(':checked');
+                    if (e.header.stats == 0) {
+                        win.hide();
+                        gui.Window.open('index.html', {
+                            title: '创想范货源管家',
+                            position: 'center',
+                            width: 1360,
+                            height: 820,
+                            "min-width": 1100,
+                            "min-height": 700,
+                            focus: true,
+                            icon: "web/public/icon.png",
+                            resizable: false,
+                            show_in_taskbar: true,
+                            fullscreen: false,
+                            frame: false,
+                            toolbar: true
+                        }).on("document-start", function () {
+                            localStorage.clear();
+                            for (var i in e.body.list) {
+                                if (typeof e.body.list[i] == 'object') {
+                                    localStorage.setItem(i, JSON.stringify(e.body.list[i]));
+                                } else {
+                                    localStorage.setItem(i, e.body.list[i]);
+                                }
+                            }
+                            if (rememberPassword) {
+                                localStorage.setItem('PassSing', oData.password);
+                                localStorage.setItem('PasswordSing', true);
+                            } else {
+                                localStorage.setItem('PasswordSing', false);
+                            }
+
+                            if (rememberAccount) {
+                                localStorage.setItem('user_accountNum', oData.user_account);
+                                localStorage.setItem('rememberSing', true);
+                            } else {
+                                localStorage.setItem('rememberSing', false);
+                            }
+
+                            window.reloadIgnoringCache();
+                            win.close(true);
+                        });
+                    } else {
+                        X.notice(e.header.msg, 3);
+                    }
+                })
+            }
+            $('.loginBtn>button').removeAttr('disabled');
+        });
+        //记住账户
+        var userName = $('input[name=userName]');
+        if (localStorage.getItem('rememberSing') == 'true') {
+            $('#rememberAccount').prop('checked', true);
+            if (localStorage.getItem('mobile') != null) {
+                userName.val(localStorage.getItem('mobile'));
+            } else if (localStorage.getItem('email') != null) {
+                userName.val(localStorage.getItem('email'));
+            } else {
+                userName.val(localStorage.getItem('user_accountNum'));
+            }
+        } else {
+            userName.val('');
         }
-    });
-
-
-    //记住账户
-    if(localStorage.getItem('rememberSing')=='true'){
-        $('#rememberAccount').prop('checked',true);
-        if(localStorage.getItem('mobile') != null){
-            $('.userName').val(localStorage.getItem('mobile'));
-        }else if(localStorage.getItem('email') != null){
-            $('.userName').val(localStorage.getItem('email'));
-        }else {
-            $('.userName').val(localStorage.getItem('user_account'));
+        //记住密码
+        var pwd = $('input[name=userPassword]');
+        if (localStorage.getItem('PasswordSing') == 'true') {
+            $('#rememberPassword').prop('checked', true);
+            if (localStorage.getItem('PassSing') != null) {
+                pwd.val(localStorage.getItem('PassSing'));
+            }
+            if (localStorage.getItem('mobile') && localStorage.getItem('mobile') != null) {
+                userName.val(localStorage.getItem('mobile'));
+            }
+        } else {
+            $('.userPassword').val('');
         }
-    }else {
-        $('.userName').val('');
-    }
-    //记住密码
-    if(localStorage.getItem('PasswordSing')=='true'){
-        $('#rememberPassword').prop('checked',true);
-        if(localStorage.getItem('PassSing') != null){
-            $('.userPassword').val(localStorage.getItem('PassSing'));
+
+        $("#rememberAccount").on("click", function () {
+            if (!$(this).prop("checked")) {
+                $('#rememberPassword').prop('checked', false);
+            }
+        });
+        $("#rememberPassword").on("click", function () {
+            $('#rememberAccount').prop('checked', $(this).prop("checked"));
+        });
+
+//        $(function () {
+//            $.post("http://192.168.20.191:86/version.php", function (result) {
+//                if (result != app.manifest.version) {
+//                    gui.Window.open('newData.html', {
+//                        title: '创想范货源管家更新提示',
+//                        position: 'center',
+//                        width: 600,
+//                        height: 230,
+//                        focus: true,
+//                        icon: "web/public/icon.png",
+//                        resizable: false,
+//                        show_in_taskbar: true,
+//                        fullscreen: false,
+//                        frame: false,
+//                        toolbar: false
+//                    });
+//                    win.hide();
+//                    win.close(true);
+//                } else {
+//                    $('.loginDiv').show();
+//                }
+//            })
+//        });
+        function keyLogin(event) {
+            if (event.keyCode == 13)  //回车键的键值为13
+                $('.loginBtn>button').click(); //调用登录按钮的登录事件
         }
-    }else {
-        $('.userPassword').val('');
-    }
-
-
-
-    $('#OKBtn').click(function(){
-        win.hide();
-        win.close(true);
-        shell.openItem('update.exe');
-    });
-
-//    $(function(){
-//        $.post("http://192.168.20.191:86/version.php",function(result){
-//            if(result != app.manifest.version){
-//                $('#updata').show();
-//                $('.loginDiv').hide();
-//            }else{
-//                $('.loginDiv').show();
-//            }
-//        })
-//    });
-    function keyLogin(event){
-	  if (event.keyCode==13)  //回车键的键值为13
-	     $('.loginBtn>button').click(); //调用登录按钮的登录事件
-	}
-</script>
+    </script>
 </html>

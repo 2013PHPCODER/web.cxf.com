@@ -262,7 +262,6 @@ $(function(){
 	 		X.notice('请选择模板城市',3);
 	 		return false
 	 	}
-	 	console.log(Oid);
 	 	$('.red-table tr').eq(Oid).find('.redact').children('span').html(provinceVal+'/'+cityVal+'/'+areaVal);
 	 });
 	 $('#adress-btn2').click(function(){
@@ -274,7 +273,6 @@ $(function(){
 	 var Oid;
 	$('.redactA').click(function(){
 		Oid=$(this).parent().parent().index();
-		console.log(Oid);
 		$('#adress-group').fadeIn();
 		$('.special').fadeIn();
 	})
@@ -285,7 +283,6 @@ $(function(){
 	 	});
 	 	$('.redactA').click(function(){
 			Oid=$(this).parent().parent().index();
-			console.log(Oid);
 			$('#adress-group').fadeIn();
 			$('.special').fadeIn();
 		})

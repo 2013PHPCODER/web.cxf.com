@@ -17,7 +17,7 @@ foreach ($order_id_arr as $key => $val) {
     try {
         $db->executeMySQL("SELECT count(id) num FROM confirm_success_trade WHERE source_id = ? AND type = ?", [$val['order_id'], 1]);
         $trade_count = $db->rowFetch();
-        if (0 <= $trade_count['num']) continue; //排除已存在收款记录的订单
+        if (0 < $trade_count['num']) continue; //排除已存在收款记录的订单
         $param_t_1 = [5, $val['order_id']];
         $db->beginTransaction();
         $db->executeMySQL('update order_list set order_state=? where order_id=?', $param_t_1);
@@ -32,6 +32,7 @@ foreach ($order_id_arr as $key => $val) {
         if (!$db->rowCount()) {
             throw new Exception("商品属性库存修改失败");
         }
+        add_order_log($db, $val['order_id'], '系统自动取消订单'); //添加订单操作日志
         $db->commit();
         write_log("CloseOrderCrontab", "{$val['order_sn']}-------订单取消成功");
     } catch (Exception $ex) {

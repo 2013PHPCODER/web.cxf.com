@@ -19,6 +19,7 @@
         <title>创想范分销平台--售后列表</title>
         <link rel="stylesheet" type="text/css" href="css/zengli.css" />
         <link rel="stylesheet" type="text/css" href="css/common.css"/>
+        <link rel="shortcut icon" href="images/64x64.ico" type="image/x-icon" />
         <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
         <script src="//cdn.bootcss.com/knockout/3.3.0/knockout-min.js"></script>
         <script src="js/plus.js"></script>
@@ -44,6 +45,7 @@
                             <div class="title-box sale-tab">
                                 <a class="select" href="javascript:pickDate(1);">待确定</a>
                                 <a href="javascript:pickDate(2);">待退货</a>
+                                <a href="javascript:pickDate(10);">待处理</a>
                                 <a href="javascript:pickDate(3);">待退款</a>
                                 <a href="javascript:pickDate(4);">已完成</a>
                                 <a href="javascript:pickDate(5);">已拒绝</a>
@@ -65,7 +67,7 @@
                                         </th>
                                         <th>单价</th>
                                         <th>数量</th>
-                                        <th>订单总额</th>
+                                        <th>支付金额</th>
                                         <th>申请金额</th>
                                         <th>售后类别</th>
                                         <th>售后理由</th>
@@ -90,7 +92,7 @@
                                         </td>
                                         <td data-bind="text:goods[0].price"></td>
                                         <td data-bind="text:goods[0].goods_num">1</td>
-                                        <td><span data-bind="text:goods[0].price * goods[0].goods_num ">888.00</span></td>
+                                        <td><span data-bind="text:order_amount"></span></td>
                                         <td data-bind="text:refund_amount"></td>
                                         <td data-bind="text:cus_type">退款</td>
                                         <td><span class="hue" data-bind="text:refund_reason">七天无理由</span></td>
@@ -100,7 +102,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>           
+                        </div>
                     </div>
                 </div>
             </div>
@@ -153,7 +155,7 @@
                             <p>退款时间：<span data-bind = "text:refund_money_time">2016-7-28 14:36:12</span></p>
                         </div>
                         <div class="information-rf">
-                            <p data-bind = "text:goods.length>0?goods[0].sku[0].sku_str_zh:''">SKU属性1/SKU属性2/SKU属性3</p>
+                            <p data-bind = "text:goods.length>0?(goods[0].sku.length>0 ? goods[0].sku[0].sku_str_zh : ''):''">SKU属性1/SKU属性2/SKU属性3</p>
                             <p >订单总额：<span data-bind = "text:refund_amount">88.00</span></p>
                             <p class="information-mag">售后理由：<span data-bind = "text:refund_reason">质量问题</span></p>
                             <!--<p>运费补贴：<span>10.00</span></p>-->
@@ -165,12 +167,11 @@
                     <div class="information-img">
                         <p>提交凭证：
                         	<span data-bind="foreach:{data:imgs,as:'auto'}">
-                        		 <a href="">
-	                                <img src="" alt="" data-bind="attr:{src:auto}"/>
-	                                <i class="remove-img">-</i>
+                        		 <a target="_blank" data-bind="attr:{href:auto}">
+	                                <img src="" alt="" data-bind="attr:{src:auto+'!thumb100'}"/>
+	<!--                                <i class="remove-img">-</i>-->
 	                           </a>
-                        	</span>
-                           
+                        	</span>                          
                         </p>
                     </div>
                 </div>
@@ -198,14 +199,17 @@
 		$('.sale-tab>a').click(function(){
 			$(this).addClass('select').siblings().removeClass('select');
 		})
-    })
+    });
     var oHtml = $('#after_sale tbody').html(), //主内容
             oHtmlD = $('#sale_Detail').html();     //售后详情
 	var data = {
             'user_id': getCookieValue('user_id'), 'page': 1
-       }
+       };
     var oCus_id;   
     function pickDate(num) {
+    	var data = {
+            'user_id': getCookieValue('user_id'), 'page': 1
+        };
         ko.cleanNode(document.getElementById("after_sale"));
         $('#after_sale tbody').html(oHtml);
         
@@ -213,24 +217,27 @@
             case 1:
                 var html = '<p><a class="cancel_sale" data-bind="attr:{'+"'data-id'"+':cus_id}">取消售后</a></p>';
 			    $(html).insertBefore($('.e-click'));
-                $.extend(data, { 'return_status': after_good_status.wait_admin_confirm})
+                $.extend(data, { 'return_status': after_good_status.wait_admin_confirm});
                 break;
             case 2:
                 var html = '<p><a class="delivery" data-bind="attr:{'+"'data-id'"+':cus_id}">退货</a></p>';
 			    $(html).insertBefore($('.e-click'));
-                $.extend(data, { 'return_status': after_good_status.wait_buyer_sendgoods})
+                $.extend(data, { 'return_status': after_good_status.wait_buyer_sendgoods});
                 break;
             case 3:
-                    $.extend(data,{'refund_status':after_sale_status.wait_admin_pay,'return_status':after_good_status.wait_admin_repay})
+                    $.extend(data,{'refund_status':after_sale_status.wait_admin_pay,'return_status':after_good_status.wait_admin_repay});
                     break;	
             case 4:
-                    $.extend(data,{'refund_status':after_sale_status.success,'return_status':after_good_status.success})
+                    $.extend(data,{'refund_status':after_sale_status.success,'return_status':after_good_status.success});
                     break;	
             case 5:
                     $.extend(data,{'return_status':after_good_status.refuse})
                     break;	       			
             case 6:
                     $.extend(data,{'return_status':after_good_status.wait_admin_kill})
+                    break;	
+            case 10:
+                    $.extend(data,{'return_status':after_good_status.wait_admin_kill,'wait':1,})
                     break;	
 		    } 
 		    X.bindModel(requestUrl.after_sale_list,1,data,'body.list',['after_sale'],function(){
@@ -273,24 +280,28 @@
 				})				
 		    })
         }  
-        $('.go-delivery button').on('click',function(){	
+        $('.go-delivery button').on('click',function(){
+            var reg = /^\w*$/;
         	var data = {
     		        'cus_id':oCus_id,
                 	'user_id':getCookieValue('user_id'),
                 	'type':'deliver',
                 	'freight_company':$('#freight_company').val(),			                	
-                	'freight_no':$('#freight_no').val()
-                }
+                	'freight_no': $('#freight_no').val()
+                };
            if(data.freight_company == ''){
           	  X.notice('请填写物流公司',3);
           	  return false;
            }else if(data.freight_no == ''){
               X.notice('请填写快递单号',3);
               return false;
+           }else if(!reg.test(data.freight_no)){
+              X.notice('快递单号由数字/字母组成',3);
+              return false;
            }
            X.Post(requestUrl.after_sale_operate,1,data,function(e){
         	   if(e.header.stats == 0 ){
-        	   	  X.notice('退货成功',3)
+        	   	  X.notice('退货成功',3);
         	   	  setTimeout(function(){
         	   	  	 window.location.href = 'after_sale_list.php?loc='+($('.sale-tab>a.select').index()+1); 
         	   	  },1000)

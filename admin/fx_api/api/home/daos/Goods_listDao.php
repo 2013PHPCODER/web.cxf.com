@@ -14,11 +14,11 @@ class Goods_listDao extends Dao {
     public function goods_center() {
         //获取排序靠前的7条数据
         $_goods_category_1_sql = 'SELECT ico,name,cid,category_id FROM goods_category'
-                . ' WHERE status=:status AND has_goods=:has_goods AND level=:level ORDER BY `order` LIMIT 0,7';
+                . ' WHERE level=:level AND status=:status AND has_goods=:has_goods ORDER BY `order` LIMIT 0,7';
         $_category_1_arr = $this->query($_goods_category_1_sql, array(
-            'status' => 1, 'level' => 1,'has_goods'=>1
+            'status' => 1, 'level' => 1, 'has_goods' => 1
         ));
-        
+
         //获取4条二级分类
         $_tmp_category_id = '';
         foreach ($_category_1_arr as $_key => $_value) {
@@ -28,7 +28,7 @@ class Goods_listDao extends Dao {
         $_category_2_sql = 'SELECT cid,name,parent_id FROM goods_category WHERE '
                 . 'status=:status AND level=:level AND has_goods=:has_goods AND parent_id IN (' . $_tmp_category_id . ') ORDER BY `order`';
         $_category_2_arr = $this->query($_category_2_sql, array(
-            'status' => 1, 'level' => 2,'has_goods'=>1
+            'status' => 1, 'level' => 2, 'has_goods' => 1
         ));
         //归类 筛选
         $_tmp_category = array();
@@ -45,18 +45,18 @@ class Goods_listDao extends Dao {
                         unset($_category_2_arr[$_k]);
                         continue;
                     }
-                    $_re_rand_goods = $this->rand_goods($_v['cid']);
-                    $_good_arr = empty($_re_rand_goods) ? array() : $_re_rand_goods;
-                    $_tmp_category[$_key]['child'][] = array('cid' => $_v['cid'], 'name' => $_v['name'], 'goods' => $_good_arr);
-                    unset($_good_arr);
+//                    $_re_rand_goods = $this->rand_goods($_v['cid']);
+//                    $_good_arr = empty($_re_rand_goods) ? array() : $_re_rand_goods;
+//                    $_tmp_category[$_key]['child'][] = array('cid' => $_v['cid'], 'name' => $_v['name'], 'goods' => $_good_arr);
+//                    unset($_good_arr);
                     //当为第一条加载商品数据
-//                    if (1 == $i) {
-//                        $_good_arr = $this->rand_goods($_v['cid']);
-//                        $_tmp_category[$_key]['child'][] = array('cid' => $_v['cid'], 'name' => $_v['name'], 'goods' => $_good_arr);
-//                        unset($_good_arr);
-//                    } else {
-//                        $_tmp_category[$_key]['child'][] = array('cid' => $_v['cid'], 'name' => $_v['name']);
-//                    }
+                    if (1 == $i) {
+                        $_good_arr = $this->rand_goods($_v['cid']);
+                        $_tmp_category[$_key]['child'][] = array('cid' => $_v['cid'], 'name' => $_v['name'], 'goods' => $_good_arr);
+                        unset($_good_arr);
+                    } else {
+                        $_tmp_category[$_key]['child'][] = array('cid' => $_v['cid'], 'name' => $_v['name'], 'goods' => '');
+                    }
                     $i++;
                 }
             }
@@ -74,21 +74,31 @@ class Goods_listDao extends Dao {
      * @since 201608171059
      */
     public function rand_goods($_goods_category, $_count = 10) {
-        $_sql = 'SELECT buyer_goods_no,price,goods_id,goods_name,img_path FROM goods_list WHERE goods_category=:goods_category '
+        $_sql = 'SELECT gl.buyer_goods_no,gl.price,gl.goods_id,gl.goods_name,gip.upyun_path FROM '
+                . 'goods_list AS gl INNER JOIN goods_img_path AS gip '
+                . 'ON gl.img_path = gip.md5_path WHERE goods_category=:goods_category '
                 . 'AND goods_sale=:goods_sale ORDER BY goods_id DESC LIMIT ' . \goods::goods_count_limit;
         $_re_arr = $this->query($_sql, array('goods_category' => $_goods_category, 'goods_sale' => 1));
         if (empty($_re_arr)) return false;
-        $_rand_arr = count($_re_arr) > $_count ? array_rand($_re_arr, $_count) : $_re_arr;
-        $_img_path_sql = 'SELECT tb_path FROM goods_img_path WHERE md5_path=:md5_path';
-        foreach ($_rand_arr as $_key => $_value) {
-            $price = change_price($_value['price']);
-            $_img_path_arr = $this->query($_img_path_sql, array('md5_path' => $_value['img_path']), 'fetch_row');
-            //$dis_price = $price['distribution_price'];
-            //unset($price['distribution_price']);
-            $_arr[$_key] = array('change_price' => $price,
-                'goods_id' => $_value['goods_id'], 'goods_name' => $_value['goods_name'],
-                'img_path' => $_img_path_arr['tb_path'], 'buyer_goods_no' => $_value['buyer_goods_no']);
+        
+        if (count($_re_arr) > $_count) {
+            $_rand_arr = array_rand($_re_arr, $_count);
+            foreach ($_rand_arr as $_key => $_value) {
+                $_tmp_value = $_re_arr[$_value];
+                $price = change_price($_tmp_value['price']);
+                $_arr[$_key] = array('change_price' => $price,
+                    'goods_id' => $_tmp_value['goods_id'], 'goods_name' => $_tmp_value['goods_name'],
+                    'img_path' => $_tmp_value['upyun_path'], 'buyer_goods_no' => $_tmp_value['buyer_goods_no']);
+            }
+        } else {
+            foreach ($_re_arr as $_key => $_value) {
+                $price = change_price($_value['price']);
+                $_arr[$_key] = array('change_price' => $price,
+                    'goods_id' => $_value['goods_id'], 'goods_name' => $_value['goods_name'],
+                    'img_path' => $_value['upyun_path'], 'buyer_goods_no' => $_value['buyer_goods_no']);
+            }
         }
+        unset($_re_arr);
         unset($_rand_arr);
         return $_arr;
     }
@@ -100,9 +110,10 @@ class Goods_listDao extends Dao {
     public function get_goods_detail($goods_id, $platform) {
 
         $field = '`gl`.goods_id,`gl`.goods_no,`gl`.goods_name,`gl`.goods_sale,`gl`.price,`gl`.collect_count,`gl`.goods_status,`gl`.buyer_goods_no,`gl`.supplier_id,`gd`.`desc`,'
-                . '`gl`.depot_id,`gl`.is_missing,`gip`.`tb_path` as `img_path`,`gl`.is_delete,`gl`.addtime,`gl`.stock_num,`gl`.`img_paths`,gl. `collect_count` ';
+                . '`gl`.depot_id,`gl`.is_missing,`gip`.`upyun_path` as `img_path`,`gl`.is_delete,`gl`.addtime,`gl`.stock_num,`gl`.`img_paths`,gl. `collect_count` ,`sd`.province,`sd`.city';
         $sql = 'select ' . $field . ' from goods_list as `gl` inner join goods_list_desc as `gd` on `gl`.goods_id=`gd`.goods_id '
-                . ' left join goods_img_path as gip on gl.img_path=gip.md5_path'
+                . ' left join goods_img_path as gip on gl.img_path=gip.md5_path '
+                . 'left join fx_storage_list as sd on gl.depot_id=sd.id'
                 . ' where `gl`.goods_id=:goods_id and `gl`.platform=:platform';
         $detail = $this->query($sql, array('goods_id' => $goods_id, 'platform' => $platform));
         if (empty($detail[0])) {
@@ -158,12 +169,12 @@ class Goods_listDao extends Dao {
             $path_str.= "'" . $v . "',";
         }
         $path_str = trim($path_str, ',');
-        $img_sql = 'select tb_path,md5_path from goods_img_path where md5_path in(' . $path_str . ')';
+        $img_sql = 'select upyun_path,md5_path from goods_img_path where md5_path in(' . $path_str . ')';
         $img = $this->query($img_sql, array());
         $img_path = array();
         foreach ($img as $v) {
-            if (!empty($v['tb_path'])) {
-                array_push($img_path, $v['tb_path']);
+            if (!empty($v['upyun_path'])) {
+                array_push($img_path, $v['upyun_path']);
             }
         }
         return $img_path;
@@ -183,7 +194,7 @@ class Goods_listDao extends Dao {
             $path_str.= "'" . $v . "',";
         }
         $path_str = trim($path_str, ',');
-        $img_sql = 'select tb_path,md5_path from goods_img_path where md5_path in(' . $path_str . ')';
+        $img_sql = 'select tb_path,md5_path,upyun_path from goods_img_path where md5_path in(' . $path_str . ')';
         $img = $this->query($img_sql, array());
         return $img;
     }
@@ -194,7 +205,7 @@ class Goods_listDao extends Dao {
      */
     public function get_most_goods($platform) {
         $condition = ' platform = :platform and goods_sale=1 and goods_status=3 and is_missing=0 and is_delete=0 ';
-        $field = 'goods_id, goods_name, tb_path as `img_path`, `price`';
+        $field = 'goods_id, goods_name, upyun_path as `img_path`, `price`';
         $param = array('platform' => $platform);
         $sort = 'sale_count desc';
         $start = 0;
@@ -207,7 +218,7 @@ class Goods_listDao extends Dao {
      */
     public function get_fx_goods($platform) {
         $condition = ' platform = :platform and goods_sale=1 and goods_status=3 and is_missing=0 and is_delete=0 ';
-        $field = 'goods_id, goods_name, tb_path as `img_path`,`price`';
+        $field = 'goods_id, goods_name, upyun_path as `img_path`,`price`';
         $param = array('platform' => $platform);
         $sort = 'fx_count desc';
         $start = 0;
@@ -220,7 +231,7 @@ class Goods_listDao extends Dao {
      */
     public function get_collect_goods($platform) {
         $condition = ' platform = :platform and goods_sale=1 and goods_status=3 and is_missing=0 and is_delete=0 ';
-        $field = 'goods_id, goods_name, tb_path as `img_path`,`price`';
+        $field = 'goods_id, goods_name, upyun_path as `img_path`,`price`';
         $param = array('platform' => $platform);
         $sort = 'collect_count desc';
         $start = 0;
@@ -269,7 +280,7 @@ class Goods_listDao extends Dao {
      * @param type $goods_id
      */
     public function get_goods_info_tb($goods_id) {
-        $fields = '`gl`.price,`gl`.goods_name,`gl`.goods_category,`gli`.tb_path as `img_path`,`gd`.desc,`gd`.wireless_desc,`gl`.img_paths,`gl`.goods_status,`gl`.goods_sale,`gl`.is_delete,`gl`.is_missing ';
+        $fields = '`gl`.price,`gl`.goods_name,`gl`.goods_category,`gl`.`img_path`,`gd`.desc,`gd`.wireless_desc,`gl`.img_paths,`gl`.goods_status,`gl`.goods_sale,`gl`.is_delete,`gl`.is_missing ';
         $sql = 'SELECT ' . $fields . ' FROM `goods_list` as gl inner join goods_list_desc as gd on gl.goods_id=gd.goods_id '
                 . 'INNER JOIN goods_img_path as `gli` on gl.img_path=gli.md5_path where gl.goods_id=:goods_id';
         $sku = $this->query($sql, array('goods_id' => $goods_id), 'fetch_row');
@@ -386,10 +397,11 @@ class Goods_listDao extends Dao {
         //sleep(2);
         //关联商品子图
         foreach ($picture['pictures_joint'] as $pic) {
-            if (mb_strlen($pic['pic_path']) <= 0) continue;
+//            if (mb_strlen($pic['pic_path']) <= 0) continue;
             $is_major = 'false';
             if (str_equals($pic['pic_pos'], '0')) $is_major = 'true';
             $pic_path = $this->get_tb_img($pic['pic_md5'], $tb_images);
+            if(empty($pic_path))  continue;
             $path = mb_substr($pic_path, mb_strpos($pic_path, 'imgextra/') + 9);
             $params = array(
                 'num_iid' => $num_iid,
@@ -398,11 +410,13 @@ class Goods_listDao extends Dao {
                 'position' => $pic['pic_pos']
             );
             $taobao_result = \Taobao::curl_taobao_api('taobao.item.joint.img', $access_token, $params);
+            unset($pic_path);
         }
         //关联商品属性图
         foreach ($picture['pictures_props'] as $pic) {
-            if (mb_strlen($pic['pic_path']) <= 0) continue;
+//            if (mb_strlen($pic['pic_path']) <= 0) continue;
             $pic_path = $this->get_tb_img($pic['pic_md5'], $tb_images);
+            if(empty($pic_path))  continue;
             $sku_path = mb_substr($pic_path, mb_strpos($pic_path, 'imgextra/') + 9);
             $params = array(
                 'properties' => $pic['pic_props'],
@@ -424,7 +438,15 @@ class Goods_listDao extends Dao {
     public function get_tb_img($file, $tb_paths) {
         foreach ($tb_paths as $val) {
             if ($file == $val['md5_path']) {
-                return $val['tb_path'];
+                $tb_path = $val['tb_path'];
+                //如果没有则上传图片到淘宝
+                if (empty($tb_path)) {
+                    import('uptaobao');
+                    $tb_path = \Uptaobao::get_taobao_url($val['upyun_path']);
+                    $sql = 'update goods_img_path set tb_path=:tb_path where md5_path=:md5_path';
+                    $this->excute($sql, array('tb_path' => $tb_path, 'md5_path' => $val['md5_path']));
+                }
+                return $tb_path;
             }
         }
     }
@@ -501,19 +523,16 @@ class Goods_listDao extends Dao {
                 . 'WHERE goods_sale = ' . \goods::goods_sale . ' ORDER BY sale_count DESC LIMIT ' . \goods::goods_count_limit;
         $_re_id_arr = $this->query($_sql, array());
         if (empty($_re_id_arr)) return false;
-        $_rand_id_arr = array_rand($_re_id_arr, $_count);
+        $_rand_id_arr = count($_re_id_arr) < $_count ? $_re_id_arr : array_rand($_re_id_arr, $_count);
         $_str_in_id = '';
         foreach ($_rand_id_arr as $_value) {
             $_str_in_id .='"' . $_re_id_arr[$_value]['goods_id'] . '",';
         }
         $_tmp_str_in_id = substr($_str_in_id, 0, -1); //echo $_tmp_str_in_id;exit;
-        $_tem_sql = 'SELECT goods_id,goods_name,img_path FROM goods_list WHERE goods_id IN (' . $_tmp_str_in_id . ')';
+        $_tem_sql = 'SELECT goods_id,goods_name,glp.upyun_path AS img_path FROM'
+                . ' goods_list AS gl INNER JOIN goods_img_path AS glp ON gl.img_path = glp.md5_path'
+                . ' WHERE goods_id IN (' . $_tmp_str_in_id . ')';
         $_data = $this->query($_tem_sql, array());
-        $_img_path_sql = 'SELECT tb_path FROM goods_img_path WHERE md5_path=:md5_path';
-        foreach ($_data as $_key => $_value) {
-            $_img_path_arr = $this->query($_img_path_sql, array('md5_path' => $_value['img_path']), 'fetch_row');
-            $_data[$_key]['img_path'] = $_img_path_arr['tb_path'];
-        }
         return $_data;
     }
 
@@ -524,7 +543,7 @@ class Goods_listDao extends Dao {
      */
     public function get_goods_info($goods_id) {
         $field = '`gl`.supplier_id,`gl`.platform,`gl`.goods_id,`gl`.goods_no,`gl`.depot_id,`gl`.goods_name,`gl`.price as distribution_price,'
-                . '`gl`.buyer_goods_no,`gl`.goods_category,`gl`.top_category,`g_i_p`.tb_path as img_path,`gl`.top_category';
+                . '`gl`.buyer_goods_no,`gl`.goods_category,`gl`.top_category,`g_i_p`.upyun_path as img_path,`gl`.top_category';
         $sql = 'select ' . $field . ' from goods_list as `gl` left join goods_img_path as g_i_p on gl.img_path=g_i_p.md5_path where `gl`.goods_id=:goods_id';
         $detail = $this->query($sql, array('goods_id' => $goods_id));
         return $detail;
@@ -785,4 +804,17 @@ class Goods_listDao extends Dao {
         return $this->excute($sql, array('user_id' => $user_id, 'goods_id' => $goods_id));
     }
 
+
+
+    public function searchGoodsWithNo($no, $p){
+        $fields = 'goods_id, goods_name, price, collect_count, picture_path as img_path, buyer_goods_no';
+        $p=($p-1)*20;
+        $limit=" limit $p, 20";
+        $sql = 'select ' . $fields . ' from goods_list where buyer_goods_no=:no and goods_sale=1 and goods_status =3 and is_missing= 0 and is_delete =0'. $limit;
+        $param = ['no' => $no];
+        $list=$this->query($sql, $param);
+        $sql='select count(*) from goods_list where buyer_goods_no=:no';
+        $total=$this->query($sql, $param, 'fetch_string');
+        return ['list'=>$list, 'total'=>$total];
+    }
 }

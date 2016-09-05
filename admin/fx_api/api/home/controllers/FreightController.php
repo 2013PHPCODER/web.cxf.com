@@ -28,7 +28,6 @@ class FreightController extends Controller{
 		$sub=$r['sub'];
 		$heavy=$main['heavy'];
 
-
 		if (!$sub) {				//不存在特例 
 			if ($main['is_free']) {
 				$fee['freight']=0;
@@ -53,7 +52,6 @@ class FreightController extends Controller{
 			}
 
 		}
-
 		$this->response($fee);
 
 	}

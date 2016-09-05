@@ -8,12 +8,17 @@
     <link rel="stylesheet" type="text/css" href="css/zl.css"/>
     <script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/knockout-3.3.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/cityClass.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/plus.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/message.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/Add.js"></script>
 
     <link rel="stylesheet" href="css/yz.css">
 </head>
+<style>
+    .publicTabDiv{  max-height: 15rem;overflow-y: auto;}
+</style>
 <body>
 <div class="main clearfix">
     <div id="p_left"></div>
@@ -35,7 +40,7 @@
                     <button>搜索</button>
                 </div>-->
             </div>
-
+            <div class="publicTabDiv goodDebar">
             <table class="odMTabSty" id="accept">
                 <tr>
                     <!--<th><input type="checkbox"></th>-->
@@ -49,7 +54,7 @@
                     <th>操作</th>
                 </tr>
                 <tbody class="_accept" data-bind="foreach:{data:item,as:'auto'}" id="scjTbody">
-                <tr data-bind="attr:{'data-id':goods_id,'data-num':buyer_goods_no,'name':goods_name}">
+                <tr data-bind="attr:{'data-id':goods_id,'data-num':buyer_goods_no,'name':goods_name,'data-taobao':is_up_taobao}">
                     <td><input type="checkbox"></td>
                     <td><img class="orderGoodsPic" data-bind="attr:{src:img_path,id:goods_id}" src=""></td>
                     <td class="orderGoodsName">
@@ -65,13 +70,14 @@
                     </td>
                     <td><span class="openStock" data-bind="text:total_stock_num" style="cursor: pointer;color: #00a0e9"></span></td>
                     <td data-bind="text:addtime"></td>
-                    <td data-bind="text:is_up_taobao"></td>
+                    <td data-bind="text:is_up_taobao ==1? '已铺货':'未铺货' "></td>
                     <td id="handle">
                         <p class="goodsSj" data-bind="attr:{'goods_id':goods_id}">一键铺货</p>
                         <p class="orderDelBtn" id="PHdelet">删除</p>
                     </td>
                 </tr>
             </table>
+                </div>
         </div>
         <div class="contentFooter">
             <label><input type="checkbox" id="all-select">全选</label>
@@ -83,10 +89,10 @@
 
         <div class="PopDiv goodsAdmin" id="ku_cun" style="display: none;">
             <div class="PopHeader goodsHeader">
-                <span class="PopTitleText">可用总库存：300</span>
+                <span class="PopTitleText" data-bind="text:'可用总库存：'+total_stock_num"></span>
                 <div class="PopColse"></div>
             </div>
-            <div class="PopBody goodsAdminTab">
+            <div class="PopBody goodsAdminTab" style="height: 10rem;">
                 <table data-bind="foreach:{data:sku,as:'auto'}">
                     <tr>
                         <td><label data-bind="text:sku_str_zh"></label><span data-bind="text:stock_num"></span></td>
@@ -135,6 +141,11 @@
             'user_id': localStorage.getItem('user_id')
         };
         var kuc = X.bindModel(requestUrl.accept, 1, data, 'body.list', ['accept'], function () {
+        	$('#accept tbody tr').each(function () {
+                if($(this).attr('data-taobao')==1){
+                	$(this).children('td').children('.goodsSj').remove();
+                }
+            });
         	//商品详情
         	$('#scjTbody tr td.orderGoodsName,#scjTbody tr td img').click(function(){
         		$('.marks').show();
@@ -146,7 +157,7 @@
                     'platform':1                    //平台号
                 };
                 goodDetail(data);
-			})
+			});
         	//库存
             $('.openStock').on("click", function () {
                 var ku_cun = $('#ku_cun');
@@ -167,7 +178,7 @@
             //一键铺货
             $('.goodsSj').click(function () {
                 var goodsName = $(this).parents('tr').attr('name');
-                var goodID = $(this).parents('tr').attr('goods_id');
+                var goodID = $(this).parents('tr').attr('data-id');
                 var goodNum = $(this).parents('tr').attr('data-num');
                 var DetailViewModel = {
                     goodsArr: [
@@ -176,10 +187,11 @@
                             goods_name: goodsName,
                             buyer_goods_no: goodNum
                         }]
-                }
-
-                yijinPH(DetailViewModel)
-            })
+                };
+                yijinPH(DetailViewModel,function(){
+                    location.reload();
+                })
+            });
 //          删除	
             $('.orderDelBtn').click(function () {
                 var dataId = $(this).parents('tr').attr('data-id');
@@ -198,8 +210,6 @@
                     } else {
                         X.notice(e.header.msg, 3)
                     }
-
-
                 })
             })
         }, function (e) {
@@ -208,7 +218,7 @@
                 return e
             }
         })
-    })
+    });
 
     var PHhtml = $('#accept').html();
     $('#PHType').change(function () {
@@ -217,22 +227,36 @@
         data = {
             'user_id': localStorage.getItem('user_id'),
             'is_up_taobao': $('#PHType option:selected').val()
-        }
-//  	console.log(data.is_up_taobao);
+        };
         X.bindModel(requestUrl.accept, 1, data, 'body.list', ['accept'], function () {
-            $('#accept table tbody>tr').each(function () {
-                $(this).children('td').eq(0).append('<img class="collcet-img" style="width: 68px" src="' + $(this).children('td').attr('data-src') + '"/>');
-                var oo = $(this).children('td').eq(0).find('input');
-                if (oo) {
-                    oo.attr('type', 'checkbox').css({'margin-right': '15px'})
-                }
-            });
+        	$('#accept tbody tr').each(function () {
+	        	if($('#PHType option:selected').val()==2){
+	        		$('#all-PH').fadeIn()
+	        	}else if($('#PHType option:selected').val()==1){
+	        			$(this).children('td').children('.goodsSj').remove();
+	        		$('#all-PH').fadeOut()
+	        	}else if($('#PHType option:selected').val()==''){
+	        		if($(this).attr('data-taobao')==1){
+	        			$(this).children('td').children('.goodsSj').remove();
+	        			$('#all-PH').fadeIn()
+	        		}
+	        	}
+        	})
+//          $('#accept tbody tr').each(function () {
+//              if($(this).attr('data-taobao')==1){
+//              	$(this).children('td').children('.goodsSj').remove();
+//              	$('#all-PH').fadeOut()
+//              }else{
+//              	$(this).children('td').children('.goodsSj').remove()
+//              	$('#all-PH').fadeIn()
+//              }
+//          });
             $('.PopColse').click(function () {
                 $('.PH').hide();
             });
             $('.goodsSj').click(function () {
                 var goodsName = $(this).parents('tr').attr('name');
-                localStorage.setItem('goods_name', goodsName)
+                localStorage.setItem('goods_name', goodsName);
                 var DetailViewModel = {
                     goodsArr: [
                         {
@@ -242,7 +266,10 @@
                         }]
                 };
 
-                yijinPH(DetailViewModel)
+                yijinPH(DetailViewModel,function(){
+                	$('#accept td').find('input').prop('checked', false);
+            		$('#all-select').prop('checked', false);
+                })
 
             });
             $('.orderDelBtn').click(function () {
@@ -283,35 +310,48 @@
             $(this).prop('checked', true);
             checkFlag = true;
         } else {
-            $('#accept td').find('input').prop('checked', false)
-            $(this).prop('checked', false)
+            $('#accept td').find('input').prop('checked', false);
+            $(this).prop('checked', false);
             checkFlag = false;
         }
 
-    })
+    });
 
     $('#all-PH').click(function () {
         var DetailViewModel = {
             goodsArr: []
-        }
-        if (checkFlag) {
-            $('#scjTbody tr').each(function () {
-                DetailViewModel.goodsArr.push({
-                    goodsID: $(this).attr('data-id'),
-                    goods_name: $(this).attr('name'),
-                    buyer_goods_no: $(this).attr('data-num')
-                });
+        };
+        $.each($('#scjTbody tr'), function (i ,d) {
+        	var _this=$(this);
+            var isChecked = $(d).find("input").prop("checked");
+            if(_this.attr('data-taobao')==1){
+                    _this.find('input').prop('checked',false);
+//                    X.notice('已自动为您排除已铺货的商品',3)
+            }else{
+            	if(isChecked) {
+	                DetailViewModel.goodsArr.push({
+	                    goodsID: $(d).attr('data-id'),
+	                    goods_name: $(d).attr('name'),
+	                    buyer_goods_no: $(d).attr('data-num')
+	                });
+	                if (DetailViewModel.goodsArr.length > 0) {
+			            yijinPH(DetailViewModel)
+			        } else {
+			            X.notice('请选择商品', 3)
+			        }
+	            }
+            }
+        });
+  if (DetailViewModel.goodsArr.length > 0) {
+            yijinPH(DetailViewModel,function(){
+                location.reload();
             })
-            yijinPH(DetailViewModel)
         } else {
             X.notice('请选择商品', 3)
-        }
-
-    })
+        }    });
 
     //批量删除
     $('#all-delet').click(function () {
-
         var checked = $('._accept').find('input:checked').parents('tr');
         var goods_id = [];
         $.each(checked, function (i, d) {

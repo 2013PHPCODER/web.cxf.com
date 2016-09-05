@@ -16,37 +16,59 @@
         <link rel="stylesheet" type="text/css" href="css/common.css"/>
         <link rel="stylesheet" type="text/css" href="css/goodsDetails.css"/>
         <link rel="stylesheet" type="text/css" href="css/goodsList.css"/>
+        <link href="css/share.min.css" rel="stylesheet"/>
         <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
         <script src="js/cloudzoom.js"></script>
         <script src="js/public.js"></script>
         <script src="//cdn.bootcss.com/knockout/3.3.0/knockout-min.js"></script>
         <script src="js/plus.js"></script>
+        <style>
+        	.classify-box{display: none;}
+            .sidebarLeft .sidebarMax>ul{display: block;}
+            .m-inP>dl>dd{font-size: 12px;}
+            .m-service>dd>span{    width: 17px;height: 17px;line-height: 18px;}
+        </style>
     </head>
     <body>
         <!--header-->
+
         <div class="header">
             <?php include_once 'base/index_top.php'; ?>
             <?php include_once 'base/index_top_1.php'; ?>
         </div>
-
+        <script src="js/jquery.share.min.js"></script>
         <div class="wrap clearfix">
-            <div class="sidebarLeft">
-
-            </div>
+            <div class="sidebarLeft" id="searchCatage">
+	            <div class="sidebarMax" data-bind="foreach:{data:category,as:'auto'}">
+	                <div class="goodsTypeName noMargin">
+	                    <div data-bind="attr:{title:name}">
+	                    	<b><img src="" data-bind="attr:{'src':ico}"/></b>
+	                        <p class="TypeName" data-bind="text:name,attr:{'category_id':category_id}"></p>
+	                        <p class="TypeNameEng" data-bind="text:name_en"></p>
+	                        <i></i>
+	                    </div>
+	                </div>
+	                <ul data-bind="foreach:{data:child,as:'auto'}">
+	                    <li>
+	                        <a data-bind="text:name,attr:{category_id:cid,level:level}">T恤</a>
+	                    </li>
+	                </ul>	                
+	            </div>
+	        </div>
             <div class="g-details" id="g-details">
                 <div class="details-top clearfix">
                     <div class="g-dpic">
                         <div class="m-dpic-b">
-                            <img class="cloudzoom" id="maxImgSrc"  data-bind="attr:{src:detail.img_path,alt:detail.goods_name}" />
+                            <img class="cloudzoom" id="maxImgSrc"  data-bind="attr:{src:detail.img_path+'!upyun123/fwfh/420x420',alt:detail.goods_name}" />
                         </div>
                         <div class="m-picControl clearfix">
-                            <div class="m-picC-icon" style="float: left"><</div>
-                            <div class="m-picC-ul" style="width: 380px;height: 70px;overflow: hidden">
+<!--                            <div class="m-picC-icon" style="float: left"><</div>-->
+                            <div class="m-picC-ul" style="height: 70px;overflow: hidden">
                                 <ul class="clearfix e-cloudpic" data-bind="foreach:{data:detail.useZoom,as:'auto'}" style="margin: 0 auto;height: 70px;overflow: hidden">
-                                    <li><img class="cloudzoom-gallery" data-bind="attr:{src:img,'data-cloudzoom':zoom}"  width="60" height="60" data-cloudzoom="useZoom: '.cloudzoom', image: '', zoomImage: ''"/></li>
+                                    <li><img class="cloudzoom-gallery" data-bind="attr:{src:img+'!upyun123/fwfh/66x69','data-cloudzoom':zoom}"  width="60" height="60" data-cloudzoom="useZoom: '.cloudzoom', image: '', zoomImage: ''"/></li>
                                 </ul>
                             </div>
-                            <div class="m-picC-icon" style="float: right">></div>
+<!--                            <div class="m-picC-icon" style="float: right">></div>-->
                         </div>
                     </div>
                     <div class="g-dmes">
@@ -57,47 +79,47 @@
                         <div class="m-inPrice m-inP">
                             <dl>
                                 <dt>零售价：</dt>
-                                <dd><label id="jichujiao" data-bind="text:'¥ '+detail.price.distribution_price"></label></dd>
+                                <dd class="userSign" data-level="0" data-bind="text:'¥ '+detail.price.distribution_price"></dd>
                             </dl>
                             <dl>
-                                <dt>基础价：</dt>
-                                <dd class="s-price"><label id="jichujiao" data-bind="text:'¥ '+detail.price.basic_price"></label></dd>
+                                <dt>初级价：</dt>
+                                <dd class="userSign"  data-level="1" id="jichujia" data-bind="text:'¥ '+detail.price.basic_price"></dd>
                             </dl>
                             <dl>
                                 <dt>中级价：</dt>
-                                <dd id="zhongjijia" data-bind="text:'¥ '+detail.price.middle_price"></dd>
+                                <dd class="userSign" data-level="2" id="zhongjijia" data-bind="text:'¥ '+detail.price.middle_price"></dd>
                             </dl>
                             <dl>
                                 <dt>高级价：</dt>
-                                <dd id="gaojijia" data-bind="text:'¥ '+detail.price.senior_price"></dd>
+                                <dd class="userSign" data-level="3" id="gaojijia" data-bind="text:'¥ '+detail.price.senior_price"></dd>
                             </dl>
-                            <dl class="s-freight">
+                            <dl class="s-freight" style="position: relative">
                                 <dt>运&nbsp;&nbsp;费：</dt>
                                 <dd class="clearfix" class="ncs-freight_box" style="position: relative">
-                                    <div>广东广州  至 </div>
+                                    <div><span data-bind="text:detail.province"></span><span data-bind="text:detail.city"></span>  至 </div>
 
-                                    <input type="text" id="AddInp" style="width: 80px" value="" placeholder="选择地址" readonly>
-                                    <div id="hideDiv">
-                                        <select id="seleProvince" onchange="getCity(this.value)">
-                                            <option value="">省</option>
-                                        </select>
-                                        <select id="seleCity" onchange="getCounty(this.value)">
-                                            <option value="">市</option>
-                                        </select>
-                                        <select id="seleCounty" onchange="setCountyCode(this.value)">
-                                            <option value="">县</option>
-                                        </select>
-                                        <input type="hidden" name="su.companySxy" value="">
-                                        <input type="hidden" name="su.companyCode" value="">
-                                    </div>
+                                    <input type="text" id="AddInp" style="width: 80px;border: 1px solid #ccc;border-radius: 3px;text-align: center;cursor: pointer;font-size: 13px;color: #666" value="" placeholder="选择地址" readonly>
 
                                     <div>费用 ：<span id="yunfei">¥0.00</span></div>
                                 </dd>
+                                <div id="hideDiv">
+                                    <select id="seleProvince" onchange="getCity(this.value)">
+                                        <option value="">省</option>
+                                    </select>
+                                    <select id="seleCity" onchange="getCounty(this.value)">
+                                        <option value="">市</option>
+                                    </select>
+                                    <select id="seleCounty" onchange="setCountyCode(this.value)">
+                                        <option value="">县</option>
+                                    </select>
+                                    <input type="hidden" name="su.companySxy" value="">
+                                    <input type="hidden" name="su.companyCode" value="">
+                                </div>
                             </dl>
                         </div>
                         <div class="m-intype m-inP" >
                             <dl>
-                                <dt>数&nbsp; &nbsp;&nbsp;&nbsp;量&nbsp; :</dt>
+                                <dt style="margin-top: 5px">数量：</dt>
                                 <dd>
                                     <div class="s-figure-input">
                                         <input type="text" name="" id="goodsNum" value="1" size="3" maxlength="6" class="input-text">
@@ -110,7 +132,7 @@
                                 </dd>
                             </dl>
                             <dl class="m-btnFunc">
-                                <dd style="text-align: center">
+                                <dd style="text-align: center;display: block">
                                     <div style="display: none">
                                         <form id="download_from">
                                             <input type="text" name="goods_ids" value="">
@@ -129,15 +151,17 @@
                             </dl>
                             <dl>
                                 <dt>分&nbsp;&nbsp;享：</dt>
-                                <dd class="m-share">				
-                                    <a href="javascript:void(0);" class="weixin"><img src="images/goodsDetails/weixin.jpg"/></a>
-                                    <a href="javascript:void(0);" class="weibo"><img src="images/goodsDetails/weibo.jpg"/></a>
+                                <dd class="m-share" style="display: block">
+                                	<div id="ckepop">
+	                                    <!--<a class="weixin jiathis_button_weixin"><img src="images/goodsDetails/weixin.jpg"/></a>
+	                                    <a class="weibo jiathis_button_tsina"><img src="images/goodsDetails/weibo.jpg"/></a>-->
+                                    </div>
                                     <span class="s-collect"><a href="javascript:void(0);"><i><img src="images/goodsDetails/star.png"/></i><span data-bind="text:detail.is_collect==true?'已收藏':'收藏',css:{addKeep:detail.is_collect==false,delKeep:detail.is_collect==true}"></span><span class="collect_countNum" data-bind="text:' '+detail.collect_count"></span></a></span>
                                 </dd>
                             </dl>
                         </div>	
                     </div>
-                </div>	
+                </div>	             
                 <div class="details-info">
                     <h3><span>商品详情</span></h3>
                     <div id="goodsDetailDiv" data-bind="html:detail.desc"></div>
@@ -151,7 +175,7 @@
 
                     <div class="hqua-pic" data-bind="foreach:{data:most_goods,as:'auto'}">
                         <div class="hq-picBox" >
-                            <a data-bind="attr:{href:'good_detail.php?goodsID='+goods_id+''}"><img data-bind="attr:{src:img_path,alt:goods_name,goodsId:goods_id}"/></a>
+                            <a data-bind="attr:{href:'good_detail.php?goodsID='+goods_id+''}"><img data-bind="attr:{src:img_path+'!upyun123/fwfh/226x226',alt:goods_name,goodsId:goods_id}"/></a>
                         </div>
                     </div>
 
@@ -176,7 +200,7 @@
                                 <a data-bind="attr:{href:'good_detail.php?goodsID='+goods_id+''}" class="rank-c-a">
                                     <div class="clearfix">
                                         <div class="rank-pic">
-                                            <img data-bind="attr:{src:img_path,alt:goods_name,goodsId:goods_id,price:price}"/>
+                                            <img data-bind="attr:{src:img_path+'!upyun123/fwfh/80x80',alt:goods_name,goodsId:goods_id,price:price}"/>
                                         </div>
                                         <div class="rank-mes">
                                             <p class="p-ranking"><i></i><span data-bind="text:'Top'+($index()+1)"></span></p>
@@ -194,7 +218,7 @@
                                 <a  data-bind="attr:{href:'good_detail.php?goodsID='+goods_id+''}" class="rank-c-a">
                                     <div class="clearfix">
                                         <div class="rank-pic">
-                                            <img data-bind="attr:{src:img_path,alt:goods_name,goodsId:goods_id,price:price}"/>
+                                            <img data-bind="attr:{src:img_path+'!upyun123/fwfh/80x80',alt:goods_name,goodsId:goods_id,price:price}"/>
                                         </div>
                                         <div class="rank-mes">
                                             <p class="p-ranking"><i></i><span data-bind="text:'Top'+($index()+1)"></span></p>
@@ -210,73 +234,14 @@
                 </div>			
             </div>
         </div>
+        
+        
         <!--footer-->
         <?php
         include_once 'base/index_footer.php';
         include_once 'base/index_footer_blackdiv.php';
         include_once 'base/index_footer_kefu.php';
         ?>
-
-        <!--弹窗-->
-        <div class="marks" id="PH">
-            <div class="PopDiv">
-                <div class="PopHeader">
-                    <img src="images/PopIco/tips.png" alt="">
-                    <span class="PopTitle">铺货</span>
-                    <div class="PopColse"></div>
-                </div>
-                <div class="PopBody">
-                    <div class="Phcontent">
-                        <p>铺货详情：<span>以下商品将发布到您当前的默认店铺：</span><select id="shopList"></select></p>
-                        <div class="PhTab">
-                            <table>
-                                <tr>
-                                    <th>商品ID</th>
-                                    <th>商家编码</th>
-                                    <th>商品标题</th>
-                                    <th>铺货结果</th>
-                                </tr>
-                                <tr>
-                                    <td data-bind="text:goodsID"></td>
-                                    <td data-bind="text:buyer_goods_no"></td>
-                                    <td data-bind="text:goods_name"></td>
-                                    <td>等待铺货</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="Phsele">
-                            <table>
-                                <tr>
-                                    <td>快递选项：</td>
-                                    <td><label><input type="radio" checked name="PhMailType" value="0">包邮</label></td>
-                                    <td style="text-align: right">商品分类：<select id="goodsType"></select></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td colspan="2">
-                                        <label><input type="radio" name="PhMailType" value="1">买家承担运费</label>运费统一设置为：<input type="text" placeholder="运费金额" id="freight_fee"> 元
-                                        <span>买家承担运费的范围为0.001~999.00</span>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td colspan="2"><label><input type="radio" name="PhMailType" value="2">使用卖家运费模板</label><select id="shopTemplate"></select><span>必须选择一个模板，如果没有请至淘宝添加</span></td>
-                                    <td></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="PhJD">
-                            <p><i></i></p>
-                            <span>完成度：0/1</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="PopFooter">
-                    <button class="startBtn">开始铺货</button>
-                </div>
-            </div>
-        </div>
     </body>
 
 </html>
@@ -300,34 +265,42 @@
 
         //左侧下拉菜单
         $('.sidebarMax').on('click', '.goodsTypeName', function () {
-            $(this).prevAll('.goodsTypeName').next('ul').slideUp(function () {
-                $(this).removeClass('menuActive')
-            }).end().find('i').css({'transform': 'rotate(-90deg)'});
-            $(this).nextAll('.goodsTypeName').next('ul').slideUp(function () {
-                $(this).removeClass('menuActive')
-            }).end().find('i').css({'transform': 'rotate(-90deg)'});
-            $(this).next('ul').slideDown(function () {
-                $(this).addClass('menuActive')
-            }).end().find('i').css({'transform': 'rotate(0deg)'});
+             if($(this).next('ul').css('display') == 'block'){
+	        	$(this).find('i').css({'transform': 'rotate(0deg)'})
+	        }else{
+	        	$(this).find('i').css({'transform': 'rotate(-90deg)'})
+	        }
+          	$(this).next('ul').slideToggle(function(){$(this).removeClass('menuActive')})
         });
 
+//
+//      X.bindModel(requestUrl.category, 0,{} ,'',['category'], function () {
+//          $('.e-tab').find('.classify-body').hover(function () {
+//              var _index = $(this).index();
+//              $('.tab-box .menu-tab').eq(_index).addClass('current').siblings().removeClass('current');
+//          }, function () {
+//              $('.tab-box .menu-tab').removeClass('current');
+//          });
+//          $('.menu-tab').hover(function () {
+//              $(this).addClass('current').siblings().removeClass('current');
+//          }, function () {
+//              $(".menu-tab").removeClass('current');
+//          });
+//      }, function (x) {
+//          x = {'category': x};
+//          return  x;
+//      });
 
-        X.bindModel(requestUrl.category, 0,{} ,'',['category'], function () {
-            $('.e-tab').find('.classify-body').hover(function () {
-                var _index = $(this).index();
-                $('.tab-box .menu-tab').eq(_index).addClass('current').siblings().removeClass('current');
-            }, function () {
-                $('.tab-box .menu-tab').removeClass('current');
-            });
-            $('.menu-tab').hover(function () {
-                $(this).addClass('current').siblings().removeClass('current');
-            }, function () {
-                $(".menu-tab").removeClass('current');
-            });
+        X.bindModel(requestUrl.search_category, 0, {}, '', ['searchCatage'], function () {
+            $('.sidebarMax>ul a').click(function(){
+            	window.location.href = 'goodlist.php?cate_id='+$(this).attr('category_id')+'&level='+$(this).attr('level')
+            })
+
         }, function (x) {
             x = {'category': x};
             return  x;
         });
+
 
     })
 </script>
@@ -336,6 +309,37 @@
     var goodsID = getUrlParam('goodsID');
     var data = {'goods_id':goodsID,'user_id':getCookieValue('user_id'),'platform': 1};
     X.bindModel(requestUrl.goodsDetail, 1, data, 'body.list', ['g-details', 'high-quality', 'keep_good_list', 'up_taobao_goodlist'], function () {
+        $('#up_taobao_goodlist').hide();
+        
+
+        var shareVideo = {
+		    els: {
+		        ss: $('#ckepop')     //外框
+//		        s: $(".share")           
+		    },
+		    config: {
+		        source: 'XXX视频', // <meta name="site" content="xxx" />
+		        title: '', // document.title / <meta name="title" content="share.js" />
+		        description: '', // <meta name="description" content="" />
+		        image: '', // img
+		        sites: ['qq', 'weibo', 'wechat'],
+		        disabled: ['google', 'facebook', 'twitter'],
+		        wechatQrcodeTitle: "微信扫一扫：分享",
+		        wechatQrcodeHelper: ''
+		    },
+		    event: {
+//		        hover() {
+//		            $(this).children(".social-share").toggleClass("show");
+//		        }
+		    }
+		};
+		
+		/**
+		 * 配置分享功能
+		 */
+		shareVideo.els.ss.share(shareVideo.config);
+//		shareVideo.els.s.hover(shareVideo.event.hover);
+        
         jQuery(function ($) {
             // 放大镜效果 产品图片
             CloudZoom.quickStart();
@@ -345,6 +349,14 @@
                 $(this).addClass("current").siblings().removeClass("current");
             });
         });
+        $('.userSign').each(function(){
+            if($(this).attr('data-level') == getCookieValue('user_level')){
+                $(this).addClass('s-price');
+            }
+        });
+
+
+
         //添加收藏
         $('.addKeep').click(function(){
             var _this = $(this);
@@ -381,7 +393,7 @@
         var i=0;
         $(res.body.list.sku_list).each(function(key,val){
                   str += '<dl class="skuSign dls"><dt>' + arr[val].name + '：</dt>' +
-                      '<dd>' +
+                      '<dd style="display: table">' +
                       '<ul class="ul_sign s-size clearfix" sku_val_str="'+val+'">';
                    for( var j in arr[val].val){
                        str += '<li sku_val="' + j + '" >' +arr[val].val[j] +'</li>';
@@ -422,6 +434,7 @@
             goodsID:res.body.list.detail.goods_id
         };
         var skuInfo = {};
+//        var len = res.body.list.sku_list.length;
         $('.dls').each(function(key,item){
             $(this).find('li').click(function(){
                 var skuVal = $(this).attr('sku_val');
@@ -446,8 +459,19 @@
                     $('#gaojijia').text('¥ ' + res.body.list.sku_info.price.senior_price);
                     dataInfo.stock_lock_num = res.body.list.sku_info.stock_lock_num;
                     dataInfo.stock_num = res.body.list.sku_info.stock_num;
-
                     dataInfo.skuId = res.body.list.sku_info.id;
+                    var level = getCookieValue('user_level');
+
+                    if(level == 0){
+                        dataInfo.distribution_price = res.body.list.sku_info.price.distribution_price;
+                    }else if(level == 1){
+                        dataInfo.distribution_price = res.body.list.sku_info.price.basic_price;
+                    }else if(level == 2){
+                        dataInfo.distribution_price = res.body.list.sku_info.price.middle_price;
+                    }else if(level == 3){
+                        dataInfo.distribution_price = res.body.list.sku_info.price.senior_price;
+                    }
+
                 }
             })
         }
@@ -472,6 +496,7 @@
         });
 //         立即购买
         $('#lijigoumai').click(function () {
+            CheckUserLogin();
             var goodsNum = parseInt($('#goodsNum').val());
             if (goodsNum == '') {
                 X.notice('请填写需购买的数量', 3);
@@ -482,7 +507,6 @@
             } else if(dataInfo.stock_num==undefined){
                 X.notice('请选择规格',3)
             }else if (goodsNum <= parseInt(dataInfo.stock_num)) {
-                CheckUserLogin();
                 var data = {
                     'user_id':getCookieValue('user_id'),
                     'user_name':getCookieValue('user_account'),
@@ -499,7 +523,7 @@
                             sku_str_zh: loca.sku_str_zh,        //SKU属性
                             goods_name: loca.goods_name,        //商品名
                             img_path: loca.img_path,            //图片地址
-                            distribution_price: loca.distribution_price,        //单价
+                            distribution_price: dataInfo.distribution_price,        //单价
                             stock_num:loca.stock_num           //库存
                         };
                         sessionStorage.setItem('goodsInfo', JSON.stringify(goodsdata));
@@ -522,6 +546,7 @@
     })
 </script>
 <script type="text/javascript" src="js/Add.js"></script>
+<script type="text/javascript" src="http://v2.jiathis.com/code/jia.js" charset="utf-8"></script>
 <script type="text/javascript">
     /*  select显示标题*/
     var opt0 = new Array("省","市","县");
@@ -664,4 +689,8 @@
             }
         })
     }
+    
+    
+    
+//  分享		
 </script>

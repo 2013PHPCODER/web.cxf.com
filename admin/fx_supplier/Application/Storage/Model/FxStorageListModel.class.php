@@ -4,7 +4,7 @@ use Think\Model;
 class FxStorageListModel extends Model{
     protected $_validate = array(
             array('sname','require','{%STROAGE_REQUIER}'), //非空严验证 
-            array('sname','','{%STROAGE_UBIQUE}',0,'unique'), // 在新增的时候验证sname字段是否唯一
+            array('sname','','{%STROAGE_UBIQUE}',0,'unique',Model::MODEL_INSERT), // 在新增的时候验证sname字段是否唯一
             array('province','require','{%PROVINCE_REQUIER}'), //非空严验证
             array('city','require','{%CITY_REQUIER}'), //非空严验证
             array('area','require','{%AREA_REQUIER}'), //非空严验证

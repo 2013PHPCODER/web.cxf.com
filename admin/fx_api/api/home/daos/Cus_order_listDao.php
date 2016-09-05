@@ -24,7 +24,7 @@ class Cus_order_listDao extends Dao {
         $condition = "( return_status=$return_status or refund_status=$refund_status)";
 
 
-        $sql = 'select ' . $this->fields . ' from ' . $this->table . ' where buyer_id=:id  and ' . $condition . ' limit ' . $limit;
+        $sql = 'select ' . $this->fields . ' from ' . $this->table . ' where buyer_id=:id  and ' . $condition . ' order by addtime desc limit ' . $limit;
         $param = ['id' => $user_id];
         $aftersale = $this->query($sql, $param);
 
@@ -98,9 +98,9 @@ class Cus_order_listDao extends Dao {
         $param = ['order' => $order_id, 'id' => $user_id];
 
         $r = $this->query($sql, $param, 'fetch_row');
-        // dump(\Sql::get());
+
         //检查是否过期
-        // dump($r);die;
+
         $expire=$r && $r['order_state'] == \order_status::success && ($r['finished']+7*23*3600 < time());
 
         // dump($expire);die;
@@ -121,10 +121,13 @@ class Cus_order_listDao extends Dao {
             //生成分销商的退款价格
             if ($reason_code==\aftersale_remark::seven_day_no_reason) {         //扣除运费
                 $show_refund=$r['cost_price']-$r['shipping_fee'];
+                $r['refund_amount']=$r['refund_amount']-$r['shipping_fee'];
             }
             //还要补款
             if ($reason_code != \aftersale_remark::buy_error && $reason_code != \aftersale_remark::seven_day_no_reason && $reason_code != \aftersale_remark::do_not_want) {
-                $show_refund=$r['cost_price'] + $this->getRefundFreight($r['order_id']);
+                $refund_freight=$this->getRefundFreight($r['order_id']);
+                $show_refund=$r['cost_price'] + $refund_freight;
+                $r['refund_amount']=$r['refund_amount'] + $refund_freight;
             } 
         }
 
@@ -160,6 +163,8 @@ class Cus_order_listDao extends Dao {
         $sql="select province from order_goods as a inner join goods_list as b on a.goods_id=b.goods_id inner join fx_storage_list as c on b.depot_id=c.id where a.order_id=:order_id limit 1";
         $from=$this->query($sql, $param, 'fetch_string');
         
+        $from=preg_replace(['/(省|市|区)$/'], [''], $from);
+        $to=preg_replace(['/(省|市|区)$/'], [''], $to);
 
         $sql="select fee from fx_refund_template where `from` like :from and `to` like :to limit 1";
         $param=['from'=>$from, 'to'=>$to];
@@ -208,7 +213,6 @@ class Cus_order_listDao extends Dao {
         $sql = 'select ' . $fields . ' from  cus_order_goods_img where cus_id=:cus_id';
         $param = ['cus_id' => $cus_id];
         $imgs = $this->query($sql, $param);
-
 
         return ['main' => $main, 'goods' => $goods, 'imgs' => $imgs];
     }

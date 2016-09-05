@@ -13,7 +13,7 @@
     </div>
     <div class="box-body">
         <div class="row" >
-            <form class="form-inline"  action="<?php echo U('storage/index');?>" method="geFt">
+            <form class="form-inline"  action="<?php echo U('storage/index',array('group_id'=>I('get.group_id')));?>" method="geFt">
                 <div class="form-group">
                     <label for="exampleInputName2">仓库名称:</label>
                     <select class="form-control input-xs" name="depot">
@@ -187,19 +187,19 @@
                     <td style="text-align: center"><img class="table_img" src="<?php echo ($list["img_path"]); ?>"></td>
                     <td ><p> <?php echo ($list["goods_name"]); ?> </p>
                         <p> <?php echo ($list["buyer_goods_no"]); ?>&nbsp;&nbsp;<?php echo ($list["sku"]); ?></p>
-                </td>
-                <td><?php echo ($list["price"]); ?></td>
-                <td><p><?php echo ($list["goods_num"]); ?></p></td>
-                <td><p><?php echo ($list["cost_price"]); ?></p>
-                    <p>含运费:<?php echo ($list["shipping_fee"]); ?></p></td>
-                <td>
-                    <p>
-                        收件人:
-                        <?php echo ($list["contact_name"]); ?>,<?php echo ($list["tel"]); ?>&nbsp;,<?php echo ($list["province"]); echo ($list["city"]); echo ($list["dist"]); echo ($list["contact_address"]); ?>
-                    </p>
-                </td>
-                <td><p>
-                        <?php switch($list["ship_stats"]): case "0": ?>待配货<?php break;?>
+                    </td>
+                    <td><?php echo ($list["price"]); ?></td>
+                    <td><p><?php echo ($list["goods_num"]); ?></p></td>
+                    <td><p><?php echo ($list["cost_price"]); ?></p>
+                        <p>含运费:<?php echo ($list["shipping_fee"]); ?></p></td>
+                    <td>
+                        <p>
+                            收件人:
+                            <?php echo ($list["contact_name"]); ?>,<?php echo ($list["tel"]); ?>&nbsp;,<?php echo ($list["province"]); echo ($list["city"]); echo ($list["dist"]); echo ($list["contact_address"]); ?>
+                        </p>
+                    </td>
+                    <td><p>
+                            <?php switch($list["ship_stats"]): case "0": ?>待配货<?php break;?>
                 <?php case "1": ?>待分配<?php break;?>
                 <?php case "2": ?>待发货<?php break;?>
                 <?php case "3": ?>已完成<?php break; endswitch;?>
@@ -370,7 +370,7 @@
             dataPost.order = order;
             var urlPost = "<?php echo U('storage/getAllShipCode',I('get.'));?>";
             $.post(urlPost, dataPost, function (result) {
-                console.log(result);
+//                console.log(result);
                 if (result.status == 0) {
                     layer.tips(result.message, '#btn_assign', {
                         tips: [2, '#3595CC'],
@@ -434,7 +434,7 @@
                         btn: ['打印', '取消'], area: ['1000px', '600px']},
                             function () {
                                 $.post("<?php echo U('storage/resultDistribution');?>", $('.print_table').serialize(), function (status) {
-                                    console.log(status);
+//                                    console.log(status);
                                     var newstr = $('.layui-layer-content').html();
                                     var newOpenWindow = window.open(window.location.href);
                                     newOpenWindow.onload = function () {
@@ -555,7 +555,7 @@
                         var urlPost = "<?php echo U('storage/canceShipCode',I('get.'));?>";
                         $.post(urlPost, data, function (result) {
                             var result = JSON.parse(result);
-                            console.log(result);
+//                            console.log(result);
                             var success = 0;
                             var fail = 0;
                             var cus_num = 0;
@@ -660,7 +660,7 @@
                         } else {
                             var postUrl = "<?php echo U('Storage/printSingle');?>";
                             $.post(postUrl, postData, function (data, textStatus, xhr) {
-                                console.log(data);
+//                                console.log(data);
                                 if (1 == data.status) {
                                     printShip(data.returnData);
                                 }
@@ -672,9 +672,6 @@
                     });
                 });
             });
-
-
-
             var printShip = function (shipData) {
                 var AppKey = 23392048;
                 var Seller_ID = 194418657;

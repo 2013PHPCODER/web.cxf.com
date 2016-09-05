@@ -36,7 +36,7 @@ class ShopController extends Controller {
             'fields' => $fields,
             'page_no' => $page,
             'page_size' => $page_size,
-            'q'=>$q,
+            'q' => $q,
         );
         $goods_array = array();
         $goods_total = 0;
@@ -45,19 +45,21 @@ class ShopController extends Controller {
             //获取出售中的商品
             $taobao_result = \Taobao::curl_taobao_api('taobao.items.onsale.get', $this->access_token, $params);
             if (!\Taobao::get_taobao_response($taobao_result, 'items_onsale_get_response', $response)) myerror(\StatusCode::msgCheckFail, '获取出售中的商品失败:' . $response->msg);
-            if (0 < $response->total_results) {
+            if (isset($response->items) && 0 < $response->total_results) {
                 $goods_array = object_to_array($response->items->item);
                 $goods_total = $response->total_results;
-                array_walk($goods_array, function(&$d) {
-                    $d['status'] = 1;
-                });
+                if (!empty($goods_array)) {
+                    array_walk($goods_array, function(&$d) {
+                        $d['status'] = 1;
+                    });
+                }
             }
         }
         if ($list_type == 2) {
             //获取仓库中的商品
             $taobao_result = \Taobao::curl_taobao_api('taobao.items.inventory.get', $this->access_token, $params);
-            if (!\Taobao::get_taobao_response($taobao_result, 'items_inventory_get_response', $response)) myerror(\StatusCode::msgCheckFail, '获取出售中的商品失败:' . $response->msg);
-            if (0 < $response->total_results) {
+            if (!\Taobao::get_taobao_response($taobao_result, 'items_inventory_get_response', $response)) myerror(\StatusCode::msgCheckFail, '获取仓库中的商品失败:' . $response->msg);
+            if (isset($response->items) && 0 < $response->total_results) {
                 $goods_array = object_to_array($response->items->item);
                 $goods_total = $response->total_results;
                 array_walk($goods_array, function(&$d) {
@@ -68,6 +70,13 @@ class ShopController extends Controller {
         //查询商品的销量
         if (!empty($goods_array)) {
             foreach ($goods_array as $key => $val) {
+                $goods_array[$key]['sellout_count'] = 0;
+                $goods_array[$key]['goods_price'] = 0;
+                $goods_array[$key]['goods_sale'] = 0;
+                if (!isset($val['outer_id'])) {
+                    $goods_array[$key]['outer_id']='';
+                    continue;
+                }
                 $sell_info = $this->tb_user_dao->goods_sell_count($val['outer_id']);
                 $goods_array[$key]['sellout_count'] = $sell_info['num'];
                 $goods_array[$key]['goods_price'] = change_price($sell_info['price']);
@@ -159,8 +168,8 @@ class ShopController extends Controller {
         $order_count = $this->getOrderCount($q->user_id);
         $fx_tb_user_dao = \Dao::Fx_tb_user();
         $shop_list = $fx_tb_user_dao->getShopList($q->user_id);
-        $shop_list = $this->getShopPublicCount($shop_list);
-        $this->response['shop'] = $shop_list;
+        $shop_goods_list = $this->getShopPublicCount($shop_list);
+        $this->response['shop'] = $shop_goods_list;
         $this->response['order_count'] = $order_count;
         $this->response();
     }
@@ -177,17 +186,18 @@ class ShopController extends Controller {
         $param = array();
         $param['buyer_id'] = $user_id;
         $dao = \Dao::Order_list();
-        $condition = "buyer_id=:buyer_id and order_state=:order_state";
+        $condition_1 = "buyer_id=:buyer_id and order_state=:order_state and is_pay<>1";
         $param['order_state'] = 0; //待付款
-        $order_count['1'] = $dao->getOrderCount($condition, $param);
+        $order_count['1'] = $dao->getOrderCount($condition_1, $param);
+        $condition = "buyer_id=:buyer_id and order_state=:order_state";
         $param['order_state'] = 2; //待发货
         $order_count['2'] = $dao->getOrderCount($condition, $param);
         $param['order_state'] = 6; //异常
         $order_count['3'] = $dao->getOrderCount($condition, $param);
-        $condition_1 = "buyer_id=:buyer_id and is_cus=:is_cus";
+        $condition_2 = "buyer_id=:buyer_id and is_cus=:is_cus";
         $param_1['buyer_id'] = $user_id;
         $param_1['is_cus'] = 1; //售后
-        $order_count['4'] = $dao->getOrderCount($condition_1, $param_1);
+        $order_count['4'] = $dao->getOrderCount($condition_2, $param_1);
         return $order_count;
     }
 
@@ -198,7 +208,7 @@ class ShopController extends Controller {
      * @author Ximeng <ximeng@xingmima.com>
      * @since 2016091301
      */
-    public function getShopPublicCount($shop_list) {
+    private function getShopPublicCount($shop_list) {
         import("Taobao");
         $params = array(
             'fields' => "num_iid",
@@ -208,21 +218,34 @@ class ShopController extends Controller {
         $zs_count_total = 0;
         $ck_count_total = 0;
         foreach ($shop_list as &$shop) {
-//            $taobao_result = \Taobao::curl_taobao_api('taobao.items.inventory.get', $shop['access_token'], $params);
-//            if (!\Taobao::get_taobao_response($taobao_result, 'items_inventory_get_response', $response)) myerror(\StatusCode::msgCheckFail, '获取仓库中的商品失败:' . $response->sub_msg);
-            $zs_count = 2; //$response->total_results;
+            $this->checkAccessTokenPast($shop);
+            $taobao_result = \Taobao::curl_taobao_api('taobao.items.inventory.get', $shop['access_token'], $params);
+            if (!\Taobao::get_taobao_response($taobao_result, 'items_inventory_get_response', $response)) myerror(\StatusCode::msgCheckFail, '获取仓库中的商品失败:' . $response->sub_msg);
+            $zs_count = $response->total_results;
             $zs_count_total += $zs_count;
-//            $taobao_result_1 = \Taobao::curl_taobao_api('taobao.items.onsale.get', $shop['access_token'], $params);
-//            if (!\Taobao::get_taobao_response($taobao_result_1, 'items_onsale_get_response', $response_1)) myerror(\StatusCode::msgCheckFail, '获取出售中的商品失败:' . $response_1->sub_msg);
-            $ck_count = 3; //$response_1->total_results;
+            $taobao_result_1 = \Taobao::curl_taobao_api('taobao.items.onsale.get', $shop['access_token'], $params);
+            if (!\Taobao::get_taobao_response($taobao_result_1, 'items_onsale_get_response', $response_1)) myerror(\StatusCode::msgCheckFail, '获取出售中的商品失败:' . $response_1->sub_msg);
+            $ck_count = $response_1->total_results;
             $ck_count_total += $ck_count;
             $shop['goods_count'] = $zs_count + $ck_count;
             unset($shop['access_token']);
         }
         $result['zs_count_total'] = $zs_count_total;
         $result['ck_count_total'] = $ck_count_total;
-        $result['shop_list'] = $shop_list;
+        $result['shop_list'] = 0 < count($shop_list) ? $shop_list : array();
         return $result;
+    }
+
+    /**
+     * 检查淘宝账号授权是否过期
+     * @author ximeng <1052214395@qq.com> <http://xinzou.cn>
+     * @param type $shop
+     * @since  20160902
+     */
+    public function checkAccessTokenPast($shop) {
+        if ($shop['addtime'] >= $shop['expire_time'] / 1000) {
+            myerror(\StatusCode::msgTokenAccessOvertime, $shop['nick'] . " 店铺授权已过期，请重新授权！");
+        }
     }
 
     /**

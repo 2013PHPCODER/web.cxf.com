@@ -33,15 +33,15 @@ class OrderListModel extends Model {
         $this->join('left join order_goods_sku ON order_goods_sku.order_id = order_list.order_id and order_goods.goods_id=order_goods_sku.goods_id');
         $this->join('left join goods_sku_comb ON goods_sku_comb.id = order_goods_sku.sku_comb_id');
         $_data['list'] = $this->where($mWhere)->group('order_list.order_id')->order($mOrder)->limit($_page->firstRow . ',' . $_page->listRows)->select();
-        if (0 < count($_data['list'])) {
-            $order_id_arr = array_column($_data['list'], 'order_id');
-            $order_ids = implode(',', $order_id_arr);
-            $cus_where = "order_id in ({$order_ids}) and (refund_status<>2 and refund_status<>6 or return_status<>2 and return_status<>8)";
-            $cus_order_list = M('cus_order_list force index (order_id)')->field('order_id')->where($cus_where)->select();
-            $order_id_cus = array_combine(array_column($cus_order_list, 'order_id'), array_column($cus_order_list, 'order_id'));
-        }
+//        if (0 < count($_data['list'])) {
+//            $order_id_arr = array_column($_data['list'], 'order_id');
+//            $order_ids = implode(',', $order_id_arr);
+//            $cus_where = "order_id in ({$order_ids}) and (refund_status<>2 and refund_status<>6 or return_status<>2 and return_status<>8)";
+//            $cus_order_list = M('cus_order_list force index (order_id)')->field('order_id')->where($cus_where)->select();
+//            $order_id_cus = array_combine(array_column($cus_order_list, 'order_id'), array_column($cus_order_list, 'order_id'));
+//        }
         foreach ($_data['list'] as &$v) {
-            $v['is_cus'] = isset($order_id_cus[$v['order_id']]) ? 1 : 0;
+//            $v['is_cus'] = isset($order_id_cus[$v['order_id']]) ? 1 : 0;
             $v['message'] = empty($v['message']) ? 0 : 1;
         }
         $_data['page'] = $_page->show();

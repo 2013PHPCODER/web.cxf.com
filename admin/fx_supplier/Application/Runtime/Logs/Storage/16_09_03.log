@@ -1,0 +1,93 @@
+[ 2016-09-03T15:16:58+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000753s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001734s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003160s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0439s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '1' LIMIT 1   [ RunTime:0.0426s ]
+
+[ 2016-09-03T15:18:14+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000788s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001544s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002992s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0494s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '1' LIMIT 1   [ RunTime:0.0476s ]
+
+[ 2016-09-03T15:18:22+08:00 ] 127.0.0.1 /Storage/TbApi/checkAcess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000759s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001414s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002785s ]
+SQL: SHOW COLUMNS FROM `taobao_authorize` [ RunTime:0.0492s ]
+SQL: SELECT `expire_time` FROM `taobao_authorize` WHERE `user_id` = '1' LIMIT 1   [ RunTime:0.0484s ]
+
+[ 2016-09-03T15:48:29+08:00 ] 127.0.0.1 /Storage/TbApi/check_acess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000799s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001522s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002958s ]
+
+[ 2016-09-03T15:49:28+08:00 ] 127.0.0.1 /Storage/TbApi/getCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000717s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001399s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002777s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000949s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001044s ]
+
+[ 2016-09-03T15:53:07+08:00 ] 127.0.0.1 /Storage/TbApi/check_acess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000908s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001693s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003309s ]
+
+[ 2016-09-03T15:55:02+08:00 ] 127.0.0.1 /Storage/TbApi/getCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001574s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001405s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004473s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001061s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001149s ]
+
+[ 2016-09-03T15:56:58+08:00 ] 127.0.0.1 /Storage/TbApi/getCode.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000887s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001557s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003162s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000959s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001046s ]
+
+[ 2016-09-03T15:57:14+08:00 ] 127.0.0.1 /Storage/TbApi/check_acess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000832s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001462s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002944s ]
+
+[ 2016-09-03T15:59:01+08:00 ] 127.0.0.1 /Storage/TbApi/check_acess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000937s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001716s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003356s ]
+
+[ 2016-09-03T15:59:28+08:00 ] 127.0.0.1 /Storage/TbApi/check_acess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000884s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001494s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002956s ]
+
+[ 2016-09-03T16:33:39+08:00 ] 127.0.0.1 /Storage/TbApi/check_acess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000914s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001915s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003687s ]
+
+[ 2016-09-03T16:34:31+08:00 ] 127.0.0.1 /Storage/TbApi/check_acess.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000633s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.001194s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002454s ]
+

@@ -185,9 +185,9 @@
                     <td ><p> {$list.goods_name} </p>
                         <p> {$list.buyer_goods_no}&nbsp;&nbsp;{$list.sku}</p>
                 </td>
-                <td>{$list.price}</td>
+                <td>{$list.distribution_price}</td>
                 <td><p>{$list.goods_num}</p></td>
-                <td><p>{$list.cost_price}</p>
+                <td><p>{$list.pay_amount}</p>
                     <p>含运费:{$list.shipping_fee}</p></td>
                 <td>
                     <p>
@@ -204,7 +204,7 @@
                 </switch>
                 </p></td>
                 <td><p> <a href="{:U('orders/orders/orderDetail',array('order_id'=>$list['order_id']))}" target="_blank">详情</a></p>
-                    <p>
+                    <!--p>
                         <neq name="list.is_cus" value='1'>
                         <switch name="list.ship_stats">
                 <case value='0'>
@@ -225,7 +225,7 @@
                 </case>
                 </switch>
                 </neq>
-                </p></td>
+                </p--></td>
                 </tr>
             </volist>
             </tbody>
@@ -283,17 +283,17 @@
                             <neq name="list.is_cus" value='1'>
                             <switch name="list.ship_stats">
                     <case value='0'>
-                        <!--<a class="one_distribution" data-id="{$list.order_id}" style="cursor: pointer;">配货</a>
-                        &nbsp; -->
+                        <<a class="one_distribution" data-id="{$list.order_id}" style="cursor: pointer;">配货</a>
+                        &nbsp; >
                         <a style="cursor: pointer;" data-id={$list.order_id} class="excep">异常</a> 
                     </case>
                     <case value='1'>
-                        <!--<a class="assign" data-id={$list.order_id} style="cursor: pointer;">分配</a>&nbsp;-->
+                        <a class="assign" data-id={$list.order_id} style="cursor: pointer;">分配</a>&nbsp;>
                         <a style="cursor: pointer;" data-id={$list.order_id} class="excep" >异常</a> 
                     </case>
                     <case value='2'> 
                         <php>if( 1 == getPower('shipments_'.I('get.group_id',1)) ) { </php>
-<!--                        <a class="send_goods" data-id={$list.hub_id} style="cursor: pointer;">发货</a>-->
+                        <a class="send_goods" data-id={$list.hub_id} style="cursor: pointer;">发货</a>
                         <php>}</php>
                         &nbsp; <a style="cursor: pointer;" data-id={$list.order_id} class="excep" >异常</a> 
                     </case>

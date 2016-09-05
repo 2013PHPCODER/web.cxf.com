@@ -61,7 +61,14 @@ class Fx_distribute_userDao extends Dao {
         $type == 'email' ? $field = 'email' : $field = 'mobile';
         $sql = 'select count(*) from ' . $this->table . ' where ' . $field . '=:field';
         $param = ['field' => $checkField];
-        $r = $this->query($sql, $param, 'fetch_string');
+        $r1 = $this->query($sql, $param, 'fetch_string');
+
+
+        $sql = 'select count(*) from fx_supplier_user where ' . $field . '=:field';
+        $r2 = $this->query($sql, $param, 'fetch_string');
+
+        $r=$r1 || $r2;
+
         return $type == 'email' ? ['email' => $r, 'mobile' => null] : ['mobile' => $r, 'email' => null];
     }
 
@@ -80,7 +87,7 @@ class Fx_distribute_userDao extends Dao {
             $_str = '';
             $_where = array('id' => $_uid);
         }
-        $_sql = 'SELECT user_account,mobile,receiver_account,receiver_account_type,qq,leavel,email,addtime FROM ' . $this->table . ' WHERE id=:id ' . $_str;
+        $_sql = 'SELECT user_account,mobile,receiver_account,receiver_account_type,qq,leavel,email,addtime,balance FROM ' . $this->table . ' WHERE id=:id ' . $_str;
         return $this->query($_sql, $_where, 'fetch_row');
     }
 
@@ -103,9 +110,14 @@ class Fx_distribute_userDao extends Dao {
      */
     public function check_username_used($username) {
         $sql = 'select id from fx_distribute_user where mobile=:username limit 1';
-        $info = $this->query($sql, array('username' => $username));
-        if (!empty($info[0]['id'])) {
-            myerror(\StatusCode::msgCheckFail, '该手机号已注册！');
+        $info = $this->query($sql, array('username' => $username),'fetch_row');
+        if (!empty($info['id'])) {
+            myerror(\StatusCode::msgCheckFail, '该手机号已注册分销商！');
+        }
+        $supplier_sql = 'select id from fx_supplier_user where mobile=:username limit 1';
+        $supplier_info = $this->query($supplier_sql, array('username' => $username),'fetch_row');
+        if (!empty($supplier_info['id'])) {
+            myerror(\StatusCode::msgCheckFail, '该手机号已注册供货商！');
         }
         return true;
     }
@@ -164,5 +176,11 @@ class Fx_distribute_userDao extends Dao {
         print_r($add_user);
         exit;
     }
+    public function checkTaobaoBind($user_id){
+        $sql='select count(*) from fx_tb_user where userid=:user_id';
+        $param=['user_id'=>$user_id];
+        return $this->query($sql, $param, 'fetch_string');
+    }
+
 
 }

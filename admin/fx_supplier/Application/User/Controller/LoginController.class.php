@@ -44,7 +44,8 @@ class LoginController extends Controller {
                                 Cookie('password', NULL);
                             }
                             if ($userinfo['approve_status'] != 3) {
-                                $this->redirect('http://supplier.mycxf.com/supplier_submit_auth.php?user_id=' . $userinfo['id']);
+                                header('Location:http://www.mycxf.com/supplier_submit_auth.php?user_id=' . $userinfo['id']);
+//                                $this->redirect('http://www.mycxf.com/supplier_submit_auth.php?user_id=' . $userinfo['id']);
                                 return false;
                             }
                             session('user_info', $userinfo, 3600);

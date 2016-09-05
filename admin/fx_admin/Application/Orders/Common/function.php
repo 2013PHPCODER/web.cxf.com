@@ -227,8 +227,12 @@ function f_afterStatus(&$int, $type='refund'){
         $ref=new ReflectionClass('aftersale_back_good_status');
     }
     $arr=$ref->getConstants();                                           // 获得常量
+    // dump($ref);
+    // dump($arr);
     $arr=array_flip($arr);                                  //反转数值
     $status=$arr[$int];                                 //获得枚举
+
+    // dump($arr);dump($int);
     switch ($status) {
         case 'wait_admin_confirm':
             $status='待平台确认';

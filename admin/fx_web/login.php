@@ -30,6 +30,8 @@
                 -webkit-box-shadow: 0 0 0 1000px white inset;
                 border: 1px solid #CCC !important;
             }
+            .login-f .loginBtn>input{font-weight: normal;}
+            .login-f .loginBtn>input:hover{background: #ff22d00;}
         </style>
     </head>
 <body style="background: #fff" onkeydown="keyLogin(event);">
@@ -44,8 +46,8 @@
     <div class="login-banner">
         <ul class="login-bannerUi clearfix">
             <li class="login-bannerLi"><img src="images/mainPage/login-banner01.jpg"/></li>
-            <li class="login-bannerLi"><img src="images/mainPage/login-banner01.jpg"/></li>
-            <li class="login-bannerLi"><img src="images/mainPage/login-banner01.jpg"/></li>
+            <li class="login-bannerLi"><img src="images/mainPage/login-banner02.jpg"/></li>
+            <li class="login-bannerLi"><img src="images/mainPage/login-banner03.jpg"/></li>
         </ul>
         <ul class="login-bannerC clearfix">
             <li>1</li>
@@ -59,21 +61,21 @@
             <table class="login" id="login">
                 <tr>
                     <td>用户名</td>
-                    <td><input type="text" name="userName" placeholder="请输入您的账号"></td>
+                    <td><input type="text" name="userName" placeholder="请输入您的账号" autocomplete="off"></td>
                     <td><a class="loginHelp" href="choose_register.php" target="_blank">注册账户</a></td>
                 </tr>
                 <tr>
                     <td>密 &nbsp; 码</td>
-                    <td colspan="2"><input type="password" name="userPassword" placeholder="请输入密码"></td>
+                    <td colspan="2"><input type="password" name="userPassword" placeholder="请输入密码" autocomplete="off"></td>
                 </tr>
-                <tr>
+                <!--<tr>
                     <td></td>
                     <td class="rememberInfo">
                         <label class="fl"><input type="checkbox" id="rememberAccount">记住账户</label>
                         <label class="fr"><input type="checkbox" id="rememberPassword">记住密码</label>
                     </td>
                     <td></td>
-                </tr>
+                </tr>-->
                 <tr>
                     <td></td>
                     <td class="loginBtn">
@@ -103,28 +105,38 @@
 </body>
 <script>
     //记住账户
-    var userName = $('input[name=userName]');
-    if (getCookieValue('rememberSing') == 'true') {
-        $('#rememberAccount').prop('checked', true);
-//            if(getCookieValue('user_account') != null){
-//                userName.val(getCookieValue('user_account'));
-//            }
-        if (getCookieValue('mobile') && getCookieValue('mobile') != null) {
-            userName.val(getCookieValue('mobile'));
+//  var userName = $('input[name=userName]');
+//  if (getCookieValue('rememberSing') == 'true') {
+//      $('#rememberAccount').prop('checked', true);
+//      if (getCookieValue('mobile') && getCookieValue('mobile') != null) {
+//          userName.val(getCookieValue('mobile'));
+//      }
+//  } else {
+//      userName.val('');
+//  }
+//  //记住密码
+//  var pwd = $('input[name=userPassword]');
+//  if (getCookieValue('PasswordSing') == 'true') {
+//      $('#rememberAccount').prop('checked', true);
+//      $('#rememberPassword').prop('checked', true);
+//      if (getCookieValue('PassSing') && getCookieValue('PassSing') != null) {
+//          pwd.val(getCookieValue('PassSing'));
+//      }
+//      if (getCookieValue('mobile') && getCookieValue('mobile') != null) {
+//          userName.val(getCookieValue('mobile'));
+//      }
+//  } else {
+//      pwd.val('');
+//  }
+
+    $("#rememberAccount").on("click", function () {
+        if(!$(this).prop("checked")) {
+            $('#rememberPassword').prop('checked', false);
         }
-    } else {
-        userName.val('');
-    }
-    //记住密码
-    var pwd = $('input[name=userPassword]');
-    if (getCookieValue('PasswordSing') == 'true') {
-        $('#rememberPassword').prop('checked', true);
-        if (getCookieValue('PassSing') != null) {
-            pwd.val(getCookieValue('PassSing'));
-        }
-    } else {
-        pwd.val('');
-    }
+    });
+    $("#rememberPassword").on("click", function () {
+        $('#rememberAccount').prop('checked', $(this).prop("checked"));
+    });
 
     $(function () {
         X.lbChange('login-banner', 4, '');
@@ -166,8 +178,22 @@
 //                            }else {
 //                                document.cookie.removeItem('PassSing');
 //                            }
-                        addCookie('rememberSing', rememberAccount);
-                        addCookie('PasswordSing', rememberPassword);
+                        if(rememberPassword) {
+                            addCookie('PassSing', oData.password);
+                            addCookie('user_accountNum', oData.user_account);
+                            addCookie('rememberSing', true);
+                            addCookie('PasswordSing', rememberPassword);
+                        }else {
+                            addCookie('PasswordSing', false);
+                        }
+                        if(rememberAccount){
+                            addCookie('user_accountNum', oData.user_account);
+                            addCookie('rememberSing', rememberAccount);
+                            addCookie('PasswordSing', rememberPassword);
+                        }else {
+                            addCookie('rememberSing', false);
+                        }
+
                     } else {
                         X.notice(e.header.msg, 3);
                     }

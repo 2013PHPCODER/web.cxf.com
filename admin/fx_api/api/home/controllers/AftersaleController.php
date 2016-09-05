@@ -54,8 +54,8 @@ class AftersaleController extends Controller{
 	public function detail(){			//售后详情
 		$q=$this->request;
 		// $q=new \stdclass();
-		// $q->user_id=1;
-		// $q->cus_id=1;
+		// $q->user_id=3;
+		// $q->cus_id=49;
 		!isset($q->user_id) || !isset($q->cus_id) and myerror(\StatusCode::msgCheckFail, '缺少参数');	
 
 		\Valid::not_empty($q->user_id)->withError('用户id为空');
@@ -84,6 +84,7 @@ class AftersaleController extends Controller{
 		}			
 		$data['main']=$v;
 
+
         foreach ($data['imgs'] as &$v) {
             $v=imgUrl($v['img_path']);
         }
@@ -97,16 +98,16 @@ class AftersaleController extends Controller{
 	public function add(){				//新增售后
 		$q=$this->request;
 		// $q=new \stdclass();
-		// $q->user_id=3;
-		// $q->order_id=367;
-		// $q->after_sale_reason=4;
+		// $q->user_id=100019;
+		// $q->order_id=257;
+		// $q->after_sale_reason=2;
 
 		!isset($q->user_id) || !isset($q->order_id) || !isset($q->after_sale_reason) and myerror(\StatusCode::msgCheckFail, '缺少参数');	
 
 
 
-		// $q->after_sale_remark='我就是不想买了';			//可选
-		// $q->img='asdhi.jpg|asd.jpg';				//可选， 上传的图片
+		$q->after_sale_remark='我就是不想买了';			//可选
+		$q->img=['asdhi.jpg', '12341sd.jpg'];				//可选， 上传的图片
 
 
 		\Valid::not_empty($q->user_id)->withError('用户id为空');
@@ -119,18 +120,17 @@ class AftersaleController extends Controller{
 		$dao=\Dao::Cus_order_list();
 
 
-		/*开始事务*/
-		$dao->beginTrans();
+		
+		
 
 		$data=$dao->getRelationInfo($q->order_id, $q->user_id, $q->after_sale_reason);				//获取关联数据以便写入,顺带验证是否可以申请售后
-
 		!$data and myerror(\StatusCode::msgExistAftersale, '该订单不可申请售后');
 
 		$main=(object) $data['main'];
 		$goodsModel=\Model::Cus_order_goods_list();			//写入售后订单列表
 		foreach ($data['goods'] as &$v) {
 			$v=(object) $v;
-			$tmp=clone ($goodsModel);							//生成多个模型 但是缺少关联的主键
+			$tmp=\Model::Cus_order_goods_list();	//生成多个模型 但是缺少关联的主键
 			$tmp->goods_id=$v->goods_id;
 			$tmp->goods_name=$v->goods_name;
 			$tmp->img_path=$v->img_path;
@@ -168,14 +168,16 @@ class AftersaleController extends Controller{
 		$model->refund_amount=$main->refund_amount;
 		$model->addtime=time();
 		$model->shipping_no=$main->shipping_no;
+		$model->shipping_fee=$main->shipping_fee;
 		$model->buyer_name=$main->buyer_name;
 		$model->supplier_show_refund=$main->show_refund;
 
 		$model->refund_reason=$q->after_sale_reason;
 		$model->remark=$q->after_sale_remark;
 
-		
+		/*开始事务*/
 
+		$dao->beginTrans();
 
 		$id=$dao->insert($model);						//插入主售后订单,返回售后订单id
 		$goodsDao=\Dao::Cus_order_goods_list();
@@ -183,6 +185,7 @@ class AftersaleController extends Controller{
 		foreach ($goods as &$v) {
 			$v->cus_id=$id;
 		}
+
 		$goodsDao->insertMany($goods);					//插入商品
 
 		$bool=isset($q->img) && !empty($q->img);			//插入凭证图片
@@ -195,11 +198,12 @@ class AftersaleController extends Controller{
 			
 			$imgModel=\Model::Cus_order_goods_img('', $id);
 			foreach ($imgs as $k => $v) {
-				$tmp=clone ($imgModel);
+				$tmp=\Model::Cus_order_goods_img('', $id);
 				$tmp->img_path=$v;
 				$img[]=$tmp;	
 			}
 			$imgDao=\Dao::Cus_order_goods_img();
+
 			$imgDao->insertMany($img);
 		}
 		//改订单状态

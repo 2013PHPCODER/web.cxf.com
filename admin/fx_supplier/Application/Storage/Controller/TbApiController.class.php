@@ -75,6 +75,8 @@ class TbApiController extends BasicController{
         session('sessionKey',$_data['access_token']);
 
         if($_staus){
+            //向用户仓库写入授权数据
+            
             $returnData['statu'] = 1;
             $returnData['info'] = '授权成功';
         }else{
@@ -101,5 +103,19 @@ class TbApiController extends BasicController{
             $this->aReturn(0,'授权过期');
         }
         $this->aReturn(1,'授权正常');
+    }
+    
+    /**
+     * [checkAcess 检查是授权是否过期]
+     * @return [type] [description]
+     */
+    public function check_acess(){
+//        $_expire_time = M('taobao_authorize')->where(array('user_id'=>  $this->user_info['id']))->getField('expire_time');
+//        $_expire_time = $_expire_time ? $_expire_time : 0;
+//        $_time = $this->getMillisecond();
+//        if($_expire_time < $_time){
+            $this->aReturn(0,'请授权后继续操作');
+//        }
+//        $this->aReturn(1,'授权正常');
     }
 }

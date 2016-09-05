@@ -44,14 +44,14 @@ class GoodsController extends BasicController {
                     $sku[] = $v;
                 }
             }
-            array_unique($sku);
+//            array_unique($sku);
             $_datas['list'][$key]['sku_list'] = $sku;
         }
         unset($skus);
         $this->datas = $_datas;
         $this->depot = $this->depot_list;
         $this->goods_category = $this->goods_category_model->get_category_list($this->user_info['id']);
-        $this->show();
+        $this->display('index');
     }
 
     /**

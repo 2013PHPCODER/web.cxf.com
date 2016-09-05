@@ -42,7 +42,7 @@
                                 <option value="">——请选择——</option>
                                 <option value="5">订单付款</option>
                                 <option value="3">售后退款</option>
-                                <option value="2">售后补款</option>
+<!--                                <option value="2">售后补款</option>-->
                                 <option value="1">余额提现</option>
                             </select>
                             <span>选择时间：</span>
@@ -69,8 +69,8 @@
                                         <td data-bind = "text:add_time"><span>2016-7-27</span><span>21:39:42</span></td>
                                         <td data-bind = "text:trade_type_str">售后退款</td>
                                         <td data-bind = "text:trade_no">5656566565665</td>
-                                        <td data-bind = "text:out_money">+278.00</td>
-                                        <td data-bind = "text:remark">余额</td>
+                                        <td data-bind = "text:in_money = '0.00' ? out_money : in_money">+278.00</td>
+                                        <td data-bind = "text:trade_account_type">余额</td>
                                         <td><span data-bind = "text:trade_account">退款至余额</span></td>
                                         <td data-bind = "text:now_balance">278.00</td>
                                         <td data-bind = "text:remark">备注</td>
@@ -108,54 +108,107 @@ var end = {
 laydate.skin('molv');
 laydate(start);
 laydate(end);
-    var stats = {
-        'user_id': getCookieValue('user_id'),
-        'user_name': getCookieValue('user_account'),
-        'page':1
+//    var stats = {
+//        'user_id': getCookieValue('user_id'),
+//        'user_name': getCookieValue('user_account'),
+//        'page':1
+//        }
+//        X.bindModel(requestUrl.stats,1,stats,'body.list',['statement-body'],function(){
+//        })
+//        var ohtml=$('#statement-body').html();
+//        $('#selecType').change(function(){
+//        	ko.cleanNode(document.getElementById("statement-body"));
+//        	$('#statement-body').html(ohtml)
+//        	var data={
+//        		'user_id': getCookieValue('user_id'),
+//        		'user_name': getCookieValue('user_account'),
+//        		'page':1,
+//        		'trade_type':$('#selecType option:selected').val()
+//        	}
+//        	X.bindModel(requestUrl.stats,1,data,'body.list',['statement-body'],function(){})
+//        })
+//        //开始时间
+//        $('#start').blur(function(){
+//        	setTimeout(function(){
+//	        	ko.cleanNode(document.getElementById("statement-body"));
+//	        	$('#statement-body').html(ohtml)
+//	        	var data={
+//	        		'user_id': getCookieValue('user_id'),
+//	        		'user_name': getCookieValue('user_account'),
+//	        		'page':1,
+//	        		'start_time':$('#start').val()
+//	        	};
+//	        	X.bindModel(requestUrl.stats,1,data,'body.list',['statement-body'],function(){})
+//        	},150)
+//        })
+////      结束时间
+//        $('#end').blur(function(){
+//        	setTimeout(function(){
+//	        	ko.cleanNode(document.getElementById("statement-body"));
+//	        	$('#statement-body').html(ohtml)
+//	        	var data={
+//	        		'user_id': getCookieValue('user_id'),
+//	        		'user_name': getCookieValue('user_account'),
+//	        		'page':1,
+//	        		'start_time':$('#end').val()
+//	        	};
+//	        	X.bindModel(requestUrl.stats,1,data,'body.list',['statement-body'],function(){})
+//        	},150)
+//        })
+var oHtml =$('#statement-body').html();
+var statsData = {};
+function getStatement() {
+    ko.cleanNode(document.getElementById("statement-body"));
+    $('#statement-body').html(oHtml);
+    statsData = {
+        'user_id':getCookieValue('user_id'),
+        'user_name':getCookieValue('user_account'),
+        'trade_type':$('#selecType option:selected').val(),
+        'start_time': $('#start').val(),
+        'end_time': $('#end').val(),
+        'page': 1
+    };
+    X.bindModel(requestUrl.stats,1,statsData,'body.list',['statement-body'],function(){
+
+    })
+}
+getStatement();
+$('#selecType').change(function(){
+    getStatement();
+});
+$('#start, #end').blur(function(){
+    setTimeout(function(){
+        getStatement();
+    },150)
+});
+var truetrue = true, pageNum = 2, tar = $('.cont-box-body');
+tar.scroll(function () {
+    if ($("#statement-body").height() - tar.scrollTop() <= tar.height()) {
+        statsData.page = pageNum;
+        if (truetrue) {
+            X.Post(requestUrl.stats, 1, statsData, function(_d){
+                var data = _d.body.list.list, html = '';
+                if(data.length > 0) {
+                    $.each(data, function (i ,d) {
+                        html += '<tr><td>'+ d.add_time +'</td> ' +
+                            '<td>'+ d.trade_type_str +'</td> ' +
+                            '<td>'+ d.trade_no +'</td>' +
+                            '<td>'+ d.in_money +'</td> ' +
+                            '<td>'+ d.trade_account_type +'</td> ' +
+                            '<td>'+ d.trade_account +'</td> ' +
+                            '<td>'+ d.now_balance +'</td> ' +
+                            '<td>'+ d.remark +'</td> ' +
+                            '</tr>';
+                    });
+                    $('#statement-body').append(html);
+                    pageNum += 1;
+                }else {
+                    X.notice('没有更多数据了', 2);
+                }
+            });
         }
-        X.bindModel(requestUrl.stats,1,stats,'body.list',['statement-body'],function(){
-        })
-        var ohtml=$('#statement-body').html();
-        $('#selecType').change(function(){
-        	ko.cleanNode(document.getElementById("statement-body"));
-        	$('#statement-body').html(ohtml)
-        	var data={
-        		'user_id': getCookieValue('user_id'),
-        		'user_name': getCookieValue('user_account'),
-        		'page':1,
-        		'trade_type':$('#selecType option:selected').val()
-        	}
-        	X.bindModel(requestUrl.stats,1,data,'body.list',['statement-body'],function(){})
-        })
-        //开始时间
-        $('#start').blur(function(){
-        	setTimeout(function(){
-	        	ko.cleanNode(document.getElementById("statement-body"));
-	        	$('#statement-body').html(ohtml)
-	        	var data={
-	        		'user_id': getCookieValue('user_id'),
-	        		'user_name': getCookieValue('user_account'),
-	        		'page':1,
-	        		'start_time':$('#start').val()
-	        	};
-	        	X.bindModel(requestUrl.stats,1,data,'body.list',['statement-body'],function(){})
-        	},150)
-        })
-//      结束时间
-        $('#end').blur(function(){    	
-        	setTimeout(function(){
-	        	ko.cleanNode(document.getElementById("statement-body"));
-	        	$('#statement-body').html(ohtml)
-	        	var data={
-	        		'user_id': getCookieValue('user_id'),
-	        		'user_name': getCookieValue('user_account'),
-	        		'page':1,
-	        		'start_time':$('#end').val()
-	        	};
-	        	X.bindModel(requestUrl.stats,1,data,'body.list',['statement-body'],function(){})
-        	},150) 
-        })
-        
+    }
+});
 </script>
 
 </html>

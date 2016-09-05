@@ -209,10 +209,15 @@
                     $('.marks').fadeOut()
                 })
             }
-        })
+        });
         $('#popdrag').drag();
         $('.b-upgrade').click(function () {
-            $('.public_version').click();
+            var userLevel = localStorage.getItem('user_level');
+            if(userLevel==3){
+                X.notice('您已升至最高等级',2);
+            }else {
+                $('.public_version').click();
+            }
         })
     })
 </script>

@@ -390,10 +390,12 @@ class GoodsListModel extends Model {
         foreach ($pic as $key => $value) {
             if (!empty($value)) {
                 $paths = explode(':', $value);
-                if ($key == 0) {
+                if ($paths[1] == 1 && $paths[2] == 0) {
                     $return_path['first'] = $paths[0];
                 }
-                $return_path['img'][] = $paths[0];
+                if ($paths[1] == 1 || empty($return_path['img'])) {
+                    $return_path['img'][] = $paths[0];
+                }
                 $in_img = M('goods_img_path')->where(array('md5_path' => $paths[0]))->field('md5_path')->find();
                 if (empty($in_img)) {
                     $img_path[$key]['md5_path'] = $paths[0];
@@ -402,6 +404,9 @@ class GoodsListModel extends Model {
         }
         if (!empty($img_path)) {
             M('goods_img_path')->addAll($img_path);
+        }
+        if (empty($return_path['first'])) {
+            $return_path['first'] = $return_path['img'][0];
         }
         return $return_path;
     }

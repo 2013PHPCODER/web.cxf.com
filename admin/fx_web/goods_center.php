@@ -13,9 +13,12 @@
         <script src="js/plus.js" type="text/javascript" charset="utf-8"></script>
         <style>
             .nav .nav-box .classify-box{display: none;}
-            .goodsListDiv>ul{display: none;}
+/*            .goodsListDiv>ul{display: none;}*/
             .goodsListDiv>ul:first-child{display: block;}
             .floorLeft>div>span{color: #fff;font-size: 24px;width: 100px;overflow: hidden; float: right;margin-right: 10px;font-family: "microsoft yahei";margin-top: 3px;}
+            .goodsCenterGG1 {
+                margin-top: 10px;
+            }
         </style>
     </head>
     <body style="background: #f5f5f5;">
@@ -27,7 +30,7 @@
 
         <div class="goodsCenterGG1">
             <a href="">
-                <img src="images/goodsCenter/goodsCenterGG1.png">
+                <img src="http://maihoho.b0.upaiyun.com//top/4861093228090856742.jpg">
             </a>
         </div>
         <div id="goodsCenter">
@@ -55,21 +58,21 @@
                             <li data-bind="attr:{id:goods_id,name:goods_name,code:buyer_goods_no}">
                                 <div class="goodsImg">
                                     <a data-bind = "attr:{href:'good_detail.php?goodsID='+goods_id}" target="_blank">
-                                        <img data-bind="attr:{src:img_path,alt:goods_name,title:goods_name}">
+                                        <img data-bind="attr:{'src':img_path+'/!upyun123/fwfh/300x300',alt:goods_name,title:goods_name}">
                                     </a>
-                                    <p>
-                                        <span class="leftSC">1</span>
-<!--                                        <span class="goodsSC">收藏</span>-->
+                                    <!--<p>
+                                        <span class="leftSC"></span>
+                                        <span class="goodsSC">收藏</span>
 
-                                    </p>
+                                    </p>-->
                                 </div>
                                 <div class="goodsBorder">
                                     <p class="goodsName"><a href="" data-bind = "attr:{href:'good_detail.php?goodsID='+goods_id,title:goods_name},text:goods_name"></a></p>
                                     <div class="goodsGrade">
                                         <div class="left">
-                                            <p>基础版：<label data-bind = "text:change_price.basic_price"></label>元</p>
-                                            <p>中级版：<label data-bind = "text:change_price.middle_price"></label>元</p>
-                                            <p class="goodsPriceGj">高级版：<label data-bind = "text:change_price.senior_price"></label>元</p>
+                                            <p class="userSign" data-level="1">初级版：<label data-bind = "text:change_price.basic_price"></label></p>
+                                            <p class="userSign" data-level="2">中级版：<label data-bind = "text:change_price.middle_price"></label></p>
+                                            <p class="userSign" data-level="3">高级版：<label data-bind = "text:change_price.senior_price"></label></p>
                                         </div>
                                         <div class="right">
                                             <p class="delPrice">原价：<label data-bind = "text:change_price.distribution_price"></label></p>
@@ -125,14 +128,13 @@
                 $('#category .classify-box.e-tab').css('display','none');
                 $('#category li:first-child').click(function(){
                         $('#category .classify-box.e-tab').slideToggle();
-                })
+                });
                 X.bindModel(requestUrl.goods_center,0,{},'body.list',['goodsCenter','foolrDivI'],function(){
-                	$('.goodsCenterUl').show();
                     $('#goodsCenter>ul>li').each(function(i){
                             $('#goodsCenter>ul>li').eq(i).children('a').eq(0).attr({'name':i+1+'F','id':i+1+'f'})
                             $(this).find('.FF').html(i+1+'F');
                             $(this).find('.floorCenter').find('li').eq(0).addClass('floorLiActive ');
-                    })     		
+                    });
                     function rollSliderlf() {
                         $('.slider-box ul').animate({
                             marginLeft: '-340px'
@@ -169,26 +171,46 @@
                         rollSliderrr();
                         return false
                     });
-                    $('#goodsCenter li').each(function(){
-                        $(this).find('.goodsListDiv>ul').eq(0).children('li').each(function(){
-                             $(this).find('img').attr('src',$(this).find('img').attr('data-src'));
-                        })            		            		
+                    $('#goodsCenter>ul>li').each(function(){
+                    	$(this).find('.goodsListDiv>ul').eq(0).show();
+//                      $(this).find('.goodsListDiv>ul').eq(0).children('li').each(function(){                       	
+//                           $(this).find('img').attr('src',$(this).find('img').attr('data-src'));
+//                      })            		            		
                     })
                     $('.floorCenter>ul>li').one('click',function(){
-                        var f = $(this).parents('.floorType').parent().index();
-                        var g = $(this).index();
+                        var f = $(this).parents('.floorType').parent().index(),
+                            g = $(this).index(),
+                            oThis = $(this);
                         if(g == 0){
-                            return false;
+                            return ;
                         }else{
-                            $('#goodsCenter>ul>li').eq(f).find('.goodsListDiv>ul').eq(g).children('li').each(function(){
-                                $(this).find('img').attr('src',$(this).find('img').attr('data-src'));
-                            })            		            		
+//                          $('#goodsCenter>ul>li').eq(f).find('.goodsListDiv>ul').eq(g).children('li').each(function(){
+//                              $(this).find('img').attr('src',$(this).find('img').attr('data-src'));
+//                          })            		            		
+                            X.Post(requestUrl.goods_center_two,0,{'cid':$(this).attr('data-id')},function(e){
+                            	var e = e.body.list,html = '';
+                            	for(var i in e){
+                            		html += '<li id="'+e[i].goods_id+'" name="'+e[i].goods_name+'" code="'+e[i].buyer_goods_no+'">'
+                            		     +  '<div class="goodsImg"><a href="good_detail.php?goodsID='+e[i].goods_id+'" target="_blank">'
+                            		     +  '<img src="'+e[i].img_path+'/!upyun123/fwfh/300x300" alt="'+e[i].goods_name+'" title="'+e[i].goods_name+'"></a>'
+//                          		     +  '<p><span class="leftSC"></span><span class="goodsSC">收藏</span></p>'
+                                         +  '</div><div class="goodsBorder"><p class="goodsName"><a href="good_detail.php?goodsID='+e[i].goods_id+'" title="'+e[i].goods_name+'">'+e[i].goods_name+'</a></p>'
+                                         +  '<div class="goodsGrade"><div class="left">'
+                                         +  '<p class="userSign" data-level="1">初级版：<label>'+e[i].change_price.basic_price+'</label>元</p>'
+                                         +  '<p class="userSign" data-level="2">中级版：<label>'+e[i].change_price.middle_price+'</label>元</p>'
+                                         +  '<p class="userSign" data-level="3">高级版：<label>'+e[i].change_price.senior_price+'</label>元</p></div><div class="right">'
+                                         +  '<p class="delPrice">原价：<label>'+e[i].change_price.distribution_price+'</label></p>'
+                                         +  '<p><span class="rightPH buy">一键铺货</span> <span class="buy ljgm"><a href="good_detail.php?goodsID='+e[i].goods_id+'">立即购买</a></span></p></div></div></div></li>'
+                            	}
+                            	$('#goodsCenter>ul>li').eq(f).find('.goodsListDiv').children('ul').eq(g).html(html);                         	
+                            	$('.goodsCenterUl li .userSign').each(function(){
+			                        if($(this).attr('data-level')==getCookieValue('user_level')){
+			                            $(this).css('color','red');
+			                        }
+			                    })
+                            })   
                         }
-                    })
-//	               	$('#goodsCenter>ul>li').each(function(){
-//	               		$(this).find('.goodsListDiv>ul').eq(0).find('img').attr('src',$(this).find('.goodsListDiv>ul').eq(0).find('img').attr('data-src'))
-//	               	}) 		
-//	               	
+                    })               	
                     $('.floorCenter ul').on('click', 'li', function () {
                     	var index = $(this).index();
 	                    $(this).prevAll('li').removeClass('floorLiActive').end().nextAll('li').removeClass('floorLiActive').end().addClass('floorLiActive');
@@ -205,22 +227,27 @@
                         goodsArr:[]
                     };
                     //单个商品铺货
-                    $('.rightPH').click(function(){
+                    $('.goodsCenterUl').on('click','.rightPH',function(){
                         DetailViewModel.goodsArr.length=0;
                         var parens = $(this).parents('li');
                         DetailViewModel.goodsArr.push({goodsID:parens.attr('id'),goods_name:parens.attr('name'),buyer_goods_no:parens.attr('code')});
                         yijinPH(DetailViewModel);
                     });
-	            })
+	            },function(res){
+                    $('.goodsCenterUl li .userSign').each(function(){
+                        if($(this).attr('data-level')==getCookieValue('user_level')){
+                            $(this).css('color','red');
+                        }
+                    })
+                })
         })
     </script>
     <script>
-           
            $(function(){
-               X.bindModel(requestUrl.category,0,{},'',['category'],function(){},function(x){
-               	    x = {'category':x}     
-               	    return  x; 	  
-               });
+//             X.bindModel(requestUrl.category,0,{},'',['category'],function(){},function(x){
+//             	    x = {'category':x};
+//             	    return  x; 	  
+//             });
                function foolrDiv(){
                	   var oWight = $(window).width();
                    if(oWight-1480 >= 0){
@@ -229,11 +256,15 @@
                    	   $('.foolrDiv').css('left',0)
                    }
                }
-               foolrDiv()
+               foolrDiv();
                $(window).resize(function () {
                    foolrDiv()
 			   });
-           })
 
+
+               $("#foolrDivI").on("mouseenter", "ul > li", function () {
+                   $(this).addClass("floorLeftActive").siblings().removeClass("floorLeftActive");
+               });
+           });
     </script>
 </html>

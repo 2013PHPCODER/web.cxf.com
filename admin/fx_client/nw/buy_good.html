@@ -615,7 +615,8 @@
                 $('.m-tolSubmit .m-tol-num').html(n);
                 $('.m-tolSubmit .m-tol-price').html(p.toFixed(2));
 //				$('.m-tolSubmit .m-tol-freight').html(p);   //运费
-                $('.m-tolSubmit .m-tol-amount').html((parseFloat($('.m-tolSubmit .m-tol-price').html()) + parseFloat($('.m-tolSubmit .m-tol-freight').html())).toFixed(2));
+                var calcMoney = Number($('.m-tolSubmit .m-tol-price').html()) + Number($('.m-tolSubmit .m-tol-freight').html());
+                $('.m-tolSubmit .m-tol-amount').html(calcMoney.toFixed(2));
             }
             updateDate();
         });

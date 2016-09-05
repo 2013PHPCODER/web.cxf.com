@@ -13,7 +13,7 @@
     </div>
     <div class="box-body">
         <div class="row" >
-            <form class="form-inline"  action="{:U('storage/index')}" method="geFt">
+            <form class="form-inline"  action="{:U('storage/index',array('group_id'=>I('get.group_id')))}" method="geFt">
                 <div class="form-group">
                     <label for="exampleInputName2">仓库名称:</label>
                     <select class="form-control input-xs" name="depot">
@@ -216,19 +216,19 @@
                     <td style="text-align: center"><img class="table_img" src="{$list.img_path}"></td>
                     <td ><p> {$list.goods_name} </p>
                         <p> {$list.buyer_goods_no}&nbsp;&nbsp;{$list.sku}</p>
-                </td>
-                <td>{$list.price}</td>
-                <td><p>{$list.goods_num}</p></td>
-                <td><p>{$list.cost_price}</p>
-                    <p>含运费:{$list.shipping_fee}</p></td>
-                <td>
-                    <p>
-                        收件人:
-                        {$list.contact_name},{$list.tel}&nbsp;,{$list.province}{$list.city}{$list.dist}{$list.contact_address}
-                    </p>
-                </td>
-                <td><p>
-                        <switch name="list.ship_stats" >
+                    </td>
+                    <td>{$list.price}</td>
+                    <td><p>{$list.goods_num}</p></td>
+                    <td><p>{$list.cost_price}</p>
+                        <p>含运费:{$list.shipping_fee}</p></td>
+                    <td>
+                        <p>
+                            收件人:
+                            {$list.contact_name},{$list.tel}&nbsp;,{$list.province}{$list.city}{$list.dist}{$list.contact_address}
+                        </p>
+                    </td>
+                    <td><p>
+                            <switch name="list.ship_stats" >
                 <case value='0'>待配货</case>
                 <case value='1'>待分配</case>
                 <case value='2'>待发货</case>
@@ -414,7 +414,7 @@
             dataPost.order = order;
             var urlPost = "{:U('storage/getAllShipCode',I('get.'))}";
             $.post(urlPost, dataPost, function (result) {
-                console.log(result);
+//                console.log(result);
                 if (result.status == 0) {
                     layer.tips(result.message, '#btn_assign', {
                         tips: [2, '#3595CC'],
@@ -478,7 +478,7 @@
                         btn: ['打印', '取消'], area: ['1000px', '600px']},
                             function () {
                                 $.post("{:U('storage/resultDistribution')}", $('.print_table').serialize(), function (status) {
-                                    console.log(status);
+//                                    console.log(status);
                                     var newstr = $('.layui-layer-content').html();
                                     var newOpenWindow = window.open(window.location.href);
                                     newOpenWindow.onload = function () {
@@ -599,7 +599,7 @@
                         var urlPost = "{:U('storage/canceShipCode',I('get.'))}";
                         $.post(urlPost, data, function (result) {
                             var result = JSON.parse(result);
-                            console.log(result);
+//                            console.log(result);
                             var success = 0;
                             var fail = 0;
                             var cus_num = 0;
@@ -704,7 +704,7 @@
                         } else {
                             var postUrl = "{:U('Storage/printSingle')}";
                             $.post(postUrl, postData, function (data, textStatus, xhr) {
-                                console.log(data);
+//                                console.log(data);
                                 if (1 == data.status) {
                                     printShip(data.returnData);
                                 }
@@ -716,9 +716,6 @@
                     });
                 });
             });
-
-
-
             var printShip = function (shipData) {
                 var AppKey = 23392048;
                 var Seller_ID = 194418657;

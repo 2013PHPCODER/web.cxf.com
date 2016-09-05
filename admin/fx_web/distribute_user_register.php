@@ -24,6 +24,11 @@
         <script src="//cdn.bootcss.com/knockout/3.3.0/knockout-min.js"></script>
 	    <script src="js/plus.js" type="text/javascript" charset="utf-8"></script>
 	    <script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+	    <script>
+	    	if (getCookieValue('user_nickname') != '' && getCookieValue('user_nickname') != null) {
+	    		window.location.href = 'index.php'
+	    	}
+	    </script>
     </head>
 </head>
 <body style="background: #fff">
@@ -41,10 +46,10 @@
                     <table>
                         <tr>
                             <td></td>
-                            <td colspan="2" class="radios">
-                                <label style="float: left"><input type="radio" value="1" checked name="radio">手机注册</label>
-                                <label style="float: right"><input type="radio" value="2"  name="radio">邮箱注册</label>
-                            </td>
+<!--                            <td colspan="2" class="radios">-->
+<!--                                <label style="float: left"><input type="radio" value="1" checked name="radio">手机注册</label>-->
+<!--                                <label style="float: right"><input type="radio" value="2"  name="radio">邮箱注册</label>-->
+<!--                            </td>-->
                             <td></td>
                         </tr>
                         <tr class="rg_phone">
